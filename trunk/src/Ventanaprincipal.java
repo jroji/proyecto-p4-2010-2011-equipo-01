@@ -11,7 +11,7 @@ public class Ventanaprincipal extends JFrame  {
 		/**
 		 * Pagestart simbolo juego
 		 * Center PanelMenuPrincipal
-		 * Posible nombre PageEnd
+		 * Posible nombre PageEnd...
 		 */
 	}
 
