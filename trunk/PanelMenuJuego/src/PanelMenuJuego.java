@@ -16,6 +16,8 @@ public class PanelMenuJuego extends JPanel implements ActionListener {
 	JFrame f; //Ventana del juego
 	JButton bGuardar; //Partida Rapida
 	JButton bCargar; //Partida Personalizada
+	JButton bRendirse; //Rendirse
+	JButton bOpciones; //Opciones
 	JButton bSalir; //Boton Salir
 	JButton si;
 	JButton No;
@@ -30,18 +32,24 @@ public class PanelMenuJuego extends JPanel implements ActionListener {
 		//Declaracion JButtons
 		bGuardar = new JButton("Guardar Partida");
 		bCargar = new JButton("Cargar Partida");
+		bRendirse = new JButton("Rendirse");
+		bOpciones = new JButton("Opciones");
 		bSalir = new JButton ("Salir");
 		
 		//Poner ActionListener Botones
 		bGuardar.addActionListener(this);
 		bCargar.addActionListener(this);
+		bRendirse.addActionListener(this);
+		bOpciones.addActionListener(this);
 		bSalir.addActionListener(this);
 		
 		//Poner Botones
 		J.add(bGuardar);
 		J.add(bCargar);
+		J.add(bRendirse);
+		J.add(bOpciones);
 		J.add(bSalir);
-		SpringUtilities.makeCompactGrid(J,3,1,6,6,6,6);
+		SpringUtilities.makeCompactGrid(J,5,1,6,6,6,6);
 		this.add(J);
 		this.setSize(400,200);
 	}
