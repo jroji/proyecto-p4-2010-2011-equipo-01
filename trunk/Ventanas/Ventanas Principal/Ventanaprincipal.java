@@ -23,8 +23,11 @@ public class Ventanaprincipal extends JFrame  {
 		J.add(new JLabel("Nick 2: "));
 		JTextField Nick2 = new JTextField();
 		J.add(Nick2);
-		
-		
+		SpringUtilities.makeCompactGrid(J,4,2,6,6,6,6);
+		this.add(J);
 	}
-
+	public static void main(String[]args){
+		VentanaPrincipal v = new VentanaPrincipal();
+		v.setVisible(true);
+	}
 }
