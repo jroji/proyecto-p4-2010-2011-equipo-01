@@ -12,6 +12,8 @@ public abstract class PiezaOldWarriorTales extends Piece{
 	private int life;
 	private int energy;
 	private int probability;
+	
+	//indica si la unidad está envenenada o no.
 	private boolean poison;
 
 	//indica si puede contraatacar o no
