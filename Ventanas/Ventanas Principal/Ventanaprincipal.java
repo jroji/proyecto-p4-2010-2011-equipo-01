@@ -24,9 +24,9 @@ public class Ventanaprincipal extends JFrame  {
 		JTextField Nick2 = new JTextField();
 		J.add(Nick2);
 		SpringUtilities.makeCompactGrid(J,4,2,6,6,6,6);
-		this.add(J);
+		this.add(J,BorderLayout.PAGE_END);
 	}
-	public static void main(String[]args){
+	public static void main (String[]args){
 		VentanaPrincipal v = new VentanaPrincipal();
 		v.setVisible(true);
 	}
