@@ -6,7 +6,7 @@ import javax.swing.ImageIcon;
  * @implements Moveable 
  * 
  */
-public abstract class Pieza implements Moveable{
+public abstract class Piece implements Moveable{
 	enum Colores {blanco, negro}
 	private int position_x;
 	private int position_y;
