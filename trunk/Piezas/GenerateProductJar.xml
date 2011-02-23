@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="Utils" default="all-jar" basedir=".">
+
+	<property file="GenerateProductJar.properties" />
+
+	<!-- Obtains the project name from the basedir.path -->
+	<path id="basedir.path">
+		<pathelement path="${basedir}" />
+	</path>
+	<pathconvert property="project.name" refid="basedir.path">
+		<chainedmapper>
+			<mapper type="flatten" />
+			<flattenmapper />
+		</chainedmapper>
+	</pathconvert>
+	<echo message="${project.name}" />
+
+	<!-- Cleans the jar directory -->
+	<target name="clean-jar">
+		<delete dir="deploy" />
+		<mkdir dir="deploy" />
+	</target>
+
+	<!-- Generates the jar -->
+	<target name="generate-jar">
+		<jar basedir="bin" destfile="deploy/${project.name}.jar">
+		</jar>
+	</target>
+
+	<!-- Copies the jar to the P4_PRODUCTS_PATH -->
+	<target name="copy-jar-to-p4-products-path">
+		<delete dir="${p4-products-path}/${project.name}" />
+		<mkdir dir="${p4-products-path}/${project.name}" />
+		<copy todir="${p4-products-path}/${project.name}" includeemptydirs="false">
+			<fileset dir="deploy" />
+		</copy>
+	</target>
+	
+
+	<!-- The whole process step by step -->
+	<target name="all-jar">
+		<antcall target="clean-jar" />
+		<antcall target="generate-jar" />
+		<antcall target="copy-jar-to-p4-products-path" />
+	</target>
+
+</project>
