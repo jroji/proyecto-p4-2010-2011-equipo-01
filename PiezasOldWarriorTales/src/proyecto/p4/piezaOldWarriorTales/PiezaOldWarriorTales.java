@@ -7,15 +7,6 @@ import proyecto.p4.pieza.Piece;
 public abstract class PiezaOldWarriorTales extends Piece{
 	//atributos de la pieza
 	private int movement;
-	public int getProbability() {
-		return probability;
-	}
-	public boolean isBlindness() {
-		return blindness;
-	}
-	public boolean isPoison() {
-		return poison;
-	}
 	private int defense;
 	private int attack;
 	private int experience;
@@ -59,16 +50,31 @@ public abstract class PiezaOldWarriorTales extends Piece{
 	public boolean isPoissoned(){
 		return poison;
 	}
+	/* Metodo que gestiona el ataque de una pieza a otra basandose en la siguiente formula:
+	 * vida a restar= ataque (this) - defensa (contraria)
+	 * 
+	 * @param piezaContraria. pieza a la que se a atacado y a la que se desea restar la vida.
+	 * @return int. Vida a restar
+	 * 
+	 */
  	public int takingLife (PiezaOldWarriorTales piezaContraria){
 		return this.attack-piezaContraria.defense;
 	}
+	public int getProbability() {
+		return probability;
+	}
+	
 	@Override
-	public boolean canMove(int arg0, int arg1) {
-		// TODO Auto-generated method stub
+	public boolean canMove(int posx, int posy) {
+		//metodo a codificar.
 		return false;
 	}
-	/*Metodo que indica si la pieza puede atacar o no
+	/* Metodo que indica si la pieza puede atacar o no.
+	 * Para ello genera un numero aleatorio entre 0 y 100 y lo compara con su atributo probability,
+	 * devolviendo true si y solo si el resultado del numero aleatorio generado es igual o menor 
+	 * a ese atributo.
 	 * 
+	 * @return boolean. indicativo de si la pieza puede atacar o no
 	 */
 	public boolean canAttack (){
 		Random random= new Random();
