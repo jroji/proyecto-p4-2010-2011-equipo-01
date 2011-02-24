@@ -2,7 +2,7 @@ package Languages;
 
 import java.util.HashMap;
 
-public class Language {
+public abstract class Language {
 
 	HashMap words = new HashMap();
 
