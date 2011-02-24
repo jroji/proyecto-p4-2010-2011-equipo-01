@@ -13,6 +13,7 @@ public abstract class PiezaOldWarriorTales extends Piece{
 	private int life;
 	private int energy;
 	private int probability;
+	private Orientations orientacion;
 	
 	//indica si la unidad está ciega o no.
 	private boolean blindness;
@@ -69,6 +70,7 @@ public abstract class PiezaOldWarriorTales extends Piece{
 		//metodo a codificar.
 		return false;
 	}
+	
 	/* Metodo que indica si la pieza puede atacar o no.
 	 * Para ello genera un numero aleatorio entre 0 y 100 y lo compara con su atributo probability,
 	 * devolviendo true si y solo si el resultado del numero aleatorio generado es igual o menor 
