@@ -5,7 +5,17 @@ import java.util.Random;
 import proyecto.p4.pieza.Piece;
 
 public abstract class PiezaOldWarriorTales extends Piece{
+	//atributos de la pieza
 	private int movement;
+	public int getProbability() {
+		return probability;
+	}
+	public boolean isBlindness() {
+		return blindness;
+	}
+	public boolean isPoison() {
+		return poison;
+	}
 	private int defense;
 	private int attack;
 	private int experience;
@@ -13,7 +23,7 @@ public abstract class PiezaOldWarriorTales extends Piece{
 	private int energy;
 	private int probability;
 	
-	//indica si la unidad está envenenada o no.
+	//indica si la unidad está ciega o no.
 	private boolean blindness;
 
 	//indica si la unidad está envenenada o no.
@@ -43,7 +53,13 @@ public abstract class PiezaOldWarriorTales extends Piece{
 	public boolean isCounterattack() {
 		return counterattack;
 	}
-	public int takingLife (PiezaOldWarriorTales piezaContraria){
+	public boolean isBlind (){
+		return blindness;
+	}
+	public boolean isPoissoned(){
+		return poison;
+	}
+ 	public int takingLife (PiezaOldWarriorTales piezaContraria){
 		return this.attack-piezaContraria.defense;
 	}
 	@Override
