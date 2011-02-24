@@ -1,3 +1,4 @@
+package proyecto.p4.casilla.oldWarriorTales;
 import javax.swing.ImageIcon;
 
 public class Casilla {
