@@ -4,8 +4,8 @@ import javax.swing.ImageIcon;
 
 public class Terrain {
 	
-	private ImageIcon image;
-	private String name;
-	private int movement;
+	protected ImageIcon image;
+	protected String name;
+	protected int movement;
 
 }
