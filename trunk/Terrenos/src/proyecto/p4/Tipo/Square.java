@@ -6,6 +6,11 @@ public abstract class Square {
 
 	protected ImageIcon image; //Contiene la imagen del terreno
 	protected String name; // Contiene el nombre del terreno
+	
+	public Square (){
+		iniName();
+		iniImage();
+	}
 
 	//Inicializar nombre
 	public abstract void iniName();
@@ -14,10 +19,14 @@ public abstract class Square {
 	public abstract void iniImage();
 	
 	//Devuelve la imagen
-	public abstract ImageIcon getImage();
+	public  ImageIcon getImage(){
+		return image;
+	}
 	
 	//Devuelve el nombre del terreno
-	public abstract String getName();
+	public String getName(){
+		return name;
+	}
 
 
 }
