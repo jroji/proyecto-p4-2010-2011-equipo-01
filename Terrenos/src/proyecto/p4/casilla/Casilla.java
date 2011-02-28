@@ -1,6 +1,7 @@
 package proyecto.p4.casilla;
 import javax.swing.ImageIcon;
 
+import proyecto.p4.Tipo.Terrain;
 import proyecto.p4.pieza.Piece;
 
 public class Casilla {
