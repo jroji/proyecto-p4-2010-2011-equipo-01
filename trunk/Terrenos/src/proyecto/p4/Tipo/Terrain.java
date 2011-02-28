@@ -1,3 +1,4 @@
+package proyecto.p4.Tipo;
 
 public class Terrain {
 	
