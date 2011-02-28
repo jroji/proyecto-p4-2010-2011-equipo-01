@@ -153,6 +153,7 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+    	this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -180,8 +181,8 @@ public class MainWindow extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bAccept;
-    private javax.swing.JButton bExit;//Exit
-    private javax.swing.JButton bNewPlayer;//NewPlayer
+    private javax.swing.JButton bExit;
+    private javax.swing.JButton bNewPlayer;
     private javax.swing.JComboBox GameSelection;
     private javax.swing.JLabel Nick1;
     private javax.swing.JLabel Nick2;
