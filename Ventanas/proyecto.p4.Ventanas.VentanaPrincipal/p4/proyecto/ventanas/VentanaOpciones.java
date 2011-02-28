@@ -19,6 +19,7 @@ public class VentanaOpciones extends javax.swing.JFrame {
     /** Creates new form VentanaOpciones */
     public VentanaOpciones() {
         initComponents();
+        this.setSize(1024,700);
     }
 
     /** This method is called from within the constructor to
