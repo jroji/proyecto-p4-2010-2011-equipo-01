@@ -13,7 +13,7 @@ package p4.proyecto.ventanas;
 
 /**
  *
- * @author Jon
+ * @author Group 01
  */
 public class MainWindow extends javax.swing.JFrame {
 
