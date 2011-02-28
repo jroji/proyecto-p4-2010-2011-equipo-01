@@ -14,10 +14,10 @@ package p4.proyecto.ventanas;
  *
  * @author Pello
  */
-public class VentanaOpciones extends javax.swing.JFrame {
+public class OptionsWindows extends javax.swing.JFrame {
 
     /** Creates new form VentanaOpciones */
-    public VentanaOpciones() {
+    public OptionsWindows() {
         initComponents();
         this.setSize(1024,700);
     }
@@ -116,7 +116,7 @@ public class VentanaOpciones extends javax.swing.JFrame {
     private void ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        VentanaJuego J = new VentanaJuego();
+        GameWindow J = new GameWindow();
         J.setVisible(true);
     }//GEN-LAST:event_ExitActionPerformed
 
@@ -126,7 +126,7 @@ public class VentanaOpciones extends javax.swing.JFrame {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VentanaOpciones().setVisible(true);
+                new OptionsWindows().setVisible(true);
             }
         });
     }
