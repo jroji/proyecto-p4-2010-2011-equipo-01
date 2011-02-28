@@ -10,7 +10,4 @@ public abstract class Language {
 		return (String) words.get(x);
 	}
 
-	public void setWords(HashMap words) {
-		this.words = words;
-	}
 }
