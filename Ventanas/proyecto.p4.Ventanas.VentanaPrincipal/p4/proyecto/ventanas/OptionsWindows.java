@@ -12,7 +12,7 @@ package p4.proyecto.ventanas;
 
 /**
  *
- * @author Pello
+ * @author Group 01
  */
 public class OptionsWindows extends javax.swing.JFrame {
 
