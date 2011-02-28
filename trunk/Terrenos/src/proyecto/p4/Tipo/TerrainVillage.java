@@ -4,8 +4,12 @@ import javax.swing.ImageIcon;
 
 public class TerrainVillage extends Terrain{
 	
+	public TerrainVillage(){
 	name = "Village";
 	movement = 1;
-	image = new ImageIcon("Aqui la ruta de la imagen");
+	//introducir ruta de la imagen
+	String ruta="";
+	image = new ImageIcon(ruta);
+	}
 	
 }
