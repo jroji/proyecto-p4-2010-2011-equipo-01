@@ -19,6 +19,7 @@ public class VentanaJuego extends javax.swing.JFrame {
     /** Creates new form VentanaJuego */
     public VentanaJuego() {
         initComponents();
+        this.setSize(1024,700);
     }
 
     /** This method is called from within the constructor to
@@ -111,7 +112,8 @@ public class VentanaJuego extends javax.swing.JFrame {
     private void ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitActionPerformed
         // TODO add your handling code here:
         this.dispose();
-       // MainWindow o = new MainWindow();
+        MainWindow o = new MainWindow();
+        o.setVisible(true);
     }//GEN-LAST:event_ExitActionPerformed
 
     /**
