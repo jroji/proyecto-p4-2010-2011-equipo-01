@@ -5,10 +5,9 @@ import proyecto.p4.pieza.Piece;
 
 public class Casilla {
 	
-	private String Name;
+	private Terrain terrain;
 	private int PosX;
 	private int PosY;
-	private ImageIcon Image;
 	private Piece piece;
 	
 	
