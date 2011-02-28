@@ -2,10 +2,8 @@ package proyecto.p4.Tipo;
 
 import javax.swing.ImageIcon;
 
-public abstract class Terrain {
+public abstract class Terrain extends Square {
 	
-	protected ImageIcon image; //Contiene la imagen del terreno
-	protected String name; // Contiene el nombre del terreno
 	protected int movement; // Contiene la cantidad de movimiento que disminuye este terreno
 	
 	//Inicializa el terreno
@@ -13,7 +11,6 @@ public abstract class Terrain {
 		iniImage();
 		iniName();
 		iniMovement();
-		
 	}
 
 	//Devuelve la imagen 
@@ -21,20 +18,17 @@ public abstract class Terrain {
 		return image;
 	}
 
-	public abstract void iniImage();
-
 	//Devuelve el nombre del terreno
 	public String getName() {
 		return name;
 	}
-
-	public abstract void iniName();
 
 	//Devuelve el movimiento que resta el terreno
 	public int getMovement() {
 		return movement;
 	}
 
+	//Inicializa el movimiento que resta cada tipo de terreno.
 	public abstract void iniMovement() ;
 
 }
