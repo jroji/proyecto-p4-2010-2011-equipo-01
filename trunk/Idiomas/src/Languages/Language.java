@@ -5,7 +5,11 @@ import java.util.HashMap;
 public abstract class Language {
 
 	protected HashMap words;
-	protected String name= "default";
+	protected String name;
+	
+	public Language(){
+		words=new HashMap<String, String>();
+	}
 
 	public String getWords(String x) {
 		return (String) words.get(x);

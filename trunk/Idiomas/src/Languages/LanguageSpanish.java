@@ -1,8 +1,11 @@
 package Languages;
 
+import java.util.HashMap;
+
 public class LanguageSpanish extends Language {
-	
+
 	public LanguageSpanish(){
+		super();
 		name="Español";
 		this.words.put("aceptar", "Aceptar");
 		this.words.put("salir", "Salir");
