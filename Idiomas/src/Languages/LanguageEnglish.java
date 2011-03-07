@@ -3,6 +3,7 @@ package Languages;
 public class LanguageEnglish extends Language {
 	
 	public LanguageEnglish(){
+		super();
 		name="English";
 		this.words.put("aceptar", "Accept");
 		this.words.put("salir", "Exit");
