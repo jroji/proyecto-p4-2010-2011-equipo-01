@@ -2,9 +2,9 @@ package proyecto.p4.piezaOldWarriorTales.Unidades;
 
 import proyecto.p4.piezaOldWarriorTales.PiezaOldWarriorTales;
 
-public class Gentleman extends PiezaOldWarriorTales {
+public class knight extends PiezaOldWarriorTales {
 
-		public Gentleman(){
+		public knight(){
 			movement=5;
 			defense=10;
 			attack=35;
