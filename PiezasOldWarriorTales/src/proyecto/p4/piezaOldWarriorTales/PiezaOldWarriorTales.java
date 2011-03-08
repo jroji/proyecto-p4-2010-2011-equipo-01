@@ -6,24 +6,66 @@ import proyecto.p4.pieza.Piece;
 
 public abstract class PiezaOldWarriorTales extends Piece{
 	//atributos de la pieza
-	private int movement;
-	private int defense;
-	private int attack;
-	private int experience;
-	private int life;
-	private int energy;
-	private int probability;
-	private Orientations orientacion;
+	protected int movement;
+	protected int defense;
+	protected int attack;
+	protected int experience;
+	protected int life;
+	protected int energy;
+	protected int probability;
+	protected Orientations orientacion;
 	
 	//indica si la unidad está ciega o no.
-	private boolean blindness;
+	protected boolean blindness;
 
 	//indica si la unidad está envenenada o no.
-	private boolean poison;
-
-	//indica si puede contraatacar o no
-	private boolean counterattack;
+	protected boolean poisson;
 	
+	//indica si puede contraatacar o no
+	protected boolean counterattack;
+
+	
+	
+	
+	public PiezaOldWarriorTales(){
+		experience=0;
+		life=100;
+		energy=100;
+	}
+	
+	public void setCounterattack(boolean counterattack) {
+		this.counterattack = counterattack;
+	}
+
+	public void setOrientacion(Orientations orientacion) {
+		this.orientacion = orientacion;
+	}
+	
+	public void setBlindness(boolean blindness) {
+		this.blindness = blindness;
+	}
+	
+	public void setPoisson(boolean poisson) {
+		this.poisson = poisson;
+	}
+	public void setExperience(int experience) {
+		this.experience = experience;
+	}
+	
+	public void setAttack(int attack) {
+		this.attack = attack;
+	}
+
+	public void setLife(int life) {
+		this.life = life;
+	}
+	public void setEnergy(int energy) {
+		this.energy = energy;
+	}
+	
+	public Orientations getOrientacion() {
+		return orientacion;
+	}
 	public int getMovement() {
 		return movement;
 	}
@@ -42,6 +84,10 @@ public abstract class PiezaOldWarriorTales extends Piece{
 	public int getEnergy() {
 		return energy;
 	}
+	
+	public int getProbability() {
+		return probability;
+	}
 	public boolean isCounterattack() {
 		return counterattack;
 	}
@@ -49,7 +95,7 @@ public abstract class PiezaOldWarriorTales extends Piece{
 		return blindness;
 	}
 	public boolean isPoissoned(){
-		return poison;
+		return poisson;
 	}
 	/* Metodo que gestiona el ataque de una pieza a otra basandose en la siguiente formula:
 	 * vida a restar= ataque (this) - defensa (contraria)
@@ -58,12 +104,11 @@ public abstract class PiezaOldWarriorTales extends Piece{
 	 * @return int. Vida a restar
 	 * 
 	 */
+	
  	public int takingLife (PiezaOldWarriorTales piezaContraria){
 		return this.attack-piezaContraria.defense;
 	}
-	public int getProbability() {
-		return probability;
-	}
+	
 	
 	@Override
 	public boolean canMove(int posx, int posy) {
