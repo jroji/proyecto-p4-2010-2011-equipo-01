@@ -11,7 +11,7 @@ import proyecto.p4.piezaOldWarriorTales.PiezaOldWarriorTales;
 public abstract class PieceJDBC implements PieceDataSource {
 
 	public static final String DRIVER_CLASS_NAME = "org.sqlite.JDBC";
-	public static final String CONNECTION_URL = "jdbc:sqlite:db/Users.s3db";
+	public static final String CONNECTION_URL = "jdbc:sqlite:db/OldWarriorTales.s3db";
 	public static Connection connection;
 	
 	public PieceJDBC(){
