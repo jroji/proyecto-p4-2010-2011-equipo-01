@@ -43,4 +43,6 @@ import proyecto.p4.piezaOldWarriorTales.PiezaOldWarriorTales;
 		 */
 		public int modify(PiezaOldWarriorTales newPiece) throws Exception;
 	
+
 }
+
