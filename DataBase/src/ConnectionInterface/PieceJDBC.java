@@ -1,10 +1,11 @@
 package ConnectionInterface;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Collection;
 
-import ConnectionInterface.Piece;
+import proyecto.p4.piezaOldWarriorTales.PiezaOldWarriorTales;
 
 
 public abstract class PieceJDBC implements PieceDataSource {
@@ -45,8 +46,17 @@ public abstract class PieceJDBC implements PieceDataSource {
 		return 0;
 	}
 	public static void main(String [] args){
-		Class.forName(DRIVER_CLASS_NAME);
-		connection= DriverManager.getConnection(CONNECTION_URL);
+		try {
+			Class.forName(DRIVER_CLASS_NAME);
+			connection= DriverManager.getConnection(CONNECTION_URL);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 
 	

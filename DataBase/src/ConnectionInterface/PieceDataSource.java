@@ -4,6 +4,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Collection;
 
+import proyecto.p4.piezaOldWarriorTales.PiezaOldWarriorTales;
+
 	
 	public interface PieceDataSource{
 		
@@ -40,10 +42,5 @@ import java.util.Collection;
 		 * @throws Exception If there is any error during the modification of the piece.
 		 */
 		public int modify(PiezaOldWarriorTales newPiece) throws Exception;
-	}
 	
-	
-	
-	
-	}
 }
