@@ -10,18 +10,20 @@ import javax.swing.ImageIcon;
  * 
  */
 public abstract class Piece implements Moveable{
-	public enum Colores {blanco, negro}
+	public enum Colours {blanco, negro};
 	private int position_x;
 	private int position_y;
 	
 	//color que indica el bando al que pertenece la pieza
-	private Colores color;
+	private Colours color;
 	private ImageIcon imagen;
 	
 	//array bidimensional booleano que indica las casillas a las que se puede mover
 	private boolean [][] able_to_move;
 	
-	/* Metodo que modifica el atributo able_to_move escribiendo true en las posiciones a las que 
+	
+	
+	/** Metodo que modifica el atributo able_to_move escribiendo true en las posiciones a las que 
 	 * puede moverse la pieza y false en las que no en base al resultado devuelto por el metodo
 	 * canMove.
 	 * 
