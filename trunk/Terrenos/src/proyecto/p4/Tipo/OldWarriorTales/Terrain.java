@@ -1,6 +1,6 @@
 package proyecto.p4.Tipo.OldWarriorTales;
 
-import proyecto.p4.Tipo.Square;
+import Proyecto.p4.Tipo.Square;
 
 public abstract class Terrain extends Square {
 	
@@ -11,16 +11,6 @@ public abstract class Terrain extends Square {
 		iniMovement();
 		
 	}
-
-	
-	public abstract void iniImage();
-
-	public abstract void iniName();
-
-	public int getMovement() {
-		return movement;
-	}
-
 	public abstract void iniMovement() ;
 
 }
