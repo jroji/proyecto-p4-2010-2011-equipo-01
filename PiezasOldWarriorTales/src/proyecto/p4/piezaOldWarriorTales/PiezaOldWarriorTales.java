@@ -97,26 +97,32 @@ public abstract class PiezaOldWarriorTales extends Piece{
 	public boolean isPoissoned(){
 		return poisson;
 	}
-	/* Metodo que gestiona el ataque de una pieza a otra basandose en la siguiente formula:
+	/** Metodo que gestiona el ataque de una pieza a otra basandose en la siguiente formula:
 	 * vida a restar= ataque (this) - defensa (contraria)
 	 * 
 	 * @param piezaContraria. pieza a la que se a atacado y a la que se desea restar la vida.
 	 * @return int. Vida a restar
 	 * 
 	 */
-	
  	public int takingLife (PiezaOldWarriorTales piezaContraria){
 		return this.attack-piezaContraria.defense;
 	}
 	
-	
+	/** Metodo del interfaz Mooveable:
+	 * Indica si puede moverse a la posicion indicada como coordenadas en los parametros
+	 * 
+	 * @param posX. Coordenada X de la posicion a la que desea moverse
+	 * @param posY. Coordenada Y de la posicion a la que desea moverse
+	 * @return boolean. True si puede moverse
+	 * 
+	 */
 	@Override
 	public boolean canMove(int posx, int posy) {
 		//metodo a codificar.
 		return false;
 	}
 	
-	/* Metodo que indica si la pieza puede atacar o no.
+	/** Metodo que indica si la pieza puede atacar o no.
 	 * Para ello genera un numero aleatorio entre 0 y 100 y lo compara con su atributo probability,
 	 * devolviendo true si y solo si el resultado del numero aleatorio generado es igual o menor 
 	 * a ese atributo.
