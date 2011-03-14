@@ -16,7 +16,7 @@ import proyecto.p4.piezaOldWarriorTales.PiezaOldWarriorTales;
 		 * @throws Exception If there is any error during the retrieval of all the
 		 * pieces.
 		 */
-		public Collection<PiezaOldWarriorTales> getAll() throws Exception;
+		public Collection<?> getAll(String tableName, String className) throws Exception;
 		
 		/**
 		 * Inserts a new default piece inside the specific piece data source. The id
@@ -33,7 +33,7 @@ import proyecto.p4.piezaOldWarriorTales.PiezaOldWarriorTales;
 		 * @return The number of pieces that are removed (0 or 1).
 		 * @throws Exception If there is any error during the removal of the given piece.
 		 */
-		public int remove(PiezaOldWarriorTales piece) throws Exception;
+		public int remove() throws Exception;
 		
 		/**
 		 * Modifies a piece in the data source. A reference to the new piecet is given.
@@ -41,7 +41,7 @@ import proyecto.p4.piezaOldWarriorTales.PiezaOldWarriorTales;
 		 * @return The number of piece that are modified (0 or 1).
 		 * @throws Exception If there is any error during the modification of the piece.
 		 */
-		public int modify(PiezaOldWarriorTales newPiece) throws Exception;
+		public int modify() throws Exception;
 	
 
 }
