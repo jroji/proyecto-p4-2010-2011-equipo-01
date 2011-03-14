@@ -14,6 +14,19 @@ public abstract class PieceJDBC implements PieceDataSource {
 	public static final String CONNECTION_URL = "jdbc:sqlite:db/Users.s3db";
 	public static Connection connection;
 	
+	public PieceJDBC(){
+		try {
+			Class.forName(DRIVER_CLASS_NAME);
+			connection= DriverManager.getConnection(CONNECTION_URL);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
 	@Override
 	public Collection<PiezaOldWarriorTales> getAll() throws Exception {
 		
@@ -45,19 +58,7 @@ public abstract class PieceJDBC implements PieceDataSource {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-	public static void main(String [] args){
-		try {
-			Class.forName(DRIVER_CLASS_NAME);
-			connection= DriverManager.getConnection(CONNECTION_URL);
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-	}
+	
 
 	
 
