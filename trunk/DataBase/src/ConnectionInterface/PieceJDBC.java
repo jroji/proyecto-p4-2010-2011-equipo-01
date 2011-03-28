@@ -1,7 +1,11 @@
 package ConnectionInterface;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.sql.Connection;
+import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Collection;
@@ -31,14 +35,29 @@ public abstract class PieceJDBC implements PieceDataSource {
 	@Override
 	public Collection<?> getAll(String tableName,String className) throws Exception {
 		
-		Statement statement = null;
-		statement = connection.createStatement();
+		//Consulta de todos los datos
+		Statement statement = connection.createStatement();
 		String sqlStatementString = "SELECT * FROM "+tableName;
 		ResultSet resultSet= statement.executeQuery(sqlStatementString);
+		
+		ResultSetMetaData metaData=resultSet.getMetaData();
+		Class<?> clase= Class.forName(className);
+		Field fields[]=clase.getFields();
 		while (resultSet.next()){
-			Class<?> clase= Class.forName(className);
-			Object instance = clase.newInstance();
 			
+			Object instance = clase.newInstance();
+			for (Field field : fields){
+					int i=0;
+					boolean enc =false;
+					while(i<fields.length && !enc){
+						if (metaData.getColumnLabel(i).equals(field.getName())){
+							String type=field.getType().getName();
+							String valor=resultSet.getString(i);
+							field.set(instance,valor);
+							enc=true;
+						}
+					}
+				}
 			
 		}
 		statement.close();
