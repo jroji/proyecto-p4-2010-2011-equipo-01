@@ -43,8 +43,8 @@ public class OldWarriorButton extends javax.swing.JPanel {
         Text.setBounds(30, 20, 140, 20);
         layeredpane.add(Text, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        OldWarriorButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        OldWarriorButton.setIcon(new javax.swing.ImageIcon()); // NOI18N
+        OldWarriorButton.setFont(new java.awt.Font("Tahoma", 0, 14)); 
+        OldWarriorButton.setIcon(new javax.swing.ImageIcon(ruta));
         OldWarriorButton.setBounds(0, 0, 140, 60);
         layeredpane.add(OldWarriorButton, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
