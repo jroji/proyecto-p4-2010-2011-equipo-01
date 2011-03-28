@@ -1,5 +1,5 @@
 package Proyecto.p4.casilla;
-import proyecto.p4.Tipo.Square;
+import Proyecto.p4.Tipo.Square;
 import proyecto.p4.pieza.Piece;
 
 public class Casilla {
