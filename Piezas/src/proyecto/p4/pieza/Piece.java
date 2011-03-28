@@ -2,7 +2,7 @@ package proyecto.p4.pieza;
 
 import javax.swing.ImageIcon;
 
-/* Clase padre de las piezas de todos los juegos.
+/** Clase padre de las piezas de todos los juegos.
  * Es abstracta, puesto que no se quiere permitir instanciar objetos de este tipo, sino
  * de sus clases hijas.
  * 
