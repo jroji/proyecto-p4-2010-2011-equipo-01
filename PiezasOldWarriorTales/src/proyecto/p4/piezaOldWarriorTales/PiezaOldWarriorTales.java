@@ -4,7 +4,7 @@ import java.util.Random;
 
 import proyecto.p4.pieza.Piece;
 
-public abstract class PiezaOldWarriorTales extends Piece{
+public abstract class PiezaOldWarriorTales extends Piece implements Orientable{
 	//atributos de la pieza
 	protected int movement;
 	protected int defense;
@@ -37,7 +37,7 @@ public abstract class PiezaOldWarriorTales extends Piece{
 		this.counterattack = counterattack;
 	}
 
-	public void setOrientacion(Orientations orientacion) {
+	public void setOrientation(Orientations orientacion) {
 		this.orientacion = orientacion;
 	}
 	
