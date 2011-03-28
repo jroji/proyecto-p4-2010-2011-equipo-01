@@ -1,6 +1,5 @@
 package proyecto.p4.piezaOldWarriorTales.Unidades;
 
-import proyecto.p4.piezaOldWarriorTales.Orientations;
 import proyecto.p4.piezaOldWarriorTales.PiezaOldWarriorTales;
 
 public class Arquero extends PiezaOldWarriorTales{
