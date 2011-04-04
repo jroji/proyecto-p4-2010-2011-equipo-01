@@ -4,7 +4,7 @@ import Proyecto.p4.mapa.Board;
 import proyecto.p4.Jugador.Jugador;
 import proyecto.p4.pieza.Piece;
 
-public class Juego {
+public abstract class Juego {
 	private int identificador;
 	private Board tablero;
 	private Jugador jugador1;
