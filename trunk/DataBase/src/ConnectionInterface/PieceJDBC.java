@@ -13,10 +13,10 @@ import java.util.Collection;
 import proyecto.p4.piezaOldWarriorTales.PiezaOldWarriorTales;
 
 
-public abstract class PieceJDBC implements PieceDataSource {
+public class PieceJDBC implements PieceDataSource {
 
 	public static final String DRIVER_CLASS_NAME = "org.sqlite.JDBC";
-	public static final String CONNECTION_URL = "jdbc:sqlite:db/OldWarriorTales.s3db";
+	public static final String CONNECTION_URL = "jdbc:sqlite:C:/Users/Raquel/workspace/DataBase/car.s3db";
 	public static Connection connection;
 	
 	/**
@@ -37,7 +37,7 @@ public abstract class PieceJDBC implements PieceDataSource {
 		
 		//Consulta de todos los datos
 		Statement statement = connection.createStatement();
-		String sqlStatementString = "SELECT * FROM "+tableName;
+		String sqlStatementString = "SELECT * FROM "+ tableName;
 		ResultSet resultSet= statement.executeQuery(sqlStatementString);
 		
 		ResultSetMetaData metaData=resultSet.getMetaData();
@@ -79,6 +79,12 @@ public abstract class PieceJDBC implements PieceDataSource {
 
 	@Override
 	public int remove() throws Exception {
+		String sqlStatementString = null;
+		Statement statement = null;
+		statement = connection.createStatement();
+		sqlStatementString = "DELETE FROM Pieces WHERE ()";
+		statement.executeUpdate(sqlStatementString);
+		statement.close();
 		
 		return 0;
 	}
