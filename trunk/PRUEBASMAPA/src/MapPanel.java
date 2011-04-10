@@ -9,7 +9,12 @@ import javax.swing.JPanel;
 public class MapPanel extends JPanel {
 	
 	ImageIcon img = new ImageIcon(getClass().getResource("/img/hierba.png"));
-
+	ImageIcon sold = new ImageIcon(getClass().getResource("/img/arquero.png"));
+	ImageIcon piedra = new ImageIcon(getClass().getResource("/img/piedra.png"));
+	ImageIcon fond = new ImageIcon(getClass().getResource("/img/fondo.jpg"));
+	
+	JLabel fondo = new JLabel(fond);
+	JLabel unit01 = new JLabel(sold);
 	JLabel img01 = new JLabel(img);
 	JLabel img02 = new JLabel(img);
 	JLabel img03 = new JLabel(img);
@@ -21,7 +26,7 @@ public class MapPanel extends JPanel {
 	JLabel img09 = new JLabel(img);
 	
 	JLabel img11 = new JLabel(img);
-	JLabel img12 = new JLabel(img);
+	JLabel img12 = new JLabel(piedra);
 	JLabel img13 = new JLabel(img);
 	JLabel img14 = new JLabel(img);
 	JLabel img15 = new JLabel(img);
@@ -35,14 +40,14 @@ public class MapPanel extends JPanel {
 	JLabel img23 = new JLabel(img);
 	JLabel img24 = new JLabel(img);
 	JLabel img25 = new JLabel(img);
-	JLabel img26 = new JLabel(img);
+	JLabel img26 = new JLabel(piedra);
 	JLabel img27 = new JLabel(img);
 	JLabel img28 = new JLabel(img);
 	JLabel img29 = new JLabel(img);
 	
 	JLabel img31 = new JLabel(img);
 	JLabel img32 = new JLabel(img);
-	JLabel img33 = new JLabel(img);
+	JLabel img33 = new JLabel(piedra);
 	JLabel img34 = new JLabel(img);
 	JLabel img35 = new JLabel(img);
 	JLabel img36 = new JLabel(img);
@@ -87,11 +92,15 @@ public class MapPanel extends JPanel {
 		layer.setBounds(0, 0, 1000, 700);
 		add(layer);
 
+		layer.add(fondo);
+		fondo.setBounds(0, 0, 1000, 700);
 		anyadirArray(mapa);
+		layer.add(unit01, new Integer(10));
 		
 		int x = 500;
 		int y = 10;
 		colocarMapa(mapa,x,y);
+		unit01.setBounds(480, 110, sold.getIconWidth(), sold.getIconHeight());
 	}
 
 	/*Coloca los JLabel del array en línea empezando recibido en las coordenadas x e y 
@@ -100,15 +109,15 @@ public class MapPanel extends JPanel {
 		int inix = x;
 		int iniy = y;
 		for(int j= 0;j<imag.length;j++){
-		for(int i  = 0; i<imag[j].length;i++){
-			imag[j][i].setBounds(x, y,img.getIconWidth(), img.getIconHeight());
-			x = x+44;
-			y = y+38;
-		}
-		x= inix -55;
-		y= iniy +36;
-		inix = x;
-		iniy = y;}
+			for(int i  = 0; i<imag[j].length;i++){
+				imag[j][i].setBounds(x, y,img.getIconWidth(), img.getIconHeight());
+				x = x+44;
+				y = y+38;
+			}
+			x= inix -55;
+			y= iniy +36;
+			inix = x;
+			iniy = y;}
 	}
 	
 	public void anyadirArray(JLabel[][] arr){
