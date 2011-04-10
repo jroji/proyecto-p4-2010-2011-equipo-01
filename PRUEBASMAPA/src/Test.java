@@ -9,6 +9,7 @@ public class Test extends JFrame{
 
 	static MapPanel mapPanel = new MapPanel();
 	
+	
 	public Test(){
 		setSize(800,700);
 		setLayout(null);
@@ -20,7 +21,7 @@ public class Test extends JFrame{
 		mapPanel.setBounds(i, 0, 1000, 700);
 		}
 
-	public static void main(String[] args){
-		Test x = new Test();
-		}
+public static void main(String[] args){
+	Test x = new Test();
+}
 }
