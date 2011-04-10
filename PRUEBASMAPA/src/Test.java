@@ -10,21 +10,15 @@ public class Test extends JFrame{
 	static MapPanel mapPanel = new MapPanel();
 	
 	public Test(){
-		setSize(1000,700);
+		setSize(800,700);
 		setLayout(null);
 		
 		add(mapPanel);
 		
 		setVisible(true);
 		int i = -200;
-		long time = System.currentTimeMillis();	
-			mapPanel.setBounds(i, 0, 1000, 700);
-		while(i<500){
-			if(System.currentTimeMillis()%time ==0 ){
-				i++;}
 		mapPanel.setBounds(i, 0, 1000, 700);
-		this.repaint();
-		}}
+		}
 
 	public static void main(String[] args){
 		Test x = new Test();
