@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 public class MapPanel extends JPanel {
 	
 	ImageIcon img = new ImageIcon(getClass().getResource("/img/hierba.png"));
-	ImageIcon sold = new ImageIcon(getClass().getResource("/img/arquero.png"));
+	ImageIcon sold = new ImageIcon(getClass().getResource("/img/0_reasonably_small.gif"));
 	ImageIcon piedra = new ImageIcon(getClass().getResource("/img/piedra.png"));
 	ImageIcon fond = new ImageIcon(getClass().getResource("/img/fondo.jpg"));
 	
@@ -100,7 +100,7 @@ public class MapPanel extends JPanel {
 		int x = 500;
 		int y = 10;
 		colocarMapa(mapa,x,y);
-		unit01.setBounds(480, 110, sold.getIconWidth(), sold.getIconHeight());
+		unit01.setBounds(510, 130, sold.getIconWidth(), sold.getIconHeight());
 	}
 
 	/*Coloca los JLabel del array en línea empezando recibido en las coordenadas x e y 
