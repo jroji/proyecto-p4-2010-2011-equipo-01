@@ -8,7 +8,11 @@ import javax.swing.JLayeredPane;
 public class OldWarriorButton extends javax.swing.JPanel {
 
 	             
-    public JButton OldWarriorButton;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	public JButton OldWarriorButton;
     public JInternalFrame internalFrame;
     public JLabel Text;
     private JLayeredPane layeredpane;
