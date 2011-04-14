@@ -225,10 +225,6 @@ public class MapPanel extends JPanel implements MouseListener{
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		viejo.setIcon(img);
-		JLabel x = (JLabel) arg0.getSource();
-		x.setIcon(selected);
-		viejo = x;
 	}
 
 	@Override
@@ -246,12 +242,14 @@ public class MapPanel extends JPanel implements MouseListener{
 	@Override
 	public void mousePressed(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		
+		JLabel x = (JLabel) arg0.getSource();
+		x.setIcon(selected);
+		viejo = x;
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		
+		viejo.setIcon(img);
 	}
 }
