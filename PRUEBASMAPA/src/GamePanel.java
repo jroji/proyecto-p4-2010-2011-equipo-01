@@ -1,20 +1,24 @@
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+import Proyecto.p4.mapa.Board;
 
 
-public class Test extends JFrame{
+public class GamePanel extends JPanel{
 	
 
 	private static final long serialVersionUID = 1L;
 
-	static MapPanel mapPanel = new MapPanel();
-	static TranslationPanel translatePanelI = new TranslationPanel();
-	static TranslationPanel translatePanelD = new TranslationPanel();
-	static TranslationPanel translatePanelAr = new TranslationPanel();
-	static TranslationPanel translatePanelAb = new TranslationPanel();
+	 static MapPanel mapPanel;
+	 static TranslationPanel translatePanelI = new TranslationPanel();
+	 static TranslationPanel translatePanelD = new TranslationPanel();
+	 TranslationPanel translatePanelAr = new TranslationPanel();
+	 TranslationPanel translatePanelAb = new TranslationPanel();
 	
-	public Test(){
+	public GamePanel(Board map){
 		setSize(800,700);
+		mapPanel = new MapPanel(map);
 		setLayout(null);
 		add(translatePanelI);
 		add(translatePanelD);
@@ -26,6 +30,9 @@ public class Test extends JFrame{
 		int i = -200;
 		mapPanel.setBounds(i, 0, 1000, 700);
 		translatePanelD.setBounds(this.getWidth()-60, 0, 50, 700);
+		while(true){
+			Move();
+		}
 		}
 	
 	public static void Move(){
@@ -43,10 +50,10 @@ public class Test extends JFrame{
 		
 	}
 
-public static void main(String[] args){
-	Test x = new Test();
-	while(true){
-		Move();
-}
-}
+//public static void main(String[] args){
+//	Test x = new Test();
+//	while(true){
+//		Move();
+//}
+//}
 }
