@@ -25,7 +25,7 @@ import proyecto.p4.piezaOldWarriorTales.PiezaOldWarriorTales;
 		 * new default piece is inserted correctly.
 		 * @throws Exception If there is any error during the insertion of the new default piece.
 		 */
-		public int insert() throws Exception;
+		public int insert(String tableName, storableInDataBase object) throws SQLException, IllegalAccessException, Exception;
 		
 		/**
 		 * Removes the given piece from the piece data source.

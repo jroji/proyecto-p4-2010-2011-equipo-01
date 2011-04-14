@@ -33,10 +33,12 @@ public class PieceJDBC implements PieceDataSource {
 		
 
 	}
-	
-	public ArrayList nombreTablas() throws SQLException{
-		ArrayList <String >n = new ArrayList();
-		
+	/**
+	 * This method prints the names of each table of the database.
+	 * 
+	 * @throws SQLException
+	 */
+	public void nombreTablas() throws SQLException{
 		
 		String nombreTablas = "%"; // Listamos todas las tablas
 		String tipos[] = new String[1]; // Listamos solo tablas
@@ -51,17 +53,53 @@ public class PieceJDBC implements PieceDataSource {
 		  System.out.println( 
 		    tablas.getString(tablas.findColumn( "TABLE_NAME" )));
 		  seguir = tablas.next();
-		
-
 		}
 		
-		
-		return n;
 	}
-	@Override
+	
+	/**
+	 * This method inserts a value on the specified field of one object.
+	 * 
+	 * @param instance this is the object in which the value will be inserted.
+	 * @param field This is the information about the field whose value will be modified.
+	 * @param valor This is the value of the field.
+	 * @throws Exception When the type of the field is not one of the next: String, Int, Boolean, Char, Double.
+	 */
+	public void insertFiels(Object instance, Field field, String valor) throws Exception{
+		
+		try{
+			field.set(instance,valor );
+		}catch(Exception e){
+			try{
+				field.set(instance,Integer.parseInt(valor) );
+			}catch(Exception ex){
+				try{
+					field.set(instance,Boolean.parseBoolean(valor));
+				}catch(Exception exc){
+					try{
+						field.set(instance,Double.parseDouble(valor ));
+					}catch(Exception excp){
+						try{
+							field.set(instance,valor.toCharArray()[0] );
+						}catch(Exception excpt){
+							throw new Exception ("Type not accepted!!!!");
+						}
+					}
+				}
+			}
+		}
+		
+	}
+	
+	/**
+	 * @param tableName This is the name of the database table from which value fields will be extracted.
+	 * @param className
+	 * @returns ArrayList<Object>
+	 * @throws Exception When the type of the field is not one of the next: String, Int, Boolean, Char, Double.
+	 */
 	public ArrayList<Object> getAll(String tableName,String className) throws Exception {
 		ArrayList <Object> c= new ArrayList <Object>();
-		nombreTablas();
+		
 		//Consulta de todos los datos
 		Statement statement = connection.createStatement();
 		String sqlStatementString = "SELECT * FROM "+ tableName;
@@ -75,7 +113,7 @@ public class PieceJDBC implements PieceDataSource {
 		int j=0;
 		boolean implementa=false;
 		while (j<interfaces.length&&!implementa){
-			if(interfaces[j].getSimpleName()=="storableInDataBase")
+			if(interfaces[j].getSimpleName().equals("storableInDataBase"))
 				implementa=true;
 			j++;
 		}
@@ -86,23 +124,26 @@ public class PieceJDBC implements PieceDataSource {
 		//atributos de la clase
 		Field fields[]=clase.getDeclaredFields();
 		while (resultSet.next()){
-			System.out.println(fields.length);
+			
 			Object instance = clase.newInstance();
 			for (Field field : fields){
 					int i=0;
 					boolean enc =false;
 					
 					while(i<metaData.getColumnCount() && !enc){
-						System.out.println(metaData.getColumnName(i+1).toLowerCase()+"22222"+field.getName());
+						
 						if (metaData.getColumnName(i+1).toLowerCase().equals(field.getName())){
 							
 							String type=field.getType().getName();
 							String valor=resultSet.getString(i+1);
-							System.out.println(valor+" 1 dff");
 							
-							field.set(instance, valor);
+							
+							insertFiels(instance, field, valor);
+							
+							
 							enc=true;
 						}
+						i++;
 					}
 				}
 			c.add(instance);
@@ -112,17 +153,41 @@ public class PieceJDBC implements PieceDataSource {
 		}
 		//sino se lanza una excepcion
 		else{
-			throw new Exception();
+			throw new Exception("This class cannot be stored in the database");
 		}
 		return c;
 	}
-
-	@Override
-	public int insert() throws Exception {
+	
+	
+ @Override
+	public int insert(String tableName, storableInDataBase object) throws Exception{
 		String sqlStatementString = null;
 		Statement statement = null;
 		statement = connection.createStatement();
-		sqlStatementString = "INSERT INTO Pieces VALUES ()";
+		
+		ArrayList <Field> fields = object.fieldsToStore(); 
+		if (fields==null){
+			throw new Exception ("Atributos no disponibles");
+		}
+		
+		String columnas="";
+		String valores="";
+		for(Field field: fields){
+			try {
+				if (field.getType().getName().toLowerCase().contains("string")){
+					valores=valores+"'"+field.get(object)+"',";	
+				}else
+				valores=valores+field.get(object)+",";
+				columnas=columnas+field.getName()+",";
+			} catch (IllegalArgumentException e) {
+				
+			}
+		}
+		valores=valores.substring(0, valores.length()-1);
+		columnas=columnas.substring(0,columnas.length()-1);
+		
+		sqlStatementString = "INSERT INTO "+tableName+"("+columnas+")"+ "VALUES" +"("+valores+");";
+		System.out.println(sqlStatementString);
 		statement.executeUpdate(sqlStatementString);
 		statement.close();
 		
