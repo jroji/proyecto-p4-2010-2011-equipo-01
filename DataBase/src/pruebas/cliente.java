@@ -50,18 +50,11 @@ public static void main (String []arts) throws Exception{
 }
 
 @Override
-public ArrayList<Field> fieldsToStore() {
+public ArrayList<Field> fieldsToStore() throws SecurityException, NoSuchFieldException {
 	ArrayList<Field> array= new ArrayList<Field>();
-	try {
 		array.add(this.getClass().getDeclaredField("dni"));
 		array.add(this.getClass().getDeclaredField("nom"));
-	} catch (SecurityException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	} catch (NoSuchFieldException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
+	
 	return array;
 }
 }
