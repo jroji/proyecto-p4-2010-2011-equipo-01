@@ -18,14 +18,14 @@ public class Test extends JFrame{
 		setLayout(null);
 		add(translatePanelI);
 		add(translatePanelD);
-		translatePanelI.setSize(50, 700);
+		translatePanelI.setSize(40, 700);
 		
 		add(mapPanel);
 		
 		setVisible(true);
 		int i = -200;
 		mapPanel.setBounds(i, 0, 1000, 700);
-		translatePanelD.setBounds(this.getWidth()-50, 0, 50, 700);
+		translatePanelD.setBounds(this.getWidth()-60, 0, 50, 700);
 		}
 	
 	public static void Move(){
