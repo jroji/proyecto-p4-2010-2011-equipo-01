@@ -3,7 +3,7 @@ package proyecto.p4.Tipo.OldWarriorTales;
 import javax.swing.ImageIcon;
 
 
-public class TerrainForest extends Terrain{
+public class TerrainStones extends Terrain{
 
 	@Override
 	public void iniImage() {
@@ -20,7 +20,7 @@ public class TerrainForest extends Terrain{
 
 	@Override
 	public void iniName() {
-		name = "Forest";
+		name = "Stones";
 		
 	}
 }
