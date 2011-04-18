@@ -17,7 +17,7 @@ import proyecto.p4.piezaOldWarriorTales.PiezaOldWarriorTales;
 public class PieceJDBC implements PieceDataSource {
 
 	public static final String DRIVER_CLASS_NAME = "org.sqlite.JDBC";
-	public static final String CONNECTION_URL = "jdbc:sqlite:C:/Users/Raquel/workspace/DataBase/src/car.s3db";
+	public static final String CONNECTION_URL = "jdbc:sqlite:C:/Users/Raquel/workspace/DataBase/src/OldWarriorTales.s3db";
 	public static Connection connection;
 	
 	/**
@@ -99,7 +99,7 @@ public class PieceJDBC implements PieceDataSource {
 								    seguir=false;
 								    
 								    
-								    String sqlStatementString = "SELECT * FROM "+ tableName;
+								    String sqlStatementString = "SELECT * FROM "+ "tableName";
 								  }else
 								  seguir = tablas.next();
 								}
@@ -157,12 +157,9 @@ public class PieceJDBC implements PieceDataSource {
 						
 						if (metaData.getColumnName(i+1).toLowerCase().equals(field.getName())){
 							
-							String type=field.getType().getName();
-							String valor=resultSet.getString(i+1);
+							String valor=resultSet.getString(i+1);							
 							
-							
-							insertFiels(instance, field, valor);
-							
+							insertFiels(instance, field, valor);							
 							
 							enc=true;
 						}

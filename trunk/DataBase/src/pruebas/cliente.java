@@ -42,7 +42,7 @@ public static void main (String []arts) throws Exception{
 	System.out.println(perro.get(i));
 	
 	cliente c1= new cliente ();
-	c1.dni=55;
+	c1.dni=55434556;
 	c1.nom="Yo";
 	co.insert("cliente", c1);
 
@@ -56,5 +56,11 @@ public ArrayList<Field> fieldsToStore() throws SecurityException, NoSuchFieldExc
 		array.add(this.getClass().getDeclaredField("nom"));
 	
 	return array;
+}
+
+@Override
+public int insertIntoDataBase() {
+	// TODO Auto-generated method stub
+	return 0;
 }
 }
