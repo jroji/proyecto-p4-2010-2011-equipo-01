@@ -17,7 +17,7 @@ import proyecto.p4.piezaOldWarriorTales.PiezaOldWarriorTales;
 public class PieceJDBC implements PieceDataSource {
 
 	public static final String DRIVER_CLASS_NAME = "org.sqlite.JDBC";
-	public static final String CONNECTION_URL = "jdbc:sqlite:C:/Users/Raquel/workspace/DataBase/src/OldWarriorTales.s3db";
+	public static final String CONNECTION_URL = "jdbc:sqlite:C:/Users/Julen/eclipseWorkSpaces/workspace/DataBase/src/OldWarriorTales.s3db";
 	public static Connection connection;
 	
 	/**
@@ -195,10 +195,28 @@ public class PieceJDBC implements PieceDataSource {
 		for(Field field: fields){
 			try {
 				if (field.getType().getName().toLowerCase().contains("string")){
-					valores=valores+"'"+field.get(object)+"',";	
+					try{
+					valores=valores+"'"+field.get(object)+"',";
+					columnas=columnas+field.getName()+",";
+					}catch (IllegalAccessException iae){
+						field.setAccessible(true);
+						valores=valores+"'"+field.get(object)+"',";
+						columnas=columnas+field.getName()+",";
+						field.setAccessible(false);
+					}
+
 				}else
-				valores=valores+field.get(object)+",";
-				columnas=columnas+field.getName()+",";
+					try{
+						valores=valores+field.get(object)+",";
+						columnas=columnas+field.getName()+",";
+					}catch (IllegalAccessException iae){
+
+						System.out.println("dentro");
+						field.setAccessible(true);
+						valores=valores+field.get(object)+",";
+						columnas=columnas+field.getName()+",";
+						field.setAccessible(false);
+					}
 			} catch (IllegalArgumentException e) {
 				
 			}
