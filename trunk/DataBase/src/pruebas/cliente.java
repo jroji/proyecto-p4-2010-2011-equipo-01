@@ -58,9 +58,9 @@ public ArrayList<Field> fieldsToStore() throws SecurityException, NoSuchFieldExc
 	return array;
 }
 
-@Override
-public int insertIntoDataBase() {
-	// TODO Auto-generated method stub
-	return 0;
-}
+//@Override
+//public int insertIntoDataBase() {
+//	// TODO Auto-generated method stub
+//	return 0;
+//}
 }
