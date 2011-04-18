@@ -4,12 +4,12 @@ import javax.swing.ImageIcon;
 
 
 public class TerrainStones extends Terrain{
-
+	
 	@Override
 	public void iniImage() {
 		//insertar ruta
-		String ruta= "";
-		image = new ImageIcon(ruta);	
+		String ruta= "/img/piedra.png";
+		image = new ImageIcon(getClass().getResource(ruta));	
 	}
 
 	@Override
