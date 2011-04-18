@@ -65,7 +65,7 @@ public class PieceJDBC implements PieceDataSource {
 	 * @param valor This is the value of the field.
 	 * @throws Exception When the type of the field is not one of the next: String, Int, Boolean, Char, Double.
 	 */
-	public void insertFiels(Object instance, Field field, String valor) throws Exception{
+	public void insertFiels(Object instance, Field field, String valor ) throws Exception{
 		
 		try{
 			field.set(instance,valor );
@@ -78,17 +78,40 @@ public class PieceJDBC implements PieceDataSource {
 				}catch(Exception exc){
 					try{
 						field.set(instance,Double.parseDouble(valor ));
-					}catch(Exception excp){
+					}catch(Exception exce){
 						try{
 							field.set(instance,valor.toCharArray()[0] );
-						}catch(Exception excpt){
-							throw new Exception ("Type not accepted!!!!");
-						}
+						}catch(Exception excep){
+							try{
+								
+								Class<?> clase = Class.forName(field.getType().getCanonicalName());
+								
+								String nombreTablas = "%"; // Listamos todas las tablas
+								String tipos[] = new String[1]; // Listamos solo tablas
+								tipos[0] = "TABLE";
+								DatabaseMetaData dbmd = connection.getMetaData();
+								ResultSet tablas = dbmd.getTables( null, null, 
+								  nombreTablas, tipos );
+								boolean seguir = tablas.next();
+								while( seguir ) {
+								  
+								  if(tablas.getString(tablas.findColumn( "TABLE_NAME" )).equals(clase.getName())){
+								    seguir=false;
+								    
+								    
+								    String sqlStatementString = "SELECT * FROM "+ tableName;
+								  }else
+								  seguir = tablas.next();
+								}
+								field.set(instance,Double.parseDouble(valor ));
+							}catch(Exception except){
+								throw new Exception ("Type not accepted!!!!");
+							}
 					}
 				}
 			}
 		}
-		
+	}
 	}
 	
 	/**
