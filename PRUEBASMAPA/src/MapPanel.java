@@ -1,6 +1,7 @@
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
@@ -21,15 +22,16 @@ public class MapPanel extends JPanel implements MouseListener{
 	ImageIcon piedra = new ImageIcon(getClass().getResource("/img/piedra.png"));
 	ImageIcon fond = new ImageIcon(getClass().getResource("/img/fondo.jpg"));
 	ImageIcon selected = new ImageIcon(getClass().getResource("/img/SELECCION.png"));
-	ImageIcon circrojo = new ImageIcon(getClass().getResource("/img/marcaroja.png"));
+//	ImageIcon circrojo = new ImageIcon(getClass().getResource("/img/marcaroja.png"));
 	ImageIcon castillo = new ImageIcon(getClass().getResource("/img/castillo.png"));
 	ImageIcon villa = new ImageIcon(getClass().getResource("/img/villa.png"));
+	Icon viejoimg;
 	Board tab = new Board();
 	
 	JLabel fondo = new JLabel(fond);
 	
 	JLabel unit01 = new JLabel(sold);
-	JLabel circrojo01 = new JLabel(circrojo);
+//	JLabel circrojo01 = new JLabel(circrojo);
 	
 	
 	int SelectedX;
@@ -263,13 +265,13 @@ public class MapPanel extends JPanel implements MouseListener{
 		//Añade al layerPane las casillas del mapa.
 		anyadirArray(mapa);
 		layer.add(unit01, new Integer(13));
-		layer.add(circrojo01, new Integer(13));
+	//	layer.add(circrojo01, new Integer(13));
 		
 		int x = 500;
 		int y = 10;
 		colocarMapa(mapa,x,y);
 		unit01.setBounds(520, 150, sold.getIconWidth(), sold.getIconHeight());
-		circrojo01.setBounds(unit01.getX()+3, unit01.getY()+30, sold.getIconWidth(), sold.getIconHeight());
+	//	circrojo01.setBounds(unit01.getX()+3, unit01.getY()+30, sold.getIconWidth(), sold.getIconHeight());
 	}
 
 	/* 1 = norte, 2 = este, 3 = sur, 4 = oeste
@@ -368,29 +370,31 @@ public class MapPanel extends JPanel implements MouseListener{
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		
+		JLabel x = (JLabel) arg0.getSource();
+		viejoimg = x.getIcon();
+		x.setIcon(selected);
+		String nombre = x.getName();
+	//	buscarCasilla(nombre);
+		viejo = x;
 	}
 
 	@Override
 	public void mouseExited(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		
+		viejo.setIcon(viejoimg);
 	}
 
 	@Override
 	public void mousePressed(MouseEvent arg0) {
 		// TODO Auto-generated method stub
 		JLabel x = (JLabel) arg0.getSource();
-		x.setIcon(selected);
-		String nombre = x.getName();
-	//	buscarCasilla(nombre);
-		viejo = x;
+		layer.setLayer(unit01, layer.getLayer(x)+1);
+		unit01.setLocation(x.getX(), x.getY()-50);
 	}
 	
 
 	@Override
 	public void mouseReleased(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		viejo.setIcon(img);
 	}
 }
