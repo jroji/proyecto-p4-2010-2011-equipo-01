@@ -1,3 +1,7 @@
+import java.io.File;
+
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -37,7 +41,10 @@ public class GamePanel extends JFrame{
 			Move();
 		}
 		}
-	
+
+	 /**Método para el movimiento de la pantalla de juego a traves de los métodos de 
+	  * la clase TranslatePanel. 
+	  */
 	public static void Move(){
 		while(mapPanel.getX()<0){
 			if(translatePanelI.isMover()){
@@ -53,7 +60,21 @@ public class GamePanel extends JFrame{
 		
 	}
 
+	public static void StartMusic(){
+		Clip sonido = null;
+		try
+		{
+		  sonido=AudioSystem.getClip();
+		  sonido.open(AudioSystem.getAudioInputStream(new File("D:/PROYECT/PRUEBASMAPA/src/Kalimba.wav")));
+		}catch(Exception e)
+		  {
+			System.out.println("Error: "+e);}
+//		fondo.loop(Clip.LOOP_CONTINUOUSLY); //Para que se reproduzca indefinidamente
+		sonido.start();
+	}
 public static void main(String[] args){
+
+	StartMusic();
 	GamePanel x = new GamePanel();
 	MapPanel mapa = new MapPanel();
 	x.add(mapa);
