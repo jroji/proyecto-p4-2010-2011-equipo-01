@@ -3,10 +3,6 @@ import java.io.File;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-
-import Proyecto.p4.mapa.Board;
 
 
 public class GamePanel extends JFrame{
@@ -60,21 +56,25 @@ public class GamePanel extends JFrame{
 		
 	}
 
-	public static void StartMusic(){
+	/** Reproduce el archivo de sonido .wav que se encuentra en la ruta que 
+	 * recibe como atributo.
+	 */
+	public static void StartMusic(String ruta){
 		Clip sonido = null;
 		try
 		{
 		  sonido=AudioSystem.getClip();
-		  sonido.open(AudioSystem.getAudioInputStream(new File("D:/PROYECT/PRUEBASMAPA/src/Kalimba.wav")));
+		  sonido.open(AudioSystem.getAudioInputStream(new File(ruta)));
 		}catch(Exception e)
 		  {
 			System.out.println("Error: "+e);}
 //		fondo.loop(Clip.LOOP_CONTINUOUSLY); //Para que se reproduzca indefinidamente
 		sonido.start();
 	}
+
 public static void main(String[] args){
 
-	StartMusic();
+	StartMusic("D:/PROYECT/PRUEBASMAPA/src/Kalimba.wav");
 	GamePanel x = new GamePanel();
 	MapPanel mapa = new MapPanel();
 	x.add(mapa);

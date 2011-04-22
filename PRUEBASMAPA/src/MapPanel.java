@@ -315,7 +315,7 @@ public class MapPanel extends JPanel implements MouseListener{
 		}
 	}
 	
-	/*Coloca cada label con su imagen en el sitio correspodiente
+	/**Coloca cada label con su imagen en el sitio correspodiente
 	 * Además añade los MouseListener a cada label.
 	 */
 	public void colocarMapa(JLabel[][] imag,int x, int y){
@@ -334,7 +334,7 @@ public class MapPanel extends JPanel implements MouseListener{
 			iniy = y;}
 	}
 	
-	/*Coloca los JLabel del array en el layerpane  
+	/**Coloca los JLabel del array en el layerpane  
 	 * Decide además en que capa del layer se introduciran los elementos
 	 */
 	public void anyadirArray(JLabel[][] arr){
@@ -392,7 +392,6 @@ public class MapPanel extends JPanel implements MouseListener{
 		unit01.setLocation(x.getX(), x.getY()-50);
 	}
 	
-
 	@Override
 	public void mouseReleased(MouseEvent arg0) {
 		// TODO Auto-generated method stub
