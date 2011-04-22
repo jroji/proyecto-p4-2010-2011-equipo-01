@@ -1,11 +1,17 @@
 package proyecto.p4.Ventana.Button;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 
-public class OldWarriorButton extends javax.swing.JPanel {
+public class OldWarriorButton extends javax.swing.JPanel implements MouseListener{
 
 	             
     /**
@@ -17,6 +23,7 @@ public class OldWarriorButton extends javax.swing.JPanel {
     public JLabel Text;
     private JLayeredPane layeredpane;
     private String ruta = "D:\\BottonBackground.gif";
+    private String rutapulsado = "D:\\BottonBackgroundPulsado.gif";
 
     /** Creates new form OldWarriorButton */
     public OldWarriorButton(String TextButton) {
@@ -25,6 +32,8 @@ public class OldWarriorButton extends javax.swing.JPanel {
         layeredpane = new JLayeredPane();
         Text = new JLabel();
         OldWarriorButton = new javax.swing.JButton();
+        
+        OldWarriorButton.addMouseListener(this);
 
         Text.setText(TextButton);
         
@@ -45,12 +54,12 @@ public class OldWarriorButton extends javax.swing.JPanel {
         Text.setForeground(new java.awt.Color(255, 255, 153));
         Text.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         Text.setBounds(30, 20, 140, 20);
-        layeredpane.add(Text, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        layeredpane.add(Text, new Integer(1));
 
         OldWarriorButton.setFont(new java.awt.Font("Tahoma", 0, 14)); 
-        OldWarriorButton.setIcon(new javax.swing.ImageIcon(ruta));
+        OldWarriorButton.setIcon(new ImageIcon(ruta));
         OldWarriorButton.setBounds(0, 0, 140, 60);
-        layeredpane.add(OldWarriorButton, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        layeredpane.add(OldWarriorButton,  new Integer(0));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -61,6 +70,39 @@ public class OldWarriorButton extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(layeredpane, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );}                           
+        );}
+
+
+	@Override
+	public void mouseClicked(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		JButton x = (JButton) arg0.getSource();
+		x.setIcon(new ImageIcon(rutapulsado));
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		JButton x = (JButton) arg0.getSource();
+		x.setIcon(new ImageIcon(ruta));
+	}                           
 
 }
