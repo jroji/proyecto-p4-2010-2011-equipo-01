@@ -2,6 +2,8 @@ package proyecto.p4.piezaOldWarriorTales;
 
 import java.util.Random;
 
+import javax.swing.text.Position;
+
 import proyecto.p4.pieza.Piece;
 
 public abstract class PiezaOldWarriorTales extends Piece implements Orientable{
@@ -32,10 +34,6 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable{
 		life=100;
 		energy=100;
 	}
-	
-	public void setCounterattack(boolean counterattack) {
-		this.counterattack = counterattack;
-	}
 
 	public void setOrientation(Orientations orientacion) {
 		this.orientacion = orientacion;
@@ -50,10 +48,6 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable{
 	}
 	public void setExperience(int experience) {
 		this.experience = experience;
-	}
-	
-	public void setAttack(int attack) {
-		this.attack = attack;
 	}
 
 	public void setLife(int life) {
@@ -97,29 +91,22 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable{
 	public boolean isPoissoned(){
 		return poisson;
 	}
-	/** Metodo que gestiona el ataque de una pieza a otra basandose en la siguiente formula:
-	 * vida a restar= ataque (this) - defensa (contraria)
-	 * 
-	 * @param piezaContraria. pieza a la que se a atacado y a la que se desea restar la vida.
-	 * @return int. Vida a restar
-	 * 
-	 */
- 	public int takingLife (PiezaOldWarriorTales piezaContraria){
-		return this.attack-piezaContraria.defense;
-	}
 	
-	/** Metodo del interfaz Mooveable:
-	 * Indica si puede moverse a la posicion indicada como coordenadas en los parametros
-	 * 
-	 * @param posX. Coordenada X de la posicion a la que desea moverse
-	 * @param posY. Coordenada Y de la posicion a la que desea moverse
-	 * @return boolean. True si puede moverse
-	 * 
+	/**
+	 *  devuelve al atributo probability el valor inicial
 	 */
-	@Override
-	public boolean canMove(int posx, int posy) {
-		//metodo a codificar.
-		return false;
+	public abstract void restartProbability();
+	
+	/**
+	 * Metodo que gestiona el ataque a una pieza
+	 * @param piezaAtacada pieza a la que se desea atacar y a la que se restara la vida
+	 * @return true si a atacado o false si no a atacado
+	 */
+	public boolean attack (PiezaOldWarriorTales piezaAtacada){
+		if (canAttack()){
+			takingLife (piezaAtacada);
+			return true;
+		}else return false;
 	}
 	
 	/** Metodo que indica si la pieza puede atacar o no.
@@ -134,5 +121,40 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable{
 		int randomNumber=random.nextInt(100);
 		return randomNumber<=this.probability;
 	}
-
+	
+	/** Metodo que gestiona el ataque de una pieza a otra basandose en la siguiente formula:
+	 * vida a restar= ataque (this) - defensa (contraria)
+	 * 
+	 * @param piezaContraria. pieza a la que se a atacado y a la que se desea restar la vida.
+	 */
+ 	public void takingLife (PiezaOldWarriorTales piezaContraria){
+ 		int vida_a_restar=this.attack-piezaContraria.defense;
+		piezaContraria.setLife(piezaContraria.getLife()-vida_a_restar);
+	}
+	
+	/** Metodo del interfaz Mooveable:
+	 * Indica si puede moverse a la posicion indicada como coordenadas en los parametros
+	 * 
+	 * @param posX. Coordenada X de la posicion a la que desea moverse
+	 * @param posY. Coordenada Y de la posicion a la que desea moverse
+	 * @return boolean. True si puede moverse
+	 * 
+	 */
+	@Override
+	public boolean canMove(int posx, int posy) {
+		int res=getPosition_x()-posx;
+		res=Math.abs(res);
+		if (res>movement){
+			return false;
+		}else{
+			int res2=getPosition_y()-posy;
+			res2=Math.abs(res2);
+			res+=res2;
+			if (res>movement){
+				return false;
+			}else return true;
+		}
+	}
+	
+	
 }

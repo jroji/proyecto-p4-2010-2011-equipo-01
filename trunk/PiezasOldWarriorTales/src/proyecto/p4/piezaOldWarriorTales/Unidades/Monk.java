@@ -17,5 +17,11 @@ public class Monk extends PiezaOldWarriorTales{
 		public int takinglife(PiezaOldWarriorTales piezaContraria){
 			return this.getAttack();
 		}
+
+		@Override
+		public void restartProbability() {
+			probability=100;
+			
+		}
 		
 }

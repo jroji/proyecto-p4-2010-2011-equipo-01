@@ -13,4 +13,10 @@ public class Soldier extends PiezaOldWarriorTales {
 		poisson=false;
 		counterattack=false;
 	}
+
+	@Override
+	public void restartProbability() {
+		probability=60;
+		
+	}
 }
