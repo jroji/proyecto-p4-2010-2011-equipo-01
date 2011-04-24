@@ -18,6 +18,12 @@ public ArrayList <Field> fieldsToStore() throws SecurityException, NoSuchFieldEx
 return array;
 }
 
+
+/**
+ * Pruebas DataBase
+ * @param arts
+ * @throws Exception
+ */
 public static void main (String []arts) throws Exception{
 	PieceJDBC co1=new PieceJDBC();
 	String a= "C:/Users/Raquel/workspace/Juego/src/proyecto/p4/Jugador";
@@ -28,9 +34,9 @@ public static void main (String []arts) throws Exception{
 	System.out.println(player.get(i));
 	
 	
-	c1.nick="Yo";
+	c1.nick="o";
 	c1.avatar="direccionavatar";
-	co1.insert("cliente", c1);
+	co1.insert("Jugador", c1);
 
 
 }
