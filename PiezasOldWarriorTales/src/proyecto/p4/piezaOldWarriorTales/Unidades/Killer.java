@@ -23,4 +23,10 @@ public class Killer extends PiezaOldWarriorTales{
 				return this.getAttack()-piezaContraria.getDefense();
 				
 		}
+
+		@Override
+		public void restartProbability() {
+			probability=60;
+			
+		}
 }

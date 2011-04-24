@@ -15,4 +15,12 @@ public class Arquero extends PiezaOldWarriorTales{
 
 
 	}
+
+	@Override
+	public void restartProbability() {
+		probability=70;
+		
+	}
+
+
 }

@@ -13,4 +13,10 @@ public class Heathen extends PiezaOldWarriorTales {
 			poisson=false;
 			counterattack=false;
 		}
+
+		@Override
+		public void restartProbability() {
+			probability=40;
+			
+		}
 }
