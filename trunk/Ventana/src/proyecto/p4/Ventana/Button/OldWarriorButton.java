@@ -72,11 +72,6 @@ public class OldWarriorButton extends javax.swing.JPanel implements MouseListene
         );}
 
 
-	public void mouseClicked(MouseEvent arg0,String ButtonP) {
-		
-		ButtonP = Text.getText();
-	}
-
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
 		// TODO Auto-generated method stub
