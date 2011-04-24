@@ -7,6 +7,11 @@ import proyecto.p4.pieza.Piece;
 
 public abstract class Juego {
 	private int identificador;
+	private Board tablero;
+	private Jugador jugador1;
+	private Jugador jugador2;
+	
+	
 	public int getIdentificador() {
 		return identificador;
 	}
@@ -31,8 +36,6 @@ public abstract class Juego {
 	public void setJugador2(Jugador jugador2) {
 		this.jugador2 = jugador2;
 	}
-	private Board tablero;
-	private Jugador jugador1;
-	private Jugador jugador2;
+
 
 }
