@@ -3,9 +3,7 @@ package proyecto.p4.Ventana.JPanels;
 import javax.swing.*;
 import proyecto.p4.piezaOldWarriorTales.*;
 
-public class UnitData extends javax.swing.JPanel {
-
-    /** Creates new form UnitData */
+public class UnitData extends JPanel {
     public UnitData(PiezaOldWarriorTales p) {
         initComponents(p);
     }
@@ -69,6 +67,4 @@ public class UnitData extends javax.swing.JPanel {
     private JProgressBar HealthBar;
     private JLabel Image;
     private PiezaOldWarriorTales P;
-    // End of variables declaration//GEN-END:variables
-
 }
