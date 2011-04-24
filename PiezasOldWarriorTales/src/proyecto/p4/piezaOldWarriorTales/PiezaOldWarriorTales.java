@@ -4,6 +4,8 @@ import java.util.Random;
 
 import javax.swing.text.Position;
 
+import Proyecto.p4.casilla.Casilla;
+
 import proyecto.p4.pieza.Piece;
 
 public abstract class PiezaOldWarriorTales extends Piece implements Orientable{
@@ -131,6 +133,24 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable{
  		int vida_a_restar=this.attack-piezaContraria.defense;
 		piezaContraria.setLife(piezaContraria.getLife()-vida_a_restar);
 	}
+ 	
+ 	public void move (Casilla casillaActual, Casilla casillaAMover) throws Exception{
+ 		super.move(casillaActual, casillaAMover);
+ 		restartProbability();
+ 		updateProbability(casillaAMover);
+ 	}
+ 	
+ 	/**
+ 	 * Modifica el atributo probability en funcion de la casiilla en que se encuentra
+ 	 * @param casilla en la que se encuentra la pieza actualmente
+ 	 */
+ 	public void updateProbability(Casilla casilla){
+ 		if (casilla.getSquare().getClass().getName()=="TerrainGrass"){
+			probability-=20;
+		}else if (casilla.getSquare().getClass().getName()=="TerrainWater"){
+			probability=100;
+		}	
+ 	}
 	
 	/** Metodo del interfaz Mooveable:
 	 * Indica si puede moverse a la posicion indicada como coordenadas en los parametros

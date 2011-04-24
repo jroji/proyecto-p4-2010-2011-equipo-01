@@ -1,5 +1,6 @@
 package proyecto.p4.piezaOldWarriorTales.Unidades;
 
+import Proyecto.p4.casilla.Casilla;
 import proyecto.p4.piezaOldWarriorTales.PiezaOldWarriorTales;
 
 public class Arquero extends PiezaOldWarriorTales{
@@ -21,6 +22,8 @@ public class Arquero extends PiezaOldWarriorTales{
 		probability=70;
 		
 	}
+
+
 
 
 }
