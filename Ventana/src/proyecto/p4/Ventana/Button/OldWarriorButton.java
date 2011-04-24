@@ -12,7 +12,6 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 
 public class OldWarriorButton extends javax.swing.JPanel implements MouseListener{
-
 	             
     /**
 	 * 
@@ -73,10 +72,9 @@ public class OldWarriorButton extends javax.swing.JPanel implements MouseListene
         );}
 
 
-	@Override
-	public void mouseClicked(MouseEvent arg0) {
-		// TODO Auto-generated method stub
+	public void mouseClicked(MouseEvent arg0,String ButtonP) {
 		
+		ButtonP = Text.getText();
 	}
 
 	@Override
@@ -103,6 +101,13 @@ public class OldWarriorButton extends javax.swing.JPanel implements MouseListene
 		// TODO Auto-generated method stub
 		JButton x = (JButton) arg0.getSource();
 		x.setIcon(new ImageIcon(ruta));
+	}
+
+
+	@Override
+	public void mouseClicked(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
 	}                           
 
 }
