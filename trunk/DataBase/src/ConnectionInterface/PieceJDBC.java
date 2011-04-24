@@ -68,7 +68,7 @@ public class PieceJDBC implements PieceDataSource {
 	public void insertFiels(Object instance, Field field, String valor ) throws Exception{
 		
 		try{
-			field.set(instance,valor );
+			System.out.println(field.getType().getName());
 		}catch(Exception e){
 			try{
 				field.set(instance,Integer.parseInt(valor) );
