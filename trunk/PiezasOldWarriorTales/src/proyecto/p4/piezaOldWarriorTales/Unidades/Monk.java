@@ -21,7 +21,7 @@ public class Monk extends PiezaOldWarriorTales{
 		@Override
 		public void restartProbability() {
 			probability=100;
-			
+
 		}
 		
 }

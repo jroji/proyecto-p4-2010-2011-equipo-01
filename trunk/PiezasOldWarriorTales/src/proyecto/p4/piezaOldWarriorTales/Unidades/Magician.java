@@ -17,6 +17,5 @@ public class Magician extends PiezaOldWarriorTales {
 		@Override
 		public void restartProbability() {
 			probability=45;
-			
 		}
 }

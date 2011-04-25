@@ -18,6 +18,7 @@ public class Heathen extends PiezaOldWarriorTales {
 	@Override
 	public void restartProbability() {
 		probability=40;
+
 		
 	}
 	
