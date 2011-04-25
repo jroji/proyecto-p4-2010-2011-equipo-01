@@ -8,6 +8,12 @@ import javax.swing.*;
 public class OptionWindow extends javax.swing.JFrame {
 
 	private static final long serialVersionUID = 217355762236510969L;
+    private JPanel Buttons;
+    private JLabel Logo;
+    private LanguagePanel languagePanel1;
+    private SoundPanel soundPanel1;
+
+ 
 	public OptionWindow() {
         initComponents();
     }
@@ -16,9 +22,12 @@ public class OptionWindow extends javax.swing.JFrame {
 
         soundPanel1 = new SoundPanel();
         languagePanel1 = new LanguagePanel();
-        Buttons = new BotoneraV("Creditos", "Salir","","","");
-        Logo = new javax.swing.JLabel();
-
+        Buttons = new JPanel();
+        Logo = new JLabel();
+        Logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/lgo.gif")));
+        BotoneraV v = new BotoneraV("Creditos","Salir","","","");
+        Buttons.add(v);
+        Buttons.setVisible(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         javax.swing.GroupLayout ButtonsLayout = new javax.swing.GroupLayout(Buttons);
@@ -30,8 +39,8 @@ public class OptionWindow extends javax.swing.JFrame {
         ButtonsLayout.setVerticalGroup(
             ButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 139, Short.MAX_VALUE)
-        );
-
+        );  	    
+        
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -65,6 +74,7 @@ public class OptionWindow extends javax.swing.JFrame {
             .addGap(20, 20, 20))
         );
 
+    
         pack();
     }
 
@@ -76,10 +86,6 @@ public class OptionWindow extends javax.swing.JFrame {
         });
     }
 
-    private JPanel Buttons;
-    private JLabel Logo;
-    private LanguagePanel languagePanel1;
-    private SoundPanel soundPanel1;
 
 
 }
