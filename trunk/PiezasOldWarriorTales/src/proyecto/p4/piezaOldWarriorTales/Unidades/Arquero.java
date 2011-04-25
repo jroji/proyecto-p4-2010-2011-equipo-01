@@ -23,7 +23,10 @@ public class Arquero extends PiezaOldWarriorTales{
 		
 	}
 
-
+	public static void main (String []args){
+		Arquero prueba=new Arquero();
+		System.out.println();
+	}
 
 
 }

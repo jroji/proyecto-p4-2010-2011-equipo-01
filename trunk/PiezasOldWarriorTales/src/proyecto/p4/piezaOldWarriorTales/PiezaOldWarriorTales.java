@@ -27,10 +27,10 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable{
 	
 	//indica si puede contraatacar o no
 	protected boolean counterattack;
-
 	
-	
-	
+	/**
+	 * Constructor que inicializa los atributos energy life y experience
+	 */
 	public PiezaOldWarriorTales(){
 		experience=0;
 		life=100;
@@ -51,7 +51,6 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable{
 	public void setExperience(int experience) {
 		this.experience = experience;
 	}
-
 	public void setLife(int life) {
 		this.life = life;
 	}
