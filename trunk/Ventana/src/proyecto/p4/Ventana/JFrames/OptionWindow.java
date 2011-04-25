@@ -3,10 +3,11 @@ package proyecto.p4.Ventana.JFrames;
 import proyecto.p4.Ventana.Button.BotoneraV;
 import proyecto.p4.Ventana.JPanels.LanguagePanel;
 import proyecto.p4.Ventana.JPanels.SoundPanel;
+import javax.swing.*;
 
 public class OptionWindow extends javax.swing.JFrame {
 
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 217355762236510969L;
 	public OptionWindow() {
         initComponents();
     }
@@ -65,11 +66,8 @@ public class OptionWindow extends javax.swing.JFrame {
         );
 
         pack();
-    }// </editor-fold>
+    }
 
-    /**
-    * @param args the command line arguments
-    */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -78,12 +76,11 @@ public class OptionWindow extends javax.swing.JFrame {
         });
     }
 
-    // Variables declaration - do not modify
-    private javax.swing.JPanel Buttons;
-    private javax.swing.JLabel Logo;
+    private JPanel Buttons;
+    private JLabel Logo;
     private LanguagePanel languagePanel1;
     private SoundPanel soundPanel1;
-    // End of variables declaration
+
 
 }
 

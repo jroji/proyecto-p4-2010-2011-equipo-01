@@ -1,7 +1,7 @@
 package proyecto.p4.Ventana.JPanels;
 
 import javax.swing.*;
-import proyecto.p4.piezaOldWarriorTales.*;
+import proyecto.p4.PiezasOldWarriorTales.*;
 
 public class UnitData extends JPanel {
     public UnitData(PiezaOldWarriorTales p) {
