@@ -9,22 +9,13 @@ import ConnectionInterface.PieceJDBC;
 import ConnectionInterface.storableInDataBase;
 
 public class JuegoOldWarriorTales extends Juego implements storableInDataBase{
+	
+	public JuegoOldWarriorTales (){
+		name="Old Warrior Tales";
+		rutaImagen= "??";
+	}
 
 	
-	public static void main (String []args) throws Exception{
-		PieceJDBC co=new PieceJDBC();
-		JuegoOldWarriorTales j= new JuegoOldWarriorTales();
-		ArrayList<Object> juego= co.getAll("JuegoOldWarriorTales", j.getClass().getCanonicalName());
-
-		for(int i=0; i<juego.size();i++)
-		System.out.println(juego.get(i));
-		
-		j.setIdentificador(1);
-		
-		co.insert("JuegoOldWarriorTales", j);
-
-
-	}
 
 @Override
 public ArrayList<Field> fieldsToStore() throws SecurityException,
@@ -35,4 +26,20 @@ public ArrayList<Field> fieldsToStore() throws SecurityException,
 
 	return array;
 }
+
+public static void main (String []args) throws Exception{
+	PieceJDBC co=new PieceJDBC();
+	JuegoOldWarriorTales j= new JuegoOldWarriorTales();
+	ArrayList<Object> juego= co.getAll("JuegoOldWarriorTales", j.getClass().getCanonicalName());
+
+	for(int i=0; i<juego.size();i++)
+	System.out.println(juego.get(i));
+	
+	j.setIdentificador(1);
+	
+	co.insert("JuegoOldWarriorTales", j);
+
+
+}
+
 }
