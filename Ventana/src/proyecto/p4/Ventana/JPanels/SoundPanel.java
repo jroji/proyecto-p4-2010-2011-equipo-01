@@ -3,6 +3,11 @@
  import javax.swing.*;
 public class SoundPanel extends javax.swing.JPanel {
 
+    private JRadioButton NoButton;
+    private JLabel SoundLabel;
+    private JRadioButton YesButton;
+    private ButtonGroup buttonGroup1;
+
    
     public SoundPanel() {
         initComponents();
@@ -11,6 +16,7 @@ public class SoundPanel extends javax.swing.JPanel {
    
     private void initComponents() {
 
+    	
         buttonGroup1 = new javax.swing.ButtonGroup();
         SoundLabel = new javax.swing.JLabel();
         YesButton = new javax.swing.JRadioButton();
@@ -49,11 +55,10 @@ public class SoundPanel extends javax.swing.JPanel {
         );
     }
 
-
-    private JRadioButton NoButton;
-    private JLabel SoundLabel;
-    private JRadioButton YesButton;
-    private ButtonGroup buttonGroup1;
+    @SuppressWarnings("unused")
+	private boolean SoundOn(){
+    	return YesButton.isSelected();
+    }
 
 
 }
