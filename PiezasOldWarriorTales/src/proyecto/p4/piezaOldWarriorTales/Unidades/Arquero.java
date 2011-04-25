@@ -20,7 +20,6 @@ public class Arquero extends PiezaOldWarriorTales{
 	@Override
 	public void restartProbability() {
 		probability=70;
-		
 	}
 
 	public static void main (String []args){
