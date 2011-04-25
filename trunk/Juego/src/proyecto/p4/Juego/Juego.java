@@ -10,7 +10,8 @@ public abstract class Juego {
 	private Board tablero;
 	private Jugador jugador1;
 	private Jugador jugador2;
-	
+	protected String name;
+	protected String rutaImagen;
 	
 	public int getIdentificador() {
 		return identificador;
@@ -35,6 +36,9 @@ public abstract class Juego {
 	}
 	public void setJugador2(Jugador jugador2) {
 		this.jugador2 = jugador2;
+	}
+	public String toString(){
+		return name;
 	}
 
 
