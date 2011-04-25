@@ -8,6 +8,8 @@ import java.awt.event.MouseListener;
 import javax.swing.JPanel;
 
 public class BotoneraV extends JPanel implements MouseListener{
+
+	private static final long serialVersionUID = -321863009831594419L;
 	private OldWarriorButton boton1;
 	private OldWarriorButton boton2;
 	private OldWarriorButton boton3;
