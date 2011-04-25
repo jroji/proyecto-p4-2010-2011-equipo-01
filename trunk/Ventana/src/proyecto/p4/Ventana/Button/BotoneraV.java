@@ -6,6 +6,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.JPanel;
+import javax.swing.SpringLayout;
 
 public class BotoneraV extends JPanel implements MouseListener{
 
@@ -19,7 +20,7 @@ public class BotoneraV extends JPanel implements MouseListener{
 	
 
 	public BotoneraV(String x1, String x2, String x3, String x4, String x5){
-		this.setSize(300,600);
+		this.setLayout(new SpringLayout());
 		boton1 = new OldWarriorButton(x1);
 		boton2 = new OldWarriorButton(x2);
 		boton3 = new OldWarriorButton(x3);
@@ -32,7 +33,8 @@ public class BotoneraV extends JPanel implements MouseListener{
 		this.add(boton3);
 		this.add(boton4);
 		this.add(boton5);
-
+		
+		SpringUtilities.makeCompactGrid(this,5,1,6,6,6,6);
 		
 	}
 
