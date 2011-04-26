@@ -27,22 +27,23 @@ public class AtaqueCertero extends Hability{
 	 * coordendas (0,0),(0,1) indican pieza a la que atacar
 	 */
 	@Override
-	public void execute (int [][]coordenadas) throws IllegalArgumentException{
+	public void execute (int [][]coordenadas) throws Exception{
 		
-		//validacion del formato del array
-		if (coordenadas[0].length==2&&coordenadas.length>0){
-		//precision+20, daño-10
-		pieza.setAttack(pieza.getAttack()-10);
-		pieza.setProbability(pieza.getProbability()+20);
-		
-		//obtener pieza a la que atacar
-		PiezaOldWarriorTales pieza_a_atacar=(PiezaOldWarriorTales) pieza.getBoard().getPiece (coordenadas[0][0],coordenadas[0][1]);
-		//atacar a la pieza obtenida
-		pieza.attack(pieza_a_atacar);
-		//devolver los atributos a su estado inicial
-		pieza.setAttack(pieza.getAttack()+10);
-		
-		}else 
-			throw new IllegalArgumentException ("El array deve de tener el siguiente formato: coordenadas [n][2] donde n>0");
-	}
+		super.execute(coordenadas);
+			//validacion del formato del array
+			if (coordenadas[0].length==2&&coordenadas.length>0){
+				//precision+20, daño-10
+				pieza.setAttack(pieza.getAttack()-10);
+				pieza.setProbability(pieza.getProbability()+20);
+				
+				//obtener pieza a la que atacar
+				PiezaOldWarriorTales pieza_a_atacar=(PiezaOldWarriorTales) pieza.getBoard().getPiece (coordenadas[0][0],coordenadas[0][1]);
+				//atacar a la pieza obtenida
+				pieza.attack(pieza_a_atacar);
+				//devolver los atributos a su estado inicial
+				pieza.setAttack(pieza.getAttack()+10);
+				
+			}else 
+				throw new IllegalArgumentException ("El array deve de tener el siguiente formato: coordenadas [n][2] donde n>0");
+	}	
 }

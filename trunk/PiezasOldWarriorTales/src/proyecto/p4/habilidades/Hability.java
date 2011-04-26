@@ -24,7 +24,23 @@ public abstract class Hability {
 	 * casillas necesarias para ejecutar la habilidad.
 	 * El array devera tener el siguiente formato: coordenadas[n][2]
 	 * @throws IllegaArgumentException si el formato del array es incorrecto
+	 * @throws NotEnoughEnergyException si la pieza no tiene suficiente 
+	 * energia como para ejecutar la habilidad.
 	 */
-	public abstract void execute (int [][]coordenadas)throws Exception;
+	public void execute (int [][]coordenadas)throws Exception{
+		if (!enoughEnergy())
+			throw new NotEnoughEnergyException();
+	}
+	
+	/**
+	 * Metodo que indica si la pieza tiene suficiente energia como para ejecutar la habilidad
+	 * @return true si a pieza tiene suficiente energia como para ejecutar la habilidad
+	 */
+	protected boolean enoughEnergy (){
+		if (pieza.getEnergy()>=cost){
+			return true;
+		}else
+			return false;
+	}
 
 }
