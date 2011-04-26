@@ -26,6 +26,14 @@ public abstract class Piece implements Moveable{
 	
 	
 	
+	public Colours getColor() {
+		return color;
+	}
+
+	public void setColor(Colours color) {
+		this.color = color;
+	}
+
 	public int getPosition_x() {
 		return position_x;
 	}
