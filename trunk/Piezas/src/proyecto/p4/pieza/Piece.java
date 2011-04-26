@@ -60,7 +60,7 @@ public abstract class Piece implements Moveable{
 	 * @param casillaAMover Casilla a la que se quiere mover la pieza
 	 * @throws Exception si no puede moverse a la casilla deseada
 	 */
-	public void move (Casilla casillaActual, Casilla casillaAMover) throws Exception{
+	protected void move (Casilla casillaActual, Casilla casillaAMover) throws Exception{
 		
 		//se comprueba si la pieza puede moverse hasta la casilla a mover
 		if (able_to_move[casillaAMover.getPosX()][casillaAMover.getPosY()]){
@@ -75,7 +75,7 @@ public abstract class Piece implements Moveable{
 				casillaActual.setPiece(null);
 				
 			}else throw new Exception("no puede moverse a la casilla, casilla ocupada");
-		}else throw new Exception("no puede moverse a la casilla");
+		}else throw new Exception("no puede moverse a la casilla, fuera de alcance");
 	}
 
 	/** Metodo que modifica el atributo able_to_move escribiendo true en las posiciones a las que 
