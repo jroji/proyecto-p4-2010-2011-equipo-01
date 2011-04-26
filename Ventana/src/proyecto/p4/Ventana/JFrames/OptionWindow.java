@@ -24,7 +24,7 @@ public class OptionWindow extends javax.swing.JFrame {
         languagePanel1 = new LanguagePanel();
         Buttons = new JPanel();
         Logo = new JLabel();
-        Logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/lgo.gif")));
+        Logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/lgo.jpg")));
         BotoneraV v = new BotoneraV("Creditos","Salir","","","");
         Buttons.add(v);
         Buttons.setVisible(true);
