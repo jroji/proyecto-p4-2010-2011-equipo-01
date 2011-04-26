@@ -119,9 +119,14 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable{
 	 * @return true si a atacado o false si no a atacado
 	 */
 	public boolean attack (PiezaOldWarriorTales piezaAtacada){
-		if (canAttack()){
-			takingLife (piezaAtacada);
-			return true;
+		//validar que la pieza este en una casilla cercana
+		int x= Math.abs(piezaAtacada.getPosition_x()-this.getPosition_x());
+		int y= Math.abs(piezaAtacada.getPosition_y()-this.getPosition_y());
+		if(x<2&&y<2){
+			if (canAttack()){
+				takingLife (piezaAtacada);
+				return true;
+			}else return false;
 		}else return false;
 	}
 	
