@@ -30,11 +30,9 @@ public class AtacarYHuir extends Hability {
 		super.execute(coordenadas);
 		//validacion del formato del array
 		if (coordenadas[0].length==2&&coordenadas.length>1){
-			PiezaOldWarriorTales pieza_a_atacar= (PiezaOldWarriorTales) pieza.getBoard().getPiece(coordenadas[0][0], coordenadas[0][1]);
-			Casilla casilla_a_mover=pieza.getBoard().getCasilla(coordenadas[1][0], coordenadas[1][1]);
-			Casilla casilla_actual=pieza.getBoard().getCasilla(pieza.getPosition_x(), pieza.getPosition_y());
-			pieza.attack(pieza_a_atacar);
-			pieza.move(casilla_actual, casilla_a_mover);
+			
+			pieza.attack(coordenadas[0][0], coordenadas[0][1]);
+			pieza.move(coordenadas[1][0], coordenadas[1][1]);
 		}else 
 			throw new IllegalArgumentException ("El array deve de tener el siguiente formato: coordenadas [n][2] donde n>1");
 

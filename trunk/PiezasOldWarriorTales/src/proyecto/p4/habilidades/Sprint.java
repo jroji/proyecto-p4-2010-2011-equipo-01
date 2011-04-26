@@ -32,11 +32,8 @@ public class Sprint extends Hability {
 			if (coordenadas[0].length==2&&coordenadas.length>0){
 				//modificacion de atributos; atributo movement +2
 				pieza.setMovement(pieza.getMovement()+2);
-				//obtener casilla actual y a mover
-				Casilla actual=pieza.getBoard().getCasilla(pieza.getPosition_x(), pieza.getPosition_y());
-				Casilla a_mover= pieza.getBoard().getCasilla(coordenadas[0][0], coordenadas[0][1]);
 				//mover pieza
-				pieza.move(actual, a_mover);
+				pieza.move(coordenadas[0][0], coordenadas[0][1]);
 				//devolver valor de atributos a estado incial
 				pieza.setMovement(pieza.getMovement()+2);
 			}else 

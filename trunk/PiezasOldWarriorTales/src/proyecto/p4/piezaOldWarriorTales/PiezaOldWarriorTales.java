@@ -117,8 +117,12 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable{
 	 * Metodo que gestiona el ataque a una pieza
 	 * @param piezaAtacada pieza a la que se desea atacar y a la que se restara la vida
 	 * @return true si a atacado o false si no a atacado
+	 * @throws Exception si no hay una pieza en la posicion indicada
 	 */
-	public boolean attack (PiezaOldWarriorTales piezaAtacada){
+	public boolean attack (int posX, int posY) throws Exception{
+		PiezaOldWarriorTales piezaAtacada=(PiezaOldWarriorTales) board.getPiece(posX, posY);
+		if (piezaAtacada==null)
+			throw new Exception("no hay una pieza en las coordenadas indicadas");
 		//validar que la pieza este en una casilla cercana
 		int x= Math.abs(piezaAtacada.getPosition_x()-this.getPosition_x());
 		int y= Math.abs(piezaAtacada.getPosition_y()-this.getPosition_y());
@@ -157,15 +161,17 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable{
  	 * (non-Javadoc)
  	 * @see proyecto.p4.pieza.Piece#move(Proyecto.p4.casilla.Casilla, Proyecto.p4.casilla.Casilla)
  	 */
- 	public void move (Casilla casillaActual, Casilla casillaAMover) throws Exception{
+ 	public void move (int x_a_mover, int y_a_mover) throws Exception{
+ 		Casilla casillaActual=board.getCasilla(this.getPosition_x(), this.getPosition_y());
+ 		Casilla casillaAMover= board.getCasilla(x_a_mover, y_a_mover);
  		super.move(casillaActual, casillaAMover);
  		//devolvemos el valor inicial a probabilidad
  		restartProbability();
  		//actualizamos el valor probabilidad en funcion de la nueva casilla
- 		updateProbability(casillaAMover);
+ 		updateProbability();
  		//actualiza la orientacion
  		actualizarOrientacion(casillaActual.getPosX(), casillaActual.getPosY(),
- 				casillaAMover.getPosX(), casillaAMover.getPosY());
+ 				x_a_mover, y_a_mover);
  	}
  	public void actualizarOrientacion (int x_actual, int y_actual,int x_siguiente, int y_siguiente){
  		int x= x_siguiente-x_actual;
@@ -189,7 +195,8 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable{
  	 * Modifica el atributo probability en funcion de la casiilla en que se encuentra
  	 * @param casilla en la que se encuentra la pieza actualmente
  	 */
- 	private void updateProbability(Casilla casilla){
+ 	private void updateProbability(){
+ 		Casilla casilla= board.getCasilla(getPosition_x(), getPosition_y());
  		if (casilla.getSquare().getClass().getName()=="TerrainGrass"){
 			probability-=20;
 		}else if (casilla.getSquare().getClass().getName()=="TerrainWater"){
