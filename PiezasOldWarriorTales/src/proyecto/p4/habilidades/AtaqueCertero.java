@@ -35,11 +35,8 @@ public class AtaqueCertero extends Hability{
 				//precision+20, daño-10
 				pieza.setAttack(pieza.getAttack()-10);
 				pieza.setProbability(pieza.getProbability()+20);
-				
-				//obtener pieza a la que atacar
-				PiezaOldWarriorTales pieza_a_atacar=(PiezaOldWarriorTales) pieza.getBoard().getPiece (coordenadas[0][0],coordenadas[0][1]);
-				//atacar a la pieza obtenida
-				pieza.attack(pieza_a_atacar);
+				//atacar a la pieza
+				pieza.attack(coordenadas[0][0],coordenadas[0][1]);
 				//devolver los atributos a su estado inicial
 				pieza.setAttack(pieza.getAttack()+10);
 				

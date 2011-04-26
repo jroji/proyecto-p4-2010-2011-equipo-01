@@ -29,43 +29,31 @@ public class AtaqueEnZona extends Hability {
 		super.execute(coordenadas);
 			//modificar atributos
 			pieza.setAttack(pieza.getAttack()-10);
-			
-			//obtener piezas a atacar
-			PiezaOldWarriorTales pieza1;
-			PiezaOldWarriorTales pieza2;
-			PiezaOldWarriorTales pieza3;
+			//atacar a las tres posiciones:
 			//si mira hacia el este
 			if(pieza.getOrientacion()==Orientations.East){
-				pieza1=(PiezaOldWarriorTales) pieza.getBoard().getPiece(pieza.getPosition_x()+1, pieza.getPosition_y()+1);
-				pieza2=(PiezaOldWarriorTales) pieza.getBoard().getPiece(pieza.getPosition_x()+1, pieza.getPosition_y());
-				pieza3=(PiezaOldWarriorTales) pieza.getBoard().getPiece(pieza.getPosition_x()+1, pieza.getPosition_y()-1);
-			}
+				pieza.attack(pieza.getPosition_x()+1, pieza.getPosition_y()+1);
+				pieza.attack(pieza.getPosition_x()+1, pieza.getPosition_y());
+				pieza.attack(pieza.getPosition_x()+1, pieza.getPosition_y()-1);
+				}
 			//si mira hacia el norte
 			else if(pieza.getOrientacion()==Orientations.North){
-				pieza1=(PiezaOldWarriorTales) pieza.getBoard().getPiece(pieza.getPosition_x()-1, pieza.getPosition_y()+1);
-				pieza2=(PiezaOldWarriorTales) pieza.getBoard().getPiece(pieza.getPosition_x(), pieza.getPosition_y()+1);
-				pieza3=(PiezaOldWarriorTales) pieza.getBoard().getPiece(pieza.getPosition_x()+1, pieza.getPosition_y()+1);
-			}
+				pieza.attack(pieza.getPosition_x()-1, pieza.getPosition_y()+1);
+				pieza.attack(pieza.getPosition_x(), pieza.getPosition_y()+1);
+				pieza.attack(pieza.getPosition_x()+1, pieza.getPosition_y()+1);
+				}
 			//si mira hacia el sur
 			else if(pieza.getOrientacion()==Orientations.South){
-				pieza1=(PiezaOldWarriorTales) pieza.getBoard().getPiece(pieza.getPosition_x()-1, pieza.getPosition_y()-1);
-				pieza2=(PiezaOldWarriorTales) pieza.getBoard().getPiece(pieza.getPosition_x(), pieza.getPosition_y()-1);
-				pieza3=(PiezaOldWarriorTales) pieza.getBoard().getPiece(pieza.getPosition_x()+1, pieza.getPosition_y()-1);
-			}
+				pieza.attack(pieza.getPosition_x()-1, pieza.getPosition_y()-1);
+				pieza.attack(pieza.getPosition_x(), pieza.getPosition_y()-1);
+				pieza.attack(pieza.getPosition_x()+1, pieza.getPosition_y()-1);
+				}
 			//si mira hacia el oeste
 			else{
-				pieza1=(PiezaOldWarriorTales) pieza.getBoard().getPiece(pieza.getPosition_x()-1, pieza.getPosition_y()+1);
-				pieza2=(PiezaOldWarriorTales) pieza.getBoard().getPiece(pieza.getPosition_x()-1, pieza.getPosition_y());
-				pieza3=(PiezaOldWarriorTales) pieza.getBoard().getPiece(pieza.getPosition_x()-1, pieza.getPosition_y()-1);
-			}
-			//comprobar que no sean null y atacar
-			if (pieza1!=null)
-				pieza.attack(pieza1);
-			if (pieza2!=null)
-				pieza.attack(pieza2);
-			if (pieza3!=null)
-				pieza.attack(pieza3);
-			
+				pieza.attack(pieza.getPosition_x()-1, pieza.getPosition_y()+1);
+				pieza.attack(pieza.getPosition_x()-1, pieza.getPosition_y());
+				pieza.attack(pieza.getPosition_x()-1, pieza.getPosition_y()-1);
+				}
 			//restauar atributos
 			pieza.setAttack(pieza.getAttack()+10);
 	}
