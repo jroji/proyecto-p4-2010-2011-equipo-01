@@ -34,6 +34,19 @@ public class BotoneraV extends JPanel implements MouseListener{
 		this.add(boton4);
 		this.add(boton5);
 		
+		if(x1.equals("")){
+			boton1.setVisible(false);
+		}if(x2.equals("")){
+			boton2.setVisible(false);
+		}
+		if(x3.equals("")){
+			boton3.setVisible(false);
+		}if(x4.equals("")){
+			boton4.setVisible(false);
+		}if(x5.equals("")){
+			boton5.setVisible(false);
+		}
+		
 		SpringUtilities.makeCompactGrid(this,5,1,6,6,6,6);
 		
 	}
