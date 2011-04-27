@@ -1,6 +1,5 @@
 package proyecto.p4.habilidades;
 
-import Proyecto.p4.casilla.Casilla;
 import proyecto.p4.piezaOldWarriorTales.PiezaOldWarriorTales;
 /** 
  * Habilidad Atacar y huir:
