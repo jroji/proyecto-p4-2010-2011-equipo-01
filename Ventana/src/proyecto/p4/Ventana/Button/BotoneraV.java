@@ -5,6 +5,7 @@ package proyecto.p4.Ventana.Button;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+
 import javax.swing.JPanel;
 import javax.swing.SpringLayout;
 
@@ -16,7 +17,6 @@ public class BotoneraV extends JPanel implements MouseListener{
 	private OldWarriorButton boton3;
 	private OldWarriorButton boton4;
 	private OldWarriorButton boton5;
-	private int ButtonP;
 	
 
 	public BotoneraV(String x1, String x2, String x3, String x4, String x5){
@@ -26,6 +26,13 @@ public class BotoneraV extends JPanel implements MouseListener{
 		boton3 = new OldWarriorButton(x3);
 		boton4 = new OldWarriorButton(x4);
 		boton5 = new OldWarriorButton(x5);
+		
+		boton1.addMouseListener(this);
+		boton2.addMouseListener(this);
+		boton3.addMouseListener(this);
+		boton4.addMouseListener(this);
+		boton5.addMouseListener(this);
+		
 		
 		
 		this.add(boton1);
@@ -38,8 +45,7 @@ public class BotoneraV extends JPanel implements MouseListener{
 			boton1.setVisible(false);
 		}if(x2.equals("")){
 			boton2.setVisible(false);
-		}
-		if(x3.equals("")){
+		}if(x3.equals("")){
 			boton3.setVisible(false);
 		}if(x4.equals("")){
 			boton4.setVisible(false);
@@ -54,21 +60,7 @@ public class BotoneraV extends JPanel implements MouseListener{
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-		if(e.getComponent()==boton1){
-			ButtonP=1;
-		}
-		if(e.getComponent()==boton2){
-			ButtonP=2;
-		}
-		if(e.getComponent()==boton3){
-			ButtonP=3;
-		}
-		if(e.getComponent()==boton4){
-			ButtonP=4;
-		}
-		if(e.getComponent()==boton5){
-			ButtonP=5;
-		}
+		
 	}
 
 	@Override
@@ -84,20 +76,30 @@ public class BotoneraV extends JPanel implements MouseListener{
 	}
 
 	@Override
-	public void mousePressed(MouseEvent arg0) {
+	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
-	public void mouseReleased(MouseEvent arg0) {
+	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
 	}
 	
-	public int getButtonP(){
-		return ButtonP;
-	}
 
+	public boolean getButtonP1() {
+		return boton1.isPulsed();
+	}
+	public boolean getButtonP2() {
+		return boton2.isPulsed();
+	}
+	public boolean getButtonP3() {
+		return boton3.isPulsed();
+	}
+	public boolean getButtonP4() {
+		return boton4.isPulsed();
+	}
+	public boolean getButtonP5() {
+		return boton5.isPulsed();
+	}
 	
 }
