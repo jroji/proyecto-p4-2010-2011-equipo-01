@@ -5,6 +5,7 @@ import java.util.Random;
 import Proyecto.p4.casilla.Casilla;
 import Proyecto.p4.mapa.Board;
 
+import proyecto.p4.habilidades.Hability;
 import proyecto.p4.pieza.Piece;
 import proyecto.p4.piezaOldWarriorTales.Unidades.Arquero;
 
@@ -32,6 +33,9 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable{
 	//indica si puede contraatacar o no
 	protected boolean counterattack;
 	
+	//array de habilidades
+	protected Hability []habilities;
+
 	/**
 	 * Constructor que inicializa los atributos energy life y experience
 	 */
@@ -39,6 +43,7 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable{
 		experience=0;
 		life=100;
 		energy=100;
+		cargarHabilidades();
 	}
 	public void setOrientation(Orientations orientacion) {
 		this.orientacion = orientacion;
@@ -107,6 +112,12 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable{
 	public void setMovement(int movement) {
 		this.movement = movement;
 	}
+	public Hability[] getHabilities() {
+		return habilities;
+	}
+	public void setHabilities(Hability[] habilities) {
+		this.habilities = habilities;
+	}
 
 	/**
 	 *  devuelve al atributo probability valor inicial
@@ -144,7 +155,11 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable{
 	public boolean canAttack (){
 		Random random= new Random();
 		int randomNumber=random.nextInt(100);
-		return randomNumber<=this.probability;
+		//si esta ciego la probabilidad baja al 10%
+		if (this.isBlind()){
+			return randomNumber<=10;
+		}else
+			return randomNumber<=this.probability;
 	}
 	
 	/** Metodo que gestiona el ataque de una pieza a otra basandose en la siguiente formula:
@@ -227,6 +242,31 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable{
 			}else return true;
 		}
 	}
+	
+	/**
+	 * Metodo que carga el array de habilidades de cada pieza
+	 * con sus respectivas habilidades.
+	 */
+	protected abstract void cargarHabilidades();
+	
+	public void ejecutarHabilidad(int num_habilidad) throws Exception{
+		if (habilities==null)
+			throw new Exception("Esta pieza no tiene habilidades.");
+		if (num_habilidad<habilities.length){
+			int [][]coordenadas=habilities[num_habilidad].obtenerCoordenadas();
+			habilities[num_habilidad].execute(coordenadas);
+		}else 
+			throw new Exception("el numero de habilidad deve estar entre 0-"+(habilities.length-1));
+	}
+	/**
+	 * Metodo que se ejecuta al finalizar el turno del jugador
+	 */
+	public void finalizarTurno(){
+		//si la pieza esta envenenada resta diez
+		if (this.isPoissoned()){
+			this.life-=10;
+		}
+	}
 	/**
 	 * prueba orientacion
 	 * @param args
@@ -236,4 +276,6 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable{
 		prueba.actualizarOrientacion(5, 5, 5, 4);
 		System.out.println(prueba.getOrientacion());
 	}
+	
+
 }

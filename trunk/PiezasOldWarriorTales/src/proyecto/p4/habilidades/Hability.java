@@ -42,5 +42,9 @@ public abstract class Hability {
 		}else
 			return false;
 	}
+	public int [][] obtenerCoordenadas(){
+		//implementar metodo en cada subclase
+		return null;
+	}
 
 }
