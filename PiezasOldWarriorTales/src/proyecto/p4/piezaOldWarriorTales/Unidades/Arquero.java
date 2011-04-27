@@ -23,12 +23,6 @@ public class Arquero extends PiezaOldWarriorTales{
 	public void restartProbability() {
 		probability=70;
 	}
-
-	public static void main (String []args){
-		Arquero prueba=new Arquero();
-		System.out.println();
-	}
-	
 	/*
 	 * habilidades a cargar: Envenenar / cegar
 	 * (non-Javadoc)
