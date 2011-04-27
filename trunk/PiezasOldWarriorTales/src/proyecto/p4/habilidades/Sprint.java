@@ -1,7 +1,6 @@
 package proyecto.p4.habilidades;
 
 import proyecto.p4.piezaOldWarriorTales.PiezaOldWarriorTales;
-import Proyecto.p4.casilla.Casilla;
 
 /**
  * Habilidad Sprint:
