@@ -19,4 +19,10 @@ public class knight extends PiezaOldWarriorTales {
 			probability=70;
 			
 		}
+
+		@Override
+		protected void cargarHabilidades() {
+			// TODO Auto-generated method stub
+			
+		}
 }
