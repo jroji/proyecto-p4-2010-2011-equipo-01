@@ -11,7 +11,7 @@ import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 
-public class OldWarriorButton extends javax.swing.JPanel implements MouseListener{
+public class OldWarriorButton extends javax.swing.JPanel implements MouseListener,ActionListener{
 	             
     /**
 	 * 
@@ -23,6 +23,7 @@ public class OldWarriorButton extends javax.swing.JPanel implements MouseListene
     private JLayeredPane layeredpane;
     private String ruta = "D:\\BottonBackground.gif";
     private String rutapulsado = "D:\\BottonBackgroundPulsado.gif";
+    private boolean BP;
 
     /** Creates new form OldWarriorButton */
     public OldWarriorButton(String TextButton) {
@@ -30,9 +31,10 @@ public class OldWarriorButton extends javax.swing.JPanel implements MouseListene
         internalFrame = new JInternalFrame();
         layeredpane = new JLayeredPane();
         Text = new JLabel();
-        OldWarriorButton = new javax.swing.JButton();
+        OldWarriorButton = new JButton();
         
         OldWarriorButton.addMouseListener(this);
+        OldWarriorButton.addActionListener(this);
 
         Text.setText(TextButton);
         
@@ -103,6 +105,16 @@ public class OldWarriorButton extends javax.swing.JPanel implements MouseListene
 	public void mouseClicked(MouseEvent arg0) {
 		// TODO Auto-generated method stub
 		
-	}                           
+	}
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		if(e.getSource()== OldWarriorButton)
+		BP=true;
+	}
+	
+	public boolean isPulsed(){
+		return BP;
+	}
 
 }

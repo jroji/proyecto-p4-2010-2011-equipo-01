@@ -1,46 +1,39 @@
 package proyecto.p4.Ventana.JFrames;
 
+import java.awt.FlowLayout;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
 import proyecto.p4.Ventana.Button.BotoneraV;
 import proyecto.p4.Ventana.JPanels.LanguagePanel;
 import proyecto.p4.Ventana.JPanels.SoundPanel;
 import javax.swing.*;
 
-public class OptionWindow extends javax.swing.JFrame {
+public class OptionWindow extends javax.swing.JFrame implements MouseListener {
 
 	private static final long serialVersionUID = 217355762236510969L;
-    private JPanel Buttons;
+    private BotoneraV Buttons;
     private JLabel Logo;
     private LanguagePanel languagePanel1;
     private SoundPanel soundPanel1;
+    private int ButtonP;
 
  
 	public OptionWindow() {
         initComponents();
     }
 
-    private void initComponents() {
+    private void initComponents(){
 
         soundPanel1 = new SoundPanel();
         languagePanel1 = new LanguagePanel();
-        Buttons = new JPanel();
+        Buttons = new BotoneraV("","Creditos","Salir","","");
         Logo = new JLabel();
         Logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/lgo.jpg")));
-        BotoneraV v = new BotoneraV("Creditos","Salir","","","");
-        Buttons.add(v);
-        Buttons.setVisible(true);
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        javax.swing.GroupLayout ButtonsLayout = new javax.swing.GroupLayout(Buttons);
-        Buttons.setLayout(ButtonsLayout);
-        ButtonsLayout.setHorizontalGroup(
-            ButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 171, Short.MAX_VALUE)
-        );
-        ButtonsLayout.setVerticalGroup(
-            ButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 139, Short.MAX_VALUE)
-        );  	    
         
+
+        Buttons.addMouseListener(this);
+     
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -74,7 +67,6 @@ public class OptionWindow extends javax.swing.JFrame {
             .addGap(20, 20, 20))
         );
 
-    
         pack();
     }
 
@@ -86,7 +78,39 @@ public class OptionWindow extends javax.swing.JFrame {
         });
     }
 
+	@Override
+	public void mouseClicked(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		if(Buttons.getButtonP3()){
+			this.dispose();
+		}else if(Buttons.getButtonP4()){
+			this.dispose();
+		}
+	}
+
+	@Override
+	public void mouseExited(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+	}
+	}
 
 
-}
+
+
 
