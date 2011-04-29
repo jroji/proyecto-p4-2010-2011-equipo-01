@@ -1,29 +1,41 @@
 package proyecto.p4.Ventana.JPanels;
 
+import java.awt.Dimension;
+
 import javax.swing.*;
-import proyecto.p4.PiezasOldWarriorTales.*;
+import proyecto.p4.piezaOldWarriorTales.PiezaOldWarriorTales;
 
 public class UnitData extends JPanel {
+	
+	
+    
+    private JProgressBar EnergyBar;
+    private JProgressBar ExperienceBar;
+    private JProgressBar HealthBar;
+    private JLabel Image;
+    private PiezaOldWarriorTales P;
+    
+    
     public UnitData(PiezaOldWarriorTales p) {
         initComponents(p);
     }
 
     private void initComponents(PiezaOldWarriorTales p) {
     	P=p;
-        Image = new javax.swing.JLabel();
-        HealthBar = new javax.swing.JProgressBar();
-        EnergyBar = new javax.swing.JProgressBar();
-        ExperienceBar = new javax.swing.JProgressBar();
+        Image = new JLabel();
+        HealthBar = new JProgressBar();
+        EnergyBar = new JProgressBar();
+        ExperienceBar = new JProgressBar();
 
-        setPreferredSize(new java.awt.Dimension(242, 121));
+        setPreferredSize(new Dimension(242, 121));
 
         Image.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         HealthBar.setForeground(new java.awt.Color(255, 0, 0));
-        HealthBar.setValue(P.getLife()+"/100");
+        HealthBar.setValue(P.getLife());
         HealthBar.setStringPainted(true);
 
-        EnergyBar.setValue(P.getEnergy()+"/100");
+        EnergyBar.setValue(P.getEnergy());
         EnergyBar.setStringPainted(true);
 
         ExperienceBar.setBackground(new java.awt.Color(0, 51, 204));
@@ -61,10 +73,4 @@ public class UnitData extends JPanel {
             .addGap(26, 26, 26))))
         );
     }
-    
-    private JProgressBar EnergyBar;
-    private JProgressBar ExperienceBar;
-    private JProgressBar HealthBar;
-    private JLabel Image;
-    private PiezaOldWarriorTales P;
 }
