@@ -4,6 +4,9 @@ import java.awt.Color;
 import java.awt.Component;
 import java.util.LinkedList;
 import javax.swing.JLabel;
+
+import Proyecto.p4.Tipo.Square;
+import Proyecto.p4.casilla.Casilla;
 import proyecto.p4.Mapa.*;
 
 
