@@ -9,7 +9,7 @@ import java.awt.event.MouseListener;
 import javax.swing.JPanel;
 import javax.swing.SpringLayout;
 
-public class BotoneraV extends JPanel implements MouseListener{
+public class BotoneraV extends JPanel{
 
 	private static final long serialVersionUID = -321863009831594419L;
 	private OldWarriorButton boton1;
@@ -28,12 +28,12 @@ public class BotoneraV extends JPanel implements MouseListener{
 		boton4 = new OldWarriorButton(x4);
 		boton5 = new OldWarriorButton(x5);
 		
-		boton1.addMouseListener(this);
-		boton2.addMouseListener(this);
-		boton3.addMouseListener(this);
-		boton4.addMouseListener(this);
-		boton5.addMouseListener(this);
-		
+//		boton1.addMouseListener(this);
+//		boton2.addMouseListener(this);
+//		boton3.addMouseListener(this);
+//		boton4.addMouseListener(this);
+//		boton5.addMouseListener(this);
+//		
 		
 		
 		this.add(boton1);
@@ -57,35 +57,6 @@ public class BotoneraV extends JPanel implements MouseListener{
 		SpringUtilities.makeCompactGrid(this,5,1,6,6,6,6);
 		
 	}
-
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseExited(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-	}
-	
 
 	public boolean getButtonP1() {
 		return boton1.isPulsed();
