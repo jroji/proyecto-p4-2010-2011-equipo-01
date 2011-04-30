@@ -1,10 +1,12 @@
 package proyecto.p4.Ventana.JPanels;
 
+import javax.swing.JPanel;
+
 /**
  *
  * @author Jon
  */
-public class SelectGamePane extends javax.swing.JPanel {
+public class SelectGamePane extends JPanel {
 
     /**
 	 * 
@@ -14,6 +16,8 @@ public class SelectGamePane extends javax.swing.JPanel {
     private javax.swing.JLabel Image;
     private javax.swing.JPanel ImgPane;
     
+    
+    
     /** Creates new form SelectGamePane */
     public SelectGamePane() {
 
@@ -22,6 +26,8 @@ public class SelectGamePane extends javax.swing.JPanel {
         ImgPane = new javax.swing.JPanel();
         Image = new javax.swing.JLabel();
 
+        this.setOpaque(false);
+        
         SelectGameCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         SelectGameCombo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
