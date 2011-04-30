@@ -1,6 +1,8 @@
 package proyecto.p4.Ventana.JFrames;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 
 import proyecto.p4.Ventana.Button.BotoneraH;
@@ -13,6 +15,7 @@ public class WelcomeWindow extends JFrame{
 	NickPanel nicks = new NickPanel();
 	BotoneraH botonera = new BotoneraH("  Aceptar","     Salir", "Nuevo Jugador");
 	SelectGamePane game = new SelectGamePane();
+	JLabel fondo = new JLabel(new ImageIcon(getClass().getResource("/img/fondowelcome.jpg")));
 	
 	public WelcomeWindow(){
 		this.setSize(1024, 728);
@@ -22,11 +25,13 @@ public class WelcomeWindow extends JFrame{
 		
 		layer.setBounds(0, 0, 1024, 728);
 		
-		layer.add(game, new Integer (0));
-		layer.add(nicks, new Integer (1));
-		layer.add(botonera, new Integer (2));
+		layer.add(fondo, new Integer (0));
+		layer.add(game, new Integer (1));
+		layer.add(nicks, new Integer (2));
+		layer.add(botonera, new Integer (3));
 		
-		game.setBounds(550,0,400,400);
+		fondo.setBounds(0, 0, 1024, 720);
+		game.setBounds(580,0,400,400);
 		nicks.setBounds(500, 380, 500, 500);
 		botonera.setBounds(50, 550, 600, 200);
 		this.setVisible(true);
