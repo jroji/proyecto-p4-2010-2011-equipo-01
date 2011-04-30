@@ -26,6 +26,7 @@ public class BotoneraH extends JPanel implements MouseListener {
         oldWarriorButton2 = new OldWarriorButton(Button2);
         oldWarriorButton3 = new OldWarriorButton(Button3);
 
+        this.setOpaque(false);
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
