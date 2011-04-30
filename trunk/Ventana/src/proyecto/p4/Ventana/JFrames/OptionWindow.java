@@ -12,7 +12,7 @@ import javax.swing.*;
 public class OptionWindow extends javax.swing.JFrame implements MouseListener {
 
 	private static final long serialVersionUID = 217355762236510969L;
-    private BotoneraV Buttons;
+    private static BotoneraV Buttons;
     private JLabel Logo;
     private LanguagePanel languagePanel1;
     private SoundPanel soundPanel1;
@@ -32,7 +32,7 @@ public class OptionWindow extends javax.swing.JFrame implements MouseListener {
         Logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/lgo.jpg")));
         
 
-        Buttons.addMouseListener(this);
+//        Buttons.addMouseListener(this);
      
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -68,29 +68,32 @@ public class OptionWindow extends javax.swing.JFrame implements MouseListener {
         );
 
         pack();
+        this.setVisible(true);
     }
 
     public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new OptionWindow().setVisible(true);
-            }
-        });
+       OptionWindow x = new OptionWindow();
+       while(true){
+   		if(Buttons.getButtonP3()){
+			x.dispose();
+		}else if(Buttons.getButtonP4()){
+			x.dispose();
+       }
+   }
+
     }
 
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
 		// TODO Auto-generated method stub
+
+//		}
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		if(Buttons.getButtonP3()){
-			this.dispose();
-		}else if(Buttons.getButtonP4()){
-			this.dispose();
-		}
+
 	}
 
 	@Override
