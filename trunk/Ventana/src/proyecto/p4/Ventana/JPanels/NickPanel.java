@@ -25,6 +25,7 @@ public class NickPanel extends javax.swing.JPanel {
         nicktext = new JTextField();
         nicktext2 = new JTextField();
 
+        this.setOpaque(false);
         Nick2.setFont(new java.awt.Font("Tahoma", 0, 18));
         Nick1.setFont(new java.awt.Font("Tahoma", 0, 18));
         

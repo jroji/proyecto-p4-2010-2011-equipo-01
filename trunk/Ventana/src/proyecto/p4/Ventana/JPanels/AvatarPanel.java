@@ -31,6 +31,8 @@ public class AvatarPanel extends javax.swing.JPanel {
         Player2Name.setText(nick1);
         Player1Name.setText(nick2);
 
+        this.setOpaque(false);
+        
         Player1Avatar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
 
         javax.swing.GroupLayout Player1AvatarLayout = new javax.swing.GroupLayout(Player1Avatar);
