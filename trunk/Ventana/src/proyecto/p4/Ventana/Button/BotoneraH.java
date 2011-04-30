@@ -6,16 +6,18 @@ package proyecto.p4.Ventana.Button;
  *
  *
  */
-	import java.awt.event.MouseEvent;
+	import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.*;
-public class BotoneraH extends JPanel implements MouseListener {
+public class BotoneraH extends JPanel {
 
     private OldWarriorButton oldWarriorButton1;
     private OldWarriorButton oldWarriorButton2;
     private OldWarriorButton oldWarriorButton3;
-    private boolean BP;
+
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -52,34 +54,19 @@ public class BotoneraH extends JPanel implements MouseListener {
         );
     }
 
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
-	}
+//	@Override
+//	public void actionPerformed(ActionEvent e) {
+//		// TODO Auto-generated method stub
+//		
+//		if(e.getSource()==oldWarriorButton1){
+//			ButtonP=1;
+//		}if(e.getSource()==oldWarriorButton2){
+//			ButtonP=2;
+//		}if(e.getSource()==oldWarriorButton3){
+//			ButtonP=3;
+//		}
 
-	@Override
-	public void mouseEntered(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void mouseExited(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mousePressed(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
 	public boolean getButtonP1() {
 		return oldWarriorButton1.isPulsed();
 	}
