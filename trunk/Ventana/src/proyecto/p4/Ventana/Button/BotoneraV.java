@@ -21,6 +21,7 @@ public class BotoneraV extends JPanel implements MouseListener{
 
 	public BotoneraV(String x1, String x2, String x3, String x4, String x5){
 		this.setLayout(new SpringLayout());
+		this.setOpaque(false);
 		boton1 = new OldWarriorButton(x1);
 		boton2 = new OldWarriorButton(x2);
 		boton3 = new OldWarriorButton(x3);
