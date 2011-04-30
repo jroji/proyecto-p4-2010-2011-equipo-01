@@ -9,7 +9,11 @@ public class UnitData extends JPanel {
 	
 	
     
-    private JProgressBar EnergyBar;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private JProgressBar EnergyBar;
     private JProgressBar ExperienceBar;
     private JProgressBar HealthBar;
     private JLabel Image;
@@ -44,7 +48,7 @@ public class UnitData extends JPanel {
         ExperienceBar.setBackground(new java.awt.Color(0, 51, 204));
         ExperienceBar.setForeground(new java.awt.Color(51, 255, 51));
         ExperienceBar.setValue(P.getExperience());
-        ExperienceBar.setString(P.getExperience());
+        ExperienceBar.setString(P.getExperience()+"");
         ExperienceBar.setStringPainted(true);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
