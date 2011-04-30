@@ -15,7 +15,7 @@ public class BotoneraH extends JPanel implements MouseListener {
     private OldWarriorButton oldWarriorButton1;
     private OldWarriorButton oldWarriorButton2;
     private OldWarriorButton oldWarriorButton3;
-    private int ButtonP;
+    private boolean BP;
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -55,13 +55,6 @@ public class BotoneraH extends JPanel implements MouseListener {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-		if(e.getComponent()==oldWarriorButton1){
-			ButtonP=1;
-		}if(e.getComponent()==oldWarriorButton2){
-			ButtonP=2;
-		}if(e.getComponent()==oldWarriorButton3){
-			ButtonP=3;
-		}
 	}
 
 	@Override
@@ -86,6 +79,15 @@ public class BotoneraH extends JPanel implements MouseListener {
 	public void mouseReleased(MouseEvent arg0) {
 		// TODO Auto-generated method stub
 		
+	}
+	public boolean getButtonP1() {
+		return oldWarriorButton1.isPulsed();
+	}
+	public boolean getButtonP2() {
+		return oldWarriorButton2.isPulsed();
+	}
+	public boolean getButtonP3() {
+		return oldWarriorButton3.isPulsed();
 	}
 
 }
