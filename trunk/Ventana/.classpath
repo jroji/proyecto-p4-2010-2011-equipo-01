@@ -5,7 +5,6 @@
 	<classpathentry kind="lib" path="C:/proyecto/p4/products/Mapa/Mapa.jar"/>
 	<classpathentry kind="lib" path="C:/proyecto/p4/products/PiezasOldWarriorTales/PiezasOldWarriorTales.jar"/>
 	<classpathentry kind="lib" path="C:/proyecto/p4/products/Piezas/Piezas.jar"/>
-	<classpathentry kind="src" path="/Game"/>
 	<classpathentry kind="lib" path="C:/proyecto/p4/products/GamePr/GamePr.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

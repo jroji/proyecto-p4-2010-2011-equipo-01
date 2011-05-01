@@ -32,22 +32,39 @@ public class MainWindow extends JFrame{
 		Buttons.setBounds(750, 150,500,500);
 		this.setVisible(true);
 		this.setResizable(false);
-		
-	}
-
-	public static void main(String[] args)
-	{
-		MainWindow x = new MainWindow();
-		       while(true){
+	       while(true){
 		   		if(Buttons.getButtonP3()){
-					x.dispose();
-					new OptionWindow();
 					Buttons.setButtonP3(false);
+		   			this.dispose();
+					new OptionWindow();
 				}else if(Buttons.getButtonP5()){
-					x.dispose();
 					Buttons.setButtonP5(false);
+					this.dispose();
+					new WelcomeWindow();
+		       }
+				else if(Buttons.getButtonP1()){
+					Buttons.setButtonP1(false);
+					this.dispose();
+					
 					
 		       }
 		   }
+		
 	}
+
+//	public static void main(String[] args)
+//	{
+//		MainWindow x = new MainWindow();
+//		       while(true){
+//		   		if(Buttons.getButtonP3()){
+//					x.dispose();
+//					new OptionWindow();
+//					Buttons.setButtonP3(false);
+//				}else if(Buttons.getButtonP5()){
+//					x.dispose();
+//					Buttons.setButtonP5(false);
+//					
+//		       }
+//		   }
+//	}
 }

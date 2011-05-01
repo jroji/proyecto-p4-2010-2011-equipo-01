@@ -70,21 +70,24 @@ public class OptionWindow extends javax.swing.JFrame // implements MouseListener
 
         pack();
         this.setVisible(true);
+        
+        while(true){
+       		if(Buttons.getButtonP3()){
+    			Buttons.setButtonP3(false);
+       			this.dispose();
+    			new MainWindow();
+    		}
+       		else if(Buttons.getButtonP5()){
+       			this.dispose();
+           }
+    }
     }
 
     public static void main(String args[]) {
        OptionWindow x = new OptionWindow();
-       while(true){
-   		if(Buttons.getButtonP3()){
-			x.dispose();
-		}else if(Buttons.getButtonP4()){
-			x.dispose();
-			new MainWindow();
-			Buttons.setButtonP4(false);
-       }
+
    }
 
-    }
 
 //	@Override
 //	public void mouseClicked(MouseEvent arg0) {
