@@ -65,24 +65,22 @@ public class BotoneraV extends JPanel{
 	public boolean getButtonP5() {
 		return boton5.isPulsed();
 	}
-
-	public void setBoton1(OldWarriorButton boton1) {
-		this.boton1 = boton1;
+	
+	public void setButtonP1(boolean cond) {
+		 boton1.setBP(cond);
 	}
-
-	public void setBoton2(OldWarriorButton boton2) {
-		this.boton2 = boton2;
+	public void setButtonP2(boolean cond) {
+		 boton2.setBP(cond);
 	}
-
-	public void setBoton3(OldWarriorButton boton3) {
-		this.boton3 = boton3;
+	public void setButtonP3(boolean cond) {
+		 boton3.setBP(cond);
 	}
-
-	public void setBoton4(OldWarriorButton boton4) {
-		this.boton4 = boton4;
+	public void setButtonP4(boolean cond) {
+		boton4.setBP(cond);
 	}
-
-	public void setBoton5(OldWarriorButton boton5) {
-		this.boton5 = boton5;
+	public void setButtonP5(boolean cond) {
+		boton5.setBP(cond);
 	}
+	
+
 }

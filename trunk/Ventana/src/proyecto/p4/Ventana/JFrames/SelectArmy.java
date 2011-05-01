@@ -4,6 +4,13 @@ import javax.swing.JFrame;
 import javax.swing.JTable;
 
 import proyecto.p4.Ventana.JPanels.ListAndImage;
+import proyecto.p4.piezaOldWarriorTales.PiezaOldWarriorTales;
+import proyecto.p4.piezaOldWarriorTales.Unidades.Arquero;
+import proyecto.p4.piezaOldWarriorTales.Unidades.Killer;
+import proyecto.p4.piezaOldWarriorTales.Unidades.Magician;
+import proyecto.p4.piezaOldWarriorTales.Unidades.Monk;
+import proyecto.p4.piezaOldWarriorTales.Unidades.Soldier;
+import proyecto.p4.piezaOldWarriorTales.Unidades.knight;
 
 
 public class SelectArmy extends JFrame{
@@ -20,6 +27,9 @@ public class SelectArmy extends JFrame{
 		this.setSize(1024,720);
 		this.setLayout(null);
 		this.add(x);
+		this.add(table);
+		
+		table.setBounds(280, 320, 650,300 );
 		x.setBounds(0, 0, 280, 720);
 		this.setVisible(true);
 	}
