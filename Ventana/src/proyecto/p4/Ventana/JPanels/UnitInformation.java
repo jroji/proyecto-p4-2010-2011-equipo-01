@@ -17,8 +17,8 @@ public class UnitInformation extends JPanel {
     private JLabel Probability;
     private JLabel ProbabilityData;
 
-    public UnitInformation() {
-        initComponents();
+    public UnitInformation(PiezaOldWarriorTales P) {
+        initComponents(P);
     }
     
     private void initComponents(PiezaOldWarriorTales P) {
@@ -43,9 +43,9 @@ public class UnitInformation extends JPanel {
 
         Probability.setText("Probabilidad:");
         
-        AttackData.setText(P.getAttack());
-        DefenseData.setText(P.getDefense());
-        MovementData.setText(P.getMovement());
+        AttackData.setText(P.getAttack()+"");
+        DefenseData.setText(P.getDefense()+"");
+        MovementData.setText(P.getMovement()+"");
         ProbabilityData.setText(P.getProbability()+"%");
         
 
