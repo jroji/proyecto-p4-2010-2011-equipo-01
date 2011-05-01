@@ -79,6 +79,8 @@ public class OptionWindow extends javax.swing.JFrame // implements MouseListener
 			x.dispose();
 		}else if(Buttons.getButtonP4()){
 			x.dispose();
+			new MainWindow();
+			Buttons.setButtonP4(false);
        }
    }
 
