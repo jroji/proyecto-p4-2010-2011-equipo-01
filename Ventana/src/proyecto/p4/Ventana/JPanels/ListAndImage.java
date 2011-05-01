@@ -1,10 +1,20 @@
 package proyecto.p4.Ventana.JPanels;
 
+import java.awt.Component;
+
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import proyecto.p4.Ventana.Button.OldWarriorButton;
+import proyecto.p4.piezaOldWarriorTales.PiezaOldWarriorTales;
+import proyecto.p4.piezaOldWarriorTales.Unidades.Arquero;
+import proyecto.p4.piezaOldWarriorTales.Unidades.Heathen;
+import proyecto.p4.piezaOldWarriorTales.Unidades.Killer;
+import proyecto.p4.piezaOldWarriorTales.Unidades.Magician;
+import proyecto.p4.piezaOldWarriorTales.Unidades.Monk;
+import proyecto.p4.piezaOldWarriorTales.Unidades.Soldier;
+import proyecto.p4.piezaOldWarriorTales.Unidades.knight;
 
 
 /**
@@ -30,7 +40,18 @@ public class ListAndImage extends javax.swing.JPanel {
         UnitList = new JList();
         oldWarriorButton1 = new OldWarriorButton("Reclutar");
         
-        
+    	PiezaOldWarriorTales[] array = new PiezaOldWarriorTales[7];
+		array[0] = new Arquero();
+		array[1] = new Heathen();
+		array[2] = new Killer();
+		array[3] = new knight();
+		array[4] = new Magician();
+		array[5] = new Monk();
+		array[6] = new Killer();
+		array[7] = new Soldier();
+		for(int i = 0; i<array.length;i++){
+			UnitList = new JList(array);
+		}
 
         ImagePanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 

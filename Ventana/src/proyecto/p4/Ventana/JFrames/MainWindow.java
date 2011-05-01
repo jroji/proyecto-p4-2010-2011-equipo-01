@@ -13,6 +13,8 @@ public class MainWindow extends JFrame{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	static BotoneraV Buttons = new BotoneraV("Partida Rápida", "P. Personalizada", "Opciones", "Editor de mapas", "   Salir");
+	
 
 	public MainWindow(){
 		this.setSize(1024,720);
@@ -25,10 +27,9 @@ public class MainWindow extends JFrame{
 		this.add(layer, new Integer(0));
 		layer.add(fondo);
 		fondo.setBounds(0, 0, 1024, 720);
-		BotoneraV botoneraV = new BotoneraV("Partida Rápida", "P. Personalizada", "Opciones", "Editor de mapas", "   Salir");
-		layer.add(botoneraV, new Integer (1));
+		layer.add(Buttons, new Integer (1));
 		
-		botoneraV.setBounds(750, 150,500,500);
+		Buttons.setBounds(750, 150,500,500);
 		this.setVisible(true);
 		this.setResizable(false);
 		
@@ -36,6 +37,17 @@ public class MainWindow extends JFrame{
 
 	public static void main(String[] args)
 	{
-		new MainWindow();
+		MainWindow x = new MainWindow();
+		       while(true){
+		   		if(Buttons.getButtonP3()){
+					x.dispose();
+					new OptionWindow();
+					Buttons.setButtonP3(false);
+				}else if(Buttons.getButtonP5()){
+					x.dispose();
+					Buttons.setButtonP5(false);
+					
+		       }
+		   }
 	}
 }

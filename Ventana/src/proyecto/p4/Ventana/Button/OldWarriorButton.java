@@ -116,5 +116,17 @@ public class OldWarriorButton extends javax.swing.JPanel implements MouseListene
 	public boolean isPulsed(){
 		return BP;
 	}
+	
+
+	public boolean isBP() {
+		return BP;
+	}
+
+
+	public void setBP(boolean bP) {
+		BP = bP;
+	}
+
+
 
 }
