@@ -28,14 +28,6 @@ public class BotoneraV extends JPanel{
 		boton4 = new OldWarriorButton(x4);
 		boton5 = new OldWarriorButton(x5);
 		
-//		boton1.addMouseListener(this);
-//		boton2.addMouseListener(this);
-//		boton3.addMouseListener(this);
-//		boton4.addMouseListener(this);
-//		boton5.addMouseListener(this);
-//		
-		
-		
 		this.add(boton1);
 		this.add(boton2);
 		this.add(boton3);
@@ -73,5 +65,24 @@ public class BotoneraV extends JPanel{
 	public boolean getButtonP5() {
 		return boton5.isPulsed();
 	}
-	
+
+	public void setBoton1(OldWarriorButton boton1) {
+		this.boton1 = boton1;
+	}
+
+	public void setBoton2(OldWarriorButton boton2) {
+		this.boton2 = boton2;
+	}
+
+	public void setBoton3(OldWarriorButton boton3) {
+		this.boton3 = boton3;
+	}
+
+	public void setBoton4(OldWarriorButton boton4) {
+		this.boton4 = boton4;
+	}
+
+	public void setBoton5(OldWarriorButton boton5) {
+		this.boton5 = boton5;
+	}
 }
