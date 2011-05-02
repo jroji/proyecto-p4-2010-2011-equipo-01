@@ -1,6 +1,7 @@
 package proyecto.p4.Ventana.JPanels;
 
 import java.awt.Component;
+import java.util.ResourceBundle;
 
 import javax.swing.JList;
 import javax.swing.JPanel;
@@ -33,13 +34,18 @@ public class ListAndImage extends javax.swing.JPanel {
     private OldWarriorButton oldWarriorButton1;
 
     /** Creates new form Units */
-    public ListAndImage() {
+    public ListAndImage(String Language) {
 
         ImagePanel = new JPanel();
         scrollPane = new JScrollPane();
         UnitList = new JList();
-        oldWarriorButton1 = new OldWarriorButton("Reclutar");
-        
+        if(Language.equals("Spanish")){
+        	oldWarriorButton1 = new OldWarriorButton(ResourceBundle.getBundle("MyResource_Es").getString("label_reclute"));
+        }else if(Language.equals("English")){
+        	oldWarriorButton1 = new OldWarriorButton(ResourceBundle.getBundle("MyResource_En").getString("label_reclute"));
+        }else if(Language.equals("French")){
+        	oldWarriorButton1 = new OldWarriorButton(ResourceBundle.getBundle("MyResource_Fr").getString("label_reclute"));
+        }
     	PiezaOldWarriorTales[] array = new PiezaOldWarriorTales[7];
 		array[0] = new Arquero();
 		array[1] = new Heathen();
