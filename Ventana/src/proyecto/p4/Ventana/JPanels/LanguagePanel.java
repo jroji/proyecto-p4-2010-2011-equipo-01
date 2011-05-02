@@ -46,7 +46,13 @@ public class LanguagePanel extends JPanel {
 
     @SuppressWarnings("unused")
 	private String GetSelection(){
-    	return (String)Language.getSelectedItem();
+    	if((String)Language.getSelectedItem().equals("Español")){
+    		return Spanish; 
+    	}else if((String)Language.getSelectedItem().equals("Ingles")){
+    		return English;
+    	}else if((String)Language.getSelectedItem().equals("Frances")){
+    		return French;
+    	}
     }
     
 
