@@ -6,6 +6,7 @@ import java.awt.event.MouseListener;
 import java.util.ResourceBundle;
 
 import proyecto.p4.Ventana.Button.BotoneraV;
+import proyecto.p4.Ventana.JPanels.CreditsPanel;
 import proyecto.p4.Ventana.JPanels.LanguagePanel;
 import proyecto.p4.Ventana.JPanels.SoundPanel;
 import javax.swing.*;
@@ -94,7 +95,7 @@ public class OptionWindow extends javax.swing.JFrame // implements MouseListener
     }
 
     public static void main(String args[]) {
-       OptionWindow x = new OptionWindow();
+    	OptionWindow x = new OptionWindow();
 
    }
 
