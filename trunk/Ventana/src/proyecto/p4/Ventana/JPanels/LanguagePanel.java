@@ -1,5 +1,7 @@
 package proyecto.p4.Ventana.JPanels;
 
+import java.util.ResourceBundle;
+
 import javax.swing.*;
 
 public class LanguagePanel extends JPanel {
@@ -8,17 +10,21 @@ public class LanguagePanel extends JPanel {
 	private JComboBox Language;
     private JLabel LanguageText;
 	
-    public LanguagePanel() {
-        initComponents();
+    public LanguagePanel(String Language) {
+        initComponents(Language);
     }
 
-    private void initComponents() {
+    private void initComponents(String Language) {
     	
         LanguageText = new javax.swing.JLabel();
         Language = new javax.swing.JComboBox();
-
-        LanguageText.setText("Idioma:");
-
+        if(Language.equals("Spanish")){
+        LanguageText.setText(ResourceBundle.getBundle("MyResource_Es").getString("label_Language") + ":");
+        }else if(Language.equals("English")){
+        	LanguageText.setText(ResourceBundle.getBundle("MyResource_En").getString("label_credits") + ":");
+        }else ig(Language.equals("French")){
+        	LanguageText.setText(ResourceBundle.getBundle("MyResource_Fr").getString("label_credits") + ":");
+        }
         Language.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Español", "Ingles", "Frances"}));
         Language.setSelectedIndex(0);
 
