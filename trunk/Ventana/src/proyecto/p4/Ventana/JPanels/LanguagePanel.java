@@ -9,21 +9,18 @@ public class LanguagePanel extends JPanel {
 
 	private JComboBox Language;
     private JLabel LanguageText;
+    private ResourceBundle LanguageS;
 	
-    public LanguagePanel(String Language) {
-        initComponents(Language);
+    public LanguagePanel(ResourceBundle language) {
+    	LanguageS=language;
+        initComponents();
     }
 
-    private void initComponents(String Language) {
+    private void initComponents(ResourceBundle language) {
     	
         LanguageText = new javax.swing.JLabel();
         Language = new javax.swing.JComboBox();
-        if(Language.equals("Spanish")){
-        LanguageText.setText(ResourceBundle.getBundle("MyResource_Es").getString("label_Language") + ":");
-        }else if(Language.equals("English")){
-        	LanguageText.setText(ResourceBundle.getBundle("MyResource_En").getString("label_credits") + ":");
-        }else ig(Language.equals("French")){
-        	LanguageText.setText(ResourceBundle.getBundle("MyResource_Fr").getString("label_credits") + ":");
+       	LanguageText.setText(LanguageS.getString("label_credits") + ":");
         }
         Language.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Español", "Ingles", "Frances"}));
         Language.setSelectedIndex(0);
@@ -50,14 +47,14 @@ public class LanguagePanel extends JPanel {
         );
     }
 
-	public String GetSelection(){
-    	if((String)Language.getSelectedItem().equals("Español")){
-    		return Spanish; 
-    	}else if((String)Language.getSelectedItem().equals("Ingles")){
-    		return English;
-    	}else if((String)Language.getSelectedItem().equals("Frances")){
-    		return French;
-    	}
+	public ResourceBundle GetSelection(){
+//    	if((String)Language.getSelectedItem().equals("Español")){
+//    		return ResourceBundle.getBundle("MyResource_Es"); 
+//    	}else if((String)Language.getSelectedItem().equals("Ingles")){
+//    		return English;
+//    	}else if((String)Language.getSelectedItem().equals("Frances")){
+//    		return French;
+//    	}
     }
     
 

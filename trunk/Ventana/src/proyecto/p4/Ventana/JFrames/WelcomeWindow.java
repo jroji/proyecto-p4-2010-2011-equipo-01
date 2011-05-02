@@ -18,15 +18,11 @@ public class WelcomeWindow extends JFrame{
 	BotoneraH botonera = new BotoneraH());
 	SelectGamePane game = new SelectGamePane();
 	JLabel fondo = new JLabel(new ImageIcon(getClass().getResource("/img/fondowelcome.jpg")));
+	private ResourceBundle Language;
 	
-	public WelcomeWindow(String Language,boolean Sound){
-		if(Language.equals("Spanish")){
-			botonera= new BotoneraH(ResourceBundle.getBundle("MyResource_Es").getString("label_accept"),ResourceBundle.getBundle("MyResource_Es").getString("label_exit"),ResourceBundle.getBundle("MyResource_Es").getString("label_newPlayer"));
-		}else if(Language.equals("English")){
-			botonera= new BotoneraH(ResourceBundle.getBundle("MyResource_En").getString("label_accept"),ResourceBundle.getBundle("MyResource_En").getString("label_exit"),ResourceBundle.getBundle("MyResource_En").getString("label_newPlayer"));
-		}else if(Language.equals("French")){
-			botonera= new BotoneraH(ResourceBundle.getBundle("MyResource_Fr").getString("label_accept"),ResourceBundle.getBundle("MyResource_Fr").getString("label_exit"),ResourceBundle.getBundle("MyResource_Fr").getString("label_newPlayer"));
-		}
+	public WelcomeWindow(ResourceBundle language,boolean Sound){
+		Language= language;
+		botonera= new BotoneraH(Language.getBundle("MyResource_Fr").getString("label_accept"),Language.getString("label_exit"),Language.getBundle("MyResource_Fr").getString("label_newPlayer"));
 		this.setSize(1024, 728);
 		JLayeredPane layer = new JLayeredPane();
 		this.setLayout(null);
