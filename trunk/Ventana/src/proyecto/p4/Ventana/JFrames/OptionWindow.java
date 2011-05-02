@@ -8,8 +8,10 @@ import java.util.ResourceBundle;
 import proyecto.p4.Ventana.Button.BotoneraV;
 import proyecto.p4.Ventana.JPanels.CreditsPanel;
 import proyecto.p4.Ventana.JPanels.LanguagePanel;
+import proyecto.p4.Idiomas.*;
 import proyecto.p4.Ventana.JPanels.SoundPanel;
 import javax.swing.*;
+
 
 public class OptionWindow extends javax.swing.JFrame // implements MouseListener 
 {
@@ -20,23 +22,21 @@ public class OptionWindow extends javax.swing.JFrame // implements MouseListener
     private LanguagePanel languagePanel1;
     private SoundPanel soundPanel1;
     private int ButtonP;
+    private ResourceBundle Language;
 
  
-	public OptionWindow(String Language,boolean Sound) {
-        initComponents(Language,Sound);
+	public OptionWindow(ResourceBundle language,boolean Sound) {
+		Language=language;
+        initComponents(Sound);
     }
 
-    private void initComponents(String Language,boolean Sound){
+    private void initComponents(boolean Sound){
     	
-    	if(Language.equals("Spanish")){
-    		Buttons = new BotoneraV("",ResourceBundle.getBundle("MyResource_Es").getString("label_credits"),ResourceBundle.getBundle("MyResource_Es").getString("label_exit"),"","");
-    	}else if(Language.equals("English")){
-    		Buttons = new BotoneraV("",ResourceBundle.getBundle("MyResource_En").getString("label_credits"),ResourceBundle.getBundle("MyResource_En").getString("label_exit"),"","");
-    	}else if(Language.equals("French")){
-    		Buttons = new BotoneraV("",ResourceBundle.getBundle("MyResource_Fr").getString("label_credits"),ResourceBundle.getBundle("MyResource_Fr").getString("label_exit"),"","");
-    	}
+    	
+    	Buttons = new BotoneraV("",Language.getString("label_credits"),Language.getString("label_exit"),"","");
 
-        soundPanel1 = new SoundPanel();
+
+        soundPanel1 = new SoundPanel(Language);
         languagePanel1 = new LanguagePanel(Language);
         
         Logo = new JLabel();
@@ -89,7 +89,7 @@ public class OptionWindow extends javax.swing.JFrame // implements MouseListener
     		}
        		else if(Buttons.getButtonP2()){
        			this.dispose();
- //      			new CreditsPanel();
+      			new CreditsPanel();
            }
     }
     }
