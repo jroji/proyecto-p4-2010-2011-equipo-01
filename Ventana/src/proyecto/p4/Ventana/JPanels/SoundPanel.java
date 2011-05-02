@@ -1,6 +1,8 @@
  package proyecto.p4.Ventana.JPanels;
  
- import javax.swing.*;
+ import java.util.ResourceBundle;
+
+import javax.swing.*;
 public class SoundPanel extends javax.swing.JPanel {
 
     private JRadioButton NoButton;
@@ -22,7 +24,13 @@ public class SoundPanel extends javax.swing.JPanel {
         YesButton = new javax.swing.JRadioButton();
         NoButton = new javax.swing.JRadioButton();
 
-        SoundLabel.setText("Sonido:");
+        	if(Language.equals("Spanish")){
+        		SoundLabel.setText(ResourceBundle.getBundle("MyResource_Es").getString("label_sound") + ":");
+            }else if(Language.equals("English")){
+            	SoundLabel.setText(ResourceBundle.getBundle("MyResource_En").getString("label_sound") + ":");
+            }else ig(Language.equals("French")){
+            	SoundLabel.setText(ResourceBundle.getBundle("MyResource_Fr").getString("label_sound") + ":");
+            }
 
         buttonGroup1.add(YesButton);
         YesButton.setText("Si");

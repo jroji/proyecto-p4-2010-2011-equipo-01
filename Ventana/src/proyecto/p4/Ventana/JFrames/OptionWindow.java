@@ -36,7 +36,7 @@ public class OptionWindow extends javax.swing.JFrame // implements MouseListener
     	}
 
         soundPanel1 = new SoundPanel();
-        languagePanel1 = new LanguagePanel();
+        languagePanel1 = new LanguagePanel(Language);
         
         Logo = new JLabel();
         Logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/lgo.jpg")));
