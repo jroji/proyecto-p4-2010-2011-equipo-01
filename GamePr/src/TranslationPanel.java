@@ -1,21 +1,18 @@
+import java.awt.Color;
 import java.awt.event.MouseListener;
 
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
+import javax.swing.BorderFactory;
+import javax.swing.JPanel;
 
 
-public class TranslationPanel extends JLabel implements MouseListener{
+public class TranslationPanel extends JPanel implements MouseListener{
 	
 	boolean mover = false;
-	ImageIcon barra = new ImageIcon(getClass().getResource("/img/barra.png"));
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 
 	public TranslationPanel(){
-		this.setIcon(barra);
-	
+		this.setOpaque(false);
 		this.addMouseListener(this);
 	}
 

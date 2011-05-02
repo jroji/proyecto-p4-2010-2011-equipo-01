@@ -3,6 +3,8 @@ import java.io.File;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.swing.JFrame;
+import javax.swing.JLayeredPane;
+import javax.swing.JPanel;
 
 
 public class GamePanel extends JFrame{
@@ -11,28 +13,40 @@ public class GamePanel extends JFrame{
 
 	private static final long serialVersionUID = 1L;
 
-	 static MapPanel mapPanel;
-	 static TranslationPanel translatePanelI = new TranslationPanel();
-	 static TranslationPanel translatePanelD = new TranslationPanel();
+	 MapPanel mapPanel;
+	 TranslationPanel translatePanelI = new TranslationPanel();
+	 TranslationPanel translatePanelD = new TranslationPanel();
 	 TranslationPanel translatePanelAr = new TranslationPanel();
 	 TranslationPanel translatePanelAb = new TranslationPanel();
+	 JLayeredPane layer = new JLayeredPane();
 	
 //	public GamePanel(Board map){
 	 public GamePanel(){
-		setSize(800,700);
+		setSize(850,700);
 		//mapPanel = new MapPanel(map);
 		mapPanel = new MapPanel();
 		setLayout(null);
-		add(translatePanelI);
-		add(translatePanelD);
-		translatePanelI.setSize(40, 700);
+		this.add(layer);
 		
-		add(mapPanel);
+		layer.setBounds(0,0,this.getWidth(), this.getHeight());
+		
+		layer.add(translatePanelI, new Integer(1));
+		layer.add(translatePanelD, new Integer(1));
+		layer.add(translatePanelAr, new Integer(2));
+		layer.add(translatePanelAb, new Integer(2));
+		
 		
 		setVisible(true);
 		int i = -200;
-		mapPanel.setBounds(i, 0, 1000, 700);
-		translatePanelD.setBounds(this.getWidth()-60, 0, 50, 700);
+		
+		mapPanel.setBounds(i, 0, 1500, 1000);
+		translatePanelI.setBounds(0, 0, 60, this.getWidth());
+		translatePanelD.setBounds(this.getWidth()-60, 0, 60, this.getHeight());
+		translatePanelAr.setBounds(0, 0, this.getWidth(), 60);
+		translatePanelAb.setBounds(0, this.getHeight()-90, this.getWidth(), 60);
+		
+		layer.add(mapPanel, new Integer(0));
+		
 		while(true){
 			Move();
 		}
@@ -41,20 +55,29 @@ public class GamePanel extends JFrame{
 	 /**Método para el movimiento de la pantalla de juego a traves de los métodos de 
 	  * la clase TranslatePanel. 
 	  */
-	public static void Move(){
+	public void Move(){
 		while(mapPanel.getX()<0){
 			if(translatePanelI.isMover()){
 				mapPanel.setLocation(mapPanel.getX()+1, mapPanel.getY());
 			}
 		}
-		while(mapPanel.getX()>-200){
+		while(mapPanel.getX()>-700){
 			if(translatePanelD.isMover()){
-				System.out.println();
 				mapPanel.setLocation(mapPanel.getX()-1, mapPanel.getY());
 			}
 		}
+		while(mapPanel.getY()<0){
+			if(translatePanelAr.isMover()){
+				mapPanel.setLocation(mapPanel.getX(), mapPanel.getY()+1);
+			}
+		}
+		while(mapPanel.getY()>-350){
+			if(translatePanelAb.isMover()){
+				mapPanel.setLocation(mapPanel.getX(), mapPanel.getY()-1);
+			}
+		}
+		}
 		
-	}
 
 	/** Reproduce el archivo de sonido .wav que se encuentra en la ruta que 
 	 * recibe como atributo.
@@ -68,18 +91,15 @@ public class GamePanel extends JFrame{
 		}catch(Exception e)
 		  {
 			System.out.println("Error: "+e);}
-//		fondo.loop(Clip.LOOP_CONTINUOUSLY); //Para que se reproduzca indefinidamente
+		sonido.loop(Clip.LOOP_CONTINUOUSLY); //Para que se reproduzca indefinidamente
 		sonido.start();
 	}
 
 public static void main(String[] args){
 
-	StartMusic("C:/Users/Jon/workspace/PRUEBASMAPA/epicarojilarga.wav");
+	StartMusic("C:/Users/Jon/workspace/GamePr/epicarojilarga.wav");
 	GamePanel x = new GamePanel();
 	MapPanel mapa = new MapPanel();
 	x.add(mapa);
-	while(true){
-		Move();
-}
 }
 }
