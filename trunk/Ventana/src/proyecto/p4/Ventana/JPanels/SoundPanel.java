@@ -57,8 +57,8 @@ public class SoundPanel extends javax.swing.JPanel {
         );
     }
 
-    @SuppressWarnings("unused")
-	private boolean SoundOn(){
+
+	public boolean SoundOn(){
     	return YesButton.isSelected();
     }
 

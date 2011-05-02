@@ -3,6 +3,7 @@ package proyecto.p4.Ventana.JFrames;
 import java.awt.FlowLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ResourceBundle;
 
 import proyecto.p4.Ventana.Button.BotoneraV;
 import proyecto.p4.Ventana.JPanels.LanguagePanel;
@@ -20,20 +21,27 @@ public class OptionWindow extends javax.swing.JFrame // implements MouseListener
     private int ButtonP;
 
  
-	public OptionWindow() {
-        initComponents();
+	public OptionWindow(String Language,boolean Sound) {
+        initComponents(Language,Sound);
     }
 
-    private void initComponents(){
+    private void initComponents(String Language,boolean Sound){
+    	
+    	if(Language.equals("Spanish")){
+    		Buttons = new BotoneraV("",ResourceBundle.getBundle("MyResource_Es").getString("label_credits"),ResourceBundle.getBundle("MyResource_Es").getString("label_exit"),"","");
+    	}else if(Language.equals("English")){
+    		Buttons = new BotoneraV("",ResourceBundle.getBundle("MyResource_En").getString("label_credits"),ResourceBundle.getBundle("MyResource_En").getString("label_exit"),"","");
+    	}else if(Language.equals("French")){
+    		Buttons = new BotoneraV("",ResourceBundle.getBundle("MyResource_Fr").getString("label_credits"),ResourceBundle.getBundle("MyResource_Fr").getString("label_exit"),"","");
+    	}
 
         soundPanel1 = new SoundPanel();
         languagePanel1 = new LanguagePanel();
-        Buttons = new BotoneraV("","Creditos","Salir","","");
+        
         Logo = new JLabel();
         Logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/lgo.jpg")));
         
 
-//        Buttons.addMouseListener(this);
      
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -75,10 +83,12 @@ public class OptionWindow extends javax.swing.JFrame // implements MouseListener
        		if(Buttons.getButtonP3()){
     			Buttons.setButtonP3(false);
        			this.dispose();
-    			new MainWindow();
+       			Language= languagePanel1.getSelection();
+    			new MainWindow(Language,soundPanel1.SoundOn());
     		}
-       		else if(Buttons.getButtonP5()){
+       		else if(Buttons.getButtonP2()){
        			this.dispose();
+       			new CreditWindow();
            }
     }
     }
@@ -88,35 +98,6 @@ public class OptionWindow extends javax.swing.JFrame // implements MouseListener
 
    }
 
-
-//	@Override
-//	public void mouseClicked(MouseEvent arg0) {
-//		// TODO Auto-generated method stub
-//
-////		}
-//	}
-//
-//	@Override
-//	public void mouseEntered(MouseEvent arg0) {
-//		// TODO Auto-generated method stub
-//
-//	}
-//
-//	@Override
-//	public void mouseExited(MouseEvent arg0) {
-//		// TODO Auto-generated method stub
-//		
-//	}
-//
-//	@Override
-//	public void mousePressed(MouseEvent arg0) {
-//		// TODO Auto-generated method stub
-//	}
-//
-//	@Override
-//	public void mouseReleased(MouseEvent arg0) {
-//		// TODO Auto-generated method stub
-//	}
 	}
 
 
