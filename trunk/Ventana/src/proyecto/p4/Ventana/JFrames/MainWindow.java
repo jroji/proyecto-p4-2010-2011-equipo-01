@@ -1,5 +1,7 @@
 package proyecto.p4.Ventana.JFrames;
 
+import java.util.ResourceBundle;
+
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -13,10 +15,23 @@ public class MainWindow extends JFrame{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	BotoneraV Buttons = new BotoneraV("Partida Rápida", "P. Personalizada", "Opciones", "Editor de mapas", "   Salir");
+	BotoneraV Buttons = new BotoneraV();
 	
 
-	public MainWindow(){
+	public MainWindow(String Language,boolean Sound){
+		if(Language.equals("Spanish")){
+			Buttons=new BotoneraV(ResourceBundle.getBundle("MyResource_Es").getString("label_quickGame"),ResourceBundle.getBundle("MyResource_Es").getString("label_customGame"),
+							  ResourceBundle.getBundle("MyResource_Es").getString("label_options"), ResourceBundle.getBundle("MyResource_Es").getString("label_mapEditor"),
+							  ResourceBundle.getBundle("MyResource_Es").getString("label_exit"));
+		}else if(Language.equals("English")){
+			Buttons=new BotoneraV(ResourceBundle.getBundle("MyResource_En").getString("label_quickGame"),ResourceBundle.getBundle("MyResource_En").getString("label_customGame"),
+					  ResourceBundle.getBundle("MyResource_En").getString("label_options"), ResourceBundle.getBundle("MyResource_En").getString("label_mapEditor"),
+					  ResourceBundle.getBundle("MyResource_En").getString("label_exit"));	
+		}else if(Language.equals("French")){
+			Buttons=new BotoneraV(ResourceBundle.getBundle("MyResource_Fr").getString("label_quickGame"),ResourceBundle.getBundle("MyResource_Fr").getString("label_customGame"),
+					  ResourceBundle.getBundle("MyResource_Fr").getString("label_options"), ResourceBundle.getBundle("MyResource_Fr").getString("label_mapEditor"),
+					  ResourceBundle.getBundle("MyResource_Fr").getString("label_exit"));
+		}
 		this.setSize(1024,720);
 		this.setLayout(null);
 		ImageIcon img = new ImageIcon(getClass().getResource("/img/fondojpg.jpg"));
@@ -36,11 +51,11 @@ public class MainWindow extends JFrame{
 		   		if(Buttons.getButtonP3()){
 					Buttons.setButtonP3(false);
 		   			this.dispose();
-					new OptionWindow();
+					new OptionWindow(Language,Sound);
 				}else if(Buttons.getButtonP5()){
 					Buttons.setButtonP5(false);
 					this.dispose();
-					new WelcomeWindow();
+					new WelcomeWindow(Language,Sound);
 		       }
 				else if(Buttons.getButtonP1()){
 					Buttons.setButtonP1(false);
