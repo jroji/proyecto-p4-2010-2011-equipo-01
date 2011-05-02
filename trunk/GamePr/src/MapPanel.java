@@ -20,7 +20,7 @@ public class MapPanel extends JPanel implements MouseListener{
 	ImageIcon img = new ImageIcon(getClass().getResource("/img/hierba.png"));
 	ImageIcon sold = new ImageIcon(getClass().getResource("/img/arquero.png"));
 	ImageIcon piedra = new ImageIcon(getClass().getResource("/img/piedra.png"));
-	ImageIcon fond = new ImageIcon(getClass().getResource("/img/fondo.jpg"));
+//	ImageIcon fond = new ImageIcon(getClass().getResource("/img/fondo.jpg"));
 	ImageIcon selected = new ImageIcon(getClass().getResource("/img/SELECCION.png"));
 //	ImageIcon circrojo = new ImageIcon(getClass().getResource("/img/marcaroja.png"));
 	ImageIcon castillo = new ImageIcon(getClass().getResource("/img/castillo.png"));
@@ -28,7 +28,7 @@ public class MapPanel extends JPanel implements MouseListener{
 	Icon viejoimg;
 	Board tab = new Board();
 	
-	JLabel fondo = new JLabel(fond);
+//	JLabel fondo = new JLabel(fond);
 	
 	JLabel unit01 = new JLabel(sold);
 //	JLabel circrojo01 = new JLabel(circrojo);
@@ -141,6 +141,10 @@ public class MapPanel extends JPanel implements MouseListener{
 	JLabel img07 = new JLabel(img);
 	JLabel img08 = new JLabel(img);
 	JLabel img09 = new JLabel(img);
+	JLabel img010 = new JLabel(img);
+	JLabel img011 = new JLabel(img);
+	JLabel img012 = new JLabel(img);
+	JLabel img013 = new JLabel(img);
 	
 	JLabel img11 = new JLabel(img);
 	JLabel img12 = new JLabel(img);
@@ -151,6 +155,10 @@ public class MapPanel extends JPanel implements MouseListener{
 	JLabel img17 = new JLabel(img);
 	JLabel img18 = new JLabel(img);
 	JLabel img19 = new JLabel(img);
+	JLabel img110 = new JLabel(img);
+	JLabel img0111 = new JLabel(img);
+	JLabel img0112 = new JLabel(img);
+	JLabel img0113 = new JLabel(img);
 	
 	JLabel img21 = new JLabel(img);
 	JLabel img22 = new JLabel(img);
@@ -161,6 +169,10 @@ public class MapPanel extends JPanel implements MouseListener{
 	JLabel img27 = new JLabel(img);
 	JLabel img28 = new JLabel(img);
 	JLabel img29 = new JLabel(img);
+	JLabel img210 = new JLabel(img);
+	JLabel img211 = new JLabel(img);
+	JLabel img212 = new JLabel(img);
+	JLabel img213 = new JLabel(img);
 	
 	JLabel img31 = new JLabel(img);
 	JLabel img32 = new JLabel(img);
@@ -171,6 +183,10 @@ public class MapPanel extends JPanel implements MouseListener{
 	JLabel img37 = new JLabel(img);
 	JLabel img38 = new JLabel(img);
 	JLabel img39 = new JLabel(img);
+	JLabel img310 = new JLabel(img);
+	JLabel img311 = new JLabel(img);
+	JLabel img312 = new JLabel(img);
+	JLabel img313 = new JLabel(img);
 	
 	JLabel img41 = new JLabel(img);
 	JLabel img42 = new JLabel(img);
@@ -181,6 +197,10 @@ public class MapPanel extends JPanel implements MouseListener{
 	JLabel img47 = new JLabel(img);
 	JLabel img48 = new JLabel(img);
 	JLabel img49 = new JLabel(img);
+	JLabel img410 = new JLabel(img);
+	JLabel img411 = new JLabel(img);
+	JLabel img412 = new JLabel(img);
+	JLabel img413 = new JLabel(img);
 	
 	JLabel img51 = new JLabel(img);
 	JLabel img52 = new JLabel(img);
@@ -191,6 +211,10 @@ public class MapPanel extends JPanel implements MouseListener{
 	JLabel img57 = new JLabel(img);
 	JLabel img58 = new JLabel(img);
 	JLabel img59 = new JLabel(img);
+	JLabel img510 = new JLabel(img);
+	JLabel img511 = new JLabel(img);
+	JLabel img512 = new JLabel(img);
+	JLabel img513 = new JLabel(img);
 	
 	JLabel img61 = new JLabel(img);
 	JLabel img62 = new JLabel(img);
@@ -201,6 +225,10 @@ public class MapPanel extends JPanel implements MouseListener{
 	JLabel img67 = new JLabel(img);
 	JLabel img68 = new JLabel(img);
 	JLabel img69 = new JLabel(img);
+	JLabel img610 = new JLabel(img);
+	JLabel img611 = new JLabel(img);
+	JLabel img612 = new JLabel(img);
+	JLabel img613 = new JLabel(img);
 	
 	JLabel img71 = new JLabel(img);
 	JLabel img72 = new JLabel(img);
@@ -211,6 +239,10 @@ public class MapPanel extends JPanel implements MouseListener{
 	JLabel img77 = new JLabel(img);
 	JLabel img78 = new JLabel(img);
 	JLabel img79 = new JLabel(img);
+	JLabel img710 = new JLabel(img);
+	JLabel img711 = new JLabel(img);
+	JLabel img712 = new JLabel(img);
+	JLabel img713 = new JLabel(img);
 	
 	JLabel img81 = new JLabel(img);
 	JLabel img82 = new JLabel(img);
@@ -221,25 +253,100 @@ public class MapPanel extends JPanel implements MouseListener{
 	JLabel img87 = new JLabel(villa);
 	JLabel img88 = new JLabel(img);
 	JLabel img89 = new JLabel(img);
+	JLabel img810 = new JLabel(img);
+	JLabel img811 = new JLabel(img);
+	JLabel img812 = new JLabel(img);
+	JLabel img813 = new JLabel(img);
 	
-		
+	JLabel img91 = new JLabel(img);
+	JLabel img92 = new JLabel(img);
+	JLabel img93 = new JLabel(img);
+	JLabel img94 = new JLabel(img);
+	JLabel img95 = new JLabel(img);
+	JLabel img96 = new JLabel(img);
+	JLabel img97 = new JLabel(villa);
+	JLabel img98 = new JLabel(img);
+	JLabel img99 = new JLabel(img);
+	JLabel img910 = new JLabel(img);
+	JLabel img911 = new JLabel(img);
+	JLabel img912 = new JLabel(img);
+	JLabel img913 = new JLabel(img);
+	
+	JLabel img101 = new JLabel(img);
+	JLabel img102 = new JLabel(img);
+	JLabel img103 = new JLabel(img);
+	JLabel img104 = new JLabel(img);
+	JLabel img105 = new JLabel(img);
+	JLabel img106 = new JLabel(img);
+	JLabel img107 = new JLabel(villa);
+	JLabel img108 = new JLabel(img);
+	JLabel img109 = new JLabel(img);
+	JLabel img1010 = new JLabel(img);
+	JLabel img1011 = new JLabel(img);
+	JLabel img1012 = new JLabel(img);
+	JLabel img1013 = new JLabel(img);
+	
+	JLabel img111 = new JLabel(img);
+	JLabel img112 = new JLabel(img);
+	JLabel img113 = new JLabel(img);
+	JLabel img114 = new JLabel(img);
+	JLabel img115 = new JLabel(img);
+	JLabel img116 = new JLabel(img);
+	JLabel img117 = new JLabel(villa);
+	JLabel img118 = new JLabel(img);
+	JLabel img119 = new JLabel(img);
+	JLabel img1110 = new JLabel(img);
+	JLabel img1111 = new JLabel(img);
+	JLabel img1112 = new JLabel(img);
+	JLabel img1113 = new JLabel(img);
+	
+	JLabel img121 = new JLabel(img);
+	JLabel img122 = new JLabel(img);
+	JLabel img123 = new JLabel(img);
+	JLabel img124 = new JLabel(img);
+	JLabel img125 = new JLabel(img);
+	JLabel img126 = new JLabel(img);
+	JLabel img127 = new JLabel(villa);
+	JLabel img128 = new JLabel(img);
+	JLabel img129 = new JLabel(img);
+	JLabel img1210 = new JLabel(img);
+	JLabel img1211 = new JLabel(img);
+	JLabel img1212 = new JLabel(img);
+	JLabel img1213 = new JLabel(img);
+	
+	JLabel img131 = new JLabel(img);
+	JLabel img132 = new JLabel(img);
+	JLabel img133 = new JLabel(img);
+	JLabel img134 = new JLabel(img);
+	JLabel img135 = new JLabel(img);
+	JLabel img136 = new JLabel(img);
+	JLabel img137 = new JLabel(villa);
+	JLabel img138 = new JLabel(img);
+	JLabel img139 = new JLabel(img);
+	JLabel img1310 = new JLabel(img);
+	JLabel img1311 = new JLabel(img);
+	JLabel img1312 = new JLabel(img);
+	JLabel img1313 = new JLabel(img);
 	
 	
 	
 	
-	
-	
-	JLabel[] fila0 = { img01, img02, img03, img04, img05, img06, img07, img08, img09};
-	JLabel[] fila1 = { img11, img12, img13, img14, img15, img16, img17, img18, img19};
-	JLabel[] fila2 = { img21, img22, img23, img24, img25, img26, img27, img28, img29};
-	JLabel[] fila3 = { img31, img32, img33, img34, img35, img36, img37, img38, img39};
-	JLabel[] fila4 = { img41, img42, img43, img44, img45, img46, img47, img48, img49};
-	JLabel[] fila5 = { img51, img52, img53, img54, img55, img56, img57, img58, img59};
-	JLabel[] fila6 = { img61, img62, img63, img64, img65, img66, img67, img68, img69};
-	JLabel[] fila7 = { img71, img72, img73, img74, img75, img76, img77, img78, img79};
-	JLabel[] fila8= { img81, img82, img83, img84, img85, img86, img87, img88, img89};
+	JLabel[] fila0 = { img01, img02, img03, img04, img05, img06, img07, img08, img09, img010, img011, img012, img013};
+	JLabel[] fila1 = { img11, img12, img13, img14, img15, img16, img17, img18, img19, img110, img0111, img0112, img0113};
+	JLabel[] fila2 = { img21, img22, img23, img24, img25, img26, img27, img28, img29, img210, img211, img212, img213};
+	JLabel[] fila3 = { img31, img32, img33, img34, img35, img36, img37, img38, img39, img310, img311, img312, img313};
+	JLabel[] fila4 = { img41, img42, img43, img44, img45, img46, img47, img48, img49, img410, img411, img412, img413};
+	JLabel[] fila5 = { img51, img52, img53, img54, img55, img56, img57, img58, img59, img510, img511, img512, img513};
+	JLabel[] fila6 = { img61, img62, img63, img64, img65, img66, img67, img68, img69, img610, img611, img612, img613};
+	JLabel[] fila7 = { img71, img72, img73, img74, img75, img76, img77, img78, img79, img710, img711, img712, img713};
+	JLabel[] fila8= { img81, img82, img83, img84, img85, img86, img87, img88, img89, img810, img811, img812, img813};
+	JLabel[] fila9= { img91, img92, img93, img94, img95, img96, img97, img98, img99, img910, img911, img912, img913};
+	JLabel[] fila10= { img101, img102, img103, img104, img105, img106, img107, img108, img109, img1010, img1011, img1012, img1013};
+	JLabel[] fila11= { img111, img112, img113, img114, img115, img116, img117, img118, img119, img1110, img1111, img1112, img1113};
+	JLabel[] fila12= { img121, img122, img123, img124, img125, img126, img127, img128, img129, img1210, img1211, img1212, img1213};
+	JLabel[] fila13= { img131, img132, img133, img134, img135, img136, img137, img138, img139, img1310, img1311, img1312, img1313};
 
-	JLabel[][] mapa = {fila0,fila1,fila2,fila3,fila4,fila5,fila6,fila7,fila8}; 
+	JLabel[][] mapa = {fila0,fila1,fila2,fila3,fila4,fila5,fila6,fila7,fila8,fila9,fila10,fila11,fila12,fila13}; 
 	
 	
 	
@@ -253,21 +360,21 @@ public class MapPanel extends JPanel implements MouseListener{
 		
 		//Inicializa el mapa de imagenes cogiendo las casillas del Board que recibimos
 	//	iniMap(map, mapa);
-		setSize(1000,700);
+		setSize(1500,1000);
 		setLayout(null);
 		
 		//Añade el layerPane sobre el que irán las casillas
-		layer.setBounds(0, 0, 1000, 700);
+		layer.setBounds(0, 0, 1500, 1000);
 		add(layer);
 
-		layer.add(fondo, new Integer(-1));
-		fondo.setBounds(0, 0, 1000, 700);
+//		layer.add(fondo, new Integer(-1));
+//		fondo.setBounds(0, 0, 1000, 700);
 		//Añade al layerPane las casillas del mapa.
 		anyadirArray(mapa);
 		layer.add(unit01, new Integer(13));
 	//	layer.add(circrojo01, new Integer(13));
 		
-		int x = 500;
+		int x = 800;
 		int y = 10;
 		colocarMapa(mapa,x,y);
 		unit01.setBounds(520, 150, sold.getIconWidth(), sold.getIconHeight());
