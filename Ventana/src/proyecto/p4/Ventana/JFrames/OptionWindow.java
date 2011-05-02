@@ -13,7 +13,7 @@ public class OptionWindow extends javax.swing.JFrame // implements MouseListener
 {
 
 	private static final long serialVersionUID = 217355762236510969L;
-    private static BotoneraV Buttons;
+    private BotoneraV Buttons;
     private JLabel Logo;
     private LanguagePanel languagePanel1;
     private SoundPanel soundPanel1;
