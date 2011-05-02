@@ -15,7 +15,7 @@ import proyecto.p4.Ventana.JPanels.SelectGamePane;
 public class WelcomeWindow extends JFrame{
 	
 	NickPanel nicks = new NickPanel();
-	BotoneraH botonera = new BotoneraH("  Aceptar","     Salir", "Nuevo Jugador");
+	BotoneraH botonera = new BotoneraH());
 	SelectGamePane game = new SelectGamePane();
 	JLabel fondo = new JLabel(new ImageIcon(getClass().getResource("/img/fondowelcome.jpg")));
 	
