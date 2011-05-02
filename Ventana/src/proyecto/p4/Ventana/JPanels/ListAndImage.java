@@ -32,20 +32,16 @@ public class ListAndImage extends javax.swing.JPanel {
     private JPanel ImagePanel;
     private JScrollPane scrollPane;
     private OldWarriorButton oldWarriorButton1;
+    private ResourceBundle Language
 
     /** Creates new form Units */
-    public ListAndImage(String Language) {
-
+    public ListAndImage(ResourceBundle language) {
+    	Language = language;
         ImagePanel = new JPanel();
         scrollPane = new JScrollPane();
         UnitList = new JList();
-        if(Language.equals("Spanish")){
-        	oldWarriorButton1 = new OldWarriorButton(ResourceBundle.getBundle("MyResource_Es").getString("label_reclute"));
-        }else if(Language.equals("English")){
-        	oldWarriorButton1 = new OldWarriorButton(ResourceBundle.getBundle("MyResource_En").getString("label_reclute"));
-        }else if(Language.equals("French")){
-        	oldWarriorButton1 = new OldWarriorButton(ResourceBundle.getBundle("MyResource_Fr").getString("label_reclute"));
-        }
+        oldWarriorButton1 = new OldWarriorButton(Language.getString("label_reclute"));
+        
     	PiezaOldWarriorTales[] array = new PiezaOldWarriorTales[7];
 		array[0] = new Arquero();
 		array[1] = new Heathen();

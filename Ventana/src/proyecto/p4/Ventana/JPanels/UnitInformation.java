@@ -1,5 +1,7 @@
 package proyecto.p4.Ventana.JPanels;
 
+import java.util.ResourceBundle;
+
 import javax.swing.*;
 import proyecto.p4.piezaOldWarriorTales.PiezaOldWarriorTales;
 
@@ -16,8 +18,10 @@ public class UnitInformation extends JPanel {
     private JLabel MovementData;
     private JLabel Probability;
     private JLabel ProbabilityData;
+    private ResourceBundle Language;
 
-    public UnitInformation(PiezaOldWarriorTales P) {
+    public UnitInformation(PiezaOldWarriorTales P,ResourceBundle language) {
+    	Language = language;
         initComponents(P);
     }
     
@@ -35,13 +39,10 @@ public class UnitInformation extends JPanel {
 
         Image.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        Attack.setText("Ataque:");
-
-        Defense.setText("Defensa:");
-
-        Movement.setText("Movimiento:");
-
-        Probability.setText("Probabilidad:");
+        Attack.setText(Language.getString("label_attack")+":");
+        Defense.setText(Language.getString("label_defense")+":");
+        Movement.setText(Language.getString("label_movement")+":");
+        Probability.setText(Language.getString("label_probability")+":");
         
         AttackData.setText(P.getAttack()+"");
         DefenseData.setText(P.getDefense()+"");

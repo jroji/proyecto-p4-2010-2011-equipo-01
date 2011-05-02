@@ -16,21 +16,14 @@ public class MainWindow extends JFrame{
 	 */
 	private static final long serialVersionUID = 1L;
 	BotoneraV Buttons = new BotoneraV();
+	private ResourceBundle Language;
 	
 
-	public MainWindow(String Language,boolean Sound){
-		if(Language.equals("Spanish")){
-			Buttons=new BotoneraV(ResourceBundle.getBundle("MyResource_Es").getString("label_quickGame"),ResourceBundle.getBundle("MyResource_Es").getString("label_customGame"),
-							  ResourceBundle.getBundle("MyResource_Es").getString("label_options"), ResourceBundle.getBundle("MyResource_Es").getString("label_mapEditor"),
-							  ResourceBundle.getBundle("MyResource_Es").getString("label_exit"));
-		}else if(Language.equals("English")){
-			Buttons=new BotoneraV(ResourceBundle.getBundle("MyResource_En").getString("label_quickGame"),ResourceBundle.getBundle("MyResource_En").getString("label_customGame"),
-					  ResourceBundle.getBundle("MyResource_En").getString("label_options"), ResourceBundle.getBundle("MyResource_En").getString("label_mapEditor"),
-					  ResourceBundle.getBundle("MyResource_En").getString("label_exit"));	
-		}else if(Language.equals("French")){
-			Buttons=new BotoneraV(ResourceBundle.getBundle("MyResource_Fr").getString("label_quickGame"),ResourceBundle.getBundle("MyResource_Fr").getString("label_customGame"),
-					  ResourceBundle.getBundle("MyResource_Fr").getString("label_options"), ResourceBundle.getBundle("MyResource_Fr").getString("label_mapEditor"),
-					  ResourceBundle.getBundle("MyResource_Fr").getString("label_exit"));
+	public MainWindow(ResourceBundle language,boolean Sound){
+		Language=language;
+		Buttons=new BotoneraV(Language.getBundle("MyResource_Fr").getString("label_quickGame"),Language.getBundle("MyResource_Fr").getString("label_customGame"),
+					  Language.getBundle("MyResource_Fr").getString("label_options"), Language.getBundle("MyResource_Fr").getString("label_mapEditor"),
+					  Language.getBundle("MyResource_Fr").getString("label_exit"));
 		}
 		this.setSize(1024,720);
 		this.setLayout(null);
