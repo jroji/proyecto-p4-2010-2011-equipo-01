@@ -19,7 +19,8 @@ public class LanguagePanel extends JPanel {
 
         LanguageText.setText("Idioma:");
 
-        Language.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Español", "Ingles", "Frances"}));
+        Language.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "EspaÃ±ol", "Ingles", "Frances"}));
+        Language.setSelectedIndex(0);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

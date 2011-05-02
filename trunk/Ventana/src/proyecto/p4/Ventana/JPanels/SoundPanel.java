@@ -29,6 +29,8 @@ public class SoundPanel extends javax.swing.JPanel {
 
         buttonGroup1.add(NoButton);
         NoButton.setText("No");
+        
+        buttonGroup1.setSelected(YesButton, true);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
