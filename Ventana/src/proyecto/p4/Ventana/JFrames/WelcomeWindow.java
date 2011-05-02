@@ -1,5 +1,7 @@
 package proyecto.p4.Ventana.JFrames;
 
+import java.util.ResourceBundle;
+
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -17,7 +19,14 @@ public class WelcomeWindow extends JFrame{
 	SelectGamePane game = new SelectGamePane();
 	JLabel fondo = new JLabel(new ImageIcon(getClass().getResource("/img/fondowelcome.jpg")));
 	
-	public WelcomeWindow(){
+	public WelcomeWindow(String Language,boolean Sound){
+		if(Language.equals("Spanish")){
+			botonera= new BotoneraH(ResourceBundle.getBundle("MyResource_Es").getString("label_accept"),ResourceBundle.getBundle("MyResource_Es").getString("label_exit"),ResourceBundle.getBundle("MyResource_Es").getString("label_newPlayer"));
+		}else if(Language.equals("English")){
+			botonera= new BotoneraH(ResourceBundle.getBundle("MyResource_En").getString("label_accept"),ResourceBundle.getBundle("MyResource_En").getString("label_exit"),ResourceBundle.getBundle("MyResource_En").getString("label_newPlayer"));
+		}else if(Language.equals("French")){
+			botonera= new BotoneraH(ResourceBundle.getBundle("MyResource_Fr").getString("label_accept"),ResourceBundle.getBundle("MyResource_Fr").getString("label_exit"),ResourceBundle.getBundle("MyResource_Fr").getString("label_newPlayer"));
+		}
 		this.setSize(1024, 728);
 		JLayeredPane layer = new JLayeredPane();
 		this.setLayout(null);
