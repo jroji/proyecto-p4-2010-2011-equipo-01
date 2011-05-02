@@ -84,12 +84,12 @@ public class OptionWindow extends javax.swing.JFrame // implements MouseListener
        		if(Buttons.getButtonP3()){
     			Buttons.setButtonP3(false);
        			this.dispose();
-       			Language= languagePanel1.getSelection();
+       			Language= languagePanel1.GetSelection();
     			new MainWindow(Language,soundPanel1.SoundOn());
     		}
        		else if(Buttons.getButtonP2()){
        			this.dispose();
-       			new CreditWindow();
+ //      			new CreditsPanel();
            }
     }
     }
