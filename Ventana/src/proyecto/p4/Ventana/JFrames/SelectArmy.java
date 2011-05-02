@@ -22,10 +22,11 @@ public class SelectArmy extends JFrame{
 	ListAndImage  x =new ListAndImage();
      JTable table = new JTable();
 	
-	public SelectArmy()
+	public SelectArmy(String Language,boolean Sound)
 	{
 		this.setSize(1024,720);
 		this.setLayout(null);
+		x = new ListAndImage(Language);
 		this.add(x);
 		this.add(table);
 		
