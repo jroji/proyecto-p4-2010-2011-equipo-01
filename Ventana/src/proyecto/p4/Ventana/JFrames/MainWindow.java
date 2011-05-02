@@ -21,9 +21,9 @@ public class MainWindow extends JFrame{
 
 	public MainWindow(ResourceBundle language,boolean Sound){
 		Language=language;
-		Buttons=new BotoneraV(Language.getBundle("MyResource_Fr").getString("label_quickGame"),Language.getBundle("MyResource_Fr").getString("label_customGame"),
-					  Language.getBundle("MyResource_Fr").getString("label_options"), Language.getBundle("MyResource_Fr").getString("label_mapEditor"),
-					  Language.getBundle("MyResource_Fr").getString("label_exit"));
+		Buttons=new BotoneraV(Language.getString("label_quickGame"),Language.getString("label_customGame"),
+					  Language.getString("label_options"), Language.getString("label_mapEditor"),
+					  Language.getString("label_exit"));
 		}
 		this.setSize(1024,720);
 		this.setLayout(null);
