@@ -9,7 +9,7 @@ public class frame extends JFrame{
 	public frame(){
 		this.setSize(250,250);
 		Arquero arq = new Arquero();
-		UnitData x = new UnitData(arq);
+		HabilitiesButton x = new HabilitiesButton(arq);
 		this.add(x);
 		this.setVisible(true);
 	}
