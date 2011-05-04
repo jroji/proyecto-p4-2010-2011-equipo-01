@@ -56,26 +56,18 @@ public class GamePanel extends JFrame{
 	  * la clase TranslatePanel. 
 	  */
 	public void Move(){
-		while(mapPanel.getX()<0){
-			if(translatePanelI.isMover()){
+			while(translatePanelI.isMover()&&mapPanel.getX()<0){
 				mapPanel.setLocation(mapPanel.getX()+1, mapPanel.getY());
 			}
-		}
-		while(mapPanel.getX()>-700){
-			if(translatePanelD.isMover()){
+			while(translatePanelD.isMover()&&mapPanel.getX()>-600){
 				mapPanel.setLocation(mapPanel.getX()-1, mapPanel.getY());
 			}
-		}
-		while(mapPanel.getY()<0){
-			if(translatePanelAr.isMover()){
+			while(translatePanelAr.isMover()&&mapPanel.getY()<0){
 				mapPanel.setLocation(mapPanel.getX(), mapPanel.getY()+1);
-			}
-		}
-		while(mapPanel.getY()>-350){
-			if(translatePanelAb.isMover()){
+			}		
+			while(translatePanelAb.isMover()&&mapPanel.getY()>-350){
 				mapPanel.setLocation(mapPanel.getX(), mapPanel.getY()-1);
 			}
-		}
 		}
 		
 

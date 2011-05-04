@@ -19,6 +19,7 @@ public class MapPanel extends JPanel implements MouseListener{
 	private static final long serialVersionUID = 1L;
 	ImageIcon img = new ImageIcon(getClass().getResource("/img/hierba.png"));
 	ImageIcon sold = new ImageIcon(getClass().getResource("/img/arquero.png"));
+	ImageIcon Barbaro = new ImageIcon(getClass().getResource("/img/barbaro.gif"));
 	ImageIcon piedra = new ImageIcon(getClass().getResource("/img/piedra.png"));
 //	ImageIcon fond = new ImageIcon(getClass().getResource("/img/fondo.jpg"));
 	ImageIcon selected = new ImageIcon(getClass().getResource("/img/SELECCION.png"));
@@ -31,6 +32,8 @@ public class MapPanel extends JPanel implements MouseListener{
 //	JLabel fondo = new JLabel(fond);
 	
 	JLabel unit01 = new JLabel(sold);
+	JLabel unit02 = new JLabel(Barbaro);
+
 //	JLabel circrojo01 = new JLabel(circrojo);
 	
 	
@@ -372,12 +375,16 @@ public class MapPanel extends JPanel implements MouseListener{
 		//Añade al layerPane las casillas del mapa.
 		anyadirArray(mapa);
 		layer.add(unit01, new Integer(13));
+		layer.add(unit02, new Integer(13));
+
 	//	layer.add(circrojo01, new Integer(13));
 		
 		int x = 800;
 		int y = 10;
 		colocarMapa(mapa,x,y);
 		unit01.setBounds(520, 150, sold.getIconWidth(), sold.getIconHeight());
+		unit02.setBounds(520, 150, sold.getIconWidth(), sold.getIconHeight());
+
 	//	circrojo01.setBounds(unit01.getX()+3, unit01.getY()+30, sold.getIconWidth(), sold.getIconHeight());
 	}
 
