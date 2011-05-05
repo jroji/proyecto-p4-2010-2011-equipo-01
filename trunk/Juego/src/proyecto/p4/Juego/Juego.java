@@ -6,10 +6,10 @@ import proyecto.p4.Jugador.Jugador;
 import proyecto.p4.pieza.Piece;
 
 public abstract class Juego {
-	private int identificador;
-	private Board tablero;
-	private Jugador jugador1;
-	private Jugador jugador2;
+	protected int identificador;
+	protected Board tablero;
+	protected Jugador jugador1;
+	protected Jugador jugador2;
 	protected String name;
 	protected String rutaImagen;
 	
