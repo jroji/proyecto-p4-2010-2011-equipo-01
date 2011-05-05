@@ -2,7 +2,7 @@ package proyecto.p4.Juego;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
-
+import javax.swing.JOptionPane;
 import pruebas.cliente;
 
 import ConnectionInterface.PieceJDBC;
@@ -27,6 +27,31 @@ public ArrayList<Field> fieldsToStore() throws SecurityException,
 	return array;
 }
 
+
+@Override
+public int insertIntoDataBase(){
+	try{
+	insert("juegoOldWarriorTales de la otra forma", this );
+	insert("Jugador",this.Jugador1);
+	insert("Casilla",this.jugador2);
+	insert("")
+	
+	}catch(SQL Exception){
+		Object [] option ={"SI","NO"};
+		JOptionPane pane =new JOptionPane(this,"Desea sobreescribir la partida?", "Sobreescribir", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, option, option[0]);
+		if(pane==0){
+			deleteFromDataBase("nombre tabla",this);
+			return insertIntoDataBase();
+			
+		}
+		
+		else{
+			return 0;
+		}
+	
+	
+	}
+}
 public static void main (String []args) throws Exception{
 	PieceJDBC co=new PieceJDBC();
 	JuegoOldWarriorTales j= new JuegoOldWarriorTales();
