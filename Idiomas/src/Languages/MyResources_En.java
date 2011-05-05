@@ -9,7 +9,9 @@ public class MyResources_En extends ListResourceBundle{
 			{"label_newPlayer","New Player"},{"label_tutorial","Tutorial"},{"label_gold","Gold"},{"label_units","Units"},
 			{"label_credits","Credits"},{"label_mapEditor","Map Editor"},{"label_reclute","Reclute"},{"label_language","Language"},
 			{"label_sound","Sound"},{"label_attack","Ataque"},{"label_defense","Defensa"},{"label_movement","Movimiento"},
-			{"label_probability","Probabilidad"}
+			{"label_probability","Probabilidad"},{"label_back","Back"},{"AtacarYHuir","Attack and escape"},{"AtaqueCertero","Accurate attack"},
+			{"AtaqueEnZona","Attack zone"},{"Cegar","Blind"},{"Convertir","Convert"},{"CurarEstados","Heal states"},{"CurarZona","Heal Zone"},
+			{"Envenenar","Poison"},{"LanzarSuriquen","Throw Suriken"},{"Sprint","Sprint"}
 		
 	};
 	
