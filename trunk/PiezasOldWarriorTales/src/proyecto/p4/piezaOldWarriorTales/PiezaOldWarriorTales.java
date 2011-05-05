@@ -267,6 +267,9 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable{
 			this.life-=10;
 		}
 	}
+	public String toString (){
+		return this.getClass().getSimpleName();
+	}
 	/**
 	 * prueba orientacion
 	 * @param args
