@@ -10,6 +10,35 @@ public class Jugador implements storableInDataBase{
 private String nick;
 private String avatar;
 
+public Jugador(){
+	nick="";
+	avatar="";
+}
+public Jugador(String nick, String avatar){
+	this.nick=nick;
+	this.avatar=avatar;
+}
+
+public String getNick() {
+	return nick;
+}
+
+
+public void setNick(String nick) {
+	this.nick = nick;
+}
+
+
+public String getAvatar() {
+	return avatar;
+}
+
+
+public void setAvatar(String avatar) {
+	this.avatar = avatar;
+}
+
+
 public ArrayList <Field> fieldsToStore() throws SecurityException, NoSuchFieldException{
 	ArrayList<Field> array= new ArrayList<Field>();
 	array.add(this.getClass().getDeclaredField("nick"));
