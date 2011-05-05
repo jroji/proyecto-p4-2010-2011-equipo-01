@@ -43,10 +43,10 @@ public class Reflectividad {
 			while(entries.hasMoreElements()){
 				ZipEntry entry= (ZipEntry) entries.nextElement();
 				String nom=entry.getName();
-				System.out.println(nom);
+				//System.out.println(nom);
 				nom=nom.replaceAll("/", ".");
 				nom=nom.replaceAll(".class", "");
-				System.out.println(nom);
+				//System.out.println(nom);
 				URL[] jarFileURLs= {file.toURI().toURL()};
 				ClassLoader classLoader = new URLClassLoader(jarFileURLs);
 				try {
@@ -56,6 +56,7 @@ public class Reflectividad {
 				} catch (InstantiationException e) {
 				} catch (IllegalAccessException e) {
 				} catch (ClassNotFoundException e) {
+				} catch	(NoClassDefFoundError ncde){
 				}
 			}
 			}
@@ -74,6 +75,7 @@ public class Reflectividad {
 	public static ArrayList <Object> instanciarDireccion(String direccion){
 		//cargar fichero con la direccion en donde buscar los jar
 		File file= new File (direccion);
+		
 		FileInputStream fileInputStream;
 		ArrayList<Object> instances= new ArrayList<Object>();
 		//recuperar del fichero el directorio de los jar
@@ -82,7 +84,6 @@ public class Reflectividad {
 			InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
 			BufferedReader bufferedReader= new BufferedReader(inputStreamReader);
 			String line = bufferedReader.readLine();
-			
 			//cargar el fichero de los jar
 			File folder= new File (line);
 			//directorios dentro del directorio
@@ -102,11 +103,10 @@ public class Reflectividad {
 						}
 					}
 				}
-			System.out.println("idiomas disponibles:");
-			
-			for (Object ob: instances){
-					System.out.println(ob);
-			}
+// comprobar las instancias realizadas			
+//			for (Object ob: instances){
+//					System.out.println(ob);
+//			}
 			return instances;
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
