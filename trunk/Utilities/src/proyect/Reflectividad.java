@@ -16,7 +16,7 @@ import java.util.zip.ZipEntry;
 
 public class Reflectividad {
 	//fichero que dispone la direccion de los jar
-	private final static String direccion="LanguagesFile";
+
 	
 	/** 
 	 * Devuelve un arrayList con una instancia de cada clase instanciable en el jar
@@ -64,8 +64,14 @@ public class Reflectividad {
 		}
 		return objectArray;
 	}
-	
-	public static ArrayList <Object> instanciarDireccion(){
+	/**
+	 * Carga todos las instancias de los objetos instanciables de los jar
+	 * disponibles en el directorio indicado en la primera linea del fichero txt indicado
+	 * @param direccion Direccion del fichero txt del que se obtendra la direccion del directorio
+	 * en el que se buscaran los jar.
+	 * @return
+	 */
+	public static ArrayList <Object> instanciarDireccion(String direccion){
 		//cargar fichero con la direccion en donde buscar los jar
 		File file= new File (direccion);
 		FileInputStream fileInputStream;
@@ -114,7 +120,8 @@ public class Reflectividad {
 
 	}
 	public static void main(String[] args) throws IllegalArgumentException, IOException {
-		instanciarDireccion();
+		final String direccion="LanguagesFile";
+		instanciarDireccion(direccion);
 	
 	
 	}
