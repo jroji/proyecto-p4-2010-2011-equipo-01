@@ -1,12 +1,16 @@
 package proyecto.p4.Ventana.JPanels;
 
 import java.awt.Component;
+import java.io.File;
+import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import proyect.Reflectividad;
 import proyecto.p4.Ventana.Button.OldWarriorButton;
 import proyecto.p4.piezaOldWarriorTales.PiezaOldWarriorTales;
 import proyecto.p4.piezaOldWarriorTales.Unidades.Arquero;
@@ -27,30 +31,25 @@ public class ListAndImage extends javax.swing.JPanel {
     /**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
 	private JList UnitList;
     private JPanel ImagePanel;
     private JScrollPane scrollPane;
     private OldWarriorButton oldWarriorButton1;
-    private ResourceBundle Language
+    private ResourceBundle Language;
 
     /** Creates new form Units */
-    public ListAndImage(ResourceBundle language) {
-    	Language = language;
+  //  public ListAndImage(ResourceBundle language) {
+      public ListAndImage() {
+
+  //  	Language = language;
         ImagePanel = new JPanel();
         scrollPane = new JScrollPane();
         UnitList = new JList();
-        oldWarriorButton1 = new OldWarriorButton(Language.getString("label_reclute"));
+  //      oldWarriorButton1 = new OldWarriorButton(Language.getString("label_reclute"));
+        oldWarriorButton1 = new OldWarriorButton("H");
         
-    	PiezaOldWarriorTales[] array = new PiezaOldWarriorTales[7];
-		array[0] = new Arquero();
-		array[1] = new Heathen();
-		array[2] = new Killer();
-		array[3] = new knight();
-		array[4] = new Magician();
-		array[5] = new Monk();
-		array[6] = new Killer();
-		array[7] = new Soldier();
+    	PiezaOldWarriorTales[] array = new PiezaOldWarriorTales[8];
+		
 		for(int i = 0; i<array.length;i++){
 			UnitList = new JList(array);
 		}
@@ -76,11 +75,10 @@ public class ListAndImage extends javax.swing.JPanel {
         	/**
 			 * 
 			 */
-			private static final long serialVersionUID = 1L;
 			//METER DATOS
-            String[] strings = {};
+           String[] strings = {};
             public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
+           public Object getElementAt(int i) { return strings[i]; }
         });
         
         
@@ -114,5 +112,24 @@ public class ListAndImage extends javax.swing.JPanel {
                 .addComponent(ImagePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+        cargarUnidadesEnList();
     }
+
+
+      public void cargarUnidadesEnList(){
+      	ArrayList<Object> instancias;
+//      	ArrayList<Object> nombres= new ArrayList<Object>(); 
+      	instancias=Reflectividad.instanciarDireccion("UnitsFile");
+      	for (Object o:instancias){
+      		if (o instanceof PiezaOldWarriorTales){
+      			UnitList.add(o.getClass().getName(), (Component) o);
+//      			nombres.add(o);
+      		}
+      	}
+//      	 UnitList.setModel(new javax.swing.DefaultComboBoxModel(nombres.toArray()));
+//           Language.setSelectedIndex(0);
+
+      }
+      
 }
+
