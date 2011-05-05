@@ -1,29 +1,34 @@
 package proyecto.p4.Ventana.JPanels;
 
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import javax.swing.*;
 
-public class LanguagePanel extends JPanel {
+import proyect.Reflectividad;
 
+public class LanguagePanel extends JPanel {
 
 	private JComboBox Language;
     private JLabel LanguageText;
-    private ResourceBundle LanguageS;
+    private ResourceBundle selectedLanguage;
+    private ArrayList<ResourceBundle> languages;
 	
     public LanguagePanel(ResourceBundle language) {
-    	LanguageS=language;
+    	selectedLanguage=language;
         initComponents();
+        languages=new ArrayList<ResourceBundle>();
     }
 
-    private void initComponents(ResourceBundle language) {
+    private void initComponents() {
     	
         LanguageText = new javax.swing.JLabel();
         Language = new javax.swing.JComboBox();
-       	LanguageText.setText(LanguageS.getString("label_credits") + ":");
-        }
-        Language.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Español", "Ingles", "Frances"}));
-        Language.setSelectedIndex(0);
+       	LanguageText.setText(selectedLanguage.getString("label_credits") + ":");
+        
+       // Language.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Español", "Ingles", "Frances"}));
+     //   Language.setSelectedIndex(0);
+       	cargarIdiomasEnCombobox();
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -55,7 +60,22 @@ public class LanguagePanel extends JPanel {
 //    	}else if((String)Language.getSelectedItem().equals("Frances")){
 //    		return French;
 //    	}
+
+		return languages.get(Language.getSelectedIndex());
     }
-    
+    public void cargarIdiomasEnCombobox(){
+    	ArrayList<Object> instancias;
+    	ArrayList<Object> nombres= new ArrayList<Object>(); 
+    	instancias=Reflectividad.instanciarDireccion("LanguageFile");
+    	for (Object o:instancias){
+    		if (o instanceof ResourceBundle){
+    			languages.add((ResourceBundle) o);
+    			nombres.add(o);
+    		}
+    	}
+    	 Language.setModel(new javax.swing.DefaultComboBoxModel(nombres.toArray()));
+         Language.setSelectedIndex(0);
+
+    }
 
 }
