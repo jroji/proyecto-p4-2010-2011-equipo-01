@@ -36,6 +36,25 @@ public class Arquero extends PiezaOldWarriorTales{
 		habilities[0]=h1;
 		habilities[1]=h2;
 	}
-
+	public static void main (String[]args)  {
+		Arquero arquero=new Arquero();
+		Class<?> clase;
+		try {
+			clase = Class.forName(arquero.getClass().getCanonicalName());
+			Object ob=clase.newInstance();
+			System.out.println(ob.getClass().getCanonicalName());
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	}
 
 }
