@@ -18,5 +18,8 @@ public class MyResources_En extends ListResourceBundle{
 		// TODO Auto-generated method stub
 		return contenido;
 	}
+	public String toString (){
+		return "English";
+	}
 
 }

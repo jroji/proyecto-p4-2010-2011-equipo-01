@@ -20,5 +20,8 @@ public class MyResources_Fr extends ListResourceBundle{
 		
 		return contenido;
 	}
+	public String toString (){
+		return "Frances";
+	}
 
 }
