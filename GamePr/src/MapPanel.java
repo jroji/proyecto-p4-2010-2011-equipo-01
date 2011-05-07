@@ -502,6 +502,12 @@ public class MapPanel extends JPanel implements MouseListener{
 	public void mousePressed(MouseEvent arg0) {
 		// TODO Auto-generated method stub
 		JLabel x = (JLabel) arg0.getSource();
+		for(int i = 0; i<mapa.length;i++ ){
+			for(int j = 0; j<mapa[i].length;j++){
+				if(mapa[i][j].equals(x))
+					System.out.println(i+","+j);
+			}
+		}
 		layer.setLayer(unit01, layer.getLayer(x)+1);
 		unit01.setLocation(x.getX(), x.getY()-50);
 	}
