@@ -4,7 +4,7 @@ import javax.swing.ImageIcon;
 
 public abstract class Square {
 
-	protected ImageIcon image; //Contiene la imagen del terreno
+	protected String image; //Contiene la imagen del terreno
 	protected String name; // Contiene el nombre del terreno
 	
 	public Square (){
@@ -19,7 +19,7 @@ public abstract class Square {
 	public abstract void iniImage();
 	
 	//Devuelve la imagen
-	public  ImageIcon getImage(){
+	public  String getImage(){
 		return image;
 	}
 	
