@@ -1,6 +1,7 @@
 package proyecto.p4.Juego;
 
 import java.lang.reflect.Field;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import pruebas.cliente;
@@ -30,17 +31,24 @@ public ArrayList<Field> fieldsToStore() throws SecurityException,
 
 @Override
 public int insertIntoDataBase(){
-	try{
-	insert("juegoOldWarriorTales de la otra forma", this );
-	insert("Jugador",this.Jugador1);
-	insert("Casilla",this.jugador2);
-	insert("")
-	
-	}catch(SQL Exception){
+	PieceJDBC p;
+	try {
+		p = new PieceJDBC();
+		p.insert(this.getClass().getSimpleName(), this);
+		p.insert(this.getClass().getSimpleName(),this.getJugador1());
+		p.insert(this.getClass().getSimpleName(),this.getJugador2());
+		//hay que acer que board implemente el interfaz storableInDataBase ASI NO DA ERROR 
+		p.insert(this.getClass().getSimpleName(), this.getTablero());
+	} catch (ClassNotFoundException e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	} catch (SQLException e) {
 		Object [] option ={"SI","NO"};
-		JOptionPane pane =new JOptionPane(this,"Desea sobreescribir la partida?", "Sobreescribir", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, option, option[0]);
+		int pane=JOptionPane.showOptionDialog(null,
+			    "¿Desea sobreescribir? ","Sobreescribir",JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE,null,option,option[0]);
+		
 		if(pane==0){
-			deleteFromDataBase("nombre tabla",this);
+			deleteFromDataBase();
 			return insertIntoDataBase();
 			
 		}
@@ -48,10 +56,14 @@ public int insertIntoDataBase(){
 		else{
 			return 0;
 		}
-	
-	
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
 	}
-}
+	return 1;
+	}
+	
+
 public static void main (String []args) throws Exception{
 	PieceJDBC co=new PieceJDBC();
 	JuegoOldWarriorTales j= new JuegoOldWarriorTales();
@@ -65,6 +77,63 @@ public static void main (String []args) throws Exception{
 	co.insert("JuegoOldWarriorTales", j);
 
 
+}
+
+
+
+@Override
+public int deleteFromDataBase() {
+	PieceJDBC p;
+	
+	try {
+		p = new PieceJDBC();
+		p.remove(this);
+		p.remove((storableInDataBase) this.getJugador1());
+		p.remove((storableInDataBase) this.getJugador2());
+		//tablero es un atributo de juego de la clase mapa/board que es un array de casillas
+		p.remove((storableInDataBase)this.getTablero());
+	} catch (ClassNotFoundException e) {
+		JOptionPane.showMessageDialog(null,"Error al sobreescribir","Error",JOptionPane.OK_OPTION,null);  
+
+	} catch (SQLException e) {
+		JOptionPane.showMessageDialog(null,"Error al sobreescribir","Error",JOptionPane.OK_OPTION,null);  
+
+		
+	} catch (Exception e) {
+		JOptionPane.showMessageDialog(null,"Error al sobreescribir","Error",JOptionPane.OK_OPTION,null);  
+
+	}
+	
+
+return 0;
+}
+
+
+
+
+@Override
+public ArrayList<storableInDataBase> takeOutFromDataBase() {
+	
+	PieceJDBC p;
+	try {
+		p = new PieceJDBC();
+		ArrayList<storableInDataBase> array= new ArrayList <storableInDataBase>();
+		ArrayList<Object> ao= p.getAll(this.getClass().getSimpleName(),this.getClass().getName());
+		for(int i=0; i<ao.size();i++){
+			array.set(i,(storableInDataBase) ao.get(i));
+		}
+		return array;
+	} catch (ClassNotFoundException e) {
+		JOptionPane.showMessageDialog(null,"Error al cargar","Error",JOptionPane.OK_OPTION,null);  
+	} catch (SQLException e) {
+		JOptionPane.showMessageDialog(null,"Error al cargar","Error",JOptionPane.OK_OPTION,null);  
+	} catch (Exception e) {
+		JOptionPane.showMessageDialog(null,"Error al cargar","Error",JOptionPane.OK_OPTION,null);  
+	}
+	//si salta la excepción devolverá un arrayList vacío.
+	return new ArrayList <storableInDataBase>();
+	
+	
 }
 
 }
