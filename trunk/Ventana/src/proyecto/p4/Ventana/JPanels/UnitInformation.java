@@ -37,6 +37,8 @@ public class UnitInformation extends JPanel {
         MovementData = new javax.swing.JLabel();
         ProbabilityData = new javax.swing.JLabel();
 
+        this.setOpaque(false);
+        
         Image.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         Attack.setText(Language.getString("label_attack")+":");
