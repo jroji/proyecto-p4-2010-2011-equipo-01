@@ -9,8 +9,9 @@ import ConnectionInterface.storableInDataBase;
 
 public class cliente implements storableInDataBase{
 
-	public int dni;
-	public String nom;
+	private int dni;
+	private String nom;
+	private coche coche;
 	
 	public int getDni() {
 		return dni;
@@ -31,20 +32,25 @@ public class cliente implements storableInDataBase{
 
 	
 	public String toString (){
-		return dni+nom;
+		return dni+" "+nom;
 	}
 	
 public static void main (String []arts) throws Exception{
 	PieceJDBC co=new PieceJDBC();
-	ArrayList<Object> perro= co.getAll("cliente", "pruebas.cliente");
+	co.nombreTablas();
+	cliente c1= new cliente ();
+	c1.dni=5;
+	c1.nom="julen";
+	co.insert("cliente", c1);
+	//System.out.println(co.remove(c1));
+	
+	ArrayList<storableInDataBase> perro= co.getAll("cliente", "pruebas.cliente");
 
 	for(int i=0; i<perro.size();i++)
 	System.out.println(perro.get(i));
+
+
 	
-	cliente c1= new cliente ();
-	c1.dni=55434556;
-	c1.nom="Yo";
-	co.insert("cliente", c1);
 
 
 }
@@ -56,6 +62,25 @@ public ArrayList<Field> fieldsToStore() throws SecurityException, NoSuchFieldExc
 		array.add(this.getClass().getDeclaredField("nom"));
 	
 	return array;
+}
+
+@Override
+public int insertIntoDataBase() {
+	// TODO Auto-generated method stub
+	return 0;
+}
+
+
+@Override
+public ArrayList<storableInDataBase> takeOutFromDataBase() {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+@Override
+public int deleteFromDataBase() {
+	// TODO Auto-generated method stub
+	return 0;
 }
 
 //@Override
