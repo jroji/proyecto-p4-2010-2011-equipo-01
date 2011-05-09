@@ -1,6 +1,7 @@
 import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
 
+import proyecto.p4.Ventana.JPanels.HabilitiesButton;
 import proyecto.p4.piezaOldWarriorTales.Unidades.Arquero;
 
 
@@ -15,7 +16,7 @@ public class GameWindow extends JFrame
 	public GameWindow()
 	{
 		this.setSize(1024,720);
-		HabilitiesButton = new ();
+//		HabilitiesButton habilitiesButtons = new HabilitiesButton(new Arquero());
 		gamePanel = new GamePanel();
 	//	unitData = new UnitData(new Arquero());
 		this.setLayout(null);
@@ -31,8 +32,7 @@ public class GameWindow extends JFrame
 
 		layer.add(gamePanel, new Integer (0));
 	//	layer.add(unitData, new Integer(1));
-//		layer.add(
-//		habilitiesButtons, new Integer(1));
+//		layer.add(	habilitiesButtons, new Integer(1));
 
 //		this.setResizable(false);
 		this.setVisible(true);
