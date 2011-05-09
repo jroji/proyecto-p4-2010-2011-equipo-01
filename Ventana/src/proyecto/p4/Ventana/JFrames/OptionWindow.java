@@ -8,7 +8,7 @@ import java.util.ResourceBundle;
 import proyecto.p4.Ventana.Button.BotoneraV;
 import proyecto.p4.Ventana.JPanels.CreditsPanel;
 import proyecto.p4.Ventana.JPanels.LanguagePanel;
-import proyecto.p4.Idiomas.*;
+import Languages.MyResources_Es;
 import proyecto.p4.Ventana.JPanels.SoundPanel;
 import javax.swing.*;
 
@@ -21,12 +21,13 @@ public class OptionWindow extends javax.swing.JFrame // implements MouseListener
     private JLabel Logo;
     private LanguagePanel languagePanel1;
     private SoundPanel soundPanel1;
-    private int ButtonP;
     private ResourceBundle Language;
+    private boolean Sound;
 
  
-	public OptionWindow(ResourceBundle language,boolean Sound) {
+	public OptionWindow(ResourceBundle language,boolean sound) {
 		Language=language;
+		Sound = sound;
         initComponents(Sound);
     }
 
@@ -89,14 +90,14 @@ public class OptionWindow extends javax.swing.JFrame // implements MouseListener
     		}
        		else if(Buttons.getButtonP2()){
        			this.dispose();
-      			new CreditsPanel();
+      			new CreditsPanel(Language,Sound);
            }
     }
     }
 
     public static void main(String args[]) {
-    	OptionWindow x = new OptionWindow();
-
+    	MyResources_Es language = new MyResources_Es();
+    	OptionWindow x = new OptionWindow(language,true);
    }
 
 	}
