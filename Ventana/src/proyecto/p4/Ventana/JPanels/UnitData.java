@@ -1,5 +1,6 @@
 package proyecto.p4.Ventana.JPanels;
 
+
 import java.awt.Dimension;
 
 import javax.swing.*;

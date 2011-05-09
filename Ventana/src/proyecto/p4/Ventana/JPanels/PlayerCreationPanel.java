@@ -1,6 +1,9 @@
 
  package proyecto.p4.Ventana.JPanels;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
@@ -8,10 +11,14 @@ import javax.swing.*;
 import proyecto.p4.Ventana.Button.OldWarriorButton;
 
 
-public class PlayerCreationPanel extends javax.swing.JPanel {
+public class PlayerCreationPanel extends javax.swing.JPanel implements ActionListener {
 
 
-    private OldWarriorButton AcceptButton;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -3650563557524546815L;
+	private OldWarriorButton AcceptButton;
     private JLabel Avatar;
     private JComboBox AvatarSelection;
     private JLabel Nick;
@@ -19,10 +26,12 @@ public class PlayerCreationPanel extends javax.swing.JPanel {
     private ResourceBundle Language;
     private String[] NombreAvatares = new String[10];
 
-    public PlayerCreationPanel(ResoruceBundle language) {
-        Language = language;
+   // public PlayerCreationPanel(ResoruceBundle language) {
+        public PlayerCreationPanel() {
+
+  //      Language = language;
         for(int i = 0;i<NombreAvatares.length;i++)
-        	NombreAvatares[i] = "avatar"+(i+1)".jpg";
+        	NombreAvatares[i] = "avatar"+(i+1)+".jpg";
         initComponents();
         }
 
@@ -32,10 +41,9 @@ public class PlayerCreationPanel extends javax.swing.JPanel {
         NickSelection = new JTextField();
         AvatarSelection = new JComboBox(NombreAvatares);
         AvatarSelection.setSelectedIndex(0);
-        Avatar = new JLabel(new ImageIcon(getClass.getResource("/img/"+(String)AvatarSelection.getSelectedItem())));
-        AcceptButton = new OldWarriorButton();
+        Avatar = new JLabel(new ImageIcon(getClass().getResource("/img/"+(String)AvatarSelection.getSelectedItem())));
+        AcceptButton = new OldWarriorButton("Aceptar");
         
-
         Nick.setText("Nick: ");
 
         NickSelection.setColumns(20);
@@ -43,7 +51,8 @@ public class PlayerCreationPanel extends javax.swing.JPanel {
 
         Avatar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        AcceptButton.setText(Language.getString("label_accept"));
+        AvatarSelection.addActionListener(this);
+     //   AcceptButton.setText(Language.getString("label_accept"));
         
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -79,7 +88,26 @@ public class PlayerCreationPanel extends javax.swing.JPanel {
             .addGap(18, 18, 18)
             .addComponent(AcceptButton))
             .addComponent(AvatarSelection, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addContainerGap(50, Short.MAX_VALUE))
-        );
+            .addContainerGap(50, Short.MAX_VALUE)));
+            
+          
         }
+
+
+	public OldWarriorButton getAcceptButton() {
+		return AcceptButton;
+	}
+
+
+	public void setAcceptButton(OldWarriorButton acceptButton) {
+		AcceptButton = acceptButton;
+	}
+
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		if(e.getSource() == AvatarSelection)
+			Avatar.setIcon(new ImageIcon(getClass().getResource("/img/"+(String)AvatarSelection.getSelectedItem())));
+	}
 }
