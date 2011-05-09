@@ -1,8 +1,14 @@
+package proyecto.p4.Ventana.JPanels;
+
+
 import java.util.ResourceBundle;
 
 import javax.swing.JPanel;
 import javax.swing.SpringLayout;
+
+import proyecto.p4.habilidades.Hability;
 import proyecto.p4.piezaOldWarriorTales.PiezaOldWarriorTales;
+import proyecto.p4.Ventana.Button.BotoneraH;
 import proyecto.p4.Ventana.Button.OldWarriorButton;
 
 
@@ -14,11 +20,15 @@ public class HabilitiesButton extends JPanel{
 	private OldWarriorButton Hability4;
 	private BotoneraH ButtonDown;
 	private ResourceBundle Language;
-	private habilities[] Habilities;
+	private Hability[] Habilities;
 	private OldWarriorButton[] Buttons;
 	
-	public HabilitiesButton(ResourceBundle language,PiezaOldWarriorTales p){
-		Language=language;
+	//public HabilitiesButton(ResourceBundle language,PiezaOldWarriorTales p){
+	public HabilitiesButton(PiezaOldWarriorTales p){
+
+//		Language=language;
+		
+		Buttons=new OldWarriorButton[4];
 		Habilities=p.getHabilities();
 		Hability1 = new OldWarriorButton("");
 		Hability2 = new OldWarriorButton("");
@@ -28,16 +38,32 @@ public class HabilitiesButton extends JPanel{
 		Buttons[1] = Hability2;
 		Buttons[2] = Hability3;
 		Buttons[3] = Hability4;
-		
+		int rows=2;
 		
 		this.setLayout(new SpringLayout());
-		for(int i = 0; i<Habilities.length();i++){
-			Buttons[i].setText(Language.getString(Habilities[i]));	
+		for(int i = 0; i<Buttons.length;i++){
+	//		Buttons[i].setText(Language.getString(Habilities[i]));	
+		try{
+			Buttons[i].setText(Habilities[i].getName());
+		}
+		catch(Exception e){
+			
+		}
 			this.add(Buttons[i]);
+			if(Buttons[i].getText().equals(""))
+				Buttons[i].setVisible(false);
 			}
+		
+		if(Habilities.length==2)
+			for(int i = 2; i<Buttons.length;i++)
+				Buttons[i].setVisible(false);
+		else
+			if(Habilities.length==3)
+					Buttons[3].setVisible(false);
+		
+		SpringUtilities.makeCompactGrid(this, 2, 2, 6, 6, 6, 6);
+
 		}	
 		
-		SpringUtilities.makeCompactGrid(this,2,2,6,6,6,6);
 		
 	}
-}
