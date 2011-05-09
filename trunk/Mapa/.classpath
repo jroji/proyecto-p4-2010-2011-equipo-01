@@ -4,5 +4,6 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="C:/proyecto/p4/products/Terrenos/Terrenos.jar"/>
 	<classpathentry kind="lib" path="C:/proyecto/p4/products/Piezas/Piezas.jar"/>
+	<classpathentry kind="lib" path="C:/proyecto/p4/products/DataBase/DataBase.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
