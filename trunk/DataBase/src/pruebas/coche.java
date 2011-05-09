@@ -44,7 +44,7 @@ public class coche implements storableInDataBase{
 		return null;
 	}
 	@Override
-	public int deleteFromDataBase() {
+	public int deleteFromDataBase(storableInDataBase objectToRemove) {
 		// TODO Auto-generated method stub
 		return 0;
 	}

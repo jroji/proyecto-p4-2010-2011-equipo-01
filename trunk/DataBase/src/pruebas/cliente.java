@@ -39,10 +39,10 @@ public static void main (String []arts) throws Exception{
 	PieceJDBC co=new PieceJDBC();
 	co.nombreTablas();
 	cliente c1= new cliente ();
-	c1.dni=5;
+	c1.dni=544;
 	c1.nom="julen";
-	co.insert("cliente", c1);
-	//System.out.println(co.remove(c1));
+	//co.insert("cliente", c1);
+	System.out.println(co.remove(c1));
 	
 	ArrayList<storableInDataBase> perro= co.getAll("cliente", "pruebas.cliente");
 
@@ -77,8 +77,9 @@ public ArrayList<storableInDataBase> takeOutFromDataBase() {
 	return null;
 }
 
+
 @Override
-public int deleteFromDataBase() {
+public int deleteFromDataBase(storableInDataBase objectToRemove) {
 	// TODO Auto-generated method stub
 	return 0;
 }
