@@ -1,4 +1,4 @@
-package proyecto.p4.Ventana.Button;
+package proyecto.p4.Ventana.JPanels;
 
 import javax.swing.*;
 import javax.swing.SpringLayout;
