@@ -57,7 +57,7 @@ public static void main (String []arts) throws Exception{
 	PieceJDBC co1=new PieceJDBC();
 	String a= "C:/Users/Raquel/workspace/Juego/src/proyecto/p4/Jugador";
 	Jugador c1= new Jugador ();
-	ArrayList<Object> player= co1.getAll("jugador",c1.getClass().getCanonicalName());
+	ArrayList<storableInDataBase> player= co1.getAll("jugador",c1.getClass().getCanonicalName());
 
 	for(int i=0; i<player.size();i++)
 	System.out.println(player.get(i));
@@ -68,6 +68,21 @@ public static void main (String []arts) throws Exception{
 	co1.insert("Jugador", c1);
 
 
+}
+@Override
+public int deleteFromDataBase() {
+	// TODO Auto-generated method stub
+	return 0;
+}
+@Override
+public int insertIntoDataBase() {
+	// TODO Auto-generated method stub
+	return 0;
+}
+@Override
+public ArrayList<storableInDataBase> takeOutFromDataBase() {
+	// TODO Auto-generated method stub
+	return null;
 }
 
 }
