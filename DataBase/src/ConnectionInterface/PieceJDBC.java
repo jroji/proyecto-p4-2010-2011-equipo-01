@@ -288,7 +288,7 @@ public class PieceJDBC implements PieceDataSource {
 							Field[] classFields = object.getClass().getFields();
 							boolean enc= false;
 							for(int i=0; i<classFields.length&&!enc;i++){
-								if(classFields[i].equals(obj))
+								//if(classFields[i].equals(obj))
 							}
 						}
 						
