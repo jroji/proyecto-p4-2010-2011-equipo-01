@@ -15,7 +15,7 @@ public class MainWindow extends JFrame{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	BotoneraV Buttons = new BotoneraV();
+	BotoneraV Buttons;
 	private ResourceBundle Language;
 	
 
@@ -24,7 +24,6 @@ public class MainWindow extends JFrame{
 		Buttons=new BotoneraV(Language.getString("label_quickGame"),Language.getString("label_customGame"),
 					  Language.getString("label_options"), Language.getString("label_mapEditor"),
 					  Language.getString("label_exit"));
-		}
 		this.setSize(1024,720);
 		this.setLayout(null);
 		ImageIcon img = new ImageIcon(getClass().getResource("/img/fondojpg.jpg"));
