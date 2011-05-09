@@ -15,7 +15,7 @@ public class GameWindow extends JFrame
 	public GameWindow()
 	{
 		this.setSize(1024,720);
-//		HabilitiesButton = new  = new ();
+//		HabilitiesButton = new ();
 		gamePanel = new GamePanel();
 		unitData = new UnitData(new Arquero());
 		this.setLayout(null);
