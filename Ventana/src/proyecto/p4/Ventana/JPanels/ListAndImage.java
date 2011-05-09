@@ -1,8 +1,6 @@
 package proyecto.p4.Ventana.JPanels;
 
 import java.awt.Component;
-import java.io.File;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -13,13 +11,6 @@ import javax.swing.JScrollPane;
 import proyect.Reflectividad;
 import proyecto.p4.Ventana.Button.OldWarriorButton;
 import proyecto.p4.piezaOldWarriorTales.PiezaOldWarriorTales;
-import proyecto.p4.piezaOldWarriorTales.Unidades.Arquero;
-import proyecto.p4.piezaOldWarriorTales.Unidades.Heathen;
-import proyecto.p4.piezaOldWarriorTales.Unidades.Killer;
-import proyecto.p4.piezaOldWarriorTales.Unidades.Magician;
-import proyecto.p4.piezaOldWarriorTales.Unidades.Monk;
-import proyecto.p4.piezaOldWarriorTales.Unidades.Soldier;
-import proyecto.p4.piezaOldWarriorTales.Unidades.knight;
 
 
 /**

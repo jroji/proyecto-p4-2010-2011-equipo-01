@@ -13,7 +13,7 @@ import javax.swing.WindowConstants;
 
 public class CreditsPanel {
 	
-	CreditsPanel(){
+	public CreditsPanel(){
 		
 		// Se crea la ventana con el BoxLayout
 		JFrame v = new JFrame();
