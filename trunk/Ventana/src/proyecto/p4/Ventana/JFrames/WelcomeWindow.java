@@ -15,14 +15,13 @@ import proyecto.p4.Ventana.JPanels.SelectGamePane;
 public class WelcomeWindow extends JFrame{
 	
 	NickPanel nicks = new NickPanel();
-	BotoneraH botonera = new BotoneraH());
+	BotoneraH botonera;
 	SelectGamePane game = new SelectGamePane();
 	JLabel fondo = new JLabel(new ImageIcon(getClass().getResource("/img/fondowelcome.jpg")));
-	private ResourceBundle Language;
 	
 	public WelcomeWindow(ResourceBundle language,boolean Sound){
-		Language= language;
-		botonera= new BotoneraH(Language.getBundle("MyResource_Fr").getString("label_accept"),Language.getString("label_exit"),Language.getBundle("MyResource_Fr").getString("label_newPlayer"));
+		
+		botonera= new BotoneraH(language.getString("label_accept"),language.getString("label_exit"),language.getBundle("MyResource_Fr").getString("label_newPlayer"));
 		this.setSize(1024, 728);
 		JLayeredPane layer = new JLayeredPane();
 		this.setLayout(null);
@@ -42,7 +41,7 @@ public class WelcomeWindow extends JFrame{
 		this.setVisible(true);
 		}
 
-	public static void main(String args[]){
-		WelcomeWindow z = new WelcomeWindow();
-	}
+//	public static void main(String args[]){
+//		WelcomeWindow z = new WelcomeWindow();
+//	}
 }
