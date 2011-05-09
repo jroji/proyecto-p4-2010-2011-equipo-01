@@ -11,12 +11,13 @@ import java.util.ArrayList;
 import ConnectionInterface.PieceJDBC;
 import ConnectionInterface.storableInDataBase;
 import Proyecto.p4.Tipo.Square;
-import proyecto.p4.Tipo.OldWarriorTales.TerrainCastle;
-import proyecto.p4.Tipo.OldWarriorTales.TerrainGrass;
-import proyecto.p4.Tipo.OldWarriorTales.TerrainStones;
-import proyecto.p4.Tipo.OldWarriorTales.TerrainVillage;
-import proyecto.p4.Tipo.OldWarriorTales.TerrainWater;
+//import proyecto.p4.Tipo.OldWarriorTales.TerrainCastle;
+//import proyecto.p4.Tipo.OldWarriorTales.TerrainGrass;
+//import proyecto.p4.Tipo.OldWarriorTales.TerrainStones;
+//import proyecto.p4.Tipo.OldWarriorTales.TerrainVillage;
+//import proyecto.p4.Tipo.OldWarriorTales.TerrainWater;
 
+import proyecto.p4.Tipo.OldWarriorTales.TerrainGrass;
 import proyecto.p4.pieza.Piece;
 
 public class Casilla implements storableInDataBase{
@@ -26,26 +27,31 @@ public class Casilla implements storableInDataBase{
 	private int PosY;
 	private Piece piece;
 	
-	
-	public void CasillaGrass(){
-		square = new TerrainGrass();
+	public  Casilla (){
+		square=null;
+		PosX=0;
+		PosY=0;
+		piece=null;
 	}
-	
-	public void CasillaStone(){
-		square = new TerrainStones();
-	}
-	
-	public void CasillaCastle(){
-		square = new TerrainCastle();
-	}
-	
-	public void CasillaVillage(){
-		square = new TerrainVillage();
-	}
-	
-	public void CasillaWater(){
-		square = new TerrainWater();
-	}
+//	public void CasillaGrass(){
+//		square = new TerrainGrass();
+//	}
+//	
+//	public void CasillaStone(){
+//		square = new TerrainStones();
+//	}
+//	
+//	public void CasillaCastle(){
+//		square = new TerrainCastle();
+//	}
+//	
+//	public void CasillaVillage(){
+//		square = new TerrainVillage();
+//	}
+//	
+//	public void CasillaWater(){
+//		square = new TerrainWater();
+//	}
 	
 	
 	
