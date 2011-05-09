@@ -19,8 +19,7 @@ public class TerrainCastle extends Terrain{
 	@Override
 	public void iniImage() {
 		//inicializar
-		String dir="/img/castillo.png";
-		image=new ImageIcon(getClass().getResource(dir));
+		image="/img/castillo.png";
 	}
 	
 	
