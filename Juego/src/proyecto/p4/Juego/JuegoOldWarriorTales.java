@@ -4,7 +4,7 @@ import java.lang.reflect.Field;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import pruebas.cliente;
+
 
 import ConnectionInterface.PieceJDBC;
 import ConnectionInterface.storableInDataBase;
