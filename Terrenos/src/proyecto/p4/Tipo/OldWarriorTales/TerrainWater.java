@@ -8,7 +8,7 @@ public class TerrainWater extends Terrain{
 	@Override
 	public void iniImage() {
 		//insertar ruta de la imagen
-		String image= "";;
+		this.image="/img/agua.png";
 	}
 
 	@Override

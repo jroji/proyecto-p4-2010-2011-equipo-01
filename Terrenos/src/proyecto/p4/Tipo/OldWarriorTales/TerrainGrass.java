@@ -9,18 +9,17 @@ public class TerrainGrass extends Terrain{
 	@Override
 	public void iniImage() {
 		//introducir ruta de la imagen
-		String image="/img/hierba.png";
-			
+		this.image="/img/hierba.png";
 	}
 
 	@Override
 	public void iniMovement() {
-		movement = 1;	
+		this.movement = 1;	
 	}
 
 	@Override
 	public void iniName() {
-		name = "Grass";
+		this.name = "Grass";
 			
 	}
 	
