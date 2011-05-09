@@ -7,9 +7,9 @@
  import javax.swing.*;
 
 
+import proyecto.p4.Jugador.Jugador;
  import proyecto.p4.Ventana.Button.BotoneraH;
- import proyecto.p4.Ventana.JPanels.AvatarPanel;
- import proyecto.p4.Jugador;
+import proyecto.p4.Ventana.JPanels.AvatarPanel;
  
  
 public class MapGoldSelectionWindows extends javax.swing.JFrame {
@@ -103,12 +103,12 @@ public class MapGoldSelectionWindows extends javax.swing.JFrame {
         );
         pack();
     }
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MapGoldSelectionWindows().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new MapGoldSelectionWindows().setVisible(true);
+//            }
+//        });
+//    }
 
 }
