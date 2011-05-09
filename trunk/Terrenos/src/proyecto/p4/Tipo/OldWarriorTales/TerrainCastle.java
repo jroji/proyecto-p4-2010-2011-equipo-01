@@ -7,19 +7,19 @@ public class TerrainCastle extends Terrain{
 
 	@Override
 	public void iniMovement() {
-		movement=1;
+		this.movement=1;
 	}
 
 	@Override
 	public void iniName() {
-		name="Castle";
+		this.name="Castle";
 		
 	}
 
 	@Override
 	public void iniImage() {
 		//inicializar
-		image="/img/castillo.png";
+		this.image="/img/castillo.png";
 	}
 	
 	
