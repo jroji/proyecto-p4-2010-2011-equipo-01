@@ -13,7 +13,7 @@ public class JuegoOldWarriorTales extends Juego implements storableInDataBase{
 	
 	public JuegoOldWarriorTales (){
 		name="Old Warrior Tales";
-		rutaImagen= "??";
+		rutaImagen= "/img/lgo.jpg";
 	}
 
 	
