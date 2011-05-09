@@ -256,6 +256,7 @@ public class PieceJDBC implements PieceDataSource {
 		
 		//array de atributos a introducir en la base de datos
 		ArrayList <Field> fields = object.fieldsToStore(); 
+		System.out.println(fields.size());
 		
 		//si no hay atributos se lanza una Exception
 		if (fields==null){
@@ -267,22 +268,41 @@ public class PieceJDBC implements PieceDataSource {
 		//se recorre el array de atributos
 		for(Field field: fields){
 			try {
+				System.out.println(field.getName());
 				//si el tipo del atributo es string pone el nombre de éste entre comillas simples
 				if (field.getType().getName().toLowerCase().contains("string")){
 					try{
 					//crea el string de valores y columnas a concatenar en la sentencia sql
-					valores=valores+"'"+field.get(object)+"',";
+						
+						valores=valores+"'"+field.get(object)+"',";
+						
 					columnas=columnas+field.getName()+",";
 					}catch (IllegalAccessException iae){
 						//si el atributo no es accesible lo pone a accesible
 						field.setAccessible(true);
+						try{
 						valores=valores+"'"+field.get(object)+"',";
 						columnas=columnas+field.getName()+",";
+						}catch (IllegalArgumentException ex){
+							System.out.println("argument");
+							Field[] classFields = object.getClass().getFields();
+							boolean enc= false;
+							for(int i=0; i<classFields.length&&!enc;i++){
+								if(classFields[i].equals(obj))
+							}
+						}
+						
+						
 						field.setAccessible(false);
 					}
-					//si el atributo no es un string realiza lo mismo pero sin poner comillas simples al atributo
-					//si es una clase meter la clave primaria como valor de ese atributo clase.
-				}else
+					
+				}
+				//si el atributo no es un string realiza lo mismo pero sin poner comillas simples al atributo
+				
+				else{
+					if(!field.getType().isPrimitive()){
+						
+					}
 					try{
 						valores=valores+field.get(object)+",";
 						columnas=columnas+field.getName()+",";
@@ -293,6 +313,7 @@ public class PieceJDBC implements PieceDataSource {
 						columnas=columnas+field.getName()+",";
 						field.setAccessible(false);
 					}
+				}
 			} catch (IllegalArgumentException e) {
 				
 			}
