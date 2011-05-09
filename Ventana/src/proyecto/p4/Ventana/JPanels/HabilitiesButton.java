@@ -18,7 +18,6 @@ public class HabilitiesButton extends JPanel{
 	private OldWarriorButton Hability2;
 	private OldWarriorButton Hability3;
 	private OldWarriorButton Hability4;
-	private BotoneraH ButtonDown;
 	private ResourceBundle Language;
 	private Hability[] Habilities;
 	private OldWarriorButton[] Buttons;
@@ -49,19 +48,12 @@ public class HabilitiesButton extends JPanel{
 		catch(Exception e){
 			
 		}
+			
 			this.add(Buttons[i]);
 			if(Buttons[i].getText().equals(""))
 				Buttons[i].setVisible(false);
 			}
 		
-		if(Habilities.length==2)
-			for(int i = 2; i<Buttons.length;i++)
-				Buttons[i].setVisible(false);
-		else
-			if(Habilities.length==3)
-					Buttons[3].setVisible(false);
-		
-		SpringUtilities.makeCompactGrid(this, 2, 2, 6, 6, 6, 6);
 
 		}	
 		
