@@ -1,9 +1,15 @@
 package proyecto.p4.Ventana.JFrames;
 
+import java.util.ResourceBundle;
+
+import proyecto.p4.Ventana.Button.OldWarriorButton;
+
 public class CreditsPanel extends javax.swing.JFrame {
 
     /** Creates new form CreditsPanel */
-    public CreditsPanel() {
+    public CreditsPanel(ResourceBundle language,boolean sound) {
+    	Language = language;
+    	Sound= sound;
         initComponents();
     }
     private void initComponents() {
@@ -14,8 +20,8 @@ public class CreditsPanel extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();  
+        Button = new OldWarriorButton(Language.getString("label_back"));
 
         jLabel1.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel1.setText("Julen Tellería Viana");
@@ -48,12 +54,6 @@ public class CreditsPanel extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Verdana", 2, 14)); // NOI18N
         jLabel6.setText("Eneko Villaroel Labanda");
 
-        jButton1.setText("Volver");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -66,7 +66,7 @@ public class CreditsPanel extends javax.swing.JFrame {
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(43, 43, 43)
-                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
+                .addComponent(Button, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
                 .addGap(28, 28, 28))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(138, Short.MAX_VALUE)
@@ -100,21 +100,20 @@ public class CreditsPanel extends javax.swing.JFrame {
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Button, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(31, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    	this.dispose();
-    	new OptionWindow();
-    	
-    	// TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+//    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+//    	this.dispose();
+//    	new OptionWindow(Language,true);
+//    	
+//    	// TODO add your handling code here
+//      }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -122,6 +121,9 @@ public class CreditsPanel extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
+    private OldWarriorButton Button;
+    private ResourceBundle Language;
+    private boolean Sound;
     // End of variables declaration//GEN-END:variables
 
 }
