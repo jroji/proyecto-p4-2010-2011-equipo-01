@@ -67,7 +67,7 @@ public int insertIntoDataBase(){
 public static void main (String []args) throws Exception{
 	PieceJDBC co=new PieceJDBC();
 	JuegoOldWarriorTales j= new JuegoOldWarriorTales();
-	ArrayList<Object> juego= co.getAll("JuegoOldWarriorTales", j.getClass().getCanonicalName());
+	ArrayList<storableInDataBase> juego= co.getAll("JuegoOldWarriorTales", j.getClass().getCanonicalName());
 
 	for(int i=0; i<juego.size();i++)
 	System.out.println(juego.get(i));
@@ -118,10 +118,7 @@ public ArrayList<storableInDataBase> takeOutFromDataBase() {
 	try {
 		p = new PieceJDBC();
 		ArrayList<storableInDataBase> array= new ArrayList <storableInDataBase>();
-		ArrayList<Object> ao= p.getAll(this.getClass().getSimpleName(),this.getClass().getName());
-		for(int i=0; i<ao.size();i++){
-			array.set(i,(storableInDataBase) ao.get(i));
-		}
+		array= p.getAll(this.getClass().getSimpleName(),this.getClass().getName());
 		return array;
 	} catch (ClassNotFoundException e) {
 		JOptionPane.showMessageDialog(null,"Error al cargar","Error",JOptionPane.OK_OPTION,null);  
