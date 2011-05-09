@@ -8,8 +8,7 @@ public class TerrainVillage extends Terrain{
 	@Override
 	public void iniImage() {
 		//introducir ruta de la imagen
-		String ruta="/img/villa.png";
-		image = new ImageIcon(getClass().getResource(ruta));
+		String image="/img/villa.png";
 	}
 
 	@Override

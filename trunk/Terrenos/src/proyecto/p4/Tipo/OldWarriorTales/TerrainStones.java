@@ -8,8 +8,7 @@ public class TerrainStones extends Terrain{
 	@Override
 	public void iniImage() {
 		//insertar ruta
-		String ruta= "/img/piedra.png";
-		image = new ImageIcon(getClass().getResource(ruta));	
+		String image= "/img/piedra.png";	
 	}
 
 	@Override

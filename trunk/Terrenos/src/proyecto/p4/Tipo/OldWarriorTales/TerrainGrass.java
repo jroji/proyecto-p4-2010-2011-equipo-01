@@ -9,8 +9,7 @@ public class TerrainGrass extends Terrain{
 	@Override
 	public void iniImage() {
 		//introducir ruta de la imagen
-		String ruta="/img/hierba.png";
-		image = new ImageIcon(getClass().getResource(ruta));
+		String image="/img/hierba.png";
 			
 	}
 
