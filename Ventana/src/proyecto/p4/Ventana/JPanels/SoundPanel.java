@@ -9,9 +9,11 @@ public class SoundPanel extends javax.swing.JPanel {
     private JLabel SoundLabel;
     private JRadioButton YesButton;
     private ButtonGroup buttonGroup1;
+    private ResourceBundle Language;
 
    
-    public SoundPanel() {
+    public SoundPanel(ResourceBundle language) {
+    	Language = language;
         initComponents();
     }
 
@@ -24,13 +26,8 @@ public class SoundPanel extends javax.swing.JPanel {
         YesButton = new javax.swing.JRadioButton();
         NoButton = new javax.swing.JRadioButton();
 
-        	if(Language.equals("Spanish")){
-        		SoundLabel.setText(ResourceBundle.getBundle("MyResource_Es").getString("label_sound") + ":");
-            }else if(Language.equals("English")){
-            	SoundLabel.setText(ResourceBundle.getBundle("MyResource_En").getString("label_sound") + ":");
-            }else ig(Language.equals("French")){
-            	SoundLabel.setText(ResourceBundle.getBundle("MyResource_Fr").getString("label_sound") + ":");
-            }
+        SoundLabel.setText(Language.getString("label_sound") + ":");
+
 
         buttonGroup1.add(YesButton);
         YesButton.setText("Si");
@@ -38,8 +35,8 @@ public class SoundPanel extends javax.swing.JPanel {
         buttonGroup1.add(NoButton);
         NoButton.setText("No");
         
-        buttonGroup1.setSelected(YesButton, true);
-
+        buttonGroup1.setSelected((ButtonModel) YesButton, true);
+        
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
