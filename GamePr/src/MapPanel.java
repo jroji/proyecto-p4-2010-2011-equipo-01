@@ -27,7 +27,7 @@ public class MapPanel extends JPanel implements MouseListener{
 	ImageIcon castillo = new ImageIcon(getClass().getResource("/img/castillo.png"));
 	ImageIcon villa = new ImageIcon(getClass().getResource("/img/villa.png"));
 	Icon viejoimg;
-	Board tab = new Board();
+//	Board tab = new Board();
 	
 //	JLabel fondo = new JLabel(fond);
 	
