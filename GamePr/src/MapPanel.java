@@ -1,6 +1,8 @@
+import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import javax.swing.BorderFactory;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -21,7 +23,7 @@ public class MapPanel extends JPanel implements MouseListener{
 	ImageIcon sold = new ImageIcon(getClass().getResource("/img/arquero.png"));
 	ImageIcon Barbaro = new ImageIcon(getClass().getResource("/img/barbaro.gif"));
 	ImageIcon piedra = new ImageIcon(getClass().getResource("/img/piedra.png"));
-//	ImageIcon fond = new ImageIcon(getClass().getResource("/img/fondo.jpg"));
+	JLabel suelo  = new JLabel(new ImageIcon(getClass().getResource("/img/suelo.png")));
 	ImageIcon selected = new ImageIcon(getClass().getResource("/img/SELECCION.png"));
 //	ImageIcon circrojo = new ImageIcon(getClass().getResource("/img/marcaroja.png"));
 	ImageIcon castillo = new ImageIcon(getClass().getResource("/img/castillo.png"));
@@ -41,99 +43,6 @@ public class MapPanel extends JPanel implements MouseListener{
 	int SelectedY;
 	
 	JLabel viejo = new JLabel(img);
-//	
-//	JLabel img01 = new JLabel();
-//	JLabel img02 = new JLabel();
-//	JLabel img03 = new JLabel();
-//	JLabel img04 = new JLabel();
-//	JLabel img05 = new JLabel();
-//	JLabel img06 = new JLabel();
-//	JLabel img07 = new JLabel();
-//	JLabel img08 = new JLabel();
-//	JLabel img09 = new JLabel();
-//	
-//	JLabel img11 = new JLabel();
-//	JLabel img12 = new JLabel();
-//	JLabel img13 = new JLabel();
-//	JLabel img14 = new JLabel();
-//	JLabel img15 = new JLabel();
-//	JLabel img16 = new JLabel();
-//	JLabel img17 = new JLabel();
-//	JLabel img18 = new JLabel();
-//	JLabel img19 = new JLabel();
-//	
-//	JLabel img21 = new JLabel();
-//	JLabel img22 = new JLabel();
-//	JLabel img23 = new JLabel();
-//	JLabel img24 = new JLabel();
-//	JLabel img25 = new JLabel();
-//	JLabel img26 = new JLabel();
-//	JLabel img27 = new JLabel();
-//	JLabel img28 = new JLabel();
-//	JLabel img29 = new JLabel();
-//	
-//	JLabel img31 = new JLabel();
-//	JLabel img32 = new JLabel();
-//	JLabel img33 = new JLabel();
-//	JLabel img34 = new JLabel();
-//	JLabel img35 = new JLabel();
-//	JLabel img36 = new JLabel();
-//	JLabel img37 = new JLabel();
-//	JLabel img38 = new JLabel();
-//	JLabel img39 = new JLabel();
-//	
-//	JLabel img41 = new JLabel();
-//	JLabel img42 = new JLabel();
-//	JLabel img43 = new JLabel();
-//	JLabel img44 = new JLabel();
-//	JLabel img45 = new JLabel();
-//	JLabel img46 = new JLabel();
-//	JLabel img47 = new JLabel();
-//	JLabel img48 = new JLabel();
-//	JLabel img49 = new JLabel();
-//	
-//	JLabel img51 = new JLabel();
-//	JLabel img52 = new JLabel();
-//	JLabel img53 = new JLabel();
-//	JLabel img54 = new JLabel();
-//	JLabel img55 = new JLabel();
-//	JLabel img56 = new JLabel();
-//	JLabel img57 = new JLabel();
-//	JLabel img58 = new JLabel();
-//	JLabel img59 = new JLabel();
-//	
-//	JLabel img61 = new JLabel();
-//	JLabel img62 = new JLabel();
-//	JLabel img63 = new JLabel();
-//	JLabel img64 = new JLabel();
-//	JLabel img65 = new JLabel();
-//	JLabel img66 = new JLabel();
-//	JLabel img67 = new JLabel();
-//	JLabel img68 = new JLabel();
-//	JLabel img69 = new JLabel();
-//	
-//	JLabel img71 = new JLabel();
-//	JLabel img72 = new JLabel();
-//	JLabel img73 = new JLabel();
-//	JLabel img74 = new JLabel();
-//	JLabel img75 = new JLabel();
-//	JLabel img76 = new JLabel();
-//	JLabel img77 = new JLabel();
-//	JLabel img78 = new JLabel();
-//	JLabel img79 = new JLabel();
-//	
-//	JLabel img81 = new JLabel();
-//	JLabel img82 = new JLabel();
-//	JLabel img83 = new JLabel();
-//	JLabel img84 = new JLabel();
-//	JLabel img85 = new JLabel();
-//	JLabel img86 = new JLabel();
-//	JLabel img87 = new JLabel();
-//	JLabel img88 = new JLabel();
-//	JLabel img89 = new JLabel();
-//	
-	
-
 	
 	JLabel img01 = new JLabel(img);
 	JLabel img02 = new JLabel(img);
@@ -361,27 +270,29 @@ public class MapPanel extends JPanel implements MouseListener{
 	
 		//tab = map;
 		
+		this.setOpaque(false);
+		
 		//Inicializa el mapa de imagenes cogiendo las casillas del Board que recibimos
 	//	iniMap(map, mapa);
-		setSize(1500,1000);
+		setSize(1500,1200);
 		setLayout(null);
 		
 		//Añade el layerPane sobre el que irán las casillas
-		layer.setBounds(0, 0, 1500, 1000);
+		layer.setBounds(0, 0, 1500, 1200);
 		add(layer);
-
-//		layer.add(fondo, new Integer(-1));
-//		fondo.setBounds(0, 0, 1000, 700);
+		
 		//Añade al layerPane las casillas del mapa.
 		anyadirArray(mapa);
+		layer.add(suelo, new Integer(-1));
 		layer.add(unit01, new Integer(13));
 		layer.add(unit02, new Integer(13));
 
 	//	layer.add(circrojo01, new Integer(13));
 		
 		int x = 800;
-		int y = 10;
+		int y = 50;
 		colocarMapa(mapa,x,y);
+		suelo.setBounds(70, 450, 1500, 800);
 		unit01.setBounds(520, 150, sold.getIconWidth(), sold.getIconHeight());
 		unit02.setBounds(520, 150, sold.getIconWidth(), sold.getIconHeight());
 
@@ -391,34 +302,6 @@ public class MapPanel extends JPanel implements MouseListener{
 	/* 1 = norte, 2 = este, 3 = sur, 4 = oeste
 	 * 
 	 */
-	public void moveMap(boolean cond,int dir){
-		if(cond){
-			switch(dir){
-			case 1:
-			{
-				layer.setLocation(layer.getX(), layer.getY()+10);
-				break;
-			}
-			case 2:
-			{
-				layer.setLocation(layer.getX()+10, layer.getY());
-				break;
-			}
-			case 3:
-			{
-				layer.setLocation(layer.getX(), layer.getY()-10);
-				break;
-			}
-			case 4:
-			{
-				layer.setLocation(layer.getX()-10, layer.getY());
-				break;
-			}
-			}
-		}
-			
-	}
-	
 //	public void iniMap(Board map, JLabel[][] array)
 //	{
 //		for(int i = 0;i<array.length;i++)
@@ -454,7 +337,7 @@ public class MapPanel extends JPanel implements MouseListener{
 	public void anyadirArray(JLabel[][] arr){
 		for(int j = 0; j<arr.length;j++){
 		for(int i = 0; i<arr[j].length;i++){
-			layer.add(arr[j][i], new Integer(i+j));
+			layer.add(arr[j][i], new Integer(arr[j].length-i));
 			}
 	}}
 	
@@ -504,11 +387,13 @@ public class MapPanel extends JPanel implements MouseListener{
 		JLabel x = (JLabel) arg0.getSource();
 		for(int i = 0; i<mapa.length;i++ ){
 			for(int j = 0; j<mapa[i].length;j++){
-				if(mapa[i][j].equals(x))
+				if(mapa[i][j].equals(x)){
 					System.out.println(i+","+j);
+					System.out.println("CAPA : "+ layer.getLayer(x));				
 			}
 		}
-		layer.setLayer(unit01, layer.getLayer(x)+1);
+		}
+		layer.setLayer(unit01, layer.getLayer(x)+2);
 		unit01.setLocation(x.getX(), x.getY()-50);
 	}
 	
