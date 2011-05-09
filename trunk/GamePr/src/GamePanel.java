@@ -4,6 +4,8 @@ import java.io.File;
 
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
@@ -22,11 +24,13 @@ public class GamePanel extends JPanel implements MouseListener{
 	 TranslationPanel translatePanelD = new TranslationPanel();
 	 TranslationPanel translatePanelAr = new TranslationPanel();
 	 TranslationPanel translatePanelAb = new TranslationPanel();
+	 JLabel fond = new JLabel(new ImageIcon(getClass().getResource("/img/fondo.jpg")));
+
 	 JLayeredPane layer = new JLayeredPane();
 	
 //	public GamePanel(Board map){
 	 public GamePanel(){
-		setSize(800,550);
+		setSize(800,575);
 		//mapPanel = new MapPanel(map);
 		mapPanel = new MapPanel();
 		setLayout(null);
@@ -38,12 +42,12 @@ public class GamePanel extends JPanel implements MouseListener{
 		layer.add(translatePanelD, new Integer(1));
 		layer.add(translatePanelAr, new Integer(2));
 		layer.add(translatePanelAb, new Integer(2));
-		
+		layer.add(fond, new Integer(-1));
+		fond.setBounds(0,-50,800,700);
 		
 		setVisible(true);
-		int i = -200;
 		
-		mapPanel.setBounds(i, 0, 1500, 1000);
+		mapPanel.setBounds(-200, 0, 1600, 1200);
 		translatePanelI.setBounds(0, 0, 60, this.getWidth());
 		translatePanelD.setBounds(this.getWidth()-60, 0, 60, this.getHeight());
 		translatePanelAr.setBounds(0, 0, this.getWidth(), 60);
@@ -56,6 +60,8 @@ public class GamePanel extends JPanel implements MouseListener{
 		
 		layer.add(mapPanel, new Integer(0));
 		
+		StartMusic("C:/Users/Jon/workspace/Game/epicarojilarga.wav");
+		
 
 		}
 
@@ -66,13 +72,13 @@ public class GamePanel extends JPanel implements MouseListener{
 			while(translatePanelI.isMover()&&mapPanel.getX()<0){
 				mapPanel.setLocation(mapPanel.getX()+1, mapPanel.getY());
 			}
-			while(translatePanelD.isMover()&&mapPanel.getX()>-600){
+			while(translatePanelD.isMover()&&mapPanel.getX()>-650){
 				mapPanel.setLocation(mapPanel.getX()-1, mapPanel.getY());
 			}
-			while(translatePanelAr.isMover()&&mapPanel.getY()<60){
+			while(translatePanelAr.isMover()&&mapPanel.getY()<80){
 				mapPanel.setLocation(mapPanel.getX(), mapPanel.getY()+1);
 			}		
-			while(translatePanelAb.isMover()&&mapPanel.getY()>-350){
+			while(translatePanelAb.isMover()&&mapPanel.getY()>-500){
 				mapPanel.setLocation(mapPanel.getX(), mapPanel.getY()-1);
 			}
 		}
