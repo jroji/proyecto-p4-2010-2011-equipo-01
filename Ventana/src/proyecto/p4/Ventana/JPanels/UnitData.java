@@ -32,6 +32,8 @@ public class UnitData extends JPanel {
         EnergyBar = new JProgressBar();
         ExperienceBar = new JProgressBar();
 
+        setOpaque(false);
+        
         setPreferredSize(new Dimension(242, 121));
 
         Image.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
