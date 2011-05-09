@@ -26,6 +26,7 @@ public class HabilitiesButton extends JPanel{
 	public HabilitiesButton(PiezaOldWarriorTales p){
 
 //		Language=language;
+		this.setOpaque(false);
 		
 		Buttons=new OldWarriorButton[4];
 		Habilities=p.getHabilities();
