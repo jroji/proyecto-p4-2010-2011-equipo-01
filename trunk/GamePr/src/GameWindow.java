@@ -8,16 +8,16 @@ public class GameWindow extends JFrame
 {
 	private static final long serialVersionUID = 6973735437802698696L;
 	GamePanel gamePanel;
-	UnitData unitData;
+//	UnitData unitData;
 	JLayeredPane layer = new JLayeredPane();
 //	HabilitiesButton habilitiesButtons;
 	
 	public GameWindow()
 	{
 		this.setSize(1024,720);
-//		HabilitiesButton = new ();
+		HabilitiesButton = new ();
 		gamePanel = new GamePanel();
-		unitData = new UnitData(new Arquero());
+	//	unitData = new UnitData(new Arquero());
 		this.setLayout(null);
 		// FALTA METODO DE CARGAR MAPA DESDE BD
 		layer.setBounds(0,0,this.getWidth(),this.getHeight());
@@ -26,11 +26,11 @@ public class GameWindow extends JFrame
 
 
 		gamePanel.setBounds(0,0,gamePanel.getWidth(),gamePanel.getHeight());
-		unitData.setBounds(gamePanel.getWidth(),0,unitData.getWidth(),unitData.getHeight());
+//		unitData.setBounds(gamePanel.getWidth(),0,unitData.getWidth(),unitData.getHeight());
 //		habilitiesButtons.setBounds(0,gamePanel.getHeight(), habilitiesButtons.getWidth(), habilitiesButtons.getHeight());		
 
 		layer.add(gamePanel, new Integer (0));
-		layer.add(unitData, new Integer(1));
+	//	layer.add(unitData, new Integer(1));
 //		layer.add(
 //		habilitiesButtons, new Integer(1));
 

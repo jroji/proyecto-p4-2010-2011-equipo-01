@@ -4,7 +4,6 @@ import java.io.File;
 
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
-import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
@@ -13,7 +12,11 @@ import javax.swing.JPanel;
 public class GamePanel extends JPanel implements MouseListener{
 	
 
-	 boolean mover = false;
+	 /**
+	 * 
+	 */
+	private static final long serialVersionUID = -9093751283665415810L;
+	boolean mover = false;
 	 MapPanel mapPanel;
 	 TranslationPanel translatePanelI = new TranslationPanel();
 	 TranslationPanel translatePanelD = new TranslationPanel();
@@ -100,15 +103,12 @@ public class GamePanel extends JPanel implements MouseListener{
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		mover=true;
-		while(mover)
 		this.Move();	
 	}
 
 	@Override
 	public void mouseExited(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		mover=false;
 		
 	}
 
