@@ -131,4 +131,9 @@ public class OldWarriorButton extends javax.swing.JPanel implements MouseListene
 		Text.setText(text);
 	}
 
+
+	public String getText() {
+		return Text.getText();
+	}
+
 }
