@@ -18,7 +18,7 @@ public interface storableInDataBase {
 	
 	public ArrayList<storableInDataBase> takeOutFromDataBase();
 		
-	public int deleteFromDataBase(storableInDataBase objectToRemove);	
+	public int deleteFromDataBase();	
 		
 	
 }
