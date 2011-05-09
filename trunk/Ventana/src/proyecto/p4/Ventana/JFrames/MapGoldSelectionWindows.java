@@ -4,10 +4,14 @@
 
  import java.util.ResourceBundle;
 
-import javax.swing.*;
-import proyecto.p4.Ventana.Buttons.BotoneraH;
- import proyecto.p4.Ventana.JPanels.
+ import javax.swing.*;
 
+
+ import proyecto.p4.Ventana.Button.BotoneraH;
+ import proyecto.p4.Ventana.JPanels.AvatarPanel;
+ import proyecto.p4.Jugador;
+ 
+ 
 public class MapGoldSelectionWindows extends javax.swing.JFrame {
 
 	private JPanel AvatarPanel;
