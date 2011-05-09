@@ -13,11 +13,17 @@ import java.util.Collection;
 
 import proyecto.p4.piezaOldWarriorTales.PiezaOldWarriorTales;
 
-
+/**
+ * 
+ * @author Raquel
+ * Esta clase implementa en interfaz PieceDataSource, y codifica los métodos insert, getAll y remove además de hacer
+ * la conexión con la Base de Datos de OldWarriorTales.
+ */
 public class PieceJDBC implements PieceDataSource {
 
 	public static final String DRIVER_CLASS_NAME = "org.sqlite.JDBC";
-	public static final String CONNECTION_URL = "jdbc:sqlite:C:/Users/Julen/eclipseWorkSpaces/workspace/DataBase/src/OldWarriorTales.s3db";
+	//public static final String CONNECTION_URL = "jdbc:sqlite:C:/Users/Raquel/eclipseWorkSpaces/workspace/DataBase/src/OldWarriorTales.s3db";
+	public static final String CONNECTION_URL = "jdbc:sqlite:C:/Users/Raquel/workspace/DataBase/src/OldWarriorTales.s3db";
 	public static Connection connection;
 	
 	/**
@@ -31,15 +37,16 @@ public class PieceJDBC implements PieceDataSource {
 		Class.forName(DRIVER_CLASS_NAME);
 		connection= DriverManager.getConnection(CONNECTION_URL);
 		
-
 	}
 	/**
 	 * This method prints the names of each table of the database.
 	 * 
 	 * @throws SQLException
+	 * @throws ClassNotFoundException 
 	 */
-	public void nombreTablas() throws SQLException{
+	public void nombreTablas() throws SQLException, ClassNotFoundException{
 		
+		connection= DriverManager.getConnection(CONNECTION_URL);
 		String nombreTablas = "%"; // Listamos todas las tablas
 		String tipos[] = new String[1]; // Listamos solo tablas
 		tipos[0] = "TABLE";
@@ -71,7 +78,7 @@ public class PieceJDBC implements PieceDataSource {
 			System.out.println(field.getType().getName());
 		}catch(Exception e){
 			try{
-				field.set(instance,Integer.parseInt(valor) );
+				field.set(instance,Integer.parseInt(valor));
 			}catch(Exception ex){
 				try{
 					field.set(instance,Boolean.parseBoolean(valor));
@@ -82,10 +89,11 @@ public class PieceJDBC implements PieceDataSource {
 						try{
 							field.set(instance,valor.toCharArray()[0] );
 						}catch(Exception excep){
-							try{
+//							try{
+								//carga una clase con el nombre del atributo
+								Class<?> clase = Class.forName(field.getType().getCanonicalName());	
 								
-								Class<?> clase = Class.forName(field.getType().getCanonicalName());
-								
+								//recoge todas las tablas de la base de datos
 								String nombreTablas = "%"; // Listamos todas las tablas
 								String tipos[] = new String[1]; // Listamos solo tablas
 								tipos[0] = "TABLE";
@@ -93,20 +101,63 @@ public class PieceJDBC implements PieceDataSource {
 								ResultSet tablas = dbmd.getTables( null, null, 
 								  nombreTablas, tipos );
 								boolean seguir = tablas.next();
+								
+								//recorre todas las tablas de la base de datos
 								while( seguir ) {
-								  
-								  if(tablas.getString(tablas.findColumn( "TABLE_NAME" )).equals(clase.getName())){
-								    seguir=false;
+									
+									//comprueba que el nombre de la tabla sea igual al nombre del tipo del atributo (o clase)
+								  if(tablas.getString(tablas.findColumn( "TABLE_NAME" )).toLowerCase().equals(clase.getSimpleName())){
+									
+									seguir=false;
+									//recoge en un arrayList el contenido de la tabla
+								    ArrayList<storableInDataBase> array=getAll(clase.getSimpleName(),clase.getName());
+								    //obtiene las claves primarias de la tabla
+								    ResultSet primaryKeys= dbmd.getPrimaryKeys(null,null, clase.getSimpleName());
+								    boolean hayMasClavesPrimarias=primaryKeys.next();
 								    
-								    
-								    String sqlStatementString = "SELECT * FROM "+ "tableName";
+								    //recorre todas las claves primarias de la tabla
+								    while(hayMasClavesPrimarias){
+								    	
+								    	boolean encontrado=false;
+								    	
+								    	//recoge el atributo de la clase con el mismo nombre que la clave primaria
+							    		Field field1=clase.getDeclaredField(primaryKeys.getString("COLUMN_NAME"));
+							    		
+							    		//recorre el array de objetos cargados de la tabla
+								    	for(int i=0;i<array.size()&&!encontrado;i++){
+								    		
+								    		Object object=array.get(i);
+								    		//comprueba que el valor de la clave primaria sea igual al valor del atributo
+								    		//con el mismo nombre
+								    		try{
+								    		if(valor.equals(field1.get(object).toString())){
+								    			//introduce el objeto como atributo
+								    			field.set(instance, object);
+								    			
+								    			encontrado=true;
+								    		}
+								    		}//si el atributo no es accesible
+								    		catch (IllegalAccessException iae) {
+									    		field1.setAccessible(true);
+									    		if(valor.equals(field1.get(object).toString())){
+										    		//introduce el objeto como atributo
+										    		field.set(instance, object);
+										    		
+										    		encontrado=true;
+										    	}
+									    		field1.setAccessible(false);
+								    		}
+
+								    	}
+								    	hayMasClavesPrimarias=primaryKeys.next();
+								    }
 								  }else
 								  seguir = tablas.next();
 								}
-								field.set(instance,Double.parseDouble(valor ));
-							}catch(Exception except){
-								throw new Exception ("Type not accepted!!!!");
-							}
+							
+//							}catch(Exception except){
+//								throw new Exception ("Type not accepted!!!!");
+//							}
 					}
 				}
 			}
@@ -116,13 +167,12 @@ public class PieceJDBC implements PieceDataSource {
 	
 	/**
 	 * @param tableName This is the name of the database table from which value fields will be extracted.
-	 * @param className
-	 * @returns ArrayList<Object>
+	 * @param className this is the name of the class of the object that we want to get the information
+	 * @returns ArrayList<storableInDataBase> this is the ArrayList which contains the name and the value of each attribute inside it
 	 * @throws Exception When the type of the field is not one of the next: String, Int, Boolean, Char, Double.
 	 */
-	public ArrayList<Object> getAll(String tableName,String className) throws Exception {
-		ArrayList <Object> c= new ArrayList <Object>();
-		
+	public ArrayList<storableInDataBase> getAll(String tableName,String className) throws Exception {
+		ArrayList <storableInDataBase> c= new ArrayList <storableInDataBase>();
 		//Consulta de todos los datos
 		Statement statement = connection.createStatement();
 		String sqlStatementString = "SELECT * FROM "+ tableName;
@@ -130,6 +180,8 @@ public class PieceJDBC implements PieceDataSource {
 		
 		ResultSetMetaData metaData=resultSet.getMetaData();
 		Class<?> clase= Class.forName(className);
+		
+		//Obtiene los interfaces que implementa la clase
 		Class[] interfaces=clase.getInterfaces();
 		
 		//comprobar si la clase implementa storableInDataBase
@@ -154,64 +206,88 @@ public class PieceJDBC implements PieceDataSource {
 					boolean enc =false;
 					
 					while(i<metaData.getColumnCount() && !enc){
+						// si el nombre de la columna es igual al nombre del atributo coge el valor de éste 
 						
 						if (metaData.getColumnName(i+1).toLowerCase().equals(field.getName())){
 							
-							String valor=resultSet.getString(i+1);							
-							
-							insertFiels(instance, field, valor);							
+							String valor=resultSet.getString(i+1);
+							//si el field no es accesible hace que lo sea para la insercción el base de datos
+							if(!field.isAccessible()){
+								field.setAccessible(true);
+								insertFiels(instance, field, valor);		
+								field.setAccessible(false);
+							}else
+								insertFiels(instance, field, valor);		
 							
 							enc=true;
 						}
 						i++;
 					}
 				}
-			c.add(instance);
+			//añade al array el instance
+			c.add((storableInDataBase) instance);
 			
 		}
+		
 		statement.close();
 		}
 		//sino se lanza una excepcion
 		else{
 			throw new Exception("This class cannot be stored in the database");
 		}
+		//devuelve el arrayList con la información de la base de datos
 		return c;
 	}
 	
 	
- @Override
+
+	 
+	/**
+	 * @param tableName this is the name of the table in which the object will be inserted
+	 * @param object this is the object whose type is storableInDataBase that will be inserted into the tableName
+	 * @return insertadas  it returns the number of the inserted rows.
+	 * @throws Exception it is thrown when there are no fields
+	 */
 	public int insert(String tableName, storableInDataBase object) throws Exception{
+	
 		String sqlStatementString = null;
 		Statement statement = null;
 		statement = connection.createStatement();
 		
+		//array de atributos a introducir en la base de datos
 		ArrayList <Field> fields = object.fieldsToStore(); 
+		
+		//si no hay atributos se lanza una Exception
 		if (fields==null){
 			throw new Exception ("Atributos no disponibles");
 		}
 		
 		String columnas="";
 		String valores="";
+		//se recorre el array de atributos
 		for(Field field: fields){
 			try {
+				//si el tipo del atributo es string pone el nombre de éste entre comillas simples
 				if (field.getType().getName().toLowerCase().contains("string")){
 					try{
+					//crea el string de valores y columnas a concatenar en la sentencia sql
 					valores=valores+"'"+field.get(object)+"',";
 					columnas=columnas+field.getName()+",";
 					}catch (IllegalAccessException iae){
+						//si el atributo no es accesible lo pone a accesible
 						field.setAccessible(true);
 						valores=valores+"'"+field.get(object)+"',";
 						columnas=columnas+field.getName()+",";
 						field.setAccessible(false);
 					}
-
+					//si el atributo no es un string realiza lo mismo pero sin poner comillas simples al atributo
+					//si es una clase meter la clave primaria como valor de ese atributo clase.
 				}else
 					try{
 						valores=valores+field.get(object)+",";
 						columnas=columnas+field.getName()+",";
 					}catch (IllegalAccessException iae){
 
-						System.out.println("dentro");
 						field.setAccessible(true);
 						valores=valores+field.get(object)+",";
 						columnas=columnas+field.getName()+",";
@@ -221,35 +297,94 @@ public class PieceJDBC implements PieceDataSource {
 				
 			}
 		}
+		//elimina la última coma del string de valores y del de columnas
 		valores=valores.substring(0, valores.length()-1);
 		columnas=columnas.substring(0,columnas.length()-1);
 		
+		//crea la sentencia sql
 		sqlStatementString = "INSERT INTO "+tableName+"("+columnas+")"+ "VALUES" +"("+valores+");";
-		System.out.println(sqlStatementString);
-		statement.executeUpdate(sqlStatementString);
+		//número de filas insertadas
+		int insertadas=statement.executeUpdate(sqlStatementString);
 		statement.close();
-		
-		return 0;
+		connection.close();
+		connection= DriverManager.getConnection(CONNECTION_URL);
+		//devuelve el número de filas insertadas
+		return insertadas;
 	}
-
-	@Override
-	public int remove() throws Exception {
+	 //busca en la tabla el objecto que tenga el valor de los atributos del objecto que le pasamos.
+	 public int remove (storableInDataBase objectToRemove) throws Exception{
+		 
+		 //crea la conexión con la url correcta
+		connection= DriverManager.getConnection(CONNECTION_URL);
 		String sqlStatementString = null;
 		Statement statement = null;
 		statement = connection.createStatement();
-		sqlStatementString = "DELETE FROM Pieces WHERE ()";
-		statement.executeUpdate(sqlStatementString);
+		
+		//obtiene el nombre de la tabla de dónde los objetos serán borrados.
+		String tableName=objectToRemove.getClass().getSimpleName();	
+		
+		DatabaseMetaData dbmd = connection.getMetaData();
+		//obtiene las claves primarias de la tabla
+	    ResultSet primaryKeys= dbmd.getPrimaryKeys(null,null, tableName);
+	    boolean hayMasClavesPrimarias=primaryKeys.next();
+	    String conditions="";
+	    //recorre todas las claves primarias de la tabla
+	    while(hayMasClavesPrimarias){   
+	    	
+	    	boolean encontrado=false;
+	    	//recoge el atributo de la clase con el mismo nombre que la clave primaria
+    		Field field1=objectToRemove.getClass().getDeclaredField(primaryKeys.getString("COLUMN_NAME"));
+    		
+    		//guarda en el array la información de la tabla a la que pertenece el objeto a borrar
+    		ArrayList<storableInDataBase>arrayWithData= getAll(tableName, objectToRemove.getClass().getName());
+    		
+    		//recorre el array hasta que el objecto a borrar sea igual que el del array
+    		for(int i=0; i<arrayWithData.size()&&!encontrado;i++){
+    			Object obj= arrayWithData.get(i);
+    			//si el atributo no es accesible lo cambia
+    			if(!field1.isAccessible()){
+        			field1.setAccessible(true);	
+        			//si el objecto a borrar es igual que el que contiene el array en la posición i deja de recorrer el array
+	    			if(field1.get(objectToRemove).equals(field1.get(obj))){
+	    				
+	    				encontrado=true;
+	    				//si el tipo del atributo es string coloca comillas simples en el valor del objecto a borrar y concatena las condiciones
+	    				if(field1.getType().getName().equals("String"))
+	    					{
+	    				conditions=conditions.concat( field1.getName() +" = '"+field1.get(objectToRemove)+"'and");}
+	    				//si no es string hace lo mismo pero sin poner comillas simples al valor del objecto a borrar
+	    				else
+	    					conditions=conditions.concat(field1.getName()+" = "+field1.get(objectToRemove)+"and ");
+	    				
+	    				
+	    			}
+	    			field1.setAccessible(false);
+    			}
+    		}
+    		hayMasClavesPrimarias=primaryKeys.next();	
+	    }
+	    //si la condición tiene más de 4 caracteres se elimina del string el último and
+	    if(conditions.length()>4){
+	    String cond= conditions.substring(0, conditions.length()-4);
+	   
+	    //crea la sentencia sql de borrado
+		sqlStatementString = "DELETE FROM " +tableName+" WHERE "+cond+";";
+		//número de filas borradas de la tabla de la base de datos
+		int deleteRows= statement.executeUpdate(sqlStatementString);
+		
+		
 		statement.close();
-		
-		
-		return 0;
-	}
+		connection.close();
 
-	@Override
-	public int modify() throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+		connection= DriverManager.getConnection(CONNECTION_URL);
+		//devuelve el número de filas borradas si hay condición
+		 return deleteRows;}
+	    else{
+	    	//si no hay condiciones retorna 0.
+	    	return 0;
+	    }
+	 }
+	
 	
 
 	
