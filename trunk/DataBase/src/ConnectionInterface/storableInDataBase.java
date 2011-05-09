@@ -14,9 +14,11 @@ public interface storableInDataBase {
 	 */
 	public ArrayList <Field> fieldsToStore() throws SecurityException, NoSuchFieldException;
 		
-	//public int insertIntoDataBase();
+	public int insertIntoDataBase();
+	
+	public ArrayList<storableInDataBase> takeOutFromDataBase();
 		
-		
+	public int deleteFromDataBase();	
 		
 	
 }
