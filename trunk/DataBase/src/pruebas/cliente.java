@@ -79,7 +79,7 @@ public ArrayList<storableInDataBase> takeOutFromDataBase() {
 
 
 @Override
-public int deleteFromDataBase(storableInDataBase objectToRemove) {
+public int deleteFromDataBase() {
 	// TODO Auto-generated method stub
 	return 0;
 }
