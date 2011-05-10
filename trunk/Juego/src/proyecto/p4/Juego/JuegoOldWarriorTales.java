@@ -23,7 +23,9 @@ public ArrayList<Field> fieldsToStore() throws SecurityException,
 		NoSuchFieldException {
 	ArrayList<Field> array= new ArrayList<Field>();
 	array.add(this.getClass().getDeclaredField("identificador"));
-	
+	array.add(this.getClass().getDeclaredField("jugador1"));
+	array.add(this.getClass().getDeclaredField("jugador2"));
+	array.add(this.getClass().getDeclaredField("tablero"));
 
 	return array;
 }
@@ -37,7 +39,6 @@ public int insertIntoDataBase(){
 		p.insert(this.getClass().getSimpleName(), this);
 		p.insert(this.getClass().getSimpleName(),this.getJugador1());
 		p.insert(this.getClass().getSimpleName(),this.getJugador2());
-		//hay que acer que board implemente el interfaz storableInDataBase ASI NO DA ERROR 
 		p.insert(this.getClass().getSimpleName(), this.getTablero());
 	} catch (ClassNotFoundException e1) {
 		// TODO Auto-generated catch block
