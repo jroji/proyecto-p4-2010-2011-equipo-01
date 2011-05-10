@@ -1,6 +1,5 @@
 package ConnectionInterface;
 import java.lang.reflect.Field;
-import java.lang.reflect.Method;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
@@ -9,7 +8,6 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Collection;
 
 import proyecto.p4.piezaOldWarriorTales.PiezaOldWarriorTales;
 
@@ -22,7 +20,7 @@ import proyecto.p4.piezaOldWarriorTales.PiezaOldWarriorTales;
 public class PieceJDBC implements PieceDataSource {
 
 	public static final String DRIVER_CLASS_NAME = "org.sqlite.JDBC";
-	public static final String CONNECTION_URL = "jdbc:sqlite:C:/Users/Julen/eclipseWorkSpaces/workspace/DataBase/src/car.s3db";
+	public static final String CONNECTION_URL = "jdbc:sqlite:C:/Users/Julen/eclipseWorkSpaces/workspace/DataBase/src/OldWarriorTales.s3db";
 	//public static final String CONNECTION_URL = "jdbc:sqlite:C:/Users/Raquel/workspace/DataBase/src/OldWarriorTales.s3db";
 	public static Connection connection;
 	
@@ -33,7 +31,6 @@ public class PieceJDBC implements PieceDataSource {
 	 * @throws SQLException
 	 */
 	public PieceJDBC() throws ClassNotFoundException, SQLException{
-		
 		Class.forName(DRIVER_CLASS_NAME);
 		connection= DriverManager.getConnection(CONNECTION_URL);
 		
@@ -78,8 +75,10 @@ public class PieceJDBC implements PieceDataSource {
 			field.set(instance, valor);
 		}catch(Exception e){
 			try{
+				
 				field.set(instance,Integer.parseInt(valor));
 			}catch(Exception ex){
+				
 				try{
 					field.set(instance,Boolean.parseBoolean(valor));
 				}catch(Exception exc){
@@ -89,7 +88,7 @@ public class PieceJDBC implements PieceDataSource {
 						try{
 							field.set(instance,valor.toCharArray()[0] );
 						}catch(Exception excep){
-//							try{
+							try{
 								//carga una clase con el nombre del atributo
 								Class<?> clase = Class.forName(field.getType().getCanonicalName());	
 								
@@ -155,9 +154,9 @@ public class PieceJDBC implements PieceDataSource {
 								  seguir = tablas.next();
 								}
 							
-//							}catch(Exception except){
-//								throw new Exception ("Type not accepted!!!!");
-//							}
+							}catch(Exception except){
+								throw new Exception ("Type not accepted!!!!");
+							}
 					}
 				}
 			}
@@ -175,9 +174,8 @@ public class PieceJDBC implements PieceDataSource {
 		ArrayList <storableInDataBase> c= new ArrayList <storableInDataBase>();
 		//Consulta de todos los datos
 		Statement statement = connection.createStatement();
-		String sqlStatementString = "SELECT * FROM "+ tableName;
+		String sqlStatementString = "SELECT * FROM "+ tableName+";";
 		ResultSet resultSet= statement.executeQuery(sqlStatementString);
-		
 		ResultSetMetaData metaData=resultSet.getMetaData();
 		Class<?> clase= Class.forName(className);
 		
@@ -192,23 +190,20 @@ public class PieceJDBC implements PieceDataSource {
 				implementa=true;
 			j++;
 		}
-		
 		//solo se realiza el proceso si la clase implementa el interfaz
 		if(implementa)
 		{
 		//atributos de la clase
 		Field fields[]=clase.getDeclaredFields();
 		while (resultSet.next()){
-			
 			Object instance = clase.newInstance();
 			for (Field field : fields){
 					int i=0;
 					boolean enc =false;
-					
 					while(i<metaData.getColumnCount() && !enc){
 						// si el nombre de la columna es igual al nombre del atributo coge el valor de éste 
 						
-						if (metaData.getColumnName(i+1).toLowerCase().equals(field.getName())){
+						if (metaData.getColumnName(i+1).equalsIgnoreCase(field.getName())){
 							
 							String valor=resultSet.getString(i+1);
 							//si el field no es accesible hace que lo sea para la insercción el base de datos
@@ -269,14 +264,64 @@ public class PieceJDBC implements PieceDataSource {
 		for(Field field: fields){
 			try {
 				System.out.println(field.getName());
+				System.out.println(field.getDeclaringClass());
+				
 				//si el tipo del atributo es string pone el nombre de éste entre comillas simples
 				if (field.getType().getName().toLowerCase().contains("string")){
 					try{
-					//crea el string de valores y columnas a concatenar en la sentencia sql
+						try{
+							//crea el string de valores y columnas a concatenar en la sentencia sql
+							valores=valores+"'"+field.get(object)+"',";
+							columnas=columnas+field.getName()+",";
+							}catch (IllegalArgumentException ex){
+								//si el atributo es de una clase dentro de la propia clase
+								//carga esa clase y busca dentro el valor del atributo
+								
+								Class<?> cla=object.getClass();
+								Field[] classFields=cla.getDeclaredFields();
+								
+								boolean enc= false;
+								//recorre todos los atributos de la clase buscando el atributo requerido
+								for(int i=0; i<classFields.length&&!enc;i++){
+									try
+									{
+										//encontrado el atributo
+										if(classFields[i].getClass().getName().equals(field.getClass().getName())){
+											//devuelve el valor del atributo que pertenece a la clase que es atributo de la clase incial.
+											Object ob=classFields[i].get(object);
+											//obtiene el valor del atributo
+											String valor=field.get(ob).toString();
+											//introducimos el valor en la sentencia
+											valores=valores+"'"+valor+"',";
+											columnas=columnas+field.getName()+",";
+											enc=true;
+										}
+										}catch (IllegalAccessException ie){
+											//si no es accesible:
+											classFields[i].setAccessible(true);
+											if(classFields[i].getClass().getName().equals(field.getClass().getName())){
+												//devuelve el valor del atributo que pertenece a la clase que es atributo de la clase incial.
+												try{
+													//obtiene el valor del atributo
+													Object o=classFields[i].get(object);
+													String valor=field.get(o).toString();
+												//introducimos el valor en la sentencia
+												valores=valores+"'"+valor+"',";
+												columnas=columnas+field.getName()+",";
+												enc=true;
+												}catch(IllegalArgumentException ia){}
+												
+												}
+											classFields[i].setAccessible(false);
+										}
+										
+										
+									}
+								}
 						
-						valores=valores+"'"+field.get(object)+"',";
 						
-					columnas=columnas+field.getName()+",";
+				//HASTA AQUI
+						
 					}catch (IllegalAccessException iae){
 						//si el atributo no es accesible lo pone a accesible
 						field.setAccessible(true);
@@ -284,40 +329,76 @@ public class PieceJDBC implements PieceDataSource {
 						valores=valores+"'"+field.get(object)+"',";
 						columnas=columnas+field.getName()+",";
 						}catch (IllegalArgumentException ex){
-							System.out.println("argument");
-							Field[] classFields = object.getClass().getFields();
+							//si el atributo es de una clase dentro de la propia clase
+							//carga esa clase y busca dentro el valor del atributo
+							
+							Class<?> cla=object.getClass();
+							Field[] classFields=cla.getDeclaredFields();
+							
 							boolean enc= false;
+							//recorre todos los atributos de la clase buscando el atributo requerido
 							for(int i=0; i<classFields.length&&!enc;i++){
-								//if(classFields[i].equals(obj))
+								try
+								{
+									//encontrado el atributo
+									if(classFields[i].getClass().getName().equals(field.getClass().getName())){
+										//devuelve el valor del atributo que pertenece a la clase que es atributo de la clase incial.
+										Object ob=classFields[i].get(object);
+										//obtiene el valor del atributo
+										String valor=field.get(ob).toString();
+										//introducimos el valor en la sentencia
+										valores=valores+"'"+valor+"',";
+										columnas=columnas+field.getName()+",";
+										enc=true;
+									}
+									}catch (IllegalAccessException ie){
+										//si no es accesible:
+										classFields[i].setAccessible(true);
+										if(classFields[i].getClass().getName().equals(field.getClass().getName())){
+											//devuelve el valor del atributo que pertenece a la clase que es atributo de la clase incial.
+											try{
+												//obtiene el valor del atributo
+												Object o=classFields[i].get(object);
+												String valor=field.get(o).toString();
+											//introducimos el valor en la sentencia
+											valores=valores+"'"+valor+"',";
+											columnas=columnas+field.getName()+",";
+											enc=true;
+											}catch(IllegalArgumentException ia){}
+											
+											}
+										classFields[i].setAccessible(false);
+									}
+									
+									
+								}
 							}
 						}
 						
-						
 						field.setAccessible(false);
+					}else{
+						if(!field.getType().isPrimitive()){
+							
+						}
+						try{
+							valores=valores+field.get(object)+",";
+							columnas=columnas+field.getName()+",";
+						}catch (IllegalAccessException iae){
+							field.setAccessible(true);
+							valores=valores+field.get(object)+",";
+							columnas=columnas+field.getName()+",";
+							field.setAccessible(false);
+						}
 					}
 					
+				} catch (IllegalArgumentException e) {
+					e.printStackTrace();
+					System.out.println("asdasdasdasd");
 				}
 				//si el atributo no es un string realiza lo mismo pero sin poner comillas simples al atributo
 				
-				else{
-					if(!field.getType().isPrimitive()){
-						
-					}
-					try{
-						valores=valores+field.get(object)+",";
-						columnas=columnas+field.getName()+",";
-					}catch (IllegalAccessException iae){
-
-						field.setAccessible(true);
-						valores=valores+field.get(object)+",";
-						columnas=columnas+field.getName()+",";
-						field.setAccessible(false);
-					}
-				}
-			} catch (IllegalArgumentException e) {
-				
 			}
-		}
+		
 		//elimina la última coma del string de valores y del de columnas
 		valores=valores.substring(0, valores.length()-1);
 		columnas=columnas.substring(0,columnas.length()-1);
