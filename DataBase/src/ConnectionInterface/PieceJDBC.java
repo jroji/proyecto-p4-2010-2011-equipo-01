@@ -20,8 +20,8 @@ import proyecto.p4.piezaOldWarriorTales.PiezaOldWarriorTales;
 public class PieceJDBC implements PieceDataSource {
 
 	public static final String DRIVER_CLASS_NAME = "org.sqlite.JDBC";
-	public static final String CONNECTION_URL = "jdbc:sqlite:C:/Users/Julen/eclipseWorkSpaces/workspace/DataBase/src/OldWarriorTales.s3db";
-	//public static final String CONNECTION_URL = "jdbc:sqlite:C:/Users/Raquel/workspace/DataBase/src/OldWarriorTales.s3db";
+	//public static final String CONNECTION_URL = "jdbc:sqlite:C:/Users/Julen/eclipseWorkSpaces/workspace/DataBase/src/OldWarriorTales.s3db";
+	public static final String CONNECTION_URL = "jdbc:sqlite:C:/Users/Raquel/workspace/DataBase/src/OldWarriorTales.s3db";
 	public static Connection connection;
 	
 	/**
@@ -251,7 +251,7 @@ public class PieceJDBC implements PieceDataSource {
 		
 		//array de atributos a introducir en la base de datos
 		ArrayList <Field> fields = object.fieldsToStore(); 
-		System.out.println(fields.size());
+		
 		
 		//si no hay atributos se lanza una Exception
 		if (fields==null){
@@ -262,8 +262,7 @@ public class PieceJDBC implements PieceDataSource {
 		String valores="";
 		//se recorre el array de atributos
 		for(Field field: fields){
-			try {
-				System.out.println(field.getName());
+			try {				
 				System.out.println(field.getDeclaringClass());
 				
 				//si el tipo del atributo es string pone el nombre de éste entre comillas simples
@@ -413,6 +412,10 @@ public class PieceJDBC implements PieceDataSource {
 		//devuelve el número de filas insertadas
 		return insertadas;
 	}
+	
+	
+	
+	                            
 	 //busca en la tabla el objecto que tenga el valor de los atributos del objecto que le pasamos.
 	 public int remove (storableInDataBase objectToRemove) throws Exception{
 		 
@@ -436,7 +439,7 @@ public class PieceJDBC implements PieceDataSource {
 	    	boolean encontrado=false;
 	    	//recoge el atributo de la clase con el mismo nombre que la clave primaria
     		Field field1=objectToRemove.getClass().getDeclaredField(primaryKeys.getString("COLUMN_NAME"));
-    		
+    		//System.out.println(field1);
     		//guarda en el array la información de la tabla a la que pertenece el objeto a borrar
     		ArrayList<storableInDataBase>arrayWithData= getAll(tableName, objectToRemove.getClass().getName());
     		
@@ -451,12 +454,16 @@ public class PieceJDBC implements PieceDataSource {
 	    				
 	    				encontrado=true;
 	    				//si el tipo del atributo es string coloca comillas simples en el valor del objecto a borrar y concatena las condiciones
-	    				if(field1.getType().getName().equals("String"))
+	    				if(field1.getType().getSimpleName().equals("String"))
 	    					{
-	    				conditions=conditions.concat( field1.getName() +" = '"+field1.get(objectToRemove)+"'and");}
+	    					System.out.println("string");
+	    					
+	    				conditions=conditions.concat( field1.getName() +" = '"+field1.get(objectToRemove)+"' and");}
 	    				//si no es string hace lo mismo pero sin poner comillas simples al valor del objecto a borrar
 	    				else
-	    					conditions=conditions.concat(field1.getName()+" = "+field1.get(objectToRemove)+"and ");
+	    					{System.out.println("no string");
+	    					System.out.println();
+	    					conditions=conditions.concat(field1.getName()+" = "+field1.get(objectToRemove)+" and");}
 	    				
 	    				
 	    			}
@@ -472,6 +479,7 @@ public class PieceJDBC implements PieceDataSource {
 	    //crea la sentencia sql de borrado
 		sqlStatementString = "DELETE FROM " +tableName+" WHERE "+cond+";";
 		//número de filas borradas de la tabla de la base de datos
+		System.out.println(sqlStatementString);
 		int deleteRows= statement.executeUpdate(sqlStatementString);
 		
 		
