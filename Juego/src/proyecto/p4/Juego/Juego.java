@@ -41,7 +41,7 @@ public abstract class Juego {
 		return name;
 	}
 	public String getRuta(){
-		return rutaImagen;
+		return this.rutaImagen;
 	}
 
 }
