@@ -1,6 +1,12 @@
 package proyecto.p4.Ventana.JPanels;
 
+import java.util.ArrayList;
+import java.util.ResourceBundle;
+
 import javax.swing.JPanel;
+
+import proyect.Reflectividad;
+import proyecto.p4.Juego.Juego;
 
 /**
  *
@@ -15,7 +21,7 @@ public class SelectGamePane extends JPanel {
 	private javax.swing.JComboBox SelectGameCombo;
     private javax.swing.JLabel Image;
     private javax.swing.JPanel ImgPane;
-    
+   private  ArrayList<Object> instancias;
     
     
     /** Creates new form SelectGamePane */
@@ -28,7 +34,9 @@ public class SelectGamePane extends JPanel {
 
         this.setOpaque(false);
         
-        SelectGameCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        
+        
+   //     SelectGameCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         SelectGameCombo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SelectGameComboActionPerformed(evt);
@@ -78,7 +86,22 @@ public class SelectGamePane extends JPanel {
     }
 
 
+    public void cargarJuegos(){
+    	instancias=Reflectividad.instanciarDireccion("GamesFile");
+    	ArrayList<String>  model= new ArrayList<String>();
+    	for (Object o:instancias){
+    		if (o instanceof Juego){
+    			model.add(o.toString());
+    		}
+    	}
+    	 SelectGameCombo.setModel(new javax.swing.DefaultComboBoxModel(model.toArray()));
+        SelectGameCombo.setSelectedIndex(0);
+    }
+    
     private void SelectGameComboActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
+    	Juego x = (Juego) instancias.get(SelectGameCombo.getSelectedIndex());
+    	Image.setIcon(getClass().getResource( x.getRuta() ));
+    	
 }
 }
