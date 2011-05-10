@@ -12,12 +12,14 @@ import ConnectionInterface.storableInDataBase;
 import Proyecto.p4.casilla.Casilla;
 import Proyecto.p4.mapa.Board;
 
+//import proyecto.p4.Tipo.OldWarriorTales.TerrainGrass;
 import proyecto.p4.habilidades.Hability;
 import proyecto.p4.pieza.Piece;
 import proyecto.p4.piezaOldWarriorTales.Unidades.Arquero;
 
 public abstract class PiezaOldWarriorTales extends Piece implements Orientable, storableInDataBase{
 	//atributos de la pieza
+	protected int CodePiece;
 	protected int movement;
 	protected int defense;
 	protected int attack;
@@ -57,6 +59,13 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable, 
 	}
 	public void setBlindness(boolean blindness) {
 		this.blindness = blindness;
+	}
+	
+	public int getCodePiece() {
+		return CodePiece;
+	}
+	public void setCodePiece(int codePiece) {
+		CodePiece = codePiece;
 	}
 	public Board getBoard() {
 		return board;
@@ -341,15 +350,22 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable, 
 		}
 		
 	public ArrayList <Field> fieldsToStore() throws SecurityException, NoSuchFieldException{
-//		ArrayList<Field> array= new ArrayList<Field>();
-//		
-//		//array.add(this.getClass().getDeclaredField("CodeCasilla"));
-//		array.add(this.getClass().getDeclaredField("PosX"));
-//		array.add(this.getClass().getDeclaredField("PosY"));
-//		Field [] fields=this.square.getClass().getSuperclass().getSuperclass().getDeclaredFields();
+		ArrayList<Field> array= new ArrayList<Field>();
+		
+		System.out.println(this.getClass().getDeclaredFields()[0]);
+		array.add(this.getClass().getDeclaredField("life"));
+		array.add(this.getClass().getDeclaredField("energy"));
+		array.add(this.getClass().getDeclaredField("experience"));
+		array.add(this.getClass().getDeclaredField("blindness"));
+		array.add(this.getClass().getDeclaredField("poisson"));
+		//enum
+		array.add(this.getClass().getDeclaredField("orientacion"));
+		array.add(this.getClass().getDeclaredField("color"));
+		
+//		Field [] fields=this..getClass().getSuperclass().getDeclaredFields();
 //		array.add(fields[1]);
-//
-	return null;
+
+	return array;
 	}
 	@Override
 	public ArrayList<storableInDataBase> takeOutFromDataBase() {
@@ -370,4 +386,19 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable, 
 		
 		
 	}
+	
+	public static void main (String []args) throws Exception {
+		Arquero po= new Arquero();
+		PieceJDBC p= new PieceJDBC();
+		p.insert("PiezaOldWarriorTales", po);		
+		po.setCodePiece(53);
+		System.out.println(po.getCodePiece());
+		//p.remove(po);		
+		p.nombreTablas();
+		//p.insert("Casilla", c);
+		//ArrayList<storableInDataBase> array=po.takeOutFromDataBase();
+
+
+		}
+
 }
