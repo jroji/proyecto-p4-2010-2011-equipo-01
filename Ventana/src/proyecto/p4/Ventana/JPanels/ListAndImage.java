@@ -29,14 +29,14 @@ public class ListAndImage extends javax.swing.JPanel {
     private ResourceBundle Language;
 
     /** Creates new form Units */
-  //  public ListAndImage(ResourceBundle language) {
-      public ListAndImage() {
+   public ListAndImage(ResourceBundle language) {
+   //   public ListAndImage() {
 
-  //  	Language = language;
+	   	Language = language;
         ImagePanel = new JPanel();
         scrollPane = new JScrollPane();
         UnitList = new JList();
-  //      oldWarriorButton1 = new OldWarriorButton(Language.getString("label_reclute"));
+        oldWarriorButton1 = new OldWarriorButton(Language.getString("label_reclute"));
         oldWarriorButton1 = new OldWarriorButton("H");
         
     	PiezaOldWarriorTales[] array = new PiezaOldWarriorTales[8];

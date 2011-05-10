@@ -32,7 +32,7 @@ public class UnitData extends JPanel {
         EnergyBar = new JProgressBar();
         ExperienceBar = new JProgressBar();
 
-        setOpaque(false);
+        this.setOpaque(false);
         
         setPreferredSize(new Dimension(242, 121));
 
