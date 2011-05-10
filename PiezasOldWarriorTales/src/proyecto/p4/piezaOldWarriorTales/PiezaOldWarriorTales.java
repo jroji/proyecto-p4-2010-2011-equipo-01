@@ -1,7 +1,13 @@
 package proyecto.p4.piezaOldWarriorTales;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Random;
 
+import javax.swing.JOptionPane;
+
+import ConnectionInterface.PieceJDBC;
+import ConnectionInterface.storableInDataBase;
 import Proyecto.p4.casilla.Casilla;
 import Proyecto.p4.mapa.Board;
 
@@ -9,7 +15,7 @@ import proyecto.p4.habilidades.Hability;
 import proyecto.p4.pieza.Piece;
 import proyecto.p4.piezaOldWarriorTales.Unidades.Arquero;
 
-public abstract class PiezaOldWarriorTales extends Piece implements Orientable{
+public abstract class PiezaOldWarriorTales extends Piece implements Orientable, storableInDataBase{
 	//atributos de la pieza
 	protected int movement;
 	protected int defense;
@@ -270,15 +276,87 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable{
 	public String toString (){
 		return this.getClass().getSimpleName();
 	}
-	/**
-	 * prueba orientacion
-	 * @param args
-	 */
-	public static void main (String[]args){
-		PiezaOldWarriorTales prueba= new Arquero();
-		prueba.actualizarOrientacion(5, 5, 5, 4);
-		System.out.println(prueba.getOrientacion());
-	}
 	
+	
+	@SuppressWarnings("finally")
+	@Override
+	public int deleteFromDataBase() {
+		PieceJDBC p;
+		int valueToReturn=0;
+			try {
+				
+				p = new PieceJDBC();
+				valueToReturn+=p.remove(this);
+				
+				
+			} catch (ClassNotFoundException e) {
+				JOptionPane.showMessageDialog(null,"Error al borrar1","Error",JOptionPane.OK_OPTION,null);  
+				
+				
+			} catch (SQLException e) {
+				JOptionPane.showMessageDialog(null,"Error al borrar2","Error",JOptionPane.OK_OPTION,null);  
+				
+				
+			} catch (Exception e) {
+				JOptionPane.showMessageDialog(null,"Error al borrar3","Error",JOptionPane.OK_OPTION,null);  
+				
+			}
+			finally{
+				return valueToReturn;
+			}
+			
+		
+		
+	}
 
+	@Override
+	public int insertIntoDataBase() {
+		PieceJDBC p;
+		try {
+			p = new PieceJDBC();
+			p.insert(this.getClass().getSimpleName(), this);
+		} catch (ClassNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (SQLException e) {
+			Object [] option ={"SI","NO"};
+			int pane=JOptionPane.showOptionDialog(null,
+				    "¿Desea sobreescribir? ","Sobreescribir",JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE,null,option,option[0]);
+			
+			if(pane==0){
+				deleteFromDataBase();
+				return insertIntoDataBase();
+				
+			}
+			
+			else{
+				return 0;
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return 1;
+		}
+		
+	
+	@Override
+	public ArrayList<storableInDataBase> takeOutFromDataBase() {
+		PieceJDBC p;
+		try {
+			p = new PieceJDBC();
+			ArrayList<storableInDataBase> array= p.getAll(this.getClass().getSimpleName(),this.getClass().getName());		
+			return array;
+		} catch (ClassNotFoundException e) {
+			JOptionPane.showMessageDialog(null,"Error al cargar1","Error",JOptionPane.OK_OPTION,null);  
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null,"Error al cargar2","Error",JOptionPane.OK_OPTION,null);  
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null,"Error al cargar3","Error",JOptionPane.OK_OPTION,null);  
+		}
+		//si salta la excepción devolverá un arrayList vacío.
+		return new ArrayList <storableInDataBase>();
+		
+		
+	}
 }
