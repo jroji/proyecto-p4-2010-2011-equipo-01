@@ -44,9 +44,6 @@ public class SelectGamePane extends JPanel {
         });
 
         ImgPane.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        Image.setText("Image");
-
         javax.swing.GroupLayout ImgPaneLayout = new javax.swing.GroupLayout(ImgPane);
         ImgPane.setLayout(ImgPaneLayout);
         ImgPaneLayout.setHorizontalGroup(
@@ -82,7 +79,6 @@ public class SelectGamePane extends JPanel {
                     .addComponent(ImgPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
-        cargarJuegos();
 
     }
 
@@ -90,7 +86,6 @@ public class SelectGamePane extends JPanel {
     public void cargarJuegos(){
     	instancias=Reflectividad.instanciarDireccion("GamesFile");
     	ArrayList<String>  model= new ArrayList<String>();
-    	instancias.get(0) ;
     	for (Object o:instancias){
     		if (o instanceof Juego){
     			model.add(o.toString());
@@ -103,7 +98,7 @@ public class SelectGamePane extends JPanel {
     private void SelectGameComboActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
     	Juego x = (Juego) instancias.get(SelectGameCombo.getSelectedIndex());
-  //  	Image.setIcon(getClass().getResource( x.getRuta() ));
+//    	Image.setIcon(getClass().getResource( x.getRuta() ));
     	
 }
 }
