@@ -1,5 +1,6 @@
 package proyecto.p4.piezaOldWarriorTales;
 
+import java.lang.reflect.Field;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Random;
@@ -339,7 +340,17 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable, 
 		return 1;
 		}
 		
-	
+	public ArrayList <Field> fieldsToStore() throws SecurityException, NoSuchFieldException{
+//		ArrayList<Field> array= new ArrayList<Field>();
+//		
+//		//array.add(this.getClass().getDeclaredField("CodeCasilla"));
+//		array.add(this.getClass().getDeclaredField("PosX"));
+//		array.add(this.getClass().getDeclaredField("PosY"));
+//		Field [] fields=this.square.getClass().getSuperclass().getSuperclass().getDeclaredFields();
+//		array.add(fields[1]);
+//
+	return null;
+	}
 	@Override
 	public ArrayList<storableInDataBase> takeOutFromDataBase() {
 		PieceJDBC p;
