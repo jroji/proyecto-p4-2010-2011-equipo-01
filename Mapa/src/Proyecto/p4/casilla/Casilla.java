@@ -58,6 +58,15 @@ public class Casilla implements storableInDataBase{
 	public Piece getPiece() {
 		return piece;
 	}
+	public int getCodeCasilla() {
+		return CodeCasilla;
+	}
+	public void setCodeCasilla(int codeCasilla) {
+		CodeCasilla = codeCasilla;
+	}
+
+
+
 	public void setPiece(Piece piece) {
 		this.piece = piece;
 	}
@@ -86,7 +95,8 @@ public class Casilla implements storableInDataBase{
 		//array.add(this.getClass().getDeclaredField("CodeCasilla"));
 		array.add(this.getClass().getDeclaredField("PosX"));
 		array.add(this.getClass().getDeclaredField("PosY"));
-		array.add(this.getClass().getDeclaredField("square").getClass().getDeclaredField("name"));
+		Field [] fields=this.square.getClass().getSuperclass().getSuperclass().getDeclaredFields();
+		array.add(fields[1]);
 
 	return array;
 	}
@@ -96,31 +106,47 @@ public class Casilla implements storableInDataBase{
 		TerrainGrass t= new TerrainGrass();
 		c.setSquare(t);
 		PieceJDBC p = new PieceJDBC();
-		p.insert("Casilla", c);
+		p.nombreTablas();
+		//p.insert("Casilla", c);
+		ArrayList<storableInDataBase> array=c.takeOutFromDataBase();
+		//ArrayList<storableInDataBase> array=p.getAll("Casilla", c.getClass().getCanonicalName());
+//		for (storableInDataBase sdb: array){
+//			System.out.println(((Casilla)sdb).getPosX());
+//		}
+		c.setCodeCasilla(66);
+		//System.out.println(p.remove(c));
+		System.out.println(c.deleteFromDataBase());
 		}
 
+	@SuppressWarnings("finally")
 	@Override
 	public int deleteFromDataBase() {
 		PieceJDBC p;
-		
+		int valueToReturn=0;
 			try {
+				
 				p = new PieceJDBC();
-				p.remove(this);
-				p.remove((storableInDataBase) this.getPiece());
+				valueToReturn+=p.remove(this);
+				//valueToReturn+=p.remove((storableInDataBase) this.getPiece());
+				
 			} catch (ClassNotFoundException e) {
 				JOptionPane.showMessageDialog(null,"Error al sobreescribir","Error",JOptionPane.OK_OPTION,null);  
-
+				
+				
 			} catch (SQLException e) {
 				JOptionPane.showMessageDialog(null,"Error al sobreescribir","Error",JOptionPane.OK_OPTION,null);  
-
+				
 				
 			} catch (Exception e) {
 				JOptionPane.showMessageDialog(null,"Error al sobreescribir","Error",JOptionPane.OK_OPTION,null);  
-
+				
+			}
+			finally{
+				return valueToReturn;
 			}
 			
 		
-		return 0;
+		
 	}
 
 	@Override
@@ -153,11 +179,6 @@ public class Casilla implements storableInDataBase{
 		return 1;
 		}
 		
-		
-			
-		
-			
-
 	
 	@Override
 	public ArrayList<storableInDataBase> takeOutFromDataBase() {
@@ -167,11 +188,11 @@ public class Casilla implements storableInDataBase{
 			ArrayList<storableInDataBase> array= p.getAll(this.getClass().getSimpleName(),this.getClass().getName());		
 			return array;
 		} catch (ClassNotFoundException e) {
-			JOptionPane.showMessageDialog(null,"Error al cargar","Error",JOptionPane.OK_OPTION,null);  
+			JOptionPane.showMessageDialog(null,"Error al cargar1","Error",JOptionPane.OK_OPTION,null);  
 		} catch (SQLException e) {
-			JOptionPane.showMessageDialog(null,"Error al cargar","Error",JOptionPane.OK_OPTION,null);  
+			JOptionPane.showMessageDialog(null,"Error al cargar2","Error",JOptionPane.OK_OPTION,null);  
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null,"Error al cargar","Error",JOptionPane.OK_OPTION,null);  
+			JOptionPane.showMessageDialog(null,"Error al cargar3","Error",JOptionPane.OK_OPTION,null);  
 		}
 		//si salta la excepción devolverá un arrayList vacío.
 		return new ArrayList <storableInDataBase>();
