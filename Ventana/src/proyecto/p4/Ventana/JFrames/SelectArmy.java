@@ -1,5 +1,7 @@
 package proyecto.p4.Ventana.JFrames;
 
+import java.util.ResourceBundle;
+
 import javax.swing.JFrame;
 import javax.swing.JTable;
 
@@ -19,10 +21,10 @@ public class SelectArmy extends JFrame{
 	 * 
 	 */
 	private static final long serialVersionUID = -710066457784512920L;
-	ListAndImage  x =new ListAndImage();
+	ListAndImage  x ;
      JTable table = new JTable();
 	
-	public SelectArmy(String Language,boolean Sound)
+	public SelectArmy(ResourceBundle Language,boolean Sound)
 	{
 		this.setSize(1024,720);
 		this.setLayout(null);
@@ -36,6 +38,6 @@ public class SelectArmy extends JFrame{
 	}
 	public static void main(String[] args)
 	{
-		SelectArmy x = new SelectArmy();
+		SelectArmy x = new SelectArmy(null, rootPaneCheckingEnabled);
 	}
 }
