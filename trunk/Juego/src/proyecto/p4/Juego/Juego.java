@@ -40,6 +40,8 @@ public abstract class Juego {
 	public String toString(){
 		return name;
 	}
-
+	public String getRuta(){
+		return rutaImagen;
+	}
 
 }
