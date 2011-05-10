@@ -1,31 +1,35 @@
 package proyecto.p4.Jugador;
 
 import java.lang.reflect.Field;
+import java.sql.SQLException;
 import java.util.ArrayList;
+
+import javax.swing.JOptionPane;
 
 import ConnectionInterface.PieceJDBC;
 import ConnectionInterface.storableInDataBase;
+import Proyecto.p4.casilla.Casilla;
 
 public class Jugador implements storableInDataBase{
-private String nick;
+private String Nick;
 private String avatar;
 
 public Jugador(){
-	nick="";
+	Nick="";
 	avatar="";
 }
 public Jugador(String nick, String avatar){
-	this.nick=nick;
+	this.Nick=nick;
 	this.avatar=avatar;
 }
 
 public String getNick() {
-	return nick;
+	return Nick;
 }
 
 
 public void setNick(String nick) {
-	this.nick = nick;
+	this.Nick = nick;
 }
 
 
@@ -47,42 +51,113 @@ public ArrayList <Field> fieldsToStore() throws SecurityException, NoSuchFieldEx
 return array;
 }
 
+@SuppressWarnings("finally")
+@Override
+public int deleteFromDataBase() {
+	PieceJDBC p;
+	int valueToReturn=0;
+		try {
+			
+			p = new PieceJDBC();
+			valueToReturn+=p.remove(this);
+			
+			
+		} catch (ClassNotFoundException e) {
+			JOptionPane.showMessageDialog(null,"Error al borrar1","Error",JOptionPane.OK_OPTION,null);  
+			
+			
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null,"Error al borrar2","Error",JOptionPane.OK_OPTION,null);  
+			
+			
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null,"Error al borrar3","Error",JOptionPane.OK_OPTION,null);  
+			
+		}
+		finally{
+			return valueToReturn;
+		}
+		
+	
+	
+}
 
+@Override
+public int insertIntoDataBase() {
+	PieceJDBC p;
+	try {
+		p = new PieceJDBC();
+		p.insert(this.getClass().getSimpleName(), this);
+	} catch (ClassNotFoundException e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	} catch (SQLException e) {
+		Object [] option ={"SI","NO"};
+		int pane=JOptionPane.showOptionDialog(null,
+			    "¿Desea sobreescribir? ","Sobreescribir",JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE,null,option,option[0]);
+		
+		if(pane==0){
+			deleteFromDataBase();
+			return insertIntoDataBase();
+			
+		}
+		
+		else{
+			return 0;
+		}
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	return 1;
+	}
+	
+
+@Override
+public ArrayList<storableInDataBase> takeOutFromDataBase() {
+	PieceJDBC p;
+	try {
+		p = new PieceJDBC();
+		ArrayList<storableInDataBase> array= p.getAll(this.getClass().getSimpleName(),this.getClass().getName());		
+		return array;
+	} catch (ClassNotFoundException e) {
+		JOptionPane.showMessageDialog(null,"Error al cargar1","Error",JOptionPane.OK_OPTION,null);  
+	} catch (SQLException e) {
+		JOptionPane.showMessageDialog(null,"Error al cargar2","Error",JOptionPane.OK_OPTION,null);  
+	} catch (Exception e) {
+		JOptionPane.showMessageDialog(null,"Error al cargar3","Error",JOptionPane.OK_OPTION,null);  
+	}
+	//si salta la excepción devolverá un arrayList vacío.
+	return new ArrayList <storableInDataBase>();
+	
+	
+}
 /**
  * Pruebas DataBase
  * @param arts
  * @throws Exception
  */
 public static void main (String []arts) throws Exception{
+	
+	//LA INSERT FUNCIONA,EL GETALL FUNCIONA, REMOVE FUNCIONA
 	PieceJDBC co1=new PieceJDBC();
 	String a= "C:/Users/Raquel/workspace/Juego/src/proyecto/p4/Jugador";
 	Jugador c1= new Jugador ();
-	ArrayList<storableInDataBase> player= co1.getAll("jugador",c1.getClass().getCanonicalName());
+	ArrayList<storableInDataBase> array=c1.takeOutFromDataBase();
 
-	for(int i=0; i<player.size();i++)
-	System.out.println(player.get(i));
+	for (storableInDataBase sdb: array){
+		System.out.println(((Jugador)sdb).getNick());
+	}
 	
 	
-	c1.nick="o";
-	c1.avatar="direccionavatar";
-	co1.insert("Jugador", c1);
+//	c1.nick="o";
+//	c1.avatar="direccionavatar";
+	//co1.insert("Jugador", c1);
+	c1.setNick("o");
+	c1.deleteFromDataBase();
+	
 
+}
 
-}
-@Override
-public int deleteFromDataBase() {
-	// TODO Auto-generated method stub
-	return 0;
-}
-@Override
-public int insertIntoDataBase() {
-	// TODO Auto-generated method stub
-	return 0;
-}
-@Override
-public ArrayList<storableInDataBase> takeOutFromDataBase() {
-	// TODO Auto-generated method stub
-	return null;
-}
 
 }
