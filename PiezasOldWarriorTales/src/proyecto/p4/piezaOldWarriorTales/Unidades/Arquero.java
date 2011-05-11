@@ -1,5 +1,9 @@
 package proyecto.p4.piezaOldWarriorTales.Unidades;
 
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+
+import ConnectionInterface.storableInDataBase;
 import proyecto.p4.habilidades.Cegar;
 import proyecto.p4.habilidades.Envenenar;
 import proyecto.p4.habilidades.Hability;
@@ -41,6 +45,7 @@ public class Arquero extends PiezaOldWarriorTales{
 		Class<?> clase;
 		try {
 			clase = Class.forName(arquero.getClass().getCanonicalName());
+			//clase=clase.getSuperclass().getSuperclass();
 			Object ob=clase.newInstance();
 			System.out.println(ob.getClass().getCanonicalName());
 		} catch (ClassNotFoundException e) {
