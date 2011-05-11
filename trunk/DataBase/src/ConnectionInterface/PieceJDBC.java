@@ -263,7 +263,7 @@ public class PieceJDBC implements PieceDataSource {
 		//se recorre el array de atributos
 		for(Field field: fields){
 			try {				
-				System.out.println(field.getDeclaringClass());
+				//System.out.println(field.getDeclaringClass());
 				
 				//si el tipo del atributo es string pone el nombre de éste entre comillas simples
 				if (field.getType().getName().toLowerCase().contains("string")){
@@ -461,8 +461,7 @@ public class PieceJDBC implements PieceDataSource {
 	    				conditions=conditions.concat( field1.getName() +" = '"+field1.get(objectToRemove)+"' and");}
 	    				//si no es string hace lo mismo pero sin poner comillas simples al valor del objecto a borrar
 	    				else
-	    					{System.out.println("no string");
-	    					System.out.println();
+	    					{	    					
 	    					conditions=conditions.concat(field1.getName()+" = "+field1.get(objectToRemove)+" and");}
 	    				
 	    				
