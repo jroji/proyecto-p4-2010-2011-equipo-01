@@ -352,15 +352,15 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable, 
 	public ArrayList <Field> fieldsToStore() throws SecurityException, NoSuchFieldException{
 		ArrayList<Field> array= new ArrayList<Field>();
 		
-		System.out.println(this.getClass().getDeclaredFields()[0]);
-		array.add(this.getClass().getDeclaredField("life"));
-		array.add(this.getClass().getDeclaredField("energy"));
-		array.add(this.getClass().getDeclaredField("experience"));
-		array.add(this.getClass().getDeclaredField("blindness"));
-		array.add(this.getClass().getDeclaredField("poisson"));
+		System.out.println(this.getClass().getSuperclass().getDeclaredFields()[0]);
+		array.add(this.getClass().getSuperclass().getDeclaredField("life"));
+		array.add(this.getClass().getSuperclass().getDeclaredField("energy"));
+		array.add(this.getClass().getSuperclass().getDeclaredField("experience"));
+		//array.add(this.getClass().getSuperclass().getDeclaredField("blindness"));
+		//array.add(this.getClass().getSuperclass().getDeclaredField("poisson"));
 		//enum
-		array.add(this.getClass().getDeclaredField("orientacion"));
-		array.add(this.getClass().getDeclaredField("color"));
+		array.add(this.getClass().getSuperclass().getDeclaredField("orientacion"));
+		array.add(this.getClass().getSuperclass().getSuperclass().getDeclaredField("color"));
 		
 //		Field [] fields=this..getClass().getSuperclass().getDeclaredFields();
 //		array.add(fields[1]);
