@@ -5,19 +5,25 @@ import java.util.ResourceBundle;
 import javax.swing.*;
 import proyecto.p4.piezaOldWarriorTales.PiezaOldWarriorTales;
 
+/**
+ * 
+ * Este panel nos va a informar de la informacion más esencial de la pieza
+ * que sea transferida al panel.
+ *
+ */
 public class UnitInformation extends JPanel {
 
  
 	private static final long serialVersionUID = 1L;
-	private JLabel Attack;
-    private JLabel AttackData;
+	private JLabel Attack; 
+    private JLabel AttackData; //Aqui se mostrara la information del ataque
     private JLabel Defense;
-    private JLabel DefenseData;
-    private JLabel Image;
-    private JLabel Movement;
-    private JLabel MovementData;
+    private JLabel DefenseData; // Aqui se mostrara la informacion de la defensa
+    private JLabel Image; //Imagen de la pieza
+    private JLabel Movement; 
+    private JLabel MovementData; //Informacino sobre su movimiento
     private JLabel Probability;
-    private JLabel ProbabilityData;
+    private JLabel ProbabilityData; // La probabilidad de la figura
     private ResourceBundle Language;
 
     public UnitInformation(PiezaOldWarriorTales P,ResourceBundle language) {
@@ -27,15 +33,18 @@ public class UnitInformation extends JPanel {
     
     private void initComponents(PiezaOldWarriorTales P) {
 
-        Image = new javax.swing.JLabel();
-        Attack = new javax.swing.JLabel();
-        Defense = new javax.swing.JLabel();
-        Movement = new javax.swing.JLabel();
-        Probability = new javax.swing.JLabel();
-        AttackData = new javax.swing.JLabel();
-        DefenseData = new javax.swing.JLabel();
-        MovementData = new javax.swing.JLabel();
-        ProbabilityData = new javax.swing.JLabel();
+    	/**
+    	 * Iniciamos todos los componentes
+    	 */
+        Image = new JLabel();
+        Attack = new JLabel();
+        Defense = new JLabel();
+        Movement = new JLabel();
+        Probability = new JLabel();
+        AttackData = new JLabel();
+        DefenseData = new JLabel();
+        MovementData = new JLabel();
+        ProbabilityData = new JLabel();
 
         this.setOpaque(false);
         
@@ -46,6 +55,9 @@ public class UnitInformation extends JPanel {
         Movement.setText(Language.getString("label_movement")+":");
         Probability.setText(Language.getString("label_probability")+":");
         
+        /**
+         * Ponemos toda la informacion en su respectivo campo
+         */
         AttackData.setText(P.getAttack()+"");
         DefenseData.setText(P.getDefense()+"");
         MovementData.setText(P.getMovement()+"");
