@@ -1,9 +1,15 @@
  package proyecto.p4.Ventana.JPanels;
  
  import java.util.ResourceBundle;
+ import javax.swing.*;
 
-import javax.swing.*;
-public class SoundPanel extends javax.swing.JPanel {
+ /**
+  * 
+  * Mediante este panel vamos a poder seleccionar si queremos sonido en el juego
+  *
+  */
+ 
+ public class SoundPanel extends javax.swing.JPanel {
 
     private JRadioButton NoButton;
     private JLabel SoundLabel;
@@ -35,7 +41,7 @@ public class SoundPanel extends javax.swing.JPanel {
         buttonGroup1.add(NoButton);
         NoButton.setText("No");
         
-        buttonGroup1.setSelected((ButtonModel) YesButton, true);
+        //buttonGroup1.setSelected((ButtonModel) YesButton, true);
         
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -63,6 +69,12 @@ public class SoundPanel extends javax.swing.JPanel {
     }
 
 
+    /**
+     * 
+     * Este metodo va a retornar un boolean para saber si hemos 
+     * seleccionado si queremos el sonido activado
+     * 
+     */
 	public boolean SoundOn(){
     	return YesButton.isSelected();
     }
