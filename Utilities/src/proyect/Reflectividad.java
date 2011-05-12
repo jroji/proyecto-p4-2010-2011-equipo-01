@@ -15,7 +15,9 @@ import java.util.zip.ZipEntry;
 
 
 public class Reflectividad {
+	//fichero que dispone la direccion de los jar
 
+	
 	/** 
 	 * Devuelve un arrayList con una instancia de cada clase instanciable en el jar
 	 * 
@@ -70,42 +72,65 @@ public class Reflectividad {
 		}
 		return objectArray;
 	}
-	public static void main(String[] args) throws IllegalArgumentException, IOException {
-		//txt donde se almacena la direccion de los jar
-		File file= new File ("LanguagesFile"); 
+	/**
+	 * Carga todos las instancias de los objetos instanciables de los jar
+	 * disponibles en el directorio indicado en la primera linea del fichero txt indicado
+	 * @param direccion Direccion del fichero txt del que se obtendra la direccion del directorio
+	 * en el que se buscaran los jar.
+	 * @return
+	 */
+	public static ArrayList <Object> instanciarDireccion(String direccion){
+		//cargar fichero con la direccion en donde buscar los jar
+		File file= new File (direccion);
 		
+		FileInputStream fileInputStream;
+		ArrayList<Object> instances= new ArrayList<Object>();
+		//recuperar del fichero el directorio de los jar
 		try {
-			FileInputStream fileInputStream = new FileInputStream(file);
+			fileInputStream = new FileInputStream(file);
 			InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
 			BufferedReader bufferedReader= new BufferedReader(inputStreamReader);
 			String line = bufferedReader.readLine();
+			//cargar el fichero de los jar
 			File folder= new File (line);
-			//guardar en el array los archivos de la carpeta
+			//directorios dentro del directorio
 			String [] files = folder.list();
 			
 			//reconocimiento y procesamiento de los jar
 			for (String s: files){
-
 				if (s.length()>4){
 					//si es un jar entra en el if
 					if (s.substring(s.length()-4, s.length()).equals(".jar")){
 						ArrayList<Object> idiomas=jarInstance(new File(line+"\\"+s));
-						System.out.println("instancias disponibles:");
-						System.out.println(idiomas.size());
 						for (Object ob: idiomas){
-								System.out.println(ob);	
+							instances.add(ob);
+						
+						}
+						
 						}
 					}
 				}
-			}
+// comprobar las instancias realizadas			
+//			for (Object ob: instances){
+//					System.out.println(ob);
+//			}
+			return instances;
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		catch (IOException e) {
+			return null;
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return null;
 		}
+
+	}
+	public static void main(String[] args) throws IllegalArgumentException, IOException {
+		final String direccion="LanguagesFile";
+		instanciarDireccion(direccion);
+	
+	
 	}
 
 }
