@@ -1,6 +1,7 @@
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
+import java.util.ArrayList;
 
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -8,6 +9,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
+
+import proyecto.p4.pieza.Piece;
 
 
 //public class GamePanel extends JFrame{
@@ -28,11 +31,11 @@ public class GamePanel extends JPanel implements MouseListener{
 
 	 JLayeredPane layer = new JLayeredPane();
 	
-//	public GamePanel(Board map){
-	 public GamePanel(){
+//	public GamePanel(Board map, ArrayList<Piece> PlayerUnits1, ArrayList<Piece> PlayerUnits2){
+	 public GamePanel(ArrayList<Piece> PlayerUnits1, ArrayList<Piece> PlayerUnits2){
 		setSize(800,575);
 		//mapPanel = new MapPanel(map);
-		mapPanel = new MapPanel();
+		mapPanel = new MapPanel(PlayerUnits1, PlayerUnits2);
 		setLayout(null);
 		this.add(layer);
 		
