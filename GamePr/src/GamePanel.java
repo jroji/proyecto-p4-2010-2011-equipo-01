@@ -18,7 +18,7 @@ public class GamePanel extends JPanel implements MouseListener{
 	
 
 	 /**
-	 * 
+	 * Panel que contiene un MapPanel y gestiona el movimiento de la entana al acercar el ratón a los bordes
 	 */
 	private static final long serialVersionUID = -9093751283665415810L;
 	boolean mover = false;
@@ -68,6 +68,7 @@ public class GamePanel extends JPanel implements MouseListener{
 
 		}
 
+	 
 	 /**Método para el movimiento de la pantalla de juego a traves de los métodos de 
 	  * la clase TranslatePanel. 
 	  */
