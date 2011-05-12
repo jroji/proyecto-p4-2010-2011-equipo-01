@@ -20,8 +20,8 @@ import proyecto.p4.piezaOldWarriorTales.PiezaOldWarriorTales;
 public class PieceJDBC implements PieceDataSource {
 
 	public static final String DRIVER_CLASS_NAME = "org.sqlite.JDBC";
-	//public static final String CONNECTION_URL = "jdbc:sqlite:C:/Users/Julen/eclipseWorkSpaces/workspace/DataBase/src/OldWarriorTales.s3db";
-	public static final String CONNECTION_URL = "jdbc:sqlite:C:/Users/Raquel/workspace/DataBase/src/OldWarriorTales.s3db";
+	public static final String CONNECTION_URL = "jdbc:sqlite:C:/Users/Julen/eclipseWorkSpaces/workspace/DataBase/src/OldWarriorTales.s3db";
+	//public static final String CONNECTION_URL = "jdbc:sqlite:C:/Users/Raquel/workspace/DataBase/src/OldWarriorTales.s3db";
 	public static Connection connection;
 	
 	/**
@@ -70,7 +70,7 @@ public class PieceJDBC implements PieceDataSource {
 	 * @throws Exception When the type of the field is not one of the next: String, Int, Boolean, Char, Double.
 	 */
 	public void insertFiels(Object instance, Field field, String valor ) throws Exception{
-		
+		System.out.println(field.getName());
 		try{
 			field.set(instance, valor);
 		}catch(Exception e){
@@ -80,6 +80,12 @@ public class PieceJDBC implements PieceDataSource {
 			}catch(Exception ex){
 				
 				try{
+					if(valor.equals("Y"))
+						valor="true";
+					else
+						if(valor.equals("N"))
+							valor="false";
+					System.out.println(valor);
 					field.set(instance,Boolean.parseBoolean(valor));
 				}catch(Exception exc){
 					try{
@@ -91,7 +97,13 @@ public class PieceJDBC implements PieceDataSource {
 							try{
 								//carga una clase con el nombre del atributo
 								Class<?> clase = Class.forName(field.getType().getCanonicalName());	
-								
+								//es un enum
+								if(clase.isEnum()){
+									
+								}
+								//no es un enum
+								else
+								{
 								//recoge todas las tablas de la base de datos
 								String nombreTablas = "%"; // Listamos todas las tablas
 								String tipos[] = new String[1]; // Listamos solo tablas
@@ -153,10 +165,13 @@ public class PieceJDBC implements PieceDataSource {
 								  }else
 								  seguir = tablas.next();
 								}
+								}
 							
 							}catch(Exception except){
+								System.out.println(field.getName()+"//"+field.getType());
 								throw new Exception ("Type not accepted!!!!");
 							}
+							
 					}
 				}
 			}
@@ -178,10 +193,28 @@ public class PieceJDBC implements PieceDataSource {
 		ResultSet resultSet= statement.executeQuery(sqlStatementString);
 		ResultSetMetaData metaData=resultSet.getMetaData();
 		Class<?> clase= Class.forName(className);
-		
+		Class<?>claseInt=clase;
 		//Obtiene los interfaces que implementa la clase
-		Class[] interfaces=clase.getInterfaces();
+		Class<?>[] interfaces=new Class[0];
 		
+		do{
+			Class<?>[] interfac=claseInt.getInterfaces();
+			Class<?>[]aux=interfaces;
+			interfaces=new Class[interfac.length+aux.length];
+			for(int i =0; i<aux.length;i++){
+				interfaces[i]=aux[i];
+			}
+			if(aux.length==0){
+				for(int i =0; i<interfac.length;i++){
+						interfaces[i]=interfac[i];
+				}
+			}else
+				for(int i =0; i<interfac.length;i++){
+					interfaces[aux.length+i]=interfac[i];
+				}
+			claseInt=claseInt.getSuperclass();
+		}while (!claseInt.getSimpleName().equals("Object"));
+		System.out.println(interfaces.length);
 		//comprobar si la clase implementa storableInDataBase
 		int j=0;
 		boolean implementa=false;
@@ -193,11 +226,36 @@ public class PieceJDBC implements PieceDataSource {
 		//solo se realiza el proceso si la clase implementa el interfaz
 		if(implementa)
 		{
-		//atributos de la clase
-		Field fields[]=clase.getDeclaredFields();
+		//obtiene los atributos de la clase
+		//Field fields[]=clase.getDeclaredFields();
+			claseInt=clase;
+			Field[] fields=new Field[0];
+			
+			do{
+				Field[] fiel=claseInt.getDeclaredFields();
+				Field[]auxField=fields;
+				fields=new Field[fiel.length+auxField.length];
+				for(int i =0; i<auxField.length;i++){
+					fields[i]=auxField[i];
+				}
+				if(auxField.length==0){
+					for(int i =0; i<fiel.length;i++){
+							fields[i]=fiel[i];
+					}
+				}else
+					for(int i =0; i<fiel.length;i++){
+						fields[auxField.length-1+i]=fiel[i];
+					}
+				claseInt=claseInt.getSuperclass();
+			}while (!claseInt.getSimpleName().equals("Object"));	
+			
+			
+		int n =0;	
 		while (resultSet.next()){
 			Object instance = clase.newInstance();
 			for (Field field : fields){
+				if(field==null){
+				}else{
 					int i=0;
 					boolean enc =false;
 					while(i<metaData.getColumnCount() && !enc){
@@ -219,8 +277,10 @@ public class PieceJDBC implements PieceDataSource {
 						i++;
 					}
 				}
+				}
 			//añade al array el instance
 			c.add((storableInDataBase) instance);
+			
 			
 		}
 		
@@ -228,7 +288,7 @@ public class PieceJDBC implements PieceDataSource {
 		}
 		//sino se lanza una excepcion
 		else{
-			throw new Exception("This class cannot be stored in the database");
+			throw new Exception("This class cannot be stored in the database (doesn´t implement the required interface)");
 		}
 		//devuelve el arrayList con la información de la base de datos
 		return c;
@@ -263,8 +323,6 @@ public class PieceJDBC implements PieceDataSource {
 		//se recorre el array de atributos
 		for(Field field: fields){
 			try {				
-				//System.out.println(field.getDeclaringClass());
-				
 				//si el tipo del atributo es string pone el nombre de éste entre comillas simples
 				if (field.getType().getName().toLowerCase().contains("string")){
 					try{
@@ -318,10 +376,9 @@ public class PieceJDBC implements PieceDataSource {
 									}
 								}
 						
-						
-				//HASTA AQUI
-						
-					}catch (IllegalAccessException iae){
+					}
+					// todo igual pero haciendo el atributo visible
+					catch (IllegalAccessException iae){
 						//si el atributo no es accesible lo pone a accesible
 						field.setAccessible(true);
 						try{
@@ -377,7 +434,7 @@ public class PieceJDBC implements PieceDataSource {
 						field.setAccessible(false);
 					}else{
 						if(!field.getType().isPrimitive()){
-							
+							System.out.println("not primitive");
 						}
 						try{
 							valores=valores+field.get(object)+",";
@@ -404,6 +461,7 @@ public class PieceJDBC implements PieceDataSource {
 		
 		//crea la sentencia sql
 		sqlStatementString = "INSERT INTO "+tableName+"("+columnas+")"+ "VALUES" +"("+valores+");";
+		System.out.println(sqlStatementString);
 		//número de filas insertadas
 		int insertadas=statement.executeUpdate(sqlStatementString);
 		statement.close();
@@ -412,8 +470,6 @@ public class PieceJDBC implements PieceDataSource {
 		//devuelve el número de filas insertadas
 		return insertadas;
 	}
-	
-	
 	
 	                            
 	 //busca en la tabla el objecto que tenga el valor de los atributos del objecto que le pasamos.
