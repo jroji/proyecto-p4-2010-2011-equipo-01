@@ -18,8 +18,8 @@ import java.util.ArrayList;
 public class PieceJDBC implements PieceDataSource {
 
 	public static final String DRIVER_CLASS_NAME = "org.sqlite.JDBC";
-	public static final String CONNECTION_URL = "jdbc:sqlite:C:/Users/Julen/eclipseWorkSpaces/workspace/DataBase/src/OldWarriorTales.s3db";
-	//public static final String CONNECTION_URL = "jdbc:sqlite:C:/Users/Raquel/workspace/DataBase/src/OldWarriorTales.s3db";
+	//public static final String CONNECTION_URL = "jdbc:sqlite:C:/Users/Julen/eclipseWorkSpaces/workspace/DataBase/src/OldWarriorTales.s3db";
+	public static final String CONNECTION_URL = "jdbc:sqlite:C:/Users/Raquel/workspace/DataBase/src/OldWarriorTales.s3db";
 	public static Connection connection;
 	
 	/**
@@ -254,7 +254,7 @@ public class PieceJDBC implements PieceDataSource {
 					}
 				claseInt=claseInt.getSuperclass();
 			}while (!claseInt.getSimpleName().equals("Object"));	
-			
+
 		while (resultSet.next()){
 			Object instance = clase.newInstance();
 			for (Field field : fields){
@@ -324,9 +324,13 @@ public class PieceJDBC implements PieceDataSource {
 		String valores="";
 		//se recorre el array de atributos
 		for(Field field: fields){
-			try {				
+			Class<?> clase = this.getClass();
+			try {		
+				try{
+				clase = Class.forName(field.getType().getName());
+				}catch(ClassNotFoundException cnfe){}
 				//si el tipo del atributo es string pone el nombre de éste entre comillas simples
-				if (field.getType().getName().toLowerCase().contains("string")){
+				if (field.getType().getName().toLowerCase().contains("string")||clase.isEnum()){
 					try{
 						try{
 							//crea el string de valores y columnas a concatenar en la sentencia sql
@@ -434,21 +438,41 @@ public class PieceJDBC implements PieceDataSource {
 						}
 						
 						field.setAccessible(false);
-					}else{
-						if(!field.getType().isPrimitive()){
-							System.out.println("not primitive");
-						}
+					}
+				
+				else{
+						
 						try{
+							if(field.getType().getName().equals("boolean")){
+								System.out.println(field.get(object)+"v");
+								if(field.get(object).toString().equals("true")){
+								valores=valores+"1,";
+								columnas=columnas+field.getName()+",";}
+								else {
+									valores=valores+"0,";
+									columnas=columnas+field.getName()+",";}
+								
+							}
+							else{
 							valores=valores+field.get(object)+",";
-							columnas=columnas+field.getName()+",";
+							columnas=columnas+field.getName()+",";}
 						}catch (IllegalAccessException iae){
 							field.setAccessible(true);
+							if(field.getType().getName().equals("boolean")){
+								if(field.get(object).toString().equals("true")){
+								valores=valores+"1,";
+								columnas=columnas+field.getName()+",";}
+								else{
+									valores=valores+"0,";
+									columnas=columnas+field.getName()+",";}
+							}
+							else{
 							valores=valores+field.get(object)+",";
-							columnas=columnas+field.getName()+",";
+							columnas=columnas+field.getName()+",";}
 							field.setAccessible(false);
 						}
 					}
-					
+				
 				} catch (IllegalArgumentException e) {
 					e.printStackTrace();
 					System.out.println("asdasdasdasd");
