@@ -499,7 +499,7 @@ public class PieceJDBC implements PieceDataSource {
 	
 	                            
 	 //busca en la tabla el objecto que tenga el valor de los atributos del objecto que le pasamos.
-	 public int remove (storableInDataBase objectToRemove) throws Exception{
+	 public int remove (String tableName, storableInDataBase objectToRemove) throws Exception{
 		 
 		 //crea la conexión con la url correcta
 		connection= DriverManager.getConnection(CONNECTION_URL);
@@ -507,27 +507,46 @@ public class PieceJDBC implements PieceDataSource {
 		Statement statement = null;
 		statement = connection.createStatement();
 		
-		//obtiene el nombre de la tabla de dónde los objetos serán borrados.
-		String tableName=objectToRemove.getClass().getSimpleName();	
+		
 		
 		DatabaseMetaData dbmd = connection.getMetaData();
 		//obtiene las claves primarias de la tabla
 	    ResultSet primaryKeys= dbmd.getPrimaryKeys(null,null, tableName);
 	    boolean hayMasClavesPrimarias=primaryKeys.next();
 	    String conditions="";
+	    
+	 
+	 
+	 Field fieldFather[] = objectToRemove.getClass().getSuperclass().getDeclaredFields();
+	 
+	 Class classe=objectToRemove.getClass();
+	 do{
+		 Field aux[]= objectToRemove.getClass().getDeclaredFields();
+		 Field fields[] = new Field [aux.length+fieldFather.length];
+	 for(int i=0;i<aux.length;i++){
+		 fields[i]=aux[i];
+	 }
+	 
+	 for(int j=0; j<fieldFather.length;j++){
+		 fields[fields.length+j]=fieldFather[j];
+	 }
+	 
+	 
+	 classe= objectToRemove.getClass().getSuperclass();
+	 }while(!classe.equals("Object"));
 	    //recorre todas las claves primarias de la tabla
 	    while(hayMasClavesPrimarias){   
-	    	
 	    	boolean encontrado=false;
 	    	//recoge el atributo de la clase con el mismo nombre que la clave primaria
     		Field field1=objectToRemove.getClass().getDeclaredField(primaryKeys.getString("COLUMN_NAME"));
-    		//System.out.println(field1);
+    		System.out.println(field1);
     		//guarda en el array la información de la tabla a la que pertenece el objeto a borrar
     		ArrayList<storableInDataBase>arrayWithData= getAll(tableName, objectToRemove.getClass().getName());
     		
     		//recorre el array hasta que el objecto a borrar sea igual que el del array
     		for(int i=0; i<arrayWithData.size()&&!encontrado;i++){
     			Object obj= arrayWithData.get(i);
+    			System.out.println(arrayWithData.get(i));
     			//si el atributo no es accesible lo cambia
     			if(!field1.isAccessible()){
         			field1.setAccessible(true);	
