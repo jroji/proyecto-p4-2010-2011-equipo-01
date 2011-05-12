@@ -41,6 +41,7 @@ public abstract class Piece implements Moveable{
 		return position_y;
 	}
 
+	
 	/**
 	 * Modifica las coordenadas de la pieza y actualiza el array able_to_move
 	 * @param positionX
