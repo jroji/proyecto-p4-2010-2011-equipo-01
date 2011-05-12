@@ -19,12 +19,12 @@ public class WelcomeWindow extends JFrame{
 	SelectGamePane game = new SelectGamePane();
 	JLabel fondo = new JLabel(new ImageIcon(getClass().getResource("/img/fondowelcome.jpg")));
 	
-//	public WelcomeWindow(ResourceBundle language,boolean Sound){
+	public WelcomeWindow(ResourceBundle language,boolean Sound){
 		
-	public WelcomeWindow(){
+//	public WelcomeWindow(){
 
-//		botonera= new BotoneraH(language.getString("label_accept"),language.getString("label_exit"),language.getBundle("MyResource_Fr").getString("label_newPlayer"));
-		botonera= new BotoneraH("","","");
+		botonera= new BotoneraH(language.getString("label_accept"),language.getString("label_exit"),language.getBundle("MyResource_Fr").getString("label_newPlayer"));
+//		botonera= new BotoneraH("","","");
 
 		this.setSize(1024, 728);
 		JLayeredPane layer = new JLayeredPane();
@@ -44,10 +44,4 @@ public class WelcomeWindow extends JFrame{
 		botonera.setBounds(50, 550, 600, 200);
 		this.setVisible(true);
 		}
-
-	public static void main(String args[]){
-//		WelcomeWindow z = new WelcomeWindow(MyResources_Es, false);
-		WelcomeWindow z = new WelcomeWindow();
-
-	}
 }
