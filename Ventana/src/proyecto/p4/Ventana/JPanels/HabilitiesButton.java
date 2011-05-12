@@ -6,8 +6,8 @@ import java.util.ResourceBundle;
 import javax.swing.JPanel;
 import javax.swing.SpringLayout;
 
-import proyecto.p4.habilidades.Hability;
-import proyecto.p4.piezaOldWarriorTales.PiezaOldWarriorTales;
+import proyecto.p4.PiezasOldWarriorTales.Habilidades.Hability;
+import proyecto.p4.PiezasOldWarriorTales.PiezaOldWarriorTales;
 import proyecto.p4.Ventana.Button.BotoneraH;
 import proyecto.p4.Ventana.Button.OldWarriorButton;
 

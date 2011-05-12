@@ -29,7 +29,7 @@ public class MainWindow extends JFrame implements MouseListener{
 	public MainWindow(ResourceBundle language,boolean Sound){
 		Language=language;
 		Buttons=new BotoneraV(Language.getString("label_quickGame"),Language.getString("label_customGame"),
-		Language.getString("label_options"), Language.getString("label_mapEditor"),
+		Language.getString("label_options"), "",
 	    Language.getString("label_exit"));
 		this.setSize(1024,720);
 		this.setLayout(null);

@@ -4,7 +4,7 @@ package proyecto.p4.Ventana.JPanels;
 import java.awt.Dimension;
 
 import javax.swing.*;
-import proyecto.p4.piezaOldWarriorTales.PiezaOldWarriorTales;
+import proyecto.p4.PiezasOldWarriorTales.PiezaOldWarriorTales;
 
 /**
  * 
