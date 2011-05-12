@@ -28,6 +28,16 @@ public class Casilla implements storableInDataBase{
 		PosY=0;
 		piece=null;
 	}
+	
+
+	public  Casilla (Square sq, int X, int Y, Piece pie){
+		square= sq;
+		PosX=X;
+		PosY=Y;
+		piece=pie;
+	}
+	
+	
 //	public void CasillaGrass(){
 //		square = new TerrainGrass();
 //	}
