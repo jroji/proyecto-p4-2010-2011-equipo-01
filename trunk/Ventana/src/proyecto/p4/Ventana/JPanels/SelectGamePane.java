@@ -96,7 +96,6 @@ public class SelectGamePane extends JPanel {
     }
     
     private void SelectGameComboActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
     	Juego x = (Juego) instancias.get(SelectGameCombo.getSelectedIndex());
 //    	Image.setIcon(getClass().getResource( x.getRuta() ));
     	
