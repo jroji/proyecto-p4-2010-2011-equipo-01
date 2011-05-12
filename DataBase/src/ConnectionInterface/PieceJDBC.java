@@ -9,8 +9,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import proyecto.p4.piezaOldWarriorTales.PiezaOldWarriorTales;
-
 /**
  * 
  * @author Raquel
@@ -99,7 +97,15 @@ public class PieceJDBC implements PieceDataSource {
 								Class<?> clase = Class.forName(field.getType().getCanonicalName());	
 								//es un enum
 								if(clase.isEnum()){
-									
+									boolean encontrado=false;
+									for(int i=0; i<clase.getEnumConstants().length&&!encontrado;i++)
+									{
+										if(clase.getEnumConstants()[i].toString().equalsIgnoreCase(valor))
+										{
+											field.set(instance, clase.getEnumConstants()[i]);
+											encontrado=true;
+										}
+									}
 								}
 								//no es un enum
 								else
@@ -249,8 +255,6 @@ public class PieceJDBC implements PieceDataSource {
 				claseInt=claseInt.getSuperclass();
 			}while (!claseInt.getSimpleName().equals("Object"));	
 			
-			
-		int n =0;	
 		while (resultSet.next()){
 			Object instance = clase.newInstance();
 			for (Field field : fields){
@@ -294,8 +298,6 @@ public class PieceJDBC implements PieceDataSource {
 		return c;
 	}
 	
-	
-
 	 
 	/**
 	 * @param tableName this is the name of the table in which the object will be inserted
