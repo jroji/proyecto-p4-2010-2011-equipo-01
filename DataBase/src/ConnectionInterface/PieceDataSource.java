@@ -34,7 +34,7 @@ import proyecto.p4.piezaOldWarriorTales.PiezaOldWarriorTales;
 		 * @return The number of pieces that are removed (0 or 1).
 		 * @throws Exception If there is any error during the removal of the given piece.
 		 */
-		public int remove (storableInDataBase objectToRemove) throws Exception;
+		public int remove (String tableName, storableInDataBase objectToRemove) throws Exception;
 		
 		
 		
