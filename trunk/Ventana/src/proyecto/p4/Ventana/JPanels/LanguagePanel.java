@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import javax.swing.*;
+import Languages.*;
 
 import proyect.Reflectividad;
 
@@ -24,11 +25,11 @@ public class LanguagePanel extends JPanel {
     	
         LanguageText = new javax.swing.JLabel();
         Language = new javax.swing.JComboBox();
-       	LanguageText.setText(selectedLanguage.getString("label_credits") + ":");
-        Language.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Español", "Ingles", "Frances"}));
-        Language.setSelectedIndex(0);        
-       // Language.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Español", "Ingles", "Frances"}));
-     //   Language.setSelectedIndex(0);
+        LanguageText.setText("Idioma:");
+
+        Language.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Espa�ol", "English","French"}));
+
+       	LanguageText.setText(selectedLanguage.getString("label_language") + ":");
        	cargarIdiomasEnCombobox();
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -54,15 +55,7 @@ public class LanguagePanel extends JPanel {
     }
 
 	public ResourceBundle GetSelection(){
-//    	if((String)Language.getSelectedItem().equals("Español")){
-//    		return ResourceBundle.getBundle("MyResource_Es"); 
-//    	}else if((String)Language.getSelectedItem().equals("Ingles")){
-//    		return English;
-//    	}else if((String)Language.getSelectedItem().equals("Frances")){
-//    		return French;
-//    	}
-
-		return languages.get(Language.getSelectedIndex());
+		return (ResourceBundle) Language.getSelectedItem();
     }
     public void cargarIdiomasEnCombobox(){
     	ArrayList<Object> instancias;
