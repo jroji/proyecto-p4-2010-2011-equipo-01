@@ -6,27 +6,29 @@ import java.awt.Dimension;
 import javax.swing.*;
 import proyecto.p4.piezaOldWarriorTales.PiezaOldWarriorTales;
 
+/**
+ * 
+ * Este panel nos informa de la situacion de la pieza que queramos en plena partida.
+ *
+ */
+
 public class UnitData extends JPanel {
 	
 	
-    
-    /**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
-	private JProgressBar EnergyBar;
-    private JProgressBar ExperienceBar;
-    private JProgressBar HealthBar;
+	private JProgressBar EnergyBar; //Muestra la energia restante de la pieza
+    private JProgressBar ExperienceBar; //Muestra la experiencia adquirida por la pieza
+    private JProgressBar HealthBar; //Muestra la vida restante de la pieza
     private JLabel Image;
-    private PiezaOldWarriorTales P;
+    private PiezaOldWarriorTales P; //Pieza de la que obtendremos toda la informacion
     
     
     public UnitData(PiezaOldWarriorTales p) {
-        initComponents(p);
+    	P=p;
+        initComponents();
     }
 
-    private void initComponents(PiezaOldWarriorTales p) {
-    	P=p;
+    private void initComponents() {
         Image = new JLabel();
         HealthBar = new JProgressBar();
         EnergyBar = new JProgressBar();
@@ -39,6 +41,11 @@ public class UnitData extends JPanel {
         Image.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         HealthBar.setForeground(new java.awt.Color(255, 0, 0));
+       
+        /**
+         * Iniciamos las barras con toda la información necesaria.
+         */
+        
         HealthBar.setValue(P.getLife());
         HealthBar.setString(P.getLife()+"/100");
         HealthBar.setStringPainted(true);
