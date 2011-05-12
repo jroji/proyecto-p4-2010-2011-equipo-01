@@ -1,6 +1,7 @@
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.Icon;
@@ -8,6 +9,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
+
+import proyecto.p4.pieza.Piece;
 
 import Proyecto.p4.casilla.Casilla;
 import Proyecto.p4.mapa.Board;
@@ -33,11 +36,11 @@ public class MapPanel extends JPanel implements MouseListener{
 	
 //	JLabel fondo = new JLabel(fond);
 	
-	JLabel unit01 = new JLabel(sold);
-	JLabel unit02 = new JLabel(Barbaro);
-
-//	JLabel circrojo01 = new JLabel(circrojo);
+	//	JLabel circrojo01 = new JLabel(circrojo);
 	
+	
+	ArrayList<JLabel> unitsimg01 = new ArrayList<JLabel>();
+	ArrayList<JLabel> unitsimg02 = new ArrayList<JLabel>();
 	
 	int SelectedX;
 	int SelectedY;
@@ -266,7 +269,7 @@ public class MapPanel extends JPanel implements MouseListener{
 
 
 //	public MapPanel(Board map){
-	public MapPanel(){	
+	public MapPanel(ArrayList<Piece> units01,ArrayList<Piece> units02){	
 	
 		//tab = map;
 		
@@ -284,8 +287,6 @@ public class MapPanel extends JPanel implements MouseListener{
 		//Añade al layerPane las casillas del mapa.
 		anyadirArray(mapa);
 		layer.add(suelo, new Integer(-1));
-		layer.add(unit01, new Integer(13));
-		layer.add(unit02, new Integer(13));
 
 	//	layer.add(circrojo01, new Integer(13));
 		
@@ -293,8 +294,8 @@ public class MapPanel extends JPanel implements MouseListener{
 		int y = 50;
 		colocarMapa(mapa,x,y);
 		suelo.setBounds(70, 450, 1500, 800);
-		unit01.setBounds(520, 150, sold.getIconWidth(), sold.getIconHeight());
-		unit02.setBounds(520, 150, sold.getIconWidth(), sold.getIconHeight());
+//		unit01.setBounds(520, 150, sold.getIconWidth(), sold.getIconHeight());
+//		unit02.setBounds(520, 150, sold.getIconWidth(), sold.getIconHeight());
 
 	//	circrojo01.setBounds(unit01.getX()+3, unit01.getY()+30, sold.getIconWidth(), sold.getIconHeight());
 	}
@@ -331,6 +332,9 @@ public class MapPanel extends JPanel implements MouseListener{
 			iniy = y;}
 	}
 	
+//	public void anyadirUnidades(ArrayList<Piece> unidadesjug1, ArrayList<Piece> unidadesjug2 ){
+//		for(int i = 0;i<unidadesjug1.size();i++)
+//	}
 	/**Coloca los JLabel del array en el layerpane  
 	 * Decide además en que capa del layer se introduciran los elementos
 	 */
@@ -393,8 +397,8 @@ public class MapPanel extends JPanel implements MouseListener{
 			}
 		}
 		}
-		layer.setLayer(unit01, layer.getLayer(x)+2);
-		unit01.setLocation(x.getX(), x.getY()-50);
+//		layer.setLayer(unit01, layer.getLayer(x)+2);
+//		unit01.setLocation(x.getX(), x.getY()-50);
 	}
 	
 	@Override

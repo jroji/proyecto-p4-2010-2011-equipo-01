@@ -33,8 +33,8 @@ public class GameWindow extends JFrame implements MouseListener
 	JLabel imgLIFE = new JLabel(new ImageIcon(getClass().getResource("/img/vida.png"))) ;
 	JLabel imgMANA = new JLabel(new ImageIcon(getClass().getResource("/img/energia.png"))) ;
 	JLabel imgPerg = new JLabel(new ImageIcon(getClass().getResource("/img/PERGAMINO.png"))) ;
-//	ArrayList<Piece> piezasJugador1 = new ArrayList<Piece>();
-//	ArrayList<Piece> piezasJugador2 = new ArrayList<Piece>();
+	ArrayList<Piece> piezasJugador1 = new ArrayList<Piece>();
+	ArrayList<Piece> piezasJugador2 = new ArrayList<Piece>();
 	JLabel AttackBotton = new JLabel(new ImageIcon(getClass().getResource("/img/botonatacar.png")));
 
 	
@@ -46,8 +46,8 @@ public class GameWindow extends JFrame implements MouseListener
 		this.setSize(1225,720);
 		unitData = new UnitData(new Killer());
 		habilitiesButtons = new HabilitiesButton(new Arquero());
-		gamePanel = new GamePanel();
-		JList units = new JList();
+		gamePanel = new GamePanel(piezasJugador1, piezasJugador2);
+		JList units = new JList(piezasJugador1.toArray());
 		this.setLayout(null);
 		layer.setBounds(0,0,this.getWidth(),this.getHeight());
 
