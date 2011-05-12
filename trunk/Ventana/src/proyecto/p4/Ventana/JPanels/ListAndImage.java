@@ -10,7 +10,7 @@ import javax.swing.JScrollPane;
 
 import proyect.Reflectividad;
 import proyecto.p4.Ventana.Button.OldWarriorButton;
-import proyecto.p4.piezaOldWarriorTales.PiezaOldWarriorTales;
+import proyecto.p4.PiezasOldWarriorTales.PiezaOldWarriorTales;
 
 
 /**

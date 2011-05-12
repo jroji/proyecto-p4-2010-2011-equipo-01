@@ -22,7 +22,7 @@ public class WelcomeWindow extends JFrame{
 	
 	public WelcomeWindow(ResourceBundle language,boolean Sound){
 
-		botonera= new BotoneraH(language.getString("label_accept"),language.getString("label_exit"),language.getBundle("MyResource_Fr").getString("label_newPlayer"));
+		botonera= new BotoneraH(language.getString("label_accept"),language.getString("label_exit"),language.getString("label_newPlayer"));
 
 
 		this.setSize(1024, 728);
@@ -42,7 +42,22 @@ public class WelcomeWindow extends JFrame{
 		nicks.setBounds(500, 380, 500, 500);
 		botonera.setBounds(50, 550, 600, 200);
 		this.setVisible(true);
+		    while(true){
+		   		if(botonera.getButtonP1()){
+		   			botonera.setButtonP1(false);
+		   			this.dispose();
+					new MainWindow(language,Sound);
+				}else if(botonera.getButtonP2()){
+					botonera.setButtonP2(false);
+					this.dispose();
+		       }
+				else if(botonera.getButtonP3()){
+					botonera.setButtonP3(false);
+					new NewPlayerWindow();
+
 		}
+		}
+	}
 	
 	public static void main(String [] args){
 		ResourceBundle language = new MyResources_Es();

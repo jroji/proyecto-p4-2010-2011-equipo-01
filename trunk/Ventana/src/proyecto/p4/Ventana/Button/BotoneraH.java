@@ -77,5 +77,14 @@ public class BotoneraH extends JPanel {
 	public boolean getButtonP3() {
 		return oldWarriorButton3.isPulsed();
 	}
+	public void setButtonP1(boolean cond) {
+		oldWarriorButton1.setBP(cond);
+	}
+	public void setButtonP2(boolean cond) {
+		oldWarriorButton1.setBP(cond);
+	}
+	public void setButtonP3(boolean cond) {
+		oldWarriorButton1.setBP(cond);
+	}
 
 }

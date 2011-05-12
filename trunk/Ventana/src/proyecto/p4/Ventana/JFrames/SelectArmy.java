@@ -6,7 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JTable;
 
 import proyecto.p4.Ventana.JPanels.ListAndImage;
-import proyecto.p4.piezaOldWarriorTales.PiezaOldWarriorTales;
+import proyecto.p4.PiezasOldWarriorTales.PiezaOldWarriorTales;
 import proyecto.p4.piezaOldWarriorTales.Unidades.Arquero;
 import proyecto.p4.piezaOldWarriorTales.Unidades.Killer;
 import proyecto.p4.piezaOldWarriorTales.Unidades.Magician;
@@ -38,6 +38,6 @@ public class SelectArmy extends JFrame{
 	}
 	public static void main(String[] args)
 	{
-		SelectArmy x = new SelectArmy(null, rootPaneCheckingEnabled);
+		SelectArmy x = new SelectArmy(null, false);
 	}
 }
