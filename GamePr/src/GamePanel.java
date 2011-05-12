@@ -10,6 +10,8 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
+import Proyecto.p4.mapa.Board;
+
 import proyecto.p4.pieza.Piece;
 
 
@@ -35,7 +37,8 @@ public class GamePanel extends JPanel implements MouseListener{
 	 public GamePanel(ArrayList<Piece> PlayerUnits1, ArrayList<Piece> PlayerUnits2){
 		setSize(800,575);
 		//mapPanel = new MapPanel(map);
-		mapPanel = new MapPanel(PlayerUnits1, PlayerUnits2);
+		Board board = new Board();
+		mapPanel = new MapPanel(board,PlayerUnits1, PlayerUnits2);
 		setLayout(null);
 		this.add(layer);
 		
