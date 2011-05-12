@@ -12,7 +12,6 @@ import Proyecto.p4.casilla.Casilla;
  * 
  */
 public abstract class Piece implements Moveable{
-	public enum Colours {blanco, negro};
 	private int position_x;
 	private int position_y;
 	
