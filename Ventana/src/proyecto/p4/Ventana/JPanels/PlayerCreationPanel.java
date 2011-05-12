@@ -10,28 +10,32 @@ import java.util.ResourceBundle;
 import javax.swing.*;
 import proyecto.p4.Ventana.Button.OldWarriorButton;
 
+/**
+ * 
+ * Este panel nos va a permitir crear jugadores dejandoles seleccionar un avatar 
+ * de los que hemos creado para la ocasion.
+ *
+ */
+
 
 public class PlayerCreationPanel extends javax.swing.JPanel implements ActionListener {
 
 
-    /**
-	 * 
-	 */
+
 	private static final long serialVersionUID = -3650563557524546815L;
-	private OldWarriorButton AcceptButton;
-    private JLabel Avatar;
-    private JComboBox AvatarSelection;
-    private JLabel Nick;
-    private JTextField NickSelection;
+	private OldWarriorButton AcceptButton;  //Boton para confirmar la creacion
+    private JLabel Avatar; //Label donde pondremos la imagen del avatar
+    private JComboBox AvatarSelection; //Aqui iran los diferentes avatares que tengamos.
+    private JLabel Nick; 
+    private JTextField NickSelection; //Campo para introducir el nick deseado por el usuario
     private ResourceBundle Language;
-    private String[] NombreAvatares = new String[10];
+    private String[] NombreAvatares = new String[10]; //String donde guardaremos los nombre de los avatares
 
-   // public PlayerCreationPanel(ResoruceBundle language) {
-        public PlayerCreationPanel() {
+  public PlayerCreationPanel(ResourceBundle language) {
 
-  //      Language = language;
+        Language = language;
         for(int i = 0;i<NombreAvatares.length;i++)
-        	NombreAvatares[i] = "avatar"+(i+1)+".jpg";
+        	NombreAvatares[i] = "avatar"+(i+1)+".jpg"; //Cargamos en un array los nombres de los avatares.
         initComponents();
         }
 
@@ -39,10 +43,10 @@ public class PlayerCreationPanel extends javax.swing.JPanel implements ActionLis
     private void initComponents() {
         Nick = new JLabel();
         NickSelection = new JTextField();
-        AvatarSelection = new JComboBox(NombreAvatares);
+        AvatarSelection = new JComboBox(NombreAvatares); //Cargamos los avatares en el JComboBox
         AvatarSelection.setSelectedIndex(0);
-        Avatar = new JLabel(new ImageIcon(getClass().getResource("/img/"+(String)AvatarSelection.getSelectedItem())));
-        AcceptButton = new OldWarriorButton("Aceptar");
+        Avatar = new JLabel(new ImageIcon(getClass().getResource("/img/"+(String)AvatarSelection.getSelectedItem()))); //Cargamos en el label la imagen del avatar que ha seleccionado.
+        AcceptButton = new OldWarriorButton(Language.getString("label_accept"));
         
         Nick.setText("Nick: ");
 
@@ -52,7 +56,6 @@ public class PlayerCreationPanel extends javax.swing.JPanel implements ActionLis
         Avatar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         AvatarSelection.addActionListener(this);
-     //   AcceptButton.setText(Language.getString("label_accept"));
         
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -104,10 +107,13 @@ public class PlayerCreationPanel extends javax.swing.JPanel implements ActionLis
 	}
 
 
-	@Override
+	
+	/**
+	 * Metodo que nos permite que el label de la imagen se modifique cuando cambiamos la opcion del JComboBox
+	 */
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if(e.getSource() == AvatarSelection)
-			Avatar.setIcon(new ImageIcon(getClass().getResource("/img/"+(String)AvatarSelection.getSelectedItem())));
+			Avatar.setIcon(new ImageIcon(getClass().getResource("/img/"+(String)AvatarSelection.getSelectedItem()))); 
 	}
 }
