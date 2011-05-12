@@ -1,6 +1,6 @@
 package proyecto.p4.TerrenosOldWarriorTales;
 
-import proyecto.p4.Mapa.Square;
+import proyecto.p4.Mapa.*;
 
 public abstract class Terrain extends Square {
 	
