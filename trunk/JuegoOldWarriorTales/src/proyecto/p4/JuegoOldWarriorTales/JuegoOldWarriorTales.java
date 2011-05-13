@@ -90,9 +90,9 @@ public int deleteFromDataBase() {
 	
 	try {
 		p = new PieceJDBC();
-		p.remove(name, this);
-		p.remove(name, (storableInDataBase) this.getJugador1());
-		p.remove(name, (storableInDataBase) this.getJugador2());
+		p.remove("JuegoOldWarriorTales", this);
+		p.remove("Jugador", (storableInDataBase) this.getJugador1());
+		p.remove("Jugador", (storableInDataBase) this.getJugador2());
 		//tablero es un atributo de juego de la clase mapa/board que es un array de casillas
 		p.remove(name, (storableInDataBase)this.getTablero());
 	} catch (ClassNotFoundException e) {
