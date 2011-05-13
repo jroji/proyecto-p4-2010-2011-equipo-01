@@ -1,5 +1,7 @@
 package proyecto.p4.piezaOldWarriorTales.Unidades;
 
+import javax.swing.ImageIcon;
+
 import proyecto.p4.PiezasOldWarriorTales.PiezaOldWarriorTales;
 import proyecto.p4.PiezasOldWarriorTales.Habilidades.Hability;
 import proyecto.p4.habilidades.*;
@@ -15,6 +17,8 @@ public class Monk extends PiezaOldWarriorTales{
 			blindness=false;
 			poisson=false;
 			counterattack=false;
+
+			this.setImagen(new ImageIcon(getClass().getResource("/img/monje.gif")));
 		}
 		
 		public int takinglife(PiezaOldWarriorTales piezaContraria){
