@@ -90,11 +90,11 @@ public int deleteFromDataBase() {
 	
 	try {
 		p = new PieceJDBC();
-		p.remove(this);
-		p.remove((storableInDataBase) this.getJugador1());
-		p.remove((storableInDataBase) this.getJugador2());
+		p.remove(name, this);
+		p.remove(name, (storableInDataBase) this.getJugador1());
+		p.remove(name, (storableInDataBase) this.getJugador2());
 		//tablero es un atributo de juego de la clase mapa/board que es un array de casillas
-		p.remove((storableInDataBase)this.getTablero());
+		p.remove(name, (storableInDataBase)this.getTablero());
 	} catch (ClassNotFoundException e) {
 		JOptionPane.showMessageDialog(null,"Error al sobreescribir","Error",JOptionPane.OK_OPTION,null);  
 
