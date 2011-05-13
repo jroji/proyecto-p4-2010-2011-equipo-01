@@ -10,9 +10,10 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
-import Proyecto.p4.mapa.Board;
+import proyecto.p4.Mapa.Board;
 
-import proyecto.p4.pieza.Piece;
+import proyecto.p4.Piece.Piece;
+import proyecto.p4.PiezasOldWarriorTales.PiezaOldWarriorTales;
 
 
 //public class GamePanel extends JFrame{
@@ -33,12 +34,13 @@ public class GamePanel extends JPanel implements MouseListener{
 
 	 JLayeredPane layer = new JLayeredPane();
 	
-//	public GamePanel(Board map, ArrayList<Piece> PlayerUnits1, ArrayList<Piece> PlayerUnits2){
-	 public GamePanel(ArrayList<Piece> PlayerUnits1, ArrayList<Piece> PlayerUnits2){
+	public GamePanel(Board map, ArrayList<PiezaOldWarriorTales> piezasJugador1, ArrayList<PiezaOldWarriorTales> piezasJugador2){
+//public GamePanel(ArrayList<Piece> PlayerUnits1, ArrayList<Piece> PlayerUn
+		
 		setSize(800,575);
 		//mapPanel = new MapPanel(map);
-		Board board = new Board();
-		mapPanel = new MapPanel(board,PlayerUnits1, PlayerUnits2);
+		map = new Board();
+		mapPanel = new MapPanel(map,piezasJugador1, piezasJugador2);
 		setLayout(null);
 		this.add(layer);
 		

@@ -10,10 +10,11 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
-import proyecto.p4.pieza.Piece;
 
-import Proyecto.p4.casilla.Casilla;
-import Proyecto.p4.mapa.Board;
+import proyecto.p4.Mapa.Casilla;
+import proyecto.p4.Mapa.Board;
+import proyecto.p4.Piece.Piece;
+import proyecto.p4.PiezasOldWarriorTales.PiezaOldWarriorTales;
 
 
 /**
@@ -49,14 +50,14 @@ public class MapPanel extends JPanel implements MouseListener{
 	
 	JLabel viejo = new JLabel(img);
 	
-	JLabel[][] mapa = new JLabel[13][13];
+	JLabel[][] mapa = new JLabel[14][13];
 	
 	
 	JLayeredPane layer = new JLayeredPane();
 
 
 //	public MapPanel(Board map){
-	public MapPanel(Board map, ArrayList<Piece> units01,ArrayList<Piece> units02){	
+	public MapPanel(Board map, ArrayList<PiezaOldWarriorTales> piezasJugador1,ArrayList<PiezaOldWarriorTales> piezasJugador2){	
 	
 		//tab = map;
 		iniMap(map, mapa);
@@ -74,6 +75,12 @@ public class MapPanel extends JPanel implements MouseListener{
 		//Añade al layerPane las casillas del mapa.
 		anyadirArray(mapa);
 		layer.add(suelo, new Integer(-1));
+	
+
+		anyadirUnidades(piezasJugador1, piezasJugador2, unitsimg01,unitsimg02);
+		
+		
+		
 
 	//	layer.add(circrojo01, new Integer(13));
 		
@@ -119,9 +126,25 @@ public class MapPanel extends JPanel implements MouseListener{
 			iniy = y;}
 	}
 	
-//	public void anyadirUnidades(ArrayList<Piece> unidadesjug1, ArrayList<Piece> unidadesjug2 ){
-//		for(int i = 0;i<unidadesjug1.size();i++)
-//	}
+	public void anyadirUnidades(ArrayList<PiezaOldWarriorTales> unidadesjug1, ArrayList<PiezaOldWarriorTales> unidadesjug2, ArrayList<JLabel> labels, ArrayList<JLabel> labels2){
+	
+		for(int i = 0;i<unidadesjug1.size();i++){
+			labels.add(new JLabel(unidadesjug1.get(i).getImagen()));
+			int x = unidadesjug1.get(i).getPosition_x();
+			int y = unidadesjug1.get(i).getPosition_y();
+			System.out.println(mapa[x][y].getX());
+			labels.get(i).setBounds(mapa[x][y].getX(), mapa[x][y].getY(), 70, 125);
+			layer.add(labels.get(i), new Integer(layer.getLayer(mapa[x][y])));
+		}
+		for(int i = 0;i<unidadesjug2.size();i++){
+			labels2.add(new JLabel(unidadesjug2.get(i).getImagen()));
+			int x = unidadesjug2.get(i).getPosition_x();
+			int y = unidadesjug2.get(i).getPosition_y();
+			labels.get(i).setBounds(mapa[x][y].getX(), mapa[x][y].getY(), 70, 125);
+			layer.add(labels2.get(i), new Integer(layer.getLayer(mapa[x][y])));
+
+		}
+	}
 	/**Coloca los JLabel del array en el layerpane  
 	 * Decide además en que capa del layer se introduciran los elementos
 	 */
