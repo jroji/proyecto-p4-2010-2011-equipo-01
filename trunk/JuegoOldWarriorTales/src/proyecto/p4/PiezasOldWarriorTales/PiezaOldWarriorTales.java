@@ -25,6 +25,7 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable, 
 	protected int energy;
 	protected int probability;
 
+	
 	//se necesitara el tablero para acceder a las casillas y piezas de el
 	protected Board board;
 	
@@ -293,7 +294,7 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable, 
 			try {
 				
 				p = new PieceJDBC();
-				valueToReturn+=p.remove(this);
+				valueToReturn+=p.remove(null, this);
 				
 				
 			} catch (ClassNotFoundException e) {
