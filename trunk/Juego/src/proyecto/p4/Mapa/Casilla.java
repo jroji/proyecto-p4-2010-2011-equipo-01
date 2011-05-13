@@ -112,7 +112,7 @@ public class Casilla implements storableInDataBase{
 			try {
 				
 				p = new PieceJDBC();
-				valueToReturn+=p.remove(this);
+				valueToReturn+=p.remove(null, this);
 				//valueToReturn+=p.remove((storableInDataBase) this.getPiece());
 				
 			} catch (ClassNotFoundException e) {
