@@ -58,7 +58,7 @@ public int deleteFromDataBase() {
 		try {
 			
 			p = new PieceJDBC();
-			valueToReturn+=p.remove(this);
+			valueToReturn+=p.remove(Nick, this);
 			
 			
 		} catch (ClassNotFoundException e) {
