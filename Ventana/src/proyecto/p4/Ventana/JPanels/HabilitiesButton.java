@@ -1,6 +1,7 @@
 package proyecto.p4.Ventana.JPanels;
 
 
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import javax.swing.JPanel;
@@ -37,9 +38,7 @@ public class HabilitiesButton extends JPanel{
 		Buttons[0] = Hability1;
 		Buttons[1] = Hability2;
 		Buttons[2] = Hability3;
-		Buttons[3] = Hability4;
-		int rows=2;
-		
+		Buttons[3] = Hability4;		
 		this.setLayout(new SpringLayout());
 		for(int i = 0; i<Buttons.length;i++){
 	//		Buttons[i].setText(Language.getString(Habilities[i]));	
@@ -57,6 +56,22 @@ public class HabilitiesButton extends JPanel{
 		
 
 		}	
+	/**
+	 * Realiza una operación de actualización sobre los botones a partir de una pieza
+	 * 
+	 */
+	public void update(PiezaOldWarriorTales piece){
+		this.Habilities=piece.getHabilities();
+		for(int i = 0; i<Buttons.length;i++){
+			//		Buttons[i].setText(Language.getString(Habilities[i]));	
+				try{
+					Buttons[i].setText(Habilities[i].getName());
+				}
+				catch(Exception e){	
+				}	
+		}
+		
+	}
 		
 		
 	}
