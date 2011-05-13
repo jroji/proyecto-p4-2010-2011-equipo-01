@@ -4,12 +4,15 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import javax.swing.*;
-import Languages.*;
 
 import proyect.Reflectividad;
 
 public class LanguagePanel extends JPanel {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JComboBox Language;
     private JLabel LanguageText;
     private ResourceBundle selectedLanguage;
@@ -17,8 +20,9 @@ public class LanguagePanel extends JPanel {
 	
     public LanguagePanel(ResourceBundle language) {
     	selectedLanguage=language;
+    	languages=new ArrayList<ResourceBundle>();
         initComponents();
-        languages=new ArrayList<ResourceBundle>();
+        
     }
 
     private void initComponents() {
@@ -60,9 +64,11 @@ public class LanguagePanel extends JPanel {
     public void cargarIdiomasEnCombobox(){
     	ArrayList<Object> instancias;
     	ArrayList<Object> nombres= new ArrayList<Object>(); 
-    	instancias=Reflectividad.instanciarDireccion("LanguageFile");
+    	instancias=Reflectividad.instanciarDireccion("name");
+    	System.out.println(instancias.size());
     	for (Object o:instancias){
     		if (o instanceof ResourceBundle){
+    			System.out.println(o);
     			languages.add((ResourceBundle) o);
     			nombres.add(o);
     		}
