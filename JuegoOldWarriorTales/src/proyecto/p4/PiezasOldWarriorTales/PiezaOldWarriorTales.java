@@ -294,7 +294,7 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable, 
 			try {
 				
 				p = new PieceJDBC();
-				valueToReturn+=p.remove(null, this);
+				valueToReturn+=p.remove("PiezaOldWarriorTales", this);
 				
 				
 			} catch (ClassNotFoundException e) {
