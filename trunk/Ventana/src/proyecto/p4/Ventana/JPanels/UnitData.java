@@ -91,4 +91,12 @@ public class UnitData extends JPanel {
             .addGap(26, 26, 26))))
         );
     }
+    public void update(PiezaOldWarriorTales piece){
+    	this.EnergyBar.setValue(piece.getEnergy());
+    	this.EnergyBar.setString(piece.getEnergy()+"");
+    	this.ExperienceBar.setValue(piece.getExperience());
+    	this.ExperienceBar.setString(piece.getExperience()+"/100");
+    	this.HealthBar.setValue(piece.getLife());
+    	this.HealthBar.setString(piece.getLife()+"/100");
+    }
 }
