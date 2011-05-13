@@ -1,5 +1,7 @@
 package proyecto.p4.piezaOldWarriorTales.Unidades;
 
+import javax.swing.ImageIcon;
+
 import proyecto.p4.PiezasOldWarriorTales.PiezaOldWarriorTales;
 
 
@@ -13,6 +15,8 @@ public class knight extends PiezaOldWarriorTales {
 			blindness=false;
 			poisson=false;
 			counterattack=false;
+
+			this.setImagen(new ImageIcon(getClass().getResource("/img/caballero.gif")));
 		}
 
 		@Override

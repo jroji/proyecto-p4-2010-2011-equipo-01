@@ -1,5 +1,7 @@
 package proyecto.p4.piezaOldWarriorTales.Unidades;
 
+import javax.swing.ImageIcon;
+
 import proyecto.p4.PiezasOldWarriorTales.PiezaOldWarriorTales;
 import proyecto.p4.PiezasOldWarriorTales.Habilidades.Hability;
 import proyecto.p4.habilidades.Cegar;
@@ -16,6 +18,7 @@ public class Arquero extends PiezaOldWarriorTales{
 	poisson=false;
 	counterattack=true;
 
+	this.setImagen(new ImageIcon(getClass().getResource("/img/arquero.gif")));
 
 	}
 
