@@ -32,7 +32,7 @@ public class NickPanel extends javax.swing.JPanel {
         setPreferredSize(new Dimension(500, 260));
 
         Nick1.setText("Nick 1");
-        Nick2.setText("Nick 1");
+        Nick2.setText("Nick 2");
 
         nicktext.setText("");
 
