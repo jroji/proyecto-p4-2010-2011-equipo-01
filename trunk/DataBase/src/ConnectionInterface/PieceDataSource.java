@@ -1,11 +1,8 @@
 package ConnectionInterface;
 
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Collection;
 
-import proyecto.p4.piezaOldWarriorTales.*;
 
 	
 	public interface PieceDataSource{
@@ -36,7 +33,6 @@ import proyecto.p4.piezaOldWarriorTales.*;
 		 */
 		public int remove (String tableName, storableInDataBase objectToRemove) throws Exception;
 		
-		//problemas en casilla,jugador,piezaoldwarriortales, juegooldwarriortales   -  añadido string para eliminar error
 		
 		
 
