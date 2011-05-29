@@ -1,8 +1,10 @@
 package proyecto.p4.Ventana.JPanels;
 
+import java.awt.Image;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 import proyect.Reflectividad;
@@ -79,7 +81,7 @@ public class SelectGamePane extends JPanel {
                     .addComponent(ImgPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
-
+        cargarJuegos();
     }
 
 
@@ -97,6 +99,7 @@ public class SelectGamePane extends JPanel {
     
     private void SelectGameComboActionPerformed(java.awt.event.ActionEvent evt) {
     	Juego x = (Juego) instancias.get(SelectGameCombo.getSelectedIndex());
+    	Image.setIcon(new ImageIcon(x.getRuta()));
 //    	Image.setIcon(getClass().getResource( x.getRuta() ));
     	
 }
