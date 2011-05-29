@@ -24,22 +24,18 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable, 
 	protected int life;
 	protected int energy;
 	protected int probability;
-
-	
+	//flags que indican si la unidad ha sido movida o a atacado en este turno
+	private boolean hasBeenMoved;
+	private boolean hasAttacked;
 	//se necesitara el tablero para acceder a las casillas y piezas de el
 	protected Board board;
-	
 	protected Orientations orientacion;
-	
 	//indica si la unidad está ciega o no.
 	protected boolean blindness;
-
 	//indica si la unidad está envenenada o no.
 	protected boolean poisson;
-	
 	//indica si puede contraatacar o no
 	protected boolean counterattack;
-	
 	//array de habilidades
 	protected Hability []habilities;
 
@@ -50,6 +46,8 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable, 
 		experience=0;
 		life=100;
 		energy=100;
+		hasAttacked=false;
+		hasBeenMoved=false;
 		cargarHabilidades();
 	}
 	public void setOrientation(Orientations orientacion) {
@@ -145,13 +143,20 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable, 
 	 * @throws Exception si no hay una pieza en la posicion indicada
 	 */
 	public boolean attack (int posX, int posY) throws Exception{
+		//flag de attack a true
+		hasAttacked=true;
+		//extraer de board la pieza a atacar en base a las coordenadas recibidas como parametro
 		PiezaOldWarriorTales piezaAtacada=(PiezaOldWarriorTales) board.getPiece(posX, posY);
+		
+		//comprobar si hay pieza en las coordenadas indicadas
 		if (piezaAtacada==null)
 			throw new Exception("no hay una pieza en las coordenadas indicadas");
+		
 		//validar que la pieza este en una casilla cercana
 		int x= Math.abs(piezaAtacada.getPosition_x()-this.getPosition_x());
 		int y= Math.abs(piezaAtacada.getPosition_y()-this.getPosition_y());
 		if(x<2&&y<2){
+			//comprobar si hacierta en el ataque (probabilidades)
 			if (canAttack()){
 				takingLife (piezaAtacada);
 				return true;
@@ -191,17 +196,26 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable, 
  	 * @see proyecto.p4.pieza.Piece#move(Proyecto.p4.casilla.Casilla, Proyecto.p4.casilla.Casilla)
  	 */
  	public void move (int x_a_mover, int y_a_mover) throws Exception{
+ 		//flag de movimiento a true
+ 		hasBeenMoved=true;
+ 		//extraccion de la casilla actual y la casilla a la que se va a mover
  		Casilla casillaActual=board.getCasilla(this.getPosition_x(), this.getPosition_y());
  		Casilla casillaAMover= board.getCasilla(x_a_mover, y_a_mover);
+ 		
+ 		//mover de la casilla actual a la casilla a mover
  		super.move(casillaActual, casillaAMover);
+ 		
  		//devolvemos el valor inicial a probabilidad
  		restartProbability();
+ 		
  		//actualizamos el valor probabilidad en funcion de la nueva casilla
  		updateProbability();
+ 		
  		//actualiza la orientacion
  		actualizarOrientacion(casillaActual.getPosX(), casillaActual.getPosY(),
  				x_a_mover, y_a_mover);
  	}
+ 	
  	public void actualizarOrientacion (int x_actual, int y_actual,int x_siguiente, int y_siguiente){
  		int x= x_siguiente-x_actual;
  		int y= y_siguiente-y_actual;
@@ -280,7 +294,11 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable, 
 		if (this.isPoissoned()){
 			this.life-=10;
 		}
+		//devolver a falso los flag de ataque y movimiento
+		hasAttacked=false;
+		hasBeenMoved=false;
 	}
+	
 	public String toString (){
 		return this.getClass().getSimpleName();
 	}
@@ -312,9 +330,6 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable, 
 			finally{
 				return valueToReturn;
 			}
-			
-		
-		
 	}
 
 	@Override
@@ -364,6 +379,7 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable, 
 
 	return array;
 	}
+	
 	@Override
 	public ArrayList<storableInDataBase> takeOutFromDataBase() {
 		PieceJDBC p;
