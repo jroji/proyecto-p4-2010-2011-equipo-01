@@ -15,11 +15,13 @@ import proyecto.p4.Mapa.Casilla;
 public abstract class Piece implements Moveable{
 	private int position_x;
 	private int position_y;
-	
+	private ImageIcon imagen;	
 	//color que indica el bando al que pertenece la pieza
 	private Colours color;
-	ImageIcon imagen;
+	//array bidimensional booleano que indica las casillas a las que se puede mover
+	private boolean [][] able_to_move;
 	
+	//METODOS:
 	public ImageIcon getImagen() {
 		return imagen;
 	}
@@ -27,12 +29,6 @@ public abstract class Piece implements Moveable{
 	public void setImagen(ImageIcon imagen) {
 		this.imagen = imagen;
 	}
-
-	//array bidimensional booleano que indica las casillas a las que se puede mover
-	private boolean [][] able_to_move;
-	
-	
-	
 	
 	public Colours getColor() {
 		return color;

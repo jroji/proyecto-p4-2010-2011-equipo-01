@@ -15,7 +15,7 @@ public class Board implements storableInDataBase
 	public Board (){
 		map= new Casilla[14][13];
 		for(int i = 0;i<map.length;i++)
-			for(int j = 0; j<map[i].length;j++){		
+			for(int j = 0; j<map[i].length;j++){	
 				map[i][j] = new Casilla(new TerrainGrass(),i,j,null);
 				}
 		}
