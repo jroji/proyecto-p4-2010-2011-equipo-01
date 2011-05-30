@@ -21,8 +21,8 @@ public class OldWarriorButton extends javax.swing.JPanel implements MouseListene
     public JInternalFrame internalFrame;
     public JLabel Text;
     private JLayeredPane layeredpane;
-    private String ruta = "D:\\BottonBackground.gif";
-    private String rutapulsado = "D:\\BottonBackgroundPulsado.gif";
+    private String ruta = "src/img/BottonBackground.gif";
+    private String rutapulsado = "src/img/BottonBackgroundPulsado.gif";
     private boolean BP;
 
     /** Creates new form OldWarriorButton */
@@ -103,20 +103,18 @@ public class OldWarriorButton extends javax.swing.JPanel implements MouseListene
 
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
-		// TODO Auto-generated method stub
 		
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if(e.getSource()== OldWarriorButton)
-		BP=true;
+			BP=true;
 	}
 	
 	public boolean isPulsed(){
 		return BP;
 	}
-	
 
 	public boolean isBP() {
 		return BP;
@@ -135,5 +133,11 @@ public class OldWarriorButton extends javax.swing.JPanel implements MouseListene
 	public String getText() {
 		return Text.getText();
 	}
+
+
+	public JButton getOldWarriorButton() {
+		return OldWarriorButton;
+	}
+	
 
 }
