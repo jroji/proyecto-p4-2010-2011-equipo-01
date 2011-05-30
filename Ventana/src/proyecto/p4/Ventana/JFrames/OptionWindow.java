@@ -34,7 +34,7 @@ public class OptionWindow extends javax.swing.JFrame // implements MouseListener
     private void initComponents(boolean Sound){
     	
     	//CORREGIR!!!!!!
-    	Buttons = new BotoneraV("","credits",Language.getString("label_exit"),"","");
+    	Buttons = new BotoneraV("",Language.getString("label_credits"),Language.getString("label_exit"),"","");
 
 
         soundPanel1 = new SoundPanel(Language);
