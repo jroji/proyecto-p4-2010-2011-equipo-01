@@ -2,6 +2,8 @@ package proyecto.p4.Ventana.JPanels;
 
 
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -42,10 +44,11 @@ public class HabilitiesButton extends JPanel implements ActionListener{
 				Buttons[i].setVisible(false);
 			}
 		
-	Buttons[0].addActionListener(this);
-	Buttons[1].addActionListener(this);
-	Buttons[2].addActionListener(this);
-	Buttons[3].addActionListener(this);
+	Buttons[0].getOldWarriorButton().addActionListener(this);
+	Buttons[1].getOldWarriorButton().addActionListener(this);
+	Buttons[2].getOldWarriorButton().addActionListener(this);
+	Buttons[3].getOldWarriorButton().addActionListener(this);
+	}
 	/**
 	 * Realiza una operaci�n de actualizaci�n sobre los botones a partir de una pieza
 	 * 
@@ -67,9 +70,14 @@ public class HabilitiesButton extends JPanel implements ActionListener{
 		}
 		this.repaint();
 		
-	}
+	}	
 
+	public Hability getSelectedHability(){
+		return Habilities[habilityPulsed];
+	}
+	@Override
 	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
 		if(e.getSource()==Buttons[0])
 			habilityPulsed=0;
 		else if(e.getSource()==Buttons[1])
@@ -78,10 +86,5 @@ public class HabilitiesButton extends JPanel implements ActionListener{
 			habilityPulsed=2;
 		else if(e.getSource()==Buttons[3]) 
 			habilityPulsed=3;
-		
-		}
-		
-
-	public Hability getSelectedHability(){
-		return Habilities[habilityPulsed];
 	}
+}
