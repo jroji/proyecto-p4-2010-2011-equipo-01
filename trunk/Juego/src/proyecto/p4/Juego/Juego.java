@@ -5,19 +5,20 @@ import proyecto.p4.Mapa.Board;
 import proyecto.p4.Jugador.Jugador;
 
 public abstract class Juego {
-	protected int identificador;
+	
 	protected Board tablero;
 	protected Jugador jugador1;
 	protected Jugador jugador2;
 	protected String name;
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 	protected String rutaImagen;
 	
-	public int getIdentificador() {
-		return identificador;
-	}
-	public void setIdentificador(int identificador) {
-		this.identificador = identificador;
-	}
+	
 	public Board getTablero() {
 		return tablero;
 	}
