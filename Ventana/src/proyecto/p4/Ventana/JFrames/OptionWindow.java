@@ -1,6 +1,8 @@
 package proyecto.p4.Ventana.JFrames;
 
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ResourceBundle;
@@ -13,7 +15,7 @@ import proyecto.p4.Ventana.JPanels.SoundPanel;
 import javax.swing.*;
 
 
-public class OptionWindow extends javax.swing.JFrame // implements MouseListener 
+public class OptionWindow extends javax.swing.JFrame implements ActionListener // implements MouseListener 
 {
 
 	private static final long serialVersionUID = 217355762236510969L;
@@ -80,25 +82,40 @@ public class OptionWindow extends javax.swing.JFrame // implements MouseListener
 
         pack();
         this.setVisible(true);
-        
-        while(true){
-       		if(Buttons.getButtonP3()){
-    			Buttons.setButtonP3(false);
-       			this.dispose();
-       			Language= languagePanel1.GetSelection();
-    			new MainWindow(Language,soundPanel1.SoundOn());
-    		}
-       		else if(Buttons.getButtonP2()){
-       			this.dispose();
-      			new CreditsPanel(Language,Sound);
-           }
-    }
+        Buttons.getBoton3().getOldWarriorButton().addActionListener(this);
+        Buttons.getBoton2().getOldWarriorButton().addActionListener(this);
+//        while(true){
+//       		if(Buttons.getButtonP3()){
+//    			Buttons.setButtonP3(false);
+//       			this.dispose();
+//       			Language= languagePanel1.GetSelection();
+//    			new MainWindow(Language,soundPanel1.SoundOn());
+//    		}
+//       		else if(Buttons.getButtonP2()){
+//       			this.dispose();
+//      			new CreditsPanel(Language,Sound);
+//           }
+//    }
     }
 
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource()==Buttons.getBoton2().getOldWarriorButton()){
+			this.dispose();
+  			new CreditsPanel(Language,Sound);
+		}else if(e.getSource()==Buttons.getBoton3().getOldWarriorButton()){
+			Buttons.setButtonP3(false);
+   			this.dispose();
+   			Language= languagePanel1.GetSelection();
+			new MainWindow(Language,soundPanel1.SoundOn());
+		}
+		
+	}
     public static void main(String args[]) {
     	MyResources_Es language = new MyResources_Es();
     	OptionWindow x = new OptionWindow(language,true);
    }
+
 
 	}
 

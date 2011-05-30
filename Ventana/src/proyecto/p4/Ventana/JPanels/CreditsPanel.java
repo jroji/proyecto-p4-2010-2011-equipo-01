@@ -2,6 +2,8 @@ package proyecto.p4.Ventana.JPanels;
 
 import java.util.ResourceBundle;
 
+import Languages.MyResources_Es;
+
 import proyecto.p4.Ventana.Button.OldWarriorButton;
 
 public class CreditsPanel extends javax.swing.JFrame {
@@ -126,3 +128,4 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     // End of variables declaration//GEN-END:variables
 
 }
+
