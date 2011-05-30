@@ -2,7 +2,7 @@ package proyecto.p4.Ventana.JPanels;
 
 import java.util.ResourceBundle;
 
-import Languages.MyResources_Es;
+import Languages.*;
 
 import proyecto.p4.Ventana.Button.OldWarriorButton;
 
