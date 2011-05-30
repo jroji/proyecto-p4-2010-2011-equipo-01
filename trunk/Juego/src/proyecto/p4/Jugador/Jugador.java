@@ -44,7 +44,7 @@ public void setAvatar(String avatar) {
 
 public ArrayList <Field> fieldsToStore() throws SecurityException, NoSuchFieldException{
 	ArrayList<Field> array= new ArrayList<Field>();
-	array.add(this.getClass().getDeclaredField("nick"));
+	array.add(this.getClass().getDeclaredField("Nick"));
 	array.add(this.getClass().getDeclaredField("avatar"));
 
 return array;
@@ -58,7 +58,7 @@ public int deleteFromDataBase() {
 		try {
 			
 			p = new PieceJDBC();
-			valueToReturn+=p.remove(Nick, this);
+			valueToReturn+=p.remove("Jugador", this);
 			
 			
 		} catch (ClassNotFoundException e) {
@@ -139,20 +139,19 @@ public ArrayList<storableInDataBase> takeOutFromDataBase() {
 public static void main (String []arts) throws Exception{
 	
 	//LA INSERT FUNCIONA,EL GETALL FUNCIONA, REMOVE FUNCIONA
-	PieceJDBC co1=new PieceJDBC();
-	String a= "C:/Users/Raquel/workspace/Juego/src/proyecto/p4/Jugador";
+	
 	Jugador c1= new Jugador ();
 	ArrayList<storableInDataBase> array=c1.takeOutFromDataBase();
-
+	
 	for (storableInDataBase sdb: array){
 		System.out.println(((Jugador)sdb).getNick());
 	}
 	
 	
-//	c1.nick="o";
-//	c1.avatar="direccionavatar";
-	//co1.insert("Jugador", c1);
-	c1.setNick("o");
+	c1.Nick="oas";
+	//c1.avatar="direccionavatar";
+	//c1.insertIntoDataBase();
+	
 	c1.deleteFromDataBase();
 	
 
