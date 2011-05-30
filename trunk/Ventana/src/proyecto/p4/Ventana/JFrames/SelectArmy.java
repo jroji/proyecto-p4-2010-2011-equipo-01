@@ -5,6 +5,8 @@ import java.util.ResourceBundle;
 import javax.swing.JFrame;
 import javax.swing.JTable;
 
+import Languages.MyResources_En;
+
 import proyecto.p4.Ventana.JPanels.ListAndImage;
 import proyecto.p4.PiezasOldWarriorTales.PiezaOldWarriorTales;
 import proyecto.p4.piezaOldWarriorTales.Unidades.Arquero;
@@ -38,6 +40,7 @@ public class SelectArmy extends JFrame{
 	}
 	public static void main(String[] args)
 	{
-		SelectArmy x = new SelectArmy(null, false);
+		MyResources_En lang=new MyResources_En();
+		SelectArmy x = new SelectArmy(lang, false);
 	}
 }

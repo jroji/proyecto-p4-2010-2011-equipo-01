@@ -1,7 +1,6 @@
 package proyecto.p4.Ventana.JFrames;
 
 import javax.swing.*;
-import proyecto.p4.Ventana.JPanels.MapCreationPanel;
 import proyecto.p4.Ventana.Button.BotoneraV;
 
 public class MapCreationWindow extends JFrame {

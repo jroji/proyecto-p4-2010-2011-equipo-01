@@ -73,10 +73,7 @@ public class WelcomeWindow extends JFrame implements ActionListener{
 		    
 	}
 	
-	public static void main(String [] args){
-		ResourceBundle language = new MyResources_En();
-		WelcomeWindow x = new WelcomeWindow(language,false);
-	}
+
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -98,5 +95,9 @@ public class WelcomeWindow extends JFrame implements ActionListener{
 			}
 		}
 		
+	}
+	public static void main(String [] args){
+		ResourceBundle language = new MyResources_En();
+		WelcomeWindow x = new WelcomeWindow(language,false);
 	}
 }

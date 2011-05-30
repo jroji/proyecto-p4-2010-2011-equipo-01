@@ -1,7 +1,11 @@
 package proyecto.p4.Ventana.JFrames;
 
+import java.util.ResourceBundle;
+
 import javax.swing.JFrame;
 import javax.swing.JTable;
+
+import Languages.MyResources_En;
 
 import proyecto.p4.Ventana.JPanels.HabilitiesButton;
 import proyecto.p4.Ventana.JPanels.ListAndImage;
@@ -13,7 +17,7 @@ public class FRAME extends JFrame {
 		this.setSize(1024, 720);
 		this.setLayout(null);
 		Arquero arq = new Arquero();
-//		ListAndImage x = new ListAndImage();
+		ListAndImage x = new ListAndImage(new MyResources_En());
 		this.add(x);
 		x.setBounds(0, 0, 280, 720);
 		this.setVisible(true);
