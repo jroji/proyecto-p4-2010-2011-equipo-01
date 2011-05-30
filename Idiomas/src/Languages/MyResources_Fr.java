@@ -12,7 +12,7 @@ public class MyResources_Fr extends ListResourceBundle{
 			{"label_sound","Son"},{"label_attack","Attaque"},{"label_defense","Défense"},{"label_movement","Mouvement"},
 			{"label_probability","Probabilité"},{"label_back","Retour"},{"AtacarYHuir","Attaque et de s'enfuir"},{"AtaqueCertero","Attaque précise"},
 			{"AtaqueEnZona","Zone d'attaque"},{"Cegar","Blind"},{"Convertir","Transformer"},{"CurarEstados","Etats Cure"},{"CurarZona","Zone Cure"},
-			{"Envenenar","Poison "},{"LanzarSuriquen","Paru le shuriken"},{"Sprint","Sprint"}
+			{"Envenenar","Poison "},{"LanzarSuriquen","Paru le shuriken"},{"Sprint","Sprint"},{"Yes","Si"},{"No","No"}
 	
 	};
 	
