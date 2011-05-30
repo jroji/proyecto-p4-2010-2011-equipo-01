@@ -2,7 +2,6 @@ package proyecto.p4.Mapa;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
-
 import proyecto.p4.Piece.Piece;
 import proyecto.p4.Tipo.OldWarriorTales.TerrainGrass;
 import ConnectionInterface.storableInDataBase;
