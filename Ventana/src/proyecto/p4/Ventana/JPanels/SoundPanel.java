@@ -36,10 +36,10 @@
 
 
         buttonGroup1.add(YesButton);
-        YesButton.setText("Si");
+        YesButton.setText(Language.getString("Yes"));
 
         buttonGroup1.add(NoButton);
-        NoButton.setText("No");
+        NoButton.setText(Language.getString("No"));
         
         //buttonGroup1.setSelected((ButtonModel) YesButton, true);
         
