@@ -68,7 +68,7 @@ public class PieceJDBC implements PieceDataSource {
 	 * @throws Exception When the type of the field is not one of the next: String, Int, Boolean, Char, Double.
 	 */
 	public void insertFiels(Object instance, Field field, String valor ) throws Exception{
-		System.out.println(field.getName());
+		
 		try{
 			field.set(instance, valor);
 		}catch(Exception e){
@@ -83,7 +83,7 @@ public class PieceJDBC implements PieceDataSource {
 					else
 						if(valor.equals("N"))
 							valor="false";
-					System.out.println(valor);
+					
 					field.set(instance,Boolean.parseBoolean(valor));
 				}catch(Exception exc){
 					try{
@@ -174,7 +174,7 @@ public class PieceJDBC implements PieceDataSource {
 								}
 							
 							}catch(Exception except){
-								System.out.println(field.getName()+"//"+field.getType());
+								//System.out.println(field.getName()+"//"+field.getType());
 								throw new Exception ("Type not accepted!!!!");
 							}
 							
@@ -220,7 +220,7 @@ public class PieceJDBC implements PieceDataSource {
 				}
 			claseInt=claseInt.getSuperclass();
 		}while (!claseInt.getSimpleName().equals("Object"));
-		System.out.println(interfaces.length);
+		//System.out.println(interfaces.length);
 		//comprobar si la clase implementa storableInDataBase
 		int j=0;
 		boolean implementa=false;
@@ -444,7 +444,7 @@ public class PieceJDBC implements PieceDataSource {
 						
 						try{
 							if(field.getType().getName().equals("boolean")){
-								System.out.println(field.get(object)+"v");
+								//System.out.println(field.get(object)+"v");
 								if(field.get(object).toString().equals("true")){
 								valores=valores+"1,";
 								columnas=columnas+field.getName()+",";}
@@ -475,7 +475,7 @@ public class PieceJDBC implements PieceDataSource {
 				
 				} catch (IllegalArgumentException e) {
 					e.printStackTrace();
-					System.out.println("asdasdasdasd");
+					//System.out.println("asdasdasdasd");
 				}
 				//si el atributo no es un string realiza lo mismo pero sin poner comillas simples al atributo
 				
@@ -500,13 +500,13 @@ public class PieceJDBC implements PieceDataSource {
 	                            
 	 //busca en la tabla el objecto que tenga el valor de los atributos del objecto que le pasamos.
 	 public int remove (String tableName, storableInDataBase objectToRemove) throws Exception{
-		 
+		 System.out.println("entra");
 		 //crea la conexión con la url correcta
 		connection= DriverManager.getConnection(CONNECTION_URL);
 		String sqlStatementString = null;
 		Statement statement = null;
 		statement = connection.createStatement();
-		
+		System.out.println("entra1");
 		
 		
 		DatabaseMetaData dbmd = connection.getMetaData();
@@ -514,39 +514,52 @@ public class PieceJDBC implements PieceDataSource {
 	    ResultSet primaryKeys= dbmd.getPrimaryKeys(null,null, tableName);
 	    boolean hayMasClavesPrimarias=primaryKeys.next();
 	    String conditions="";
-	    
+System.out.println("entra2");
 	 
+	 Class <?> classe= Class.forName(tableName);
+	 Class <?> classeI= classe;
 	 
-	 Field fieldFather[] = objectToRemove.getClass().getSuperclass().getDeclaredFields();
-	 
-	 Class classe=objectToRemove.getClass();
+	 System.out.println(classe+"acbb");
+	 Field [] fields = new Field[0];
 	 do{
-		 Field aux[]= objectToRemove.getClass().getDeclaredFields();
-		 Field fields[] = new Field [aux.length+fieldFather.length];
+		 System.out.println("primero");
+		 Field[]fiel =classeI.getDeclaredFields();
+		 Field[]aux=fields;
+		 fields = new Field [aux.length+fiel.length];
 	 for(int i=0;i<aux.length;i++){
+		 System.out.println("primerfor");
 		 fields[i]=aux[i];
 	 }
-	 
-	 for(int j=0; j<fieldFather.length;j++){
-		 fields[fields.length+j]=fieldFather[j];
+	 if(aux.length==0){
+		 for(int i=0;i<fiel.length;i++){
+			 fields[i]=fiel[i];
+		 }
+	 }else{
+		 for(int i=0; i<fiel.length;i++){
+			 fields[aux.length+i-1]=fiel[i];
+		 }
 	 }
+	 	 
+	 classeI= classeI.getSuperclass();
+	 System.out.println(classeI);
+	 }while(!classeI.getSimpleName().equals("Object"));
 	 
 	 
-	 classe= objectToRemove.getClass().getSuperclass();
-	 }while(!classe.equals("Object"));
+	 
 	    //recorre todas las claves primarias de la tabla
+	 boolean encontrado=false;
 	    while(hayMasClavesPrimarias){   
-	    	boolean encontrado=false;
+	    	
 	    	//recoge el atributo de la clase con el mismo nombre que la clave primaria
     		Field field1=objectToRemove.getClass().getDeclaredField(primaryKeys.getString("COLUMN_NAME"));
-    		System.out.println(field1);
+    		//System.out.println(field1);
     		//guarda en el array la información de la tabla a la que pertenece el objeto a borrar
     		ArrayList<storableInDataBase>arrayWithData= getAll(tableName, objectToRemove.getClass().getName());
     		
     		//recorre el array hasta que el objecto a borrar sea igual que el del array
     		for(int i=0; i<arrayWithData.size()&&!encontrado;i++){
     			Object obj= arrayWithData.get(i);
-    			System.out.println(arrayWithData.get(i));
+    			//System.out.println(arrayWithData.get(i));
     			//si el atributo no es accesible lo cambia
     			if(!field1.isAccessible()){
         			field1.setAccessible(true);	
