@@ -17,7 +17,7 @@ public class Soldier extends PiezaOldWarriorTales {
 		blindness=false;
 		poisson=false;
 		counterattack=false;
-		this.setImagen(new ImageIcon(getClass().getResource("/img/soldado.gif")));
+		this.setImagen(new ImageIcon(getClass().getResource("/img/soldado.png")));
 	}
 
 	@Override
