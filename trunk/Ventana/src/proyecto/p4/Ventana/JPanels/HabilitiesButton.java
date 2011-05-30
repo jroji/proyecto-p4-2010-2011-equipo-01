@@ -14,7 +14,7 @@ import proyecto.p4.Ventana.Button.BotoneraH;
 import proyecto.p4.Ventana.Button.OldWarriorButton;
 
 
-public class HabilitiesButton extends JPanel{
+public class HabilitiesButton extends JPanel implements ActionListener{
 
 	private ResourceBundle Language;
 	private Hability[] Habilities;
