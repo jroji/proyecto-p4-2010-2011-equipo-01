@@ -18,7 +18,7 @@ public class Barbarian extends PiezaOldWarriorTales {
 		blindness=false;
 		poisson=false;
 		counterattack=false;
-		this.setImagen(new ImageIcon(getClass().getResource("/img/barbaro.png")));
+		//this.setImagen(new ImageIcon(getClass().getResource("/img/barbaro.gif")));
 	}
 		
 	@Override

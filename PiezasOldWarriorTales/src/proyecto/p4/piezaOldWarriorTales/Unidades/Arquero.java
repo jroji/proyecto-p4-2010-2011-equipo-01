@@ -10,13 +10,14 @@ import proyecto.p4.habilidades.Envenenar;
 public class Arquero extends PiezaOldWarriorTales{
 
 	public Arquero(){
-	movement=4;
-	defense=15;
-	attack=30;
-	probability=70;
-	blindness=false;
-	poisson=false;
-	counterattack=true;
+	
+		movement=4;
+		defense=15;
+		attack=30;
+		probability=70;
+		blindness=false;
+		poisson=false;
+		counterattack=true;
 
 	this.setImagen(new ImageIcon(getClass().getResource("/img/arquero.png")));
 
@@ -33,7 +34,9 @@ public class Arquero extends PiezaOldWarriorTales{
 	 */
 	@Override
 	protected void cargarHabilidades() {
-		Envenenar h1= new Envenenar(this);
+		Envenenar h1;
+		
+		h1= new Envenenar(this);
 		Cegar h2= new Cegar(this);
 		habilities=new Hability[2];
 		habilities[0]=h1;
