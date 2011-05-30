@@ -19,6 +19,7 @@ public class HabilitiesButton extends JPanel{
 	private ResourceBundle Language;
 	private Hability[] Habilities;
 	private OldWarriorButton[] Buttons;
+	private int habilityPulsed;
 	
 	//public HabilitiesButton(ResourceBundle language,PiezaOldWarriorTales p){
 	public HabilitiesButton(PiezaOldWarriorTales p){
@@ -36,13 +37,26 @@ public class HabilitiesButton extends JPanel{
 		for(int i = 0; i<Habilities.length;i++){
 	//		Buttons[i].setText(Language.getString(Habilities[i].getName()));	
 			Buttons[i].setText(Habilities[i].getName());
+		}
+		catch(Exception e){			
+			System.out.println("No me cargo");
+		}
+
 			this.add(Buttons[i]);
 			if(Buttons[i].getText().equals(""))
 				Buttons[i].setVisible(false);
 			}
 		
-
-		}	
+	 while(true){
+	   		if(Buttons[0].isPulsed()){
+	   		habilityPulsed=0;	
+			}else if(Buttons[1].isPulsed()){
+			habilityPulsed=1;	
+	        }else if(Buttons[2].isPulsed()){
+	        habilityPulsed=2;	
+			}else if(Buttons[3].isPulsed()){
+			habilityPulsed=3;	
+			}	
 	/**
 	 * Realiza una operaci�n de actualizaci�n sobre los botones a partir de una pieza
 	 * 
@@ -66,5 +80,6 @@ public class HabilitiesButton extends JPanel{
 		
 	}
 		
-		
+	public Hability  getSelectedHability(Hability h){
+		return Hability[habilityPulsed];
 	}
