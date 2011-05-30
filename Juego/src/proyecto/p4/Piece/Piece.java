@@ -2,6 +2,8 @@ package proyecto.p4.Piece;
 
 import javax.swing.ImageIcon;
 
+import ConnectionInterface.storableInDataBase;
+
 import proyecto.p4.Mapa.Casilla;
 
 
@@ -12,7 +14,7 @@ import proyecto.p4.Mapa.Casilla;
  * @implements Moveable 
  * 
  */
-public abstract class Piece implements Moveable{
+public abstract class Piece implements Moveable, storableInDataBase{
 	private int position_x;
 	private int position_y;
 	private ImageIcon imagen;	

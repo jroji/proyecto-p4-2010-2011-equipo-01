@@ -5,6 +5,7 @@ package proyecto.p4.Mapa;
 import javax.swing.JOptionPane;
 
 import proyecto.p4.Piece.Piece;
+import proyecto.p4.Tipo.OldWarriorTales.TerrainGrass;
 
 import java.lang.reflect.Field;
 import java.sql.SQLException;
@@ -37,27 +38,6 @@ public class Casilla implements storableInDataBase{
 		piece=pie;
 	}
 	
-	
-//	public void CasillaGrass(){
-//		square = new TerrainGrass();
-//	}
-//	
-//	public void CasillaStone(){
-//		square = new TerrainStones();
-//	}
-//	
-//	public void CasillaCastle(){
-//		square = new TerrainCastle();
-//	}
-//	
-//	public void CasillaVillage(){
-//		square = new TerrainVillage();
-//	}
-//	
-//	public void CasillaWater(){
-//		square = new TerrainWater();
-//	}
-	
 	public Piece getPiece() {
 		return piece;
 	}
@@ -67,8 +47,6 @@ public class Casilla implements storableInDataBase{
 	public void setCodeCasilla(int codeCasilla) {
 		CodeCasilla = codeCasilla;
 	}
-
-
 
 	public void setPiece(Piece piece) {
 		this.piece = piece;
@@ -112,19 +90,20 @@ public class Casilla implements storableInDataBase{
 			try {
 				
 				p = new PieceJDBC();
-				valueToReturn+=p.remove(null, this);
-				//valueToReturn+=p.remove((storableInDataBase) this.getPiece());
+				valueToReturn+=p.remove("Casilla", this);
+				if(this.getPiece()!=null)
+					valueToReturn+=this.getPiece().deleteFromDataBase();
 				
 			} catch (ClassNotFoundException e) {
-				JOptionPane.showMessageDialog(null,"Error al sobreescribir","Error",JOptionPane.OK_OPTION,null);  
+				JOptionPane.showMessageDialog(null,"Error al borrar "+e.toString(),"Error",JOptionPane.OK_OPTION,null);  
 				
 				
 			} catch (SQLException e) {
-				JOptionPane.showMessageDialog(null,"Error al sobreescribir","Error",JOptionPane.OK_OPTION,null);  
+				JOptionPane.showMessageDialog(null,"Error al borrar "+e.toString(),"Error",JOptionPane.OK_OPTION,null);  
 				
 				
 			} catch (Exception e) {
-				JOptionPane.showMessageDialog(null,"Error al sobreescribir","Error",JOptionPane.OK_OPTION,null);  
+				JOptionPane.showMessageDialog(null,"Error al borrar \n"+e.toString(),"Error",JOptionPane.OK_OPTION,null);  
 				
 			}
 			finally{
@@ -182,7 +161,19 @@ public class Casilla implements storableInDataBase{
 		}
 		//si salta la excepción devolverá un arrayList vacío.
 		return new ArrayList <storableInDataBase>();
-		
-		
+	}
+	public static void main (String []args){
+		Casilla c=new Casilla();
+		TerrainGrass t= new TerrainGrass();
+//		c.setSquare(t);
+//		c.setPosX(5);
+//		c.insertIntoDataBase();
+		ArrayList<storableInDataBase> a=c.takeOutFromDataBase();
+		for (storableInDataBase s: a)
+		{
+			System.out.println(((Casilla)s).getCodeCasilla());
+		}
+		c.setCodeCasilla(70);
+		c.deleteFromDataBase();
 	}
 }
