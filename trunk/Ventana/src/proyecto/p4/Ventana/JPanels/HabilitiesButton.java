@@ -37,20 +37,15 @@ public class HabilitiesButton extends JPanel{
 		for(int i = 0; i<Habilities.length;i++){
 	//		Buttons[i].setText(Language.getString(Habilities[i].getName()));	
 			Buttons[i].setText(Habilities[i].getName());
-		}
-		catch(Exception e){			
-			System.out.println("No me cargo");
-		}
-
 			this.add(Buttons[i]);
 			if(Buttons[i].getText().equals(""))
 				Buttons[i].setVisible(false);
 			}
 		
-	Buttons[0].getOldWarriorButton().addActionListener(this);
-	Buttons[1].getOldWarriorButton().addActionListener(this);
-	Buttons[2].getOldWarriorButton().addActionListener(this);
-	Buttons[3].getOldWarriorButton().addActionListener(this);
+	Buttons[0].addActionListener(this);
+	Buttons[1].addActionListener(this);
+	Buttons[2].addActionListener(this);
+	Buttons[3].addActionListener(this);
 	/**
 	 * Realiza una operaci�n de actualizaci�n sobre los botones a partir de una pieza
 	 * 
