@@ -1,6 +1,7 @@
 package proyecto.p4.Ventana.JPanels;
 
 
+import java.awt.FlowLayout;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -15,10 +16,6 @@ import proyecto.p4.Ventana.Button.OldWarriorButton;
 
 public class HabilitiesButton extends JPanel{
 
-	private OldWarriorButton Hability1;
-	private OldWarriorButton Hability2;
-	private OldWarriorButton Hability3;
-	private OldWarriorButton Hability4;
 	private ResourceBundle Language;
 	private Hability[] Habilities;
 	private OldWarriorButton[] Buttons;
@@ -31,24 +28,14 @@ public class HabilitiesButton extends JPanel{
 		
 		Buttons=new OldWarriorButton[4];
 		Habilities=p.getHabilities();
-		Hability1 = new OldWarriorButton("");
-		Hability2 = new OldWarriorButton("");
-		Hability3 = new OldWarriorButton("");
-		Hability4 = new OldWarriorButton("");
-		Buttons[0] = Hability1;
-		Buttons[1] = Hability2;
-		Buttons[2] = Hability3;
-		Buttons[3] = Hability4;		
-		this.setLayout(new SpringLayout());
-		for(int i = 0; i<Buttons.length;i++){
+		Buttons[0] = new OldWarriorButton("");
+		Buttons[1] = new OldWarriorButton("");
+		Buttons[2] = new OldWarriorButton("");
+		Buttons[3] = new OldWarriorButton("");		
+		this.setLayout(new FlowLayout());
+		for(int i = 0; i<Habilities.length;i++){
 	//		Buttons[i].setText(Language.getString(Habilities[i].getName()));	
-		try{
 			Buttons[i].setText(Habilities[i].getName());
-		}
-		catch(Exception e){
-			System.out.println("No me cargo");
-		}
-			
 			this.add(Buttons[i]);
 			if(Buttons[i].getText().equals(""))
 				Buttons[i].setVisible(false);
@@ -66,14 +53,16 @@ public class HabilitiesButton extends JPanel{
 			//		Buttons[i].setText(Language.getString(Habilities[i].getName()));	
 				try{
 					Buttons[i].setText(Habilities[i].getName());
+				}	catch(Exception e){	
+					Buttons[i].setText("");
+					}	
 					if(Buttons[i].getText().equals(""))
 						Buttons[i].setVisible(false);
 					else
 						Buttons[i].setVisible(true);
-				}
-				catch(Exception e){	
-				}	
+
 		}
+		this.repaint();
 		
 	}
 		
