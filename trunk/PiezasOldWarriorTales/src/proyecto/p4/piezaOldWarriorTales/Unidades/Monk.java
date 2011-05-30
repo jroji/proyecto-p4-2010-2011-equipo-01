@@ -18,7 +18,7 @@ public class Monk extends PiezaOldWarriorTales{
 			poisson=false;
 			counterattack=false;
 
-			this.setImagen(new ImageIcon(getClass().getResource("/img/monje.png")));
+			//this.setImagen(new ImageIcon(getClass().getResource("/img/monje.gif")));
 		}
 		
 		public int takinglife(PiezaOldWarriorTales piezaContraria){
