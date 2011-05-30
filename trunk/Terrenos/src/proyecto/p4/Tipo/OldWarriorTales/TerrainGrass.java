@@ -7,7 +7,6 @@ import proyecto.p4.TerrenosOldWarriorTales.Terrain;
 
 public class TerrainGrass extends Terrain{
 	
-	@Override
 	public void iniImage() {
 		//introducir ruta de la imagen
 		image="/img/hierba.png";
@@ -19,7 +18,6 @@ public class TerrainGrass extends Terrain{
 		movement = 1;	
 	}
 
-	@Override
 	public void iniName() {
 		name = "Grass";
 			
