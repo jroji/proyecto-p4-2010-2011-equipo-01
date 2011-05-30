@@ -18,8 +18,8 @@ import java.util.ArrayList;
 public class PieceJDBC implements PieceDataSource {
 
 	public static final String DRIVER_CLASS_NAME = "org.sqlite.JDBC";
-	//public static final String CONNECTION_URL = "jdbc:sqlite:C:/Users/Julen/eclipseWorkSpaces/workspace/DataBase/src/OldWarriorTales.s3db";
-	public static final String CONNECTION_URL = "jdbc:sqlite:C:/Users/Raquel/workspace/DataBase/src/OldWarriorTales.s3db";
+	public static final String CONNECTION_URL = "jdbc:sqlite:C:/Users/Julen/eclipseWorkSpaces/workspace/DataBase/src/OldWarriorTales.s3db";
+	//public static final String CONNECTION_URL = "jdbc:sqlite:C:/Users/Raquel/workspace/DataBase/src/OldWarriorTales.s3db";
 	public static Connection connection;
 	
 	/**
@@ -500,24 +500,21 @@ public class PieceJDBC implements PieceDataSource {
 	                            
 	 //busca en la tabla el objecto que tenga el valor de los atributos del objecto que le pasamos.
 	 public int remove (String tableName, storableInDataBase objectToRemove) throws Exception{
-		 System.out.println("entra");
 		 //crea la conexión con la url correcta
 		connection= DriverManager.getConnection(CONNECTION_URL);
 		String sqlStatementString = null;
 		Statement statement = null;
 		statement = connection.createStatement();
-		System.out.println("entra1");
-		
-		
 		DatabaseMetaData dbmd = connection.getMetaData();
+
 		//obtiene las claves primarias de la tabla
+		System.out.println(tableName);
 	    ResultSet primaryKeys= dbmd.getPrimaryKeys(null,null, tableName);
 	    boolean hayMasClavesPrimarias=primaryKeys.next();
 	    String conditions="";
-System.out.println("entra2");
-	 
-	 Class <?> classe= Class.forName(tableName);
-	 Class <?> classeI= classe;
+	    
+	    Class <?> classe= Class.forName(objectToRemove.getClass().getCanonicalName());
+	    Class <?> classeI= classe;
 	 
 	 System.out.println(classe+"acbb");
 	 Field [] fields = new Field[0];
