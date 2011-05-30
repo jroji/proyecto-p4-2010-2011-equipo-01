@@ -81,6 +81,26 @@ public class BotoneraV extends JPanel{
 	public void setButtonP5(boolean cond) {
 		boton5.setBP(cond);
 	}
+
+	public OldWarriorButton getBoton1() {
+		return boton1;
+	}
+
+	public OldWarriorButton getBoton2() {
+		return boton2;
+	}
+
+	public OldWarriorButton getBoton3() {
+		return boton3;
+	}
+
+	public OldWarriorButton getBoton4() {
+		return boton4;
+	}
+
+	public OldWarriorButton getBoton5() {
+		return boton5;
+	}
 	
 
 }

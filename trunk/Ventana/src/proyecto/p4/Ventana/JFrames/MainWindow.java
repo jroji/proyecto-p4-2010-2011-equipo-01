@@ -1,6 +1,8 @@
 package proyecto.p4.Ventana.JFrames;
 
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ResourceBundle;
@@ -13,7 +15,7 @@ import Languages.*;
 
 import proyecto.p4.Ventana.Button.BotoneraV;
 
-public class MainWindow extends JFrame implements MouseListener{
+public class MainWindow extends JFrame implements ActionListener{
 	
 	/**
 	 * 
@@ -21,13 +23,14 @@ public class MainWindow extends JFrame implements MouseListener{
 	private static final long serialVersionUID = 1L;
 	BotoneraV Buttons;
 	private ResourceBundle Language;
-	
+	boolean Sound;
 
 
 	BotoneraV botoneraV;
 	
 	public MainWindow(ResourceBundle language,boolean Sound){
 		Language=language;
+		this.Sound=Sound;
 		Buttons=new BotoneraV(Language.getString("label_quickGame"),Language.getString("label_customGame"),
 		Language.getString("label_options"), "",
 	    Language.getString("label_exit"));
@@ -37,75 +40,71 @@ public class MainWindow extends JFrame implements MouseListener{
 		JLabel fondo = new JLabel(img);
 		JLayeredPane layer = new JLayeredPane();
 		layer.setBounds(0, 0, 1024, 720);
-		
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.add(layer, new Integer(0));
 		layer.add(fondo);
 		fondo.setBounds(0, 0, 1024, 720);
-		botoneraV = new BotoneraV("Partida Rápida", "P. Personalizada", "Opciones", "Editor de mapas", "   Salir");
-		layer.add(botoneraV, new Integer (1));
-
 		layer.add(Buttons, new Integer (1));
 
-		
 		Buttons.setBounds(750, 150,500,500);
 		this.setVisible(true);
 		this.setResizable(false);
-	       while(true){
-		   		if(Buttons.getButtonP3()){
-					Buttons.setButtonP3(false);
-		   			this.dispose();
-					new OptionWindow(Language,Sound);
-				}else if(Buttons.getButtonP5()){
-					Buttons.setButtonP5(false);
-					this.dispose();
-					new WelcomeWindow(Language,Sound);
-		       }
-				else if(Buttons.getButtonP1()){
-					Buttons.setButtonP1(false);
-					this.dispose();
-					
-					
-		       }
-		   }
+		//ActionListeners
+		Buttons.getBoton1().getOldWarriorButton().addActionListener(this);
+		Buttons.getBoton2().getOldWarriorButton().addActionListener(this);
+		Buttons.getBoton3().getOldWarriorButton().addActionListener(this);
+		Buttons.getBoton4().getOldWarriorButton().addActionListener(this);
+		Buttons.getBoton5().getOldWarriorButton().addActionListener(this);
+//	       while(true){
+//		   		if(Buttons.getButtonP3()){
+//					Buttons.setButtonP3(false);
+//		   			this.dispose();
+//					new OptionWindow(Language,Sound);
+//				}else if(Buttons.getButtonP5()){
+//					Buttons.setButtonP5(false);
+//					this.dispose();
+//					new WelcomeWindow(Language,Sound);
+//		       }
+//				else if(Buttons.getButtonP1()){
+//					Buttons.setButtonP1(false);
+//					this.dispose();
+//		       }
+//		   }
 		
 	}
-
+	
 	public static void main(String[] args)
 	{
 		MainWindow x = new MainWindow(new MyResources_En(),true);
 	}
 
 	@Override
-	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		if(botoneraV.getButtonP3()){
-			this.dispose();
-		}else if(botoneraV.getButtonP4()){
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource()==Buttons.getBoton1().getOldWarriorButton()){
+			Buttons.setButtonP1(false);
 			this.dispose();
 		}
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
+		else{
+			if(e.getSource()==Buttons.getBoton2().getOldWarriorButton()){
+				System.out.println("boton2");
+			}else{
+				if(e.getSource()==Buttons.getBoton3().getOldWarriorButton()){
+					Buttons.setButtonP3(false);
+		   			this.dispose();
+					new OptionWindow(Language,Sound);
+				}else{
+					if(e.getSource()==Buttons.getBoton4().getOldWarriorButton()){
+						System.out.println("boton4");
+					}else{
+						if(e.getSource()==Buttons.getBoton5().getOldWarriorButton()){
+							Buttons.setButtonP5(false);
+							this.dispose();
+							new WelcomeWindow(Language,Sound);
+						}
+					}
+				}
+			}
+		}
 		
 	}
 }
