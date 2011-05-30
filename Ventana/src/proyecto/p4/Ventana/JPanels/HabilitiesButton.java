@@ -41,12 +41,12 @@ public class HabilitiesButton extends JPanel{
 		Buttons[3] = Hability4;		
 		this.setLayout(new SpringLayout());
 		for(int i = 0; i<Buttons.length;i++){
-	//		Buttons[i].setText(Language.getString(Habilities[i]));	
+	//		Buttons[i].setText(Language.getString(Habilities[i].getName()));	
 		try{
 			Buttons[i].setText(Habilities[i].getName());
 		}
 		catch(Exception e){
-			
+			System.out.println("No me cargo");
 		}
 			
 			this.add(Buttons[i]);
@@ -57,15 +57,19 @@ public class HabilitiesButton extends JPanel{
 
 		}	
 	/**
-	 * Realiza una operación de actualización sobre los botones a partir de una pieza
+	 * Realiza una operaciï¿½n de actualizaciï¿½n sobre los botones a partir de una pieza
 	 * 
 	 */
 	public void update(PiezaOldWarriorTales piece){
 		this.Habilities=piece.getHabilities();
 		for(int i = 0; i<Buttons.length;i++){
-			//		Buttons[i].setText(Language.getString(Habilities[i]));	
+			//		Buttons[i].setText(Language.getString(Habilities[i].getName()));	
 				try{
 					Buttons[i].setText(Habilities[i].getName());
+					if(Buttons[i].getText().equals(""))
+						Buttons[i].setVisible(false);
+					else
+						Buttons[i].setVisible(true);
 				}
 				catch(Exception e){	
 				}	
