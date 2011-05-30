@@ -54,7 +54,7 @@ public abstract class Piece implements Moveable{
 	public void setPosition(int positionX, int positionY) {
 		position_x = positionX;
 		position_y = positionY;
-		setAbleToMove();
+//		setAbleToMove();
 	}
 	
 	/**
