@@ -19,7 +19,7 @@ public class Magician extends PiezaOldWarriorTales {
 			poisson=false;
 			counterattack=false;
 
-			this.setImagen(new ImageIcon(getClass().getResource("/img/mago.gif")));
+			this.setImagen(new ImageIcon(getClass().getResource("/img/mago.png")));
 		}
 
 		@Override
