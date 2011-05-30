@@ -47,16 +47,10 @@ public class HabilitiesButton extends JPanel{
 				Buttons[i].setVisible(false);
 			}
 		
-	 while(true){
-	   		if(Buttons[0].isPulsed()){
-	   		habilityPulsed=0;	
-			}else if(Buttons[1].isPulsed()){
-			habilityPulsed=1;	
-	        }else if(Buttons[2].isPulsed()){
-	        habilityPulsed=2;	
-			}else if(Buttons[3].isPulsed()){
-			habilityPulsed=3;	
-			}	
+	Buttons[0].getOldWarriorButton().addActionListener(this);
+	Buttons[1].getOldWarriorButton().addActionListener(this);
+	Buttons[2].getOldWarriorButton().addActionListener(this);
+	Buttons[3].getOldWarriorButton().addActionListener(this);
 	/**
 	 * Realiza una operaci�n de actualizaci�n sobre los botones a partir de una pieza
 	 * 
@@ -79,7 +73,26 @@ public class HabilitiesButton extends JPanel{
 		this.repaint();
 		
 	}
+
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource()==Buttons[0])
+		{
+			habilityPulsed=0;
+		}else{
+			if(e.getSource()==Buttons[1]){
+				habilityPulsed=1;
+			}else{
+				if(e.getSource()==Buttons[2]) {
+					habilityPulsed=2;
+				}
+			}else{
+				if(e.getSource()==Buttons[3]) {
+					habilityPulsed=3;
+				}
+		}
 		
-	public Hability  getSelectedHability(Hability h){
-		return Hability[habilityPulsed];
+	}
+
+	public Hability getSelectedHability(){
+		return Habilities[habilityPulsed];
 	}
