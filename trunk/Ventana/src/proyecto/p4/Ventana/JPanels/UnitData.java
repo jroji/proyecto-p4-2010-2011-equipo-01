@@ -93,9 +93,9 @@ public class UnitData extends JPanel {
     }
     public void update(PiezaOldWarriorTales piece){
     	this.EnergyBar.setValue(piece.getEnergy());
-    	this.EnergyBar.setString(piece.getEnergy()+"");
+    	this.EnergyBar.setString(piece.getEnergy()+"/100");
     	this.ExperienceBar.setValue(piece.getExperience());
-    	this.ExperienceBar.setString(piece.getExperience()+"/100");
+    	this.ExperienceBar.setString(piece.getExperience()+"");
     	this.HealthBar.setValue(piece.getLife());
     	this.HealthBar.setString(piece.getLife()+"/100");
     }
