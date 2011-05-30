@@ -71,22 +71,16 @@ public class HabilitiesButton extends JPanel{
 
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==Buttons[0])
-		{
 			habilityPulsed=0;
-		}else{
-			if(e.getSource()==Buttons[1]){
-				habilityPulsed=1;
-			}else{
-				if(e.getSource()==Buttons[2]) {
-					habilityPulsed=2;
-				}
-			}else{
-				if(e.getSource()==Buttons[3]) {
-					habilityPulsed=3;
-				}
+		else if(e.getSource()==Buttons[1])
+			habilityPulsed=1;
+		else if(e.getSource()==Buttons[2]) 
+			habilityPulsed=2;
+		else if(e.getSource()==Buttons[3]) 
+			habilityPulsed=3;
+		
 		}
 		
-	}
 
 	public Hability getSelectedHability(){
 		return Habilities[habilityPulsed];
