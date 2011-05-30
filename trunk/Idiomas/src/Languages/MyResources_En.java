@@ -11,7 +11,7 @@ public class MyResources_En extends ListResourceBundle{
 			{"label_sound","Sound"},{"label_attack","Ataque"},{"label_defense","Defensa"},{"label_movement","Movimiento"},
 			{"label_probability","Probabilidad"},{"label_back","Back"},{"AtacarYHuir","Attack and escape"},{"AtaqueCertero","Accurate attack"},
 			{"AtaqueEnZona","Attack zone"},{"Cegar","Blind"},{"Convertir","Convert"},{"CurarEstados","Heal states"},{"CurarZona","Heal Zone"},
-			{"Envenenar","Poison"},{"LanzarSuriquen","Throw Suriken"},{"Sprint","Sprint"}
+			{"Envenenar","Poison"},{"LanzarSuriquen","Throw Suriken"},{"Sprint","Sprint"},{"Yes","Si"},{"No","No"}
 		
 	};
 	
