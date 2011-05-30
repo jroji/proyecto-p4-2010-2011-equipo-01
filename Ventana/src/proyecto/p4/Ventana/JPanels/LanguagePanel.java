@@ -65,10 +65,8 @@ public class LanguagePanel extends JPanel {
     	ArrayList<Object> instancias;
     	ArrayList<Object> nombres= new ArrayList<Object>(); 
     	instancias=Reflectividad.instanciarDireccion("name");
-    	System.out.println(instancias.size());
     	for (Object o:instancias){
     		if (o instanceof ResourceBundle){
-    			System.out.println(o);
     			languages.add((ResourceBundle) o);
     			nombres.add(o);
     		}

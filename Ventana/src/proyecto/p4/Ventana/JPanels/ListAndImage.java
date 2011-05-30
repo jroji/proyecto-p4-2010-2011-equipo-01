@@ -4,6 +4,7 @@ import java.awt.Component;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -37,7 +38,7 @@ public class ListAndImage extends javax.swing.JPanel {
         scrollPane = new JScrollPane();
         UnitList = new JList();
         oldWarriorButton1 = new OldWarriorButton(Language.getString("label_reclute"));
-        oldWarriorButton1 = new OldWarriorButton("H");
+        //oldWarriorButton1 = new OldWarriorButton("H");
         
     	PiezaOldWarriorTales[] array = new PiezaOldWarriorTales[8];
 		
@@ -109,16 +110,16 @@ public class ListAndImage extends javax.swing.JPanel {
 
       public void cargarUnidadesEnList(){
       	ArrayList<Object> instancias;
-//      	ArrayList<Object> nombres= new ArrayList<Object>(); 
+      	ArrayList<Object> nombres= new ArrayList<Object>(); 
       	instancias=Reflectividad.instanciarDireccion("UnitsFile");
       	for (Object o:instancias){
       		if (o instanceof PiezaOldWarriorTales){
-      			UnitList.add(o.getClass().getName(), (Component) o);
-//      			nombres.add(o);
+      			UnitList.add(o.getClass().getName(), new JLabel (o.toString()));
+      			nombres.add(o);
       		}
       	}
-//      	 UnitList.setModel(new javax.swing.DefaultComboBoxModel(nombres.toArray()));
-//           Language.setSelectedIndex(0);
+      	 UnitList.setModel(new javax.swing.DefaultComboBoxModel(nombres.toArray()));
+  //        Language.setSelectedIndex(0);
 
       }
       
