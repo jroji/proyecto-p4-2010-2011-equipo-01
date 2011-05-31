@@ -18,6 +18,7 @@ public class Killer extends PiezaOldWarriorTales{
 			blindness=false;
 			poisson=false;
 			counterattack=false;
+			CanonicalName= this.getClass().getSimpleName();
 			//this.setImagen(new ImageIcon(getClass().getResource("/img/asesino.gif")));
 		}
 		
