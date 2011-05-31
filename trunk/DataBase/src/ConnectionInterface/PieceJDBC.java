@@ -95,7 +95,6 @@ public class PieceJDBC implements PieceDataSource {
 							try{
 								//carga una clase con el nombre del atributo
 								Class<?> clase = Class.forName(field.getType().getCanonicalName());
-								System.out.println(field.getType().getCanonicalName());
 								
 								//es un enum
 								if(clase.isEnum()){
@@ -123,15 +122,11 @@ public class PieceJDBC implements PieceDataSource {
 								
 								//recorre todas las tablas de la base de datos
 								while( seguir ) {
-									System.out.print("Nombre Tabla: "+tablas.getString(tablas.findColumn( "TABLE_NAME" )).toLowerCase());
-									System.out.println("Nombre clase: "+clase.getSimpleName());
 									//comprueba que el nombre de la tabla sea igual al nombre del tipo del atributo (o clase)
-								  if(tablas.getString(tablas.findColumn( "TABLE_NAME" )).toLowerCase().equals(clase.getSimpleName().toLowerCase())){
-										System.out.println("if");									
+								  if(tablas.getString(tablas.findColumn( "TABLE_NAME" )).toLowerCase().equals(clase.getSimpleName().toLowerCase())){									
 									seguir=false;
 									//recoge en un arrayList el contenido de la tabla
 								    ArrayList<storableInDataBase> array=getAll(clase.getSimpleName(),clase.getName());
-								    System.out.println("Numero de instancias: "+array.size());
 								    //obtiene las claves primarias de la tabla
 								    ResultSet primaryKeys= dbmd.getPrimaryKeys(null,null, clase.getSimpleName());
 								    boolean hayMasClavesPrimarias=primaryKeys.next();
@@ -273,7 +268,6 @@ public class PieceJDBC implements PieceDataSource {
 						if (metaData.getColumnName(i+1).equalsIgnoreCase(field.getName())){
 							
 							String valor=resultSet.getString(i+1);
-							System.out.println(valor);
 							//si el field no es accesible hace que lo sea para la insercción el base de datos
 							if(!field.isAccessible()){
 								field.setAccessible(true);
@@ -335,8 +329,9 @@ public class PieceJDBC implements PieceDataSource {
 				try{
 				clase = Class.forName(field.getType().getName());
 				}catch(ClassNotFoundException cnfe){}
-				//si el tipo del atributo es string pone el nombre de éste entre comillas simples
+				//si el tipo del atributo es string o enum pone el nombre de éste entre comillas simples
 				if (field.getType().getName().toLowerCase().contains("string")||clase.isEnum()){
+					
 					try{
 						try{
 							//crea el string de valores y columnas a concatenar en la sentencia sql
@@ -389,7 +384,7 @@ public class PieceJDBC implements PieceDataSource {
 								}
 						
 					}
-					// todo igual pero haciendo el atributo visible
+					// todo igual pero haciendo el atributo accesible
 					catch (IllegalAccessException iae){
 						//si el atributo no es accesible lo pone a accesible
 						field.setAccessible(true);
@@ -450,7 +445,6 @@ public class PieceJDBC implements PieceDataSource {
 						
 						try{
 							if(field.getType().getName().equals("boolean")){
-								//System.out.println(field.get(object)+"v");
 								if(field.get(object).toString().equals("true")){
 								valores=valores+"1,";
 								columnas=columnas+field.getName()+",";}
