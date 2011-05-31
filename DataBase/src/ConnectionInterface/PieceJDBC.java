@@ -516,33 +516,29 @@ public class PieceJDBC implements PieceDataSource {
 	    Class <?> classe= Class.forName(objectToRemove.getClass().getCanonicalName());
 	    Class <?> classeI= classe;
 	 
-	 System.out.println(classe+"acbb");
-	 Field [] fields = new Field[0];
-	 do{
-		 System.out.println("primero");
-		 Field[]fiel =classeI.getDeclaredFields();
-		 Field[]aux=fields;
-		 fields = new Field [aux.length+fiel.length];
-	 for(int i=0;i<aux.length;i++){
-		 System.out.println("primerfor");
-		 fields[i]=aux[i];
-	 }
-	 if(aux.length==0){
-		 for(int i=0;i<fiel.length;i++){
-			 fields[i]=fiel[i];
+		 Field [] fields = new Field[0];
+		 do{
+			 System.out.println("primero");
+			 Field[]fiel =classeI.getDeclaredFields();
+			 Field[]aux=fields;
+			 fields = new Field [aux.length+fiel.length];
+		 for(int i=0;i<aux.length;i++){
+			 System.out.println("primerfor");
+			 fields[i]=aux[i];
 		 }
-	 }else{
-		 for(int i=0; i<fiel.length;i++){
-			 fields[aux.length+i-1]=fiel[i];
+		 if(aux.length==0){
+			 for(int i=0;i<fiel.length;i++){
+				 fields[i]=fiel[i];
+			 }
+		 }else{
+			 for(int i=0; i<fiel.length;i++){
+				 fields[aux.length+i-1]=fiel[i];
+			 }
 		 }
-	 }
-	 	 
-	 classeI= classeI.getSuperclass();
-	 System.out.println(classeI);
-	 }while(!classeI.getSimpleName().equals("Object"));
-	 
-	 
-	 
+		 	 
+		 classeI= classeI.getSuperclass();
+		 }while(!classeI.getSimpleName().equals("Object"));
+		 
 	    //recorre todas las claves primarias de la tabla
 	 boolean encontrado=false;
 	    while(hayMasClavesPrimarias){   
