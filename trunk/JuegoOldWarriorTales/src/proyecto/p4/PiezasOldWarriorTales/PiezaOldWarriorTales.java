@@ -14,7 +14,7 @@ import ConnectionInterface.storableInDataBase;
 
 
 
-public abstract class PiezaOldWarriorTales extends Piece implements Orientable, storableInDataBase{
+public abstract class PiezaOldWarriorTales extends Piece implements Orientable{
 	//atributos de la pieza
 	protected int CodePiece;
 	protected int movement;
@@ -49,6 +49,9 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable, 
 		hasAttacked=false;
 		hasBeenMoved=false;
 		cargarHabilidades();
+		blindness=false;
+		poisson=false;
+		able_to_move=new boolean[13][13];
 	}
 	public void setOrientation(Orientations orientacion) {
 		this.orientacion = orientacion;
@@ -334,15 +337,15 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable, 
 				
 			} catch (ClassNotFoundException e) {
 				JOptionPane.showMessageDialog(null,"Error al borrar1","Error",JOptionPane.OK_OPTION,null);  
-				
+				e.printStackTrace();
 				
 			} catch (SQLException e) {
 				JOptionPane.showMessageDialog(null,"Error al borrar2","Error",JOptionPane.OK_OPTION,null);  
-				
+				e.printStackTrace();
 				
 			} catch (Exception e) {
 				JOptionPane.showMessageDialog(null,"Error al borrar3","Error",JOptionPane.OK_OPTION,null);  
-				
+				e.printStackTrace();
 			}
 			finally{
 				return valueToReturn;
@@ -354,12 +357,13 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable, 
 		PieceJDBC p;
 		try {
 			p = new PieceJDBC();
-			p.insert(this.getClass().getSimpleName(), this);
+			p.insert("PiezaOldWarriorTales", this);
 		} catch (ClassNotFoundException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		} catch (SQLException e) {
 			Object [] option ={"SI","NO"};
+			e.printStackTrace();
 			int pane=JOptionPane.showOptionDialog(null,
 				    "¿Desea sobreescribir? ","Sobreescribir",JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE,null,option,option[0]);
 			
@@ -386,13 +390,21 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable, 
 		array.add(this.getClass().getSuperclass().getDeclaredField("life"));
 		array.add(this.getClass().getSuperclass().getDeclaredField("energy"));
 		array.add(this.getClass().getSuperclass().getDeclaredField("experience"));
-		//array.add(this.getClass().getSuperclass().getDeclaredField("blindness"));
-		//array.add(this.getClass().getSuperclass().getDeclaredField("poisson"));
+		array.add(this.getClass().getSuperclass().getDeclaredField("blindness"));
+		array.add(this.getClass().getSuperclass().getDeclaredField("poisson"));
 		//enum
 		array.add(this.getClass().getSuperclass().getDeclaredField("orientacion"));
 		array.add(this.getClass().getSuperclass().getSuperclass().getDeclaredField("color"));	
-//		Field [] fields=this..getClass().getSuperclass().getDeclaredFields();
-//		array.add(fields[1]);
+		Field [] fields;
+		if(this.getClass().getSimpleName()!="PiezaOldWarriorTales")
+			fields=this.getClass().getSuperclass().getSuperclass().getDeclaredFields();
+		else
+			fields=this.getClass().getSuperclass().getDeclaredFields();
+//		for (Field fi: fields){
+//			System.out.println(fi.getName());
+//		}
+		array.add(fields[0]);
+		array.add(fields[1]);
 
 	return array;
 	}
@@ -402,20 +414,34 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable, 
 		PieceJDBC p;
 		try {
 			p = new PieceJDBC();
-			System.out.println("holaaaaa"+this.getClass().getSimpleName());
 			ArrayList<storableInDataBase> array= p.getAll("PiezaOldWarriorTales",this.getClass().getName());		
 			
 			return array;
 		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
 			JOptionPane.showMessageDialog(null,"Error al cargar1","Error",JOptionPane.OK_OPTION,null);  
 		} catch (SQLException e) {
+			e.printStackTrace();
 			JOptionPane.showMessageDialog(null,"Error al cargar2","Error",JOptionPane.OK_OPTION,null);  
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null,"Error al cargar3","Error",JOptionPane.OK_OPTION,null);  
+			JOptionPane.showMessageDialog(null,"Error al cargar: \n" + e.getMessage(),"Error",JOptionPane.OK_OPTION,null);  
 		}
 		//si salta la excepción devolverá un arrayList vacío.
 		return new ArrayList <storableInDataBase>();
 		
 		
+	}
+	public void mostrar (){
+		System.out.println("PIEZA......................");
+		System.out.println("CodePiece: "+CodePiece);
+		System.out.println("color: "+getColor());
+		System.out.println("position_x: "+getPosition_x());
+		System.out.println("position_y: "+getPosition_y());
+		System.out.println("orientacion: "+orientacion);
+		System.out.println("life: "+life);
+		System.out.println("energy: "+energy);
+		System.out.println("experience: "+experience);
+		System.out.println("blindnes: "+blindness);
+		System.out.println("poisson: "+poisson);
 	}
 }
