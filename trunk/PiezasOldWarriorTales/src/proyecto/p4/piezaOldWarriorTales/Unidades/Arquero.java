@@ -1,7 +1,13 @@
 package proyecto.p4.piezaOldWarriorTales.Unidades;
 
+import java.util.ArrayList;
+
 import javax.swing.ImageIcon;
 
+import ConnectionInterface.storableInDataBase;
+
+import proyecto.p4.Piece.Colours;
+import proyecto.p4.PiezasOldWarriorTales.Orientations;
 import proyecto.p4.PiezasOldWarriorTales.PiezaOldWarriorTales;
 import proyecto.p4.PiezasOldWarriorTales.Habilidades.Hability;
 import proyecto.p4.habilidades.Cegar;
@@ -43,9 +49,21 @@ public class Arquero extends PiezaOldWarriorTales{
 		habilities[1]=h2;
 	}
 	public static void main (String[]args)  {
-		
-		
-		
+		Arquero a=new Arquero();
+		a.setPosition(5, 5);
+		a.setCodePiece(1);
+		a.setColor(Colours.blanco);
+		a.setOrientation(Orientations.South);
+		a.setLife(60);
+		a.setEnergy(50);
+		a.setExperience(200);
+		a.setBlindness(false);
+		a.setPoisson(true);
+		a.deleteFromDataBase();
+		ArrayList<storableInDataBase> array=a.takeOutFromDataBase();
+		for(storableInDataBase stor: array){
+			((PiezaOldWarriorTales)stor).mostrar();
+		}
 	}
 
 }
