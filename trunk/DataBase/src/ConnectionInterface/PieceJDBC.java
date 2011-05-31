@@ -78,6 +78,7 @@ public class PieceJDBC implements PieceDataSource {
 			}catch(Exception ex){
 				
 				try{
+					System.out.println(valor);
 					if(valor.equals("Y"))
 						valor="true";
 					else
@@ -175,7 +176,7 @@ public class PieceJDBC implements PieceDataSource {
 							
 							}catch(Exception except){
 								//System.out.println(field.getName()+"//"+field.getType());
-								throw new Exception ("Type not accepted!!!!");
+								throw new Exception ("Type not accepted!!!!" +"[Type:"+field.getType()+" Value: "+valor+"]");
 							}
 							
 					}
@@ -508,7 +509,6 @@ public class PieceJDBC implements PieceDataSource {
 		DatabaseMetaData dbmd = connection.getMetaData();
 
 		//obtiene las claves primarias de la tabla
-		System.out.println(tableName);
 	    ResultSet primaryKeys= dbmd.getPrimaryKeys(null,null, tableName);
 	    boolean hayMasClavesPrimarias=primaryKeys.next();
 	    String conditions="";
@@ -518,12 +518,10 @@ public class PieceJDBC implements PieceDataSource {
 	 
 		 Field [] fields = new Field[0];
 		 do{
-			 System.out.println("primero");
 			 Field[]fiel =classeI.getDeclaredFields();
 			 Field[]aux=fields;
 			 fields = new Field [aux.length+fiel.length];
 		 for(int i=0;i<aux.length;i++){
-			 System.out.println("primerfor");
 			 fields[i]=aux[i];
 		 }
 		 if(aux.length==0){
@@ -539,12 +537,21 @@ public class PieceJDBC implements PieceDataSource {
 		 classeI= classeI.getSuperclass();
 		 }while(!classeI.getSimpleName().equals("Object"));
 		 
+
 	    //recorre todas las claves primarias de la tabla
 	 boolean encontrado=false;
 	    while(hayMasClavesPrimarias){   
-	    	
+	    	Field field1=null;
 	    	//recoge el atributo de la clase con el mismo nombre que la clave primaria
-    		Field field1=objectToRemove.getClass().getDeclaredField(primaryKeys.getString("COLUMN_NAME"));
+	    	boolean fieldFound=false;
+			 for(int i =0; i<fields.length&&fieldFound==false;i++){
+				 if (fields[i].getName().equals(primaryKeys.getString("COLUMN_NAME"))){
+					field1=fields[i]; 
+					fieldFound=true;
+				 }
+			 }
+    		//field1=objectToRemove.getClass().getDeclaredField(primaryKeys.getString("COLUMN_NAME"));
+    		
     		//System.out.println(field1);
     		//guarda en el array la información de la tabla a la que pertenece el objeto a borrar
     		ArrayList<storableInDataBase>arrayWithData= getAll(tableName, objectToRemove.getClass().getName());
