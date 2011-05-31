@@ -78,7 +78,6 @@ public class PieceJDBC implements PieceDataSource {
 			}catch(Exception ex){
 				
 				try{
-					System.out.println(valor);
 					if(valor.equals("Y"))
 						valor="true";
 					else
