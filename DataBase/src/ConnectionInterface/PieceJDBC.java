@@ -94,7 +94,9 @@ public class PieceJDBC implements PieceDataSource {
 						}catch(Exception excep){
 							try{
 								//carga una clase con el nombre del atributo
-								Class<?> clase = Class.forName(field.getType().getCanonicalName());	
+								Class<?> clase = Class.forName(field.getType().getCanonicalName());
+								System.out.println(field.getType().getCanonicalName());
+								
 								//es un enum
 								if(clase.isEnum()){
 									boolean encontrado=false;
@@ -121,13 +123,15 @@ public class PieceJDBC implements PieceDataSource {
 								
 								//recorre todas las tablas de la base de datos
 								while( seguir ) {
-									
+									System.out.print("Nombre Tabla: "+tablas.getString(tablas.findColumn( "TABLE_NAME" )).toLowerCase());
+									System.out.println("Nombre clase: "+clase.getSimpleName());
 									//comprueba que el nombre de la tabla sea igual al nombre del tipo del atributo (o clase)
-								  if(tablas.getString(tablas.findColumn( "TABLE_NAME" )).toLowerCase().equals(clase.getSimpleName())){
-									
+								  if(tablas.getString(tablas.findColumn( "TABLE_NAME" )).toLowerCase().equals(clase.getSimpleName().toLowerCase())){
+										System.out.println("if");									
 									seguir=false;
 									//recoge en un arrayList el contenido de la tabla
 								    ArrayList<storableInDataBase> array=getAll(clase.getSimpleName(),clase.getName());
+								    System.out.println("Numero de instancias: "+array.size());
 								    //obtiene las claves primarias de la tabla
 								    ResultSet primaryKeys= dbmd.getPrimaryKeys(null,null, clase.getSimpleName());
 								    boolean hayMasClavesPrimarias=primaryKeys.next();
@@ -168,8 +172,9 @@ public class PieceJDBC implements PieceDataSource {
 								    	}
 								    	hayMasClavesPrimarias=primaryKeys.next();
 								    }
-								  }else
-								  seguir = tablas.next();
+								  }
+								  else
+									  seguir = tablas.next();
 								}
 								}
 							
@@ -220,7 +225,6 @@ public class PieceJDBC implements PieceDataSource {
 				}
 			claseInt=claseInt.getSuperclass();
 		}while (!claseInt.getSimpleName().equals("Object"));
-		//System.out.println(interfaces.length);
 		//comprobar si la clase implementa storableInDataBase
 		int j=0;
 		boolean implementa=false;
@@ -260,6 +264,7 @@ public class PieceJDBC implements PieceDataSource {
 			for (Field field : fields){
 				if(field==null){
 				}else{
+					
 					int i=0;
 					boolean enc =false;
 					while(i<metaData.getColumnCount() && !enc){
@@ -268,6 +273,7 @@ public class PieceJDBC implements PieceDataSource {
 						if (metaData.getColumnName(i+1).equalsIgnoreCase(field.getName())){
 							
 							String valor=resultSet.getString(i+1);
+							System.out.println(valor);
 							//si el field no es accesible hace que lo sea para la insercción el base de datos
 							if(!field.isAccessible()){
 								field.setAccessible(true);
