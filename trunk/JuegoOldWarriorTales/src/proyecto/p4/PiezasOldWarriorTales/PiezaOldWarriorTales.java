@@ -9,6 +9,7 @@ import proyecto.p4.Mapa.Board;
 import proyecto.p4.Mapa.Casilla;
 import proyecto.p4.Piece.Piece;
 import proyecto.p4.PiezasOldWarriorTales.Habilidades.Hability;
+import proyecto.p4.piezaOldWarriorTales.Unidades.Arquero;
 import ConnectionInterface.PieceJDBC;
 import ConnectionInterface.storableInDataBase;
 
@@ -24,9 +25,15 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable{
 	protected int life;
 	protected int energy;
 	protected int probability;
+
+	protected String CanonicalName;
+	
+
 	//flags que indican si la unidad ha sido movida o a atacado en este turno
 	private boolean hasBeenMoved;
 	private boolean hasAttacked;
+
+	
 	//se necesitara el tablero para acceder a las casillas y piezas de el
 	protected Board board;
 	protected Orientations orientacion;
@@ -61,6 +68,10 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable{
 	}
 	public int getCodePiece() {
 		return CodePiece;
+	}
+	
+	public String getCanonicalName(){
+		return CanonicalName;
 	}
 	public void setCodePiece(int codePiece) {
 		CodePiece = codePiece;
@@ -395,6 +406,12 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable{
 		//enum
 		array.add(this.getClass().getSuperclass().getDeclaredField("orientacion"));
 		array.add(this.getClass().getSuperclass().getSuperclass().getDeclaredField("color"));	
+
+		array.add(this.getClass().getSuperclass().getDeclaredField("CanonicalName"));
+//		Field [] fields=this.getClass().getSuperclass().getDeclaredFields();
+//		System.out.println(fields[1].getName());
+//		array.add(fields[1]);
+
 		Field [] fields;
 		if(this.getClass().getSimpleName()!="PiezaOldWarriorTales")
 			fields=this.getClass().getSuperclass().getSuperclass().getDeclaredFields();
@@ -405,6 +422,7 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable{
 //		}
 		array.add(fields[0]);
 		array.add(fields[1]);
+
 
 	return array;
 	}
@@ -431,7 +449,33 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable{
 		
 		
 	}
-	public void mostrar (){
+
+
+
+public static void main (String []args) {
+	Arquero po= new Arquero();
+	
+	
+//	po.setAttack(810);
+//	po.setBlindness(true);
+//	po.setPoisson(false);
+//	po.setColor(Colours.blanco);
+//	po.setEnergy(290);
+//	po.setExperience(172);
+//	
+//	po.setOrientation(Orientations.South);
+//	po.setPosition(786, 13);
+//	
+//	po.insertIntoDataBase();
+//		
+//	po.setCodePiece(21);
+//	
+//	po.deleteFromDataBase();		
+//	p.nombreTablas();
+//	
+	
+
+	public void mostrar(){
 		System.out.println("PIEZA......................");
 		System.out.println("CodePiece: "+CodePiece);
 		System.out.println("color: "+getColor());
@@ -444,4 +488,7 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable{
 		System.out.println("blindnes: "+blindness);
 		System.out.println("poisson: "+poisson);
 	}
+
+}
+
 }
