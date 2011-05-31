@@ -306,7 +306,8 @@ public class PieceJDBC implements PieceDataSource {
 	 * @throws Exception it is thrown when there are no fields
 	 */
 	public int insert(String tableName, storableInDataBase object) throws Exception{
-	
+		
+		connection= DriverManager.getConnection(CONNECTION_URL);
 		String sqlStatementString = null;
 		Statement statement = null;
 		statement = connection.createStatement();
@@ -324,8 +325,7 @@ public class PieceJDBC implements PieceDataSource {
 		String valores="";
 		//se recorre el array de atributos
 		for(Field field: fields){
-			Class<?> clase = this.getClass();
-			try {		
+			Class<?> clase = this.getClass();	
 				try{
 				clase = Class.forName(field.getType().getName());
 				}catch(ClassNotFoundException cnfe){}
@@ -341,7 +341,7 @@ public class PieceJDBC implements PieceDataSource {
 								//si el atributo es de una clase dentro de la propia clase
 								//carga esa clase y busca dentro el valor del atributo
 								
-								Class<?> cla=object.getClass();
+								Class<?> cla=field.getClass(); //e cambiado object por field (Nota para mi mismo, Julen)
 								Field[] classFields=cla.getDeclaredFields();
 								
 								boolean enc= false;
@@ -394,7 +394,6 @@ public class PieceJDBC implements PieceDataSource {
 						}catch (IllegalArgumentException ex){
 							//si el atributo es de una clase dentro de la propia clase
 							//carga esa clase y busca dentro el valor del atributo
-							
 							Class<?> cla=object.getClass();
 							Field[] classFields=cla.getDeclaredFields();
 							
@@ -436,15 +435,17 @@ public class PieceJDBC implements PieceDataSource {
 									
 								}
 							}
+
+						field.setAccessible(false);
 						}
 						
-						field.setAccessible(false);
 					}
-				
+				//el atributo no es string o enum
 				else{
-						
+					//atributo booleano
+					if(field.getType().getName().equals("boolean")){
 						try{
-							if(field.getType().getName().equals("boolean")){
+							
 								if(field.get(object).toString().equals("true")){
 								valores=valores+"1,";
 								columnas=columnas+field.getName()+",";}
@@ -453,34 +454,87 @@ public class PieceJDBC implements PieceDataSource {
 									columnas=columnas+field.getName()+",";}
 								
 							}
-							else{
-							valores=valores+field.get(object)+",";
-							columnas=columnas+field.getName()+",";}
-						}catch (IllegalAccessException iae){
+						catch (IllegalAccessException iae){
 							field.setAccessible(true);
-							if(field.getType().getName().equals("boolean")){
 								if(field.get(object).toString().equals("true")){
 								valores=valores+"1,";
 								columnas=columnas+field.getName()+",";}
 								else{
 									valores=valores+"0,";
 									columnas=columnas+field.getName()+",";}
-							}
-							else{
-							valores=valores+field.get(object)+",";
-							columnas=columnas+field.getName()+",";}
-							field.setAccessible(false);
+								field.setAccessible(false);
 						}
+						}
+					
+						//atributo no booleano, string o enum.
+						else{
+							//comprobar si el atributo es una clase y existe como tabla en la BBDD:
+							Class<?>atributo=field.getType();
+							atributo.getSimpleName();
+							//recorrer tablas comparando con el nombre del typo del atributo
+							//connection= DriverManager.getConnection(CONNECTION_URL);
+							String nombreTablas = "%"; // Listamos todas las tablas
+							String tipos[] = new String[1]; // Listamos solo tablas
+							tipos[0] = "TABLE";
+							DatabaseMetaData dbmd = connection.getMetaData();
+							ResultSet tablas = dbmd.getTables( null, null, 
+							  nombreTablas, tipos );
+							boolean seguir = tablas.next();
+							boolean realizado=false;
+							while( seguir ) {
+								System.out.println("nombre tabla: "+tablas.getString(tablas.findColumn( "TABLE_NAME" ))+ " nombre atributo:"+atributo.getSimpleName());
+								//existe el atributo como tabla y se introduce la clave primaria
+								if (tablas.getString(tablas.findColumn( "TABLE_NAME" )).toLowerCase().equals(atributo.getSimpleName().toLowerCase())){
+									System.out.println("entrada2");
+									seguir=false;
+									//buscar la clave primaria de la tabla
+										ResultSet rs=dbmd.getPrimaryKeys(null, null, tablas.getString(tablas.findColumn( "TABLE_NAME" )));
+										rs.next();
+										//buscar el atributo correspondiente a la clave primaria:
+										try
+										{
+											Field priField=atributo.getDeclaredField(rs.getString("COLUMN_NAME"));
+											try{
+												valores=valores+"'"+priField.get(field.get(object))+"'"+",";
+												columnas=columnas+field.getName()+",";
+											}catch (IllegalAccessException ia)
+											{
+												System.out.println("catch");
+												priField.setAccessible(true);
+												field.setAccessible(true);
+												valores=valores+"'"+priField.get(field.get(object))+"'"+",";
+												columnas=columnas+field.getName()+",";
+												priField.setAccessible(false);
+												field.setAccessible(true);
+												System.out.println("fin catch");
+											}
+											realizado=true;
+										}
+										catch(NoSuchFieldException e){}
+										
+									}else
+										seguir = tablas.next();
+								}
+								
+							if(!realizado){
+								try{
+									valores=valores+field.get(object)+",";
+									columnas=columnas+field.getName()+",";
+								}catch (IllegalAccessException iae)
+								{
+									field.setAccessible(true);
+									valores=valores+field.get(object)+",";
+									columnas=columnas+field.getName()+",";
+									field.setAccessible(true);
+								}
+							
+							
+							}
+						
 					}
-				
-				} catch (IllegalArgumentException e) {
-					e.printStackTrace();
-					//System.out.println("asdasdasdasd");
 				}
-				//si el atributo no es un string realiza lo mismo pero sin poner comillas simples al atributo
-				
+
 			}
-		
 		//elimina la última coma del string de valores y del de columnas
 		valores=valores.substring(0, valores.length()-1);
 		columnas=columnas.substring(0,columnas.length()-1);
@@ -506,7 +560,7 @@ public class PieceJDBC implements PieceDataSource {
 		Statement statement = null;
 		statement = connection.createStatement();
 		DatabaseMetaData dbmd = connection.getMetaData();
-
+		System.out.println("creado");
 		//obtiene las claves primarias de la tabla
 	    ResultSet primaryKeys= dbmd.getPrimaryKeys(null,null, tableName);
 	    boolean hayMasClavesPrimarias=primaryKeys.next();
@@ -589,19 +643,20 @@ public class PieceJDBC implements PieceDataSource {
 	    String cond= conditions.substring(0, conditions.length()-4);
 	   
 	    //crea la sentencia sql de borrado
+
 		sqlStatementString = "DELETE FROM " +tableName+" WHERE "+cond+";";
 		//número de filas borradas de la tabla de la base de datos
 		System.out.println(sqlStatementString);
 		int deleteRows= statement.executeUpdate(sqlStatementString);
-		
-		
 		statement.close();
 		connection.close();
-
+		System.out.println("despues de cerrar");
 		connection= DriverManager.getConnection(CONNECTION_URL);
 		//devuelve el número de filas borradas si hay condición
 		 return deleteRows;}
 	    else{
+	    	connection.close();
+			connection= DriverManager.getConnection(CONNECTION_URL);
 	    	//si no hay condiciones retorna 0.
 	    	return 0;
 	    }
