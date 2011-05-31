@@ -14,7 +14,8 @@ import proyecto.p4.habilidades.Cegar;
 import proyecto.p4.habilidades.Envenenar;
 
 public class Arquero extends PiezaOldWarriorTales{
-
+	
+	
 	public Arquero(){
 	
 		movement=4;
@@ -24,6 +25,10 @@ public class Arquero extends PiezaOldWarriorTales{
 		blindness=false;
 		poisson=false;
 		counterattack=true;
+	CanonicalName= this.getClass().getSimpleName();
+	
+//	this.setImagen(new ImageIcon(getClass().getResource("/img/arquero.gif")));
+
 
 	this.setImagen(new ImageIcon(getClass().getResource("/img/arquero.png")));
 
@@ -49,6 +54,7 @@ public class Arquero extends PiezaOldWarriorTales{
 		habilities[1]=h2;
 	}
 	public static void main (String[]args)  {
+
 		Arquero a=new Arquero();
 		a.setPosition(5, 5);
 		a.setCodePiece(1);
@@ -61,9 +67,10 @@ public class Arquero extends PiezaOldWarriorTales{
 		a.setPoisson(true);
 		a.deleteFromDataBase();
 		ArrayList<storableInDataBase> array=a.takeOutFromDataBase();
-		for(storableInDataBase stor: array){
-			((PiezaOldWarriorTales)stor).mostrar();
-		}
+//		for(storableInDataBase stor: array){
+//			((PiezaOldWarriorTales)stor).mostrar();
+//		}
+
 	}
 
 }
