@@ -9,7 +9,6 @@ import proyecto.p4.Mapa.Board;
 import proyecto.p4.Mapa.Casilla;
 import proyecto.p4.Piece.Piece;
 import proyecto.p4.PiezasOldWarriorTales.Habilidades.Hability;
-import proyecto.p4.piezaOldWarriorTales.Unidades.Arquero;
 import ConnectionInterface.PieceJDBC;
 import ConnectionInterface.storableInDataBase;
 
@@ -449,32 +448,6 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable{
 		
 		
 	}
-
-
-
-public static void main (String []args) {
-	Arquero po= new Arquero();
-	
-	
-//	po.setAttack(810);
-//	po.setBlindness(true);
-//	po.setPoisson(false);
-//	po.setColor(Colours.blanco);
-//	po.setEnergy(290);
-//	po.setExperience(172);
-//	
-//	po.setOrientation(Orientations.South);
-//	po.setPosition(786, 13);
-//	
-//	po.insertIntoDataBase();
-//		
-//	po.setCodePiece(21);
-//	
-//	po.deleteFromDataBase();		
-//	p.nombreTablas();
-//	
-	
-
 	public void mostrar(){
 		System.out.println("PIEZA......................");
 		System.out.println("CodePiece: "+CodePiece);
@@ -488,7 +461,5 @@ public static void main (String []args) {
 		System.out.println("blindnes: "+blindness);
 		System.out.println("poisson: "+poisson);
 	}
-
-}
 
 }
