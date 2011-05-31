@@ -56,10 +56,8 @@ public int deleteFromDataBase() {
 	PieceJDBC p;
 	int valueToReturn=0;
 		try {
-			
 			p = new PieceJDBC();
 			valueToReturn+=p.remove("Jugador", this);
-			
 			
 		} catch (ClassNotFoundException e) {
 			JOptionPane.showMessageDialog(null,"Error al borrar1","Error",JOptionPane.OK_OPTION,null);  
@@ -138,22 +136,21 @@ public ArrayList<storableInDataBase> takeOutFromDataBase() {
  */
 public static void main (String []arts) throws Exception{
 	
-	//LA INSERT FUNCIONA,EL GETALL FUNCIONA, REMOVE FUNCIONA
+	//LA INSERT FUNCIONA,EL GETALL FUNCIONA, REMOVE NO FUNCIONA
 	
 	Jugador c1= new Jugador ();
+	
+	
+	c1.setNick("juen");
+	c1.setAvatar("img5");
+	c1.insertIntoDataBase();
+	
+	//System.out.println(c1.deleteFromDataBase());
 	ArrayList<storableInDataBase> array=c1.takeOutFromDataBase();
 	
 	for (storableInDataBase sdb: array){
 		System.out.println(((Jugador)sdb).getNick());
 	}
-	
-	
-	c1.Nick="oas";
-	//c1.avatar="direccionavatar";
-	//c1.insertIntoDataBase();
-	
-	c1.deleteFromDataBase();
-	
 
 }
 

@@ -21,7 +21,7 @@ public abstract class Piece implements Moveable, storableInDataBase{
 	//color que indica el bando al que pertenece la pieza
 	private Colours color;
 	//array bidimensional booleano que indica las casillas a las que se puede mover
-	private boolean [][] able_to_move;
+	protected boolean [][] able_to_move;
 	
 	//METODOS:
 	public ImageIcon getImagen() {
@@ -56,7 +56,7 @@ public abstract class Piece implements Moveable, storableInDataBase{
 	public void setPosition(int positionX, int positionY) {
 		position_x = positionX;
 		position_y = positionY;
-//		setAbleToMove();
+		setAbleToMove();
 	}
 	
 	/**
@@ -97,5 +97,5 @@ public abstract class Piece implements Moveable, storableInDataBase{
 				able_to_move [i][j]= canMove (i,j);
 		}
 	}
-
+	
 }
