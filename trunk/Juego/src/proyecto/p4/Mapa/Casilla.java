@@ -5,7 +5,7 @@ package proyecto.p4.Mapa;
 import javax.swing.JOptionPane;
 
 import proyecto.p4.Piece.Piece;
-import proyecto.p4.Tipo.OldWarriorTales.TerrainGrass;
+import proyecto.p4.Tipo.OldWarriorTales.*;
 
 import java.lang.reflect.Field;
 import java.sql.SQLException;
@@ -164,16 +164,19 @@ public class Casilla implements storableInDataBase{
 	}
 	public static void main (String []args){
 		Casilla c=new Casilla();
-		TerrainGrass t= new TerrainGrass();
-//		c.setSquare(t);
-//		c.setPosX(5);
-//		c.insertIntoDataBase();
+		TerrainCastle t= new TerrainCastle();
+		c.setSquare(t);
+		c.setPosX(5);
+		c.setPosY(18);
+		c.setCodeCasilla(67);
+		c.deleteFromDataBase();
+		//c.insertIntoDataBase();
 		ArrayList<storableInDataBase> a=c.takeOutFromDataBase();
 		for (storableInDataBase s: a)
 		{
 			System.out.println(((Casilla)s).getCodeCasilla());
 		}
 		c.setCodeCasilla(70);
-		c.deleteFromDataBase();
+		//c.deleteFromDataBase();
 	}
 }
