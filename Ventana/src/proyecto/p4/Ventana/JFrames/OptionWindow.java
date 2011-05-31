@@ -37,14 +37,14 @@ public class OptionWindow extends javax.swing.JFrame implements ActionListener /
     	
     	//CORREGIR!!!!!!
     	Buttons = new BotoneraV("",Language.getString("label_credits"),Language.getString("label_exit"),"","");
-
+    	this.setResizable(false);
 
         soundPanel1 = new SoundPanel(Language);
         languagePanel1 = new LanguagePanel(Language);
         
         Logo = new JLabel();
         Logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/lgo.jpg")));
-        
+        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 
      
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
