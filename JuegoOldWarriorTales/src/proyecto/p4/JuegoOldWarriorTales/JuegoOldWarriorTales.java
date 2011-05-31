@@ -15,7 +15,7 @@ public class JuegoOldWarriorTales extends Juego implements storableInDataBase{
 	
 	public JuegoOldWarriorTales (){
 		name="Old Warrior Tales";
-		rutaImagen= "/img/lgo.jpg";
+		rutaImagen= "src/img/lgo.jpg";
 	}
 
 	
@@ -75,7 +75,7 @@ public static void main (String []args) throws Exception{
 	for(int i=0; i<juego.size();i++)
 	System.out.println(juego.get(i));
 	
-	j.setIdentificador(1);
+	//j.setIdentificador(1);
 	
 	co.insert("JuegoOldWarriorTales", j);
 
