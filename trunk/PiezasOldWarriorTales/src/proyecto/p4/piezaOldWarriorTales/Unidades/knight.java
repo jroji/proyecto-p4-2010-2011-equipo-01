@@ -15,6 +15,7 @@ public class knight extends PiezaOldWarriorTales {
 			blindness=false;
 			poisson=false;
 			counterattack=false;
+			CanonicalName= this.getClass().getSimpleName();
 
 			//this.setImagen(new ImageIcon(getClass().getResource("/img/caballero.gif")));
 		}
