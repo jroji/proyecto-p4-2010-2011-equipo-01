@@ -13,6 +13,7 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
+import proyecto.p4.Juego.Juego;
 import proyecto.p4.Ventana.Button.BotoneraH;
 import proyecto.p4.Ventana.Button.OldWarriorButton;
 import proyecto.p4.Ventana.JPanels.NickPanel;
@@ -21,12 +22,13 @@ import Languages.*;
 
 public class WelcomeWindow extends JFrame implements ActionListener{
 	
-	NickPanel nicks = new NickPanel();
-	BotoneraH botonera;
-	SelectGamePane game = new SelectGamePane();
-	JLabel fondo = new JLabel(new ImageIcon(getClass().getResource("/img/fondowelcome.jpg")));
-	ResourceBundle language;
-	boolean sound;
+	private NickPanel nicks = new NickPanel();
+	private BotoneraH botonera;
+	private SelectGamePane game = new SelectGamePane(this);
+	private JLabel fondo = new JLabel(new ImageIcon(getClass().getResource("/img/fondowelcome.jpg")));
+	private ResourceBundle language;
+	private boolean sound;
+	public Juego selectedGame;
 	
 	public WelcomeWindow(ResourceBundle language,boolean Sound){
 
@@ -80,7 +82,7 @@ public class WelcomeWindow extends JFrame implements ActionListener{
 		if(e.getSource()==((OldWarriorButton) botonera.getComponent(0)).getOldWarriorButton())
 		{
 			botonera.setButtonP1(false);
-			new MainWindow(language,sound,nicks.getNicktext(),nicks.getNicktext2());
+			new MainWindow(language,sound,selectedGame);
 			this.dispose();
 		}else{
 			if(e.getSource()==((OldWarriorButton) botonera.getComponent(1)).getOldWarriorButton()){

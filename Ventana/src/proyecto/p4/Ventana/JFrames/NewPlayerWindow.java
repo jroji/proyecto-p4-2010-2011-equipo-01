@@ -25,14 +25,7 @@ public class NewPlayerWindow extends JFrame implements ActionListener{
 		this.setVisible(true);
 		this.setResizable(false);
 		panel.getAcceptButton().getOldWarriorButton().addActionListener(this);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//		  while(true){
-//          	if(x.getAcceptButton().isPulsed()){
-//          		x.getAcceptButton().setBP(false);
-//          		this.dispose();
-//          	}
-//          }
-
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 	}
 
 	@Override

@@ -25,7 +25,7 @@ public class CreditsWindow extends javax.swing.JFrame implements ActionListener 
     private Juego selectedGame;
 
 	
-    public CreditsWindow(ResourceBundle language,boolean sound,Jugador j) {
+    public CreditsWindow(ResourceBundle language,boolean sound,Juego j) {
     	selectedGame = j;
     	Language = language;
     	Sound=sound;
