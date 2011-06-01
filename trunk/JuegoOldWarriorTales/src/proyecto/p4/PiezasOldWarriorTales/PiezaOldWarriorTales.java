@@ -9,7 +9,6 @@ import proyecto.p4.Mapa.Board;
 import proyecto.p4.Mapa.Casilla;
 import proyecto.p4.Piece.Piece;
 import proyecto.p4.PiezasOldWarriorTales.Habilidades.Hability;
-import proyecto.p4.piezaOldWarriorTales.Unidades.Arquero;
 import ConnectionInterface.PieceJDBC;
 import ConnectionInterface.storableInDataBase;
 
@@ -398,28 +397,38 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable{
 		ArrayList<Field> array= new ArrayList<Field>();
 		
 		System.out.println(this.getClass().getSuperclass().getDeclaredFields()[0]);
-		array.add(this.getClass().getSuperclass().getDeclaredField("life"));
-		array.add(this.getClass().getSuperclass().getDeclaredField("energy"));
-		array.add(this.getClass().getSuperclass().getDeclaredField("experience"));
-		array.add(this.getClass().getSuperclass().getDeclaredField("blindness"));
-		array.add(this.getClass().getSuperclass().getDeclaredField("poisson"));
-		//enum
-		array.add(this.getClass().getSuperclass().getDeclaredField("orientacion"));
-		array.add(this.getClass().getSuperclass().getSuperclass().getDeclaredField("color"));	
-
-		array.add(this.getClass().getSuperclass().getDeclaredField("CanonicalName"));
+		
 //		Field [] fields=this.getClass().getSuperclass().getDeclaredFields();
 //		System.out.println(fields[1].getName());
 //		array.add(fields[1]);
 
 		Field [] fields;
-		if(this.getClass().getSimpleName()!="PiezaOldWarriorTales")
+		if(!this.getClass().getSimpleName().equals("PiezaOldWarriorTales")){
+			array.add(this.getClass().getSuperclass().getDeclaredField("life"));
+			array.add(this.getClass().getSuperclass().getDeclaredField("energy"));
+			array.add(this.getClass().getSuperclass().getDeclaredField("experience"));
+			array.add(this.getClass().getSuperclass().getDeclaredField("blindness"));
+			array.add(this.getClass().getSuperclass().getDeclaredField("poisson"));
+			//enum
+			array.add(this.getClass().getSuperclass().getDeclaredField("orientacion"));
+			array.add(this.getClass().getSuperclass().getSuperclass().getDeclaredField("color"));	
+			array.add(this.getClass().getSuperclass().getDeclaredField("CodePiece"));
+			array.add(this.getClass().getSuperclass().getDeclaredField("CanonicalName"));
 			fields=this.getClass().getSuperclass().getSuperclass().getDeclaredFields();
-		else
+		}
+		else{
+			array.add(this.getClass().getDeclaredField("life"));
+			array.add(this.getClass().getDeclaredField("energy"));
+			array.add(this.getClass().getDeclaredField("experience"));
+			array.add(this.getClass().getDeclaredField("blindness"));
+			array.add(this.getClass().getDeclaredField("poisson"));
+			//enum
+			array.add(this.getClass().getDeclaredField("orientacion"));
+			array.add(this.getClass().getSuperclass().getDeclaredField("color"));	
+			array.add(this.getClass().getDeclaredField("CodePiece"));
+			array.add(this.getClass().getDeclaredField("CanonicalName"));
 			fields=this.getClass().getSuperclass().getDeclaredFields();
-//		for (Field fi: fields){
-//			System.out.println(fi.getName());
-//		}
+		}
 		array.add(fields[0]);
 		array.add(fields[1]);
 
@@ -449,33 +458,6 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable{
 		
 		
 	}
-
-
-
-
-public static void main (String []args) {
-	Arquero po= new Arquero();
-	
-	
-//	po.setAttack(810);
-//	po.setBlindness(true);
-//	po.setPoisson(false);
-//	po.setColor(Colours.blanco);
-//	po.setEnergy(290);
-//	po.setExperience(172);
-//	
-//	po.setOrientation(Orientations.South);
-//	po.setPosition(786, 13);
-//	
-//	po.insertIntoDataBase();
-//		
-//	po.setCodePiece(21);
-//	
-//	po.deleteFromDataBase();		
-//	p.nombreTablas();
-//	
-	
-}
 
 	public void mostrar(){
 		System.out.println("PIEZA......................");
