@@ -7,10 +7,11 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ResourceBundle;
 
+import proyecto.p4.Juego.*;
 import proyecto.p4.Ventana.Button.BotoneraV;
 import proyecto.p4.Ventana.JPanels.CreditsPanel;
 import proyecto.p4.Ventana.JPanels.LanguagePanel;
-import Languages.MyResources_Es;
+import Languages.*;
 import proyecto.p4.Ventana.JPanels.SoundPanel;
 import javax.swing.*;
 
@@ -25,9 +26,11 @@ public class OptionWindow extends javax.swing.JFrame implements ActionListener /
     private SoundPanel soundPanel1;
     private ResourceBundle Language;
     private boolean Sound;
+    private Jugador selectedGame;
 
  
-	public OptionWindow(ResourceBundle language,boolean sound) {
+	public OptionWindow(ResourceBundle language,boolean sound,Juego j) {
+		selectedGame = j;
 		Language=language;
 		Sound = sound;
         initComponents(Sound);
@@ -102,12 +105,12 @@ public class OptionWindow extends javax.swing.JFrame implements ActionListener /
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource()==Buttons.getBoton2().getOldWarriorButton()){
 			this.dispose();
-  			new CreditsWindow(Language,Sound);
+  			new CreditsWindow(Language,Sound,selectedGame);
 		}else if(e.getSource()==Buttons.getBoton3().getOldWarriorButton()){
 			Buttons.setButtonP3(false);
    			this.dispose();
    			Language= languagePanel1.GetSelection();
-			new MainWindow(Language,soundPanel1.SoundOn());
+			new MainWindow(Language,soundPanel1.SoundOn(),selectedGame);
 		}
 		
 	}
