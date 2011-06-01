@@ -6,9 +6,11 @@ import java.util.ResourceBundle;
 
 import proyecto.p4.Ventana.Button.OldWarriorButton;
 
-public class CreditsWindow extends javax.swing.JFrame implements ActionListener{
 
-	private OldWarriorButton Button;
+public class CreditsWindow extends javax.swing.JFrame implements ActionListener {
+
+ 
+    private OldWarriorButton Button;
     private javax.swing.JLabel Credits;
     private javax.swing.JLabel Eneko;
     private javax.swing.JLabel Implementation;
@@ -19,14 +21,15 @@ public class CreditsWindow extends javax.swing.JFrame implements ActionListener{
     private javax.swing.JLabel bandaSonora;
     private ResourceBundle Language;
     private boolean Sound;
+
 	
-    public CreditsWindow(ResourceBundle language, boolean sound) {
+    public CreditsWindow(ResourceBundle language,boolean sound) {
     	Language = language;
-    	Sound = sound;
+    	Sound=sound;
         initComponents();
-        
     }
-    
+
+
     private void initComponents() {
 
         Julen = new javax.swing.JLabel();
@@ -37,9 +40,9 @@ public class CreditsWindow extends javax.swing.JFrame implements ActionListener{
         Eneko = new javax.swing.JLabel();
         Button = new OldWarriorButton(Language.getString("label_back"));
         Implementation = new javax.swing.JLabel();
-        Credits = new javax.swing.JLabel();
+        Credits = new javax.swing.JLabel(Language.getString("label_creadits")+":");
         Button.getOldWarriorButton().addActionListener(this);
-
+        
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         Julen.setText("Julen Telleria Viana");
@@ -54,55 +57,53 @@ public class CreditsWindow extends javax.swing.JFrame implements ActionListener{
         bandaSonora.setText("Banda Sonora:");
 
         Eneko.setText("Eneko Villaroel Labanda");
-        
-     
 
         Implementation.setFont(new java.awt.Font("DejaVu Sans", 1, 12)); // NOI18N
-        Implementation.setText("Implementacion");
+        Implementation.setText("Implementacion:");
 
         Credits.setFont(new java.awt.Font("DejaVu Sans", 1, 18)); // NOI18N
-        Credits.setText(Language.getString("label_credits")+":");
+        Credits.setText("Creditos:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-            .addGap(42, 42, 42)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Implementation)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(42, 42, 42)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(Eneko))
+                    .addComponent(Implementation)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addComponent(Jon))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addComponent(Pello))
+                            .addComponent(bandaSonora)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(Julen)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(Credits)
+                                        .addComponent(Raquel)))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addContainerGap(100, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(Button, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-            .addGap(12, 12, 12)
-            .addComponent(Jon))
-            .addGroup(layout.createSequentialGroup()
-            .addGap(12, 12, 12)
-            .addComponent(Pello))
-            .addGroup(layout.createSequentialGroup()
-            .addGap(12, 12, 12)
-            .addComponent(Eneko))
-            .addComponent(bandaSonora)
-            .addGroup(layout.createSequentialGroup()
-            .addGap(12, 12, 12)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Julen)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-            .addComponent(Credits)
-            .addComponent(Raquel)))))
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 113, javax.swing.GroupLayout.PREFERRED_SIZE))))
-            .addContainerGap(81, Short.MAX_VALUE))
+                .addContainerGap(162, Short.MAX_VALUE)
+                .addComponent(Button, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(48, 48, 48))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(Credits)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(Implementation)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Julen)
@@ -114,23 +115,21 @@ public class CreditsWindow extends javax.swing.JFrame implements ActionListener{
                 .addComponent(Pello)
                 .addGap(12, 12, 12)
                 .addComponent(bandaSonora)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Eneko)
                 .addGap(18, 18, 18)
-                .addComponent(Button, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(84, 84, 84))
+                .addComponent(Button, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(99, 99, 99))
         );
 
         pack();
     }
-    
-	@Override
+    @Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		if(e.getSource()==Button){
-			this.dispose();
-	    	new OptionWindow(Language,Sound);
-		}
+    	if(e.getSource()==Button.getOldWarriorButton()){
+		this.dispose();
+    	new OptionWindow(Language,Sound);
 	}
-
+    }
 }
