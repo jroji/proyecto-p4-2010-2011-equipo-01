@@ -32,7 +32,7 @@ public class MainWindow extends JFrame implements ActionListener{
 		Language=language;
 		this.Sound=Sound;
 		Buttons=new BotoneraV(Language.getString("label_quickGame"),Language.getString("label_customGame"),
-		Language.getString("label_options"), "",
+		Language.getString("label_loadGame"), Language.getString("label_options"),
 	    Language.getString("label_exit"));
 		this.setSize(1024,720);
 		this.setLayout(null);
