@@ -53,7 +53,7 @@ public class WelcomeWindow extends JFrame implements ActionListener{
 		((OldWarriorButton)botonera.getComponent(0)).getOldWarriorButton().addActionListener(this);
 		((OldWarriorButton)botonera.getComponent(1)).getOldWarriorButton().addActionListener(this);
 		((OldWarriorButton)botonera.getComponent(2)).getOldWarriorButton().addActionListener(this);
-		//¿?¿?¿?¿?¿? action listener ¿?¿?¿?¿?¿?
+		//ï¿½?ï¿½?ï¿½?ï¿½?ï¿½? action listener ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?
 //		    while(true){
 //		   		if(botonera.getButtonP1()){
 //		   			botonera.setButtonP1(false);
