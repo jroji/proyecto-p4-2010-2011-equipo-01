@@ -23,10 +23,9 @@ public class MapGoldSelectionWindows extends javax.swing.JFrame {
     private String Nick1;
     private String Nick2;
     
-    public MapGoldSelectionWindows(ResourceBundle language,Jugador J1, Jugador J2) {
+    public MapGoldSelectionWindows(ResourceBundle language,String J1, String J2) {
     	Language = language;
-    	Nick1 = J1.getNick();
-    	Nick2 = J2.getNick();
+    	Nick1 = J1;
         initComponents();
     }
 

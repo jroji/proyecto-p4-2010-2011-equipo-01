@@ -24,11 +24,16 @@ public class MainWindow extends JFrame implements ActionListener{
 	BotoneraV Buttons;
 	private ResourceBundle Language;
 	boolean Sound;
+	private String Nick1;
+	private String Nick2;
 
 
 	BotoneraV botoneraV;
 	
-	public MainWindow(ResourceBundle language,boolean Sound){
+	public MainWindow(ResourceBundle language,boolean Sound,String nick1, String nick2){
+		
+		Nick1 = nick1;
+		Nick2 = nick2;
 		Language=language;
 		this.Sound=Sound;
 		Buttons=new BotoneraV(Language.getString("label_quickGame"),Language.getString("label_customGame"),
@@ -86,7 +91,8 @@ public class MainWindow extends JFrame implements ActionListener{
 		}
 		else{
 			if(e.getSource()==Buttons.getBoton2().getOldWarriorButton()){
-				System.out.println("boton2");
+				this.dispose();
+				new MapGoldSelectionWindows(Language, Nick1, Nick2);
 			}else{
 				if(e.getSource()==Buttons.getBoton3().getOldWarriorButton()){
 				}else{

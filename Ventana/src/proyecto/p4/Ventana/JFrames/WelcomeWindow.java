@@ -80,7 +80,7 @@ public class WelcomeWindow extends JFrame implements ActionListener{
 		if(e.getSource()==((OldWarriorButton) botonera.getComponent(0)).getOldWarriorButton())
 		{
 			botonera.setButtonP1(false);
-			new MainWindow(language,sound);
+			new MainWindow(language,sound,nicks.getNicktext(),nicks.getNicktext2());
 			this.dispose();
 		}else{
 			if(e.getSource()==((OldWarriorButton) botonera.getComponent(1)).getOldWarriorButton()){
