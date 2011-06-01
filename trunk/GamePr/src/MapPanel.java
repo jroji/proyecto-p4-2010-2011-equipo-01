@@ -187,7 +187,6 @@ public class MapPanel extends JPanel implements MouseListener{
 			i++;
 		}
 		if(!enc){
-			System.out.println("hola");
 			return false;}
 		else
 			return true;
@@ -224,7 +223,6 @@ public class MapPanel extends JPanel implements MouseListener{
 					if(tab.getBoard()[i][j].getPiece()==null){
 					boolean enc = false;
 					while(z<=unitsimg01.size()&&!enc){
-						System.out.println(unitsimg01.size());
 						if(unitsimg01.get(z).equals(selectedUnit)){
 							unitsimg01.get(z).setBounds(this.mapa[i][j].getLocation().x+10,this.mapa[i][j].getLocation().y-50,80,90);
 							layer.setLayer(unitsimg01.get(z), layer.getLayer(x)+2);
@@ -233,9 +231,7 @@ public class MapPanel extends JPanel implements MouseListener{
 							enc =true;
 						}
 							z++;
-					}
-					System.out.println(i+","+j);
-					System.out.println("CAPA : "+ layer.getLayer(x));				
+					}			
 			}}
 		}
 		}
@@ -243,7 +239,6 @@ public class MapPanel extends JPanel implements MouseListener{
 	else{
 		for(int y = 0;y<unitsimg01.size();y++){
 			if(unitsimg01.get(y).equals(arg0.getSource())){
-				System.out.println("OKAY, TENGO TU UNIDAD");
 				selectedUnit = (JLabel) arg0.getSource();
 				int i = 0;
 				boolean en = false;

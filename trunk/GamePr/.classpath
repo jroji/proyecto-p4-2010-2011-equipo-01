@@ -2,10 +2,11 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
-	<classpathentry kind="lib" path="C:/proyecto/p4/products/Piezas/Piezas.jar"/>
+	<classpathentry kind="lib" path="C:/proyecto/p4/products/JuegoOldWarriorTales/JuegoOldWarriorTales.jar"/>
 	<classpathentry kind="lib" path="C:/proyecto/p4/products/PiezasOldWarriorTales/PiezasOldWarriorTales.jar"/>
-	<classpathentry kind="lib" path="C:/proyecto/p4/products/Mapa/Mapa.jar"/>
-	<classpathentry kind="lib" path="C:/proyecto/p4/products/Ventana/Ventana.jar"/>
 	<classpathentry kind="lib" path="C:/proyecto/p4/products/Juego/Juego.jar"/>
+	<classpathentry kind="lib" path="C:/proyecto/p4/products/DataBase/DataBase.jar"/>
+	<classpathentry kind="lib" path="C:/proyecto/p4/products/Ventana/Ventana.jar"/>
+	<classpathentry kind="lib" path="C:/proyecto/p4/products/Terrenos/Terrenos.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

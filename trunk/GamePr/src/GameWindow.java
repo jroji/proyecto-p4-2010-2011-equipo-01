@@ -19,6 +19,7 @@ import proyecto.p4.PiezasOldWarriorTales.PiezaOldWarriorTales;
 import proyecto.p4.Ventana.JPanels.HabilitiesButton;
 import proyecto.p4.Ventana.JPanels.UnitData;
 import proyecto.p4.piezaOldWarriorTales.Unidades.Arquero;
+import proyecto.p4.piezaOldWarriorTales.Unidades.Barbarian;
 import proyecto.p4.piezaOldWarriorTales.Unidades.Killer;
 import proyecto.p4.piezaOldWarriorTales.Unidades.Magician;
 
@@ -71,6 +72,7 @@ public class GameWindow extends JFrame implements MouseListener, ListSelectionLi
 		unitData.setBounds(875,50,250,125);
 		habilitiesButtons.setBounds(200,600, 750, 200);		
 
+		gamePanel.addMouseListener(this);
 		layer.add(gamePanel, new Integer (1));
 		layer.add(unitData, new Integer(2));
 		layer.add(habilitiesButtons, new Integer(2));
@@ -138,8 +140,10 @@ public class GameWindow extends JFrame implements MouseListener, ListSelectionLi
 //		kill.setPosition(10, 5);
 //		kill.setColor(Colours.blanco);
 //		
-//		Barbarian bar = new Barbarian();
-//		bar.setColor(Colours.negro);
+		Barbarian bar = new Barbarian();
+		bar.setColor(Colours.blanco);
+		bar.setPosition(5, 5);
+		z.getBoard()[5][5].setPiece(bar);
 		z.getBoard()[10][10].setPiece(arq2);
 		z.getBoard()[10][5].setPiece(arq);
 		new GameWindow(new Jugador(), new Jugador(), z);
