@@ -4,6 +4,9 @@ package proyecto.p4.Ventana.JPanels;
  *
  * @author Jon
  */
+
+import proyecto.p4.Juego.*;
+
 public class AvatarPanel extends javax.swing.JPanel {
 
     /**
@@ -18,7 +21,7 @@ public class AvatarPanel extends javax.swing.JPanel {
     private javax.swing.JPanel Player2Avatar;
     
     /** Creates new form AvatarPanel */
-    public AvatarPanel(String nick1, String nick2) {
+    public AvatarPanel(Juego j) {
 
         Player2Name = new javax.swing.JLabel();
         Player1Name = new javax.swing.JLabel();
