@@ -38,7 +38,7 @@ public class NickPanel extends javax.swing.JPanel {
 
         nicktext2.setText("");
 
-        // Código para colocar y organizar componentes//
+        // Cï¿½digo para colocar y organizar componentes//
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -68,5 +68,21 @@ public class NickPanel extends javax.swing.JPanel {
                 .addContainerGap(55, Short.MAX_VALUE))
         );
     }
+
+	public String getNicktext() {
+		return nicktext.getText();
+	}
+
+	public void setNicktext(JTextField nicktext) {
+		this.nicktext = nicktext;
+	}
+
+	public String getNicktext2() {
+		return nicktext2.getText();
+	}
+
+	public void setNicktext2(JTextField nicktext2) {
+		this.nicktext2 = nicktext2;
+	}
 
 }
