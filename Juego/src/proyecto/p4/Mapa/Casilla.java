@@ -7,6 +7,16 @@ import javax.swing.JOptionPane;
 import proyecto.p4.Piece.Piece;
 import proyecto.p4.Tipo.OldWarriorTales.*;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.OutputStreamWriter;
 import java.lang.reflect.Field;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -22,12 +32,15 @@ public class Casilla implements storableInDataBase{
 	private int PosX;
 	private int PosY;
 	private Piece piece;
+	final static String nombreFichero= "Contador";
 	
 	public  Casilla (){
 		square=null;
 		PosX=0;
 		PosY=0;
 		piece=null;
+		
+		
 	}
 	
 
@@ -72,8 +85,7 @@ public class Casilla implements storableInDataBase{
 	
 	public ArrayList <Field> fieldsToStore() throws SecurityException, NoSuchFieldException{
 		ArrayList<Field> array= new ArrayList<Field>();
-		
-		//array.add(this.getClass().getDeclaredField("CodeCasilla"));
+		array.add(this.getClass().getDeclaredField("CodeCasilla"));
 		array.add(this.getClass().getDeclaredField("PosX"));
 		array.add(this.getClass().getDeclaredField("PosY"));
 		Field [] fields=this.square.getClass().getSuperclass().getSuperclass().getDeclaredFields();
@@ -116,6 +128,35 @@ public class Casilla implements storableInDataBase{
 
 	@Override
 	public int insertIntoDataBase() {
+		//CodeCasilla autoincremental.
+		try {
+			FileInputStream fileInputStream = new FileInputStream(nombreFichero);
+			InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
+			BufferedReader bufferedReader= new BufferedReader(inputStreamReader);
+			String line = bufferedReader.readLine();
+			new Integer(0);
+			CodeCasilla=Integer.parseInt(line);
+			System.out.println("CodeCasilla: "+CodeCasilla);
+			fileInputStream.close();
+			inputStreamReader.close();
+			bufferedReader.close();
+			Integer variable= CodeCasilla+1;
+			FileOutputStream fos= new FileOutputStream(nombreFichero);
+			OutputStreamWriter osw= new OutputStreamWriter(fos);
+			BufferedWriter bw= new BufferedWriter(osw);
+			bw.write(variable.toString());
+			bw.close();
+			fos.close();
+			osw.close();
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		PieceJDBC p;
 		try {
 			p = new PieceJDBC();
@@ -168,9 +209,12 @@ public class Casilla implements storableInDataBase{
 		c.setSquare(t);
 		c.setPosX(5);
 		c.setPosY(18);
-		c.setCodeCasilla(67);
-		c.deleteFromDataBase();
-		//c.insertIntoDataBase();
+		//c.setCodeCasilla(67);
+		//c.deleteFromDataBase();
+		c.insertIntoDataBase();
+		Casilla c2= new Casilla();
+		c2.setSquare(t);
+		c2.insertIntoDataBase();
 		ArrayList<storableInDataBase> a=c.takeOutFromDataBase();
 		for (storableInDataBase s: a)
 		{

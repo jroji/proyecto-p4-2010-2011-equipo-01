@@ -4,7 +4,7 @@ package proyecto.p4.Mapa;
 public abstract class Square {
 
 	protected String image; //Contiene la imagen del terreno
-	protected String name; // Contiene el nombre del terreno
+	protected String terrain; // Contiene el nombre del terreno
 	
 	public Square (){
 		iniName();
@@ -23,8 +23,8 @@ public abstract class Square {
 	}
 	
 	//Devuelve el nombre del terreno
-	public String getName(){
-		return name;
+	public String getTerrain(){
+		return terrain;
 	}
 
 
