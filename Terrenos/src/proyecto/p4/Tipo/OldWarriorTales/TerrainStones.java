@@ -19,7 +19,7 @@ public class TerrainStones extends Terrain{
 
 	@Override
 	public void iniName() {
-		name = "Stones";
+		terrain = "Stones";
 		
 	}
 }

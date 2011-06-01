@@ -19,10 +19,10 @@ public class TerrainGrass extends Terrain{
 	}
 
 	public void iniName() {
-		name = "Grass";
+		terrain = "Grass";
 			
 	}
 	public String toString (){
-		return name;
+		return terrain;
 	}
 }
