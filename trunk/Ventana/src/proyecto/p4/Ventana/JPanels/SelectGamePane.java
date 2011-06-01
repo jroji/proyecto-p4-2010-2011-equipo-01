@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 
 import proyect.Reflectividad;
 import proyecto.p4.Juego.Juego;
+import proyecto.p4.Ventana.JFrames.WelcomeWindow;
 
 /**
  *
@@ -21,13 +22,14 @@ public class SelectGamePane extends JPanel {
 	private javax.swing.JComboBox SelectGameCombo;
     private javax.swing.JLabel Image;
     private javax.swing.JPanel ImgPane;
-   private  ArrayList<Object> instancias;
+    private  ArrayList<Object> instancias;
+    private WelcomeWindow welc;
     
     
     /** Creates new form SelectGamePane */
-    public SelectGamePane() {
+    public SelectGamePane(WelcomeWindow ww) {
 
-
+    	welc=ww;
         SelectGameCombo = new javax.swing.JComboBox();
         ImgPane = new javax.swing.JPanel();
         Image = new javax.swing.JLabel();
@@ -97,8 +99,8 @@ public class SelectGamePane extends JPanel {
     
     private void SelectGameComboActionPerformed(java.awt.event.ActionEvent evt) {
     	Juego x = (Juego) instancias.get(SelectGameCombo.getSelectedIndex());
+    	welc.selectedGame=x;
     	Image.setIcon(new ImageIcon(x.getRuta()));
-//    	Image.setIcon(getClass().getResource( x.getRuta() ));
     	
 }
 }
