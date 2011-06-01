@@ -40,7 +40,7 @@ public class CreditsWindow extends javax.swing.JFrame implements ActionListener 
         Eneko = new javax.swing.JLabel();
         Button = new OldWarriorButton(Language.getString("label_back"));
         Implementation = new javax.swing.JLabel();
-        Credits = new javax.swing.JLabel(Language.getString("label_creadits")+":");
+        Credits = new javax.swing.JLabel(Language.getString("label_credits")+":");
         Button.getOldWarriorButton().addActionListener(this);
         
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -62,7 +62,6 @@ public class CreditsWindow extends javax.swing.JFrame implements ActionListener 
         Implementation.setText("Implementacion:");
 
         Credits.setFont(new java.awt.Font("DejaVu Sans", 1, 18)); // NOI18N
-        Credits.setText("Creditos:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
