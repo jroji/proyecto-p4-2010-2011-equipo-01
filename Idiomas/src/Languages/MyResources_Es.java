@@ -11,8 +11,8 @@ public class MyResources_Es extends ListResourceBundle{
 			{"label_sound","Sonido"},{"label_attack","Attack"},{"label_defense","Defense"},{"label_movement","Movement"},
 			{"label_probability","Probability"},{"label_back","Volver"},{"AtacarYHuir","Atacar y huir"},{"AtaqueCertero","Ataque certero"},
 			{"AtaqueEnZona","Ataque en zona"},{"Cegar","Cegar"},{"Convertir","Convertir"},{"CurarEstados","Curar estados"},{"CurarZona","Curar zona"},
-			{"Envenenar","Envenenar"},{"LanzarSuriquen","Lanzar suriken"},{"Sprint","Sprint"},{"Yes","Si"},{"No","No"}
-	
+			{"Envenenar","Envenenar"},{"LanzarSuriquen","Lanzar suriken"},{"Sprint","Sprint"},{"Yes","Si"},{"No","No"},
+			{"loadGame","Cargar Partida"}
 	};
 	@Override
 	public Object[][] getContents() {
