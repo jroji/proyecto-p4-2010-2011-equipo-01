@@ -1,5 +1,7 @@
 package proyecto.p4.Ventana.JPanels;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ResourceBundle;
 
 import Languages.*;
@@ -7,7 +9,7 @@ import Languages.*;
 import proyecto.p4.Ventana.Button.OldWarriorButton;
 import proyecto.p4.Ventana.JFrames.OptionWindow;
 
-public class CreditsPanel extends javax.swing.JFrame {
+public class CreditsPanel extends javax.swing.JFrame implements ActionListener{
 
     /** Creates new form CreditsPanel */
     public CreditsPanel(ResourceBundle language,boolean sound) {
@@ -25,6 +27,7 @@ public class CreditsPanel extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();  
         Button = new OldWarriorButton(Language.getString("label_back"));
+        Button.getOldWarriorButton().addActionListener(this);
 
         jLabel1.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel1.setText("Julen Tellería Viana");
@@ -106,16 +109,8 @@ public class CreditsPanel extends javax.swing.JFrame {
             .addComponent(Button, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addContainerGap(31, Short.MAX_VALUE))
         );
-    }// </editor-fold>//GEN-END:initComponents
-
-private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    	this.dispose();
-    	new OptionWindow(Language,Sound);
-    	
-    	// TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    }
+    
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -126,6 +121,12 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private OldWarriorButton Button;
     private ResourceBundle Language;
     private boolean Sound;
-    // End of variables declaration//GEN-END:variables
+	
+    @Override
+	public void actionPerformed(ActionEvent arg0) {
+		// TODO Auto-generated method stub
+		this.dispose();
+    	new OptionWindow(Language,Sound);
+	}
 }
 
