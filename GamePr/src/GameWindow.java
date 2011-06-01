@@ -1,9 +1,7 @@
-import java.awt.Color;
+
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
-
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -12,16 +10,15 @@ import javax.swing.JList;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-import proyecto.p4.Mapa.Board;
+
 
 import proyecto.p4.Jugador.Jugador;
+import proyecto.p4.Mapa.Board;
 import proyecto.p4.Piece.Colours;
-import proyecto.p4.Piece.Piece;
 import proyecto.p4.PiezasOldWarriorTales.PiezaOldWarriorTales;
 import proyecto.p4.Ventana.JPanels.HabilitiesButton;
 import proyecto.p4.Ventana.JPanels.UnitData;
 import proyecto.p4.piezaOldWarriorTales.Unidades.Arquero;
-import proyecto.p4.piezaOldWarriorTales.Unidades.Barbarian;
 import proyecto.p4.piezaOldWarriorTales.Unidades.Killer;
 
 /**
@@ -92,6 +89,7 @@ public class GameWindow extends JFrame implements MouseListener, ListSelectionLi
 		imgFondo.setBounds(0, 0, this.getWidth(), this.getHeight());
 		this.setResizable(false);
 		this.setVisible(true);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
 	/**Inicializa un arraylist introduciendo las piezas que existen en el mapa en los arrays de las piezas de los jugadores
