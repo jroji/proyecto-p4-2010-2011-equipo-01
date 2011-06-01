@@ -28,18 +28,29 @@ public class GamePanel extends JPanel implements MouseListener{
 	 MapPanel mapPanel;
 	 TranslationPanel translatePanelI = new TranslationPanel();
 	 TranslationPanel translatePanelD = new TranslationPanel();
-	 TranslationPanel translatePanelAr = new TranslationPanel();
+	TranslationPanel translatePanelAr = new TranslationPanel();
 	 TranslationPanel translatePanelAb = new TranslationPanel();
 	 JLabel fond = new JLabel(new ImageIcon(getClass().getResource("/img/fondo.jpg")));
 
 	 JLayeredPane layer = new JLayeredPane();
+	 
+	 
+	 public MapPanel getMapPanel() {
+			return mapPanel;
+		}
+
+
+		public void setMapPanel(MapPanel mapPanel) {
+			this.mapPanel = mapPanel;
+		}
+
+		
 	
 	public GamePanel(Board map, ArrayList<PiezaOldWarriorTales> piezasJugador1, ArrayList<PiezaOldWarriorTales> piezasJugador2){
 //public GamePanel(ArrayList<Piece> PlayerUnits1, ArrayList<Piece> PlayerUn
 		
 		setSize(800,575);
 		//mapPanel = new MapPanel(map);
-		map = new Board();
 		mapPanel = new MapPanel(map,piezasJugador1, piezasJugador2);
 		setLayout(null);
 		this.add(layer);
@@ -68,7 +79,7 @@ public class GamePanel extends JPanel implements MouseListener{
 		
 		layer.add(mapPanel, new Integer(0));
 		
-		StartMusic("C:/Users/Jon/workspace/Game/epicarojilarga.wav");
+		StartMusic("/img/epicarojilarga.wav");
 		
 
 		}
