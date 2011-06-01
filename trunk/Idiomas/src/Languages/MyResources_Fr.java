@@ -13,7 +13,7 @@ public class MyResources_Fr extends ListResourceBundle{
 			{"label_probability","Probabilit�"},{"label_back","Retour"},{"AtacarYHuir","Attaque et de s'enfuir"},{"AtaqueCertero","Attaque pr�cise"},
 			{"AtaqueEnZona","Zone d'attaque"},{"Cegar","Blind"},{"Convertir","Transformer"},{"CurarEstados","Etats Cure"},{"CurarZona","Zone Cure"},
 			{"Envenenar","Poison "},{"LanzarSuriquen","Paru le shuriken"},{"Sprint","Sprint"},{"Yes","Oui"},{"No","No"},
-			{"loadGame","Chargement du jeu"}
+			{"label_loadGame","Chargement du jeu"}
 	};
 	
 	@Override

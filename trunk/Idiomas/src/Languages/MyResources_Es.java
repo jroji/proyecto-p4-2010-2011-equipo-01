@@ -12,7 +12,7 @@ public class MyResources_Es extends ListResourceBundle{
 			{"label_probability","Probability"},{"label_back","Volver"},{"AtacarYHuir","Atacar y huir"},{"AtaqueCertero","Ataque certero"},
 			{"AtaqueEnZona","Ataque en zona"},{"Cegar","Cegar"},{"Convertir","Convertir"},{"CurarEstados","Curar estados"},{"CurarZona","Curar zona"},
 			{"Envenenar","Envenenar"},{"LanzarSuriquen","Lanzar suriken"},{"Sprint","Sprint"},{"Yes","Si"},{"No","No"},
-			{"loadGame","Cargar Partida"}
+			{"label_loadGame","Cargar Partida"}
 	};
 	@Override
 	public Object[][] getContents() {
