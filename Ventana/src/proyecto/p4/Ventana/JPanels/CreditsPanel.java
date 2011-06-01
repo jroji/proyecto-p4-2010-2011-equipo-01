@@ -11,7 +11,18 @@ import proyecto.p4.Ventana.JFrames.OptionWindow;
 
 public class CreditsPanel extends javax.swing.JFrame implements ActionListener{
 
-    /** Creates new form CreditsPanel */
+
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JPanel jPanel1;
+    private OldWarriorButton Button;
+    private ResourceBundle Language;
+    private boolean Sound;
+    
     public CreditsPanel(ResourceBundle language,boolean sound) {
     	Language = language;
     	Sound= sound;
@@ -110,18 +121,7 @@ public class CreditsPanel extends javax.swing.JFrame implements ActionListener{
             .addContainerGap(31, Short.MAX_VALUE))
         );
     }
-    
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JPanel jPanel1;
-    private OldWarriorButton Button;
-    private ResourceBundle Language;
-    private boolean Sound;
-	
+    	
     @Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
