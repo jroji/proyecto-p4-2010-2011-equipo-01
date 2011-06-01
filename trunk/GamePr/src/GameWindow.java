@@ -43,7 +43,8 @@ public class GameWindow extends JFrame implements MouseListener, ListSelectionLi
 	JLabel imgPerg = new JLabel(new ImageIcon(getClass().getResource("/img/PERGAMINO.png"))) ;
 	ArrayList<PiezaOldWarriorTales> piezasJugador1 = new ArrayList<PiezaOldWarriorTales>();
 	ArrayList<PiezaOldWarriorTales> piezasJugador2 = new ArrayList<PiezaOldWarriorTales>();
-	JLabel AttackBotton = new JLabel(new ImageIcon(getClass().getResource("/img/botonatacar.png")));
+	JLabel AttackButton = new JLabel(new ImageIcon(getClass().getResource("/img/botonatacar.png")));
+	JLabel MoveButton = new JLabel(new ImageIcon(getClass().getResource("/img/botonmover.png")));
 	JList units;
 	
 	
@@ -61,9 +62,10 @@ public class GameWindow extends JFrame implements MouseListener, ListSelectionLi
 
 		this.add(layer);
 
-		this.addMouseListener(this);
+//		this.addMouseListener(this);
 		units.addListSelectionListener(this);
-		AttackBotton.addMouseListener(this);
+		AttackButton.addMouseListener(this);
+		MoveButton.addMouseListener(this);
 		
 		gamePanel.setBounds(10,10,gamePanel.getWidth(),gamePanel.getHeight());
 		unitData.setBounds(875,50,250,125);
@@ -77,12 +79,14 @@ public class GameWindow extends JFrame implements MouseListener, ListSelectionLi
 		layer.add(imgLIFE, new Integer(3));
 		layer.add(imgMANA, new Integer(3));
 		layer.add(imgPerg, new Integer(2));
-		layer.add(AttackBotton, new Integer(2));
+		layer.add(AttackButton, new Integer(2));
+		layer.add(MoveButton, new Integer(2));
 		layer.add(units, new Integer (3));
 		
 		units.setBounds(900, 250, 300, 300);
 		
-		AttackBotton.setBounds(1000, 580, 100, 100);
+		AttackButton.setBounds(20, 590, 100, 100);
+		MoveButton.setBounds(125, 590, 150, 100);
 		imgEXP.setBounds(1100, 112, 80, 80);
 		imgMANA.setBounds(1100, 65, 80, 80);
 		imgLIFE.setBounds(1100, 28, 80, 80);
@@ -164,14 +168,20 @@ public class GameWindow extends JFrame implements MouseListener, ListSelectionLi
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
 		JLabel x = (JLabel) e.getSource();
-		x.setIcon(new ImageIcon(getClass().getResource("/img/botonatacarpulsado.png")));
+		if(x==AttackButton)
+			x.setIcon(new ImageIcon(getClass().getResource("/img/botonatacarpulsado.png")));
+		if(x==MoveButton)
+			x.setIcon(new ImageIcon(getClass().getResource("/img/botonmoverpulsado.png")));
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
 		JLabel x = (JLabel) e.getSource();
-		x.setIcon(new ImageIcon(getClass().getResource("/img/botonatacar.png")));
+		if(x==AttackButton)
+			x.setIcon(new ImageIcon(getClass().getResource("/img/botonatacar.png")));
+		if(x==MoveButton)
+			x.setIcon(new ImageIcon(getClass().getResource("/img/botonmover.png")));
 	}
 
 	@Override
