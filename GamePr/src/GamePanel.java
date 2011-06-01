@@ -67,10 +67,10 @@ public class GamePanel extends JPanel implements MouseListener{
 		setVisible(true);
 		
 		mapPanel.setBounds(-200, 0, 1600, 1200);
-		translatePanelI.setBounds(0, 0, 60, this.getWidth());
-		translatePanelD.setBounds(this.getWidth()-60, 0, 60, this.getHeight());
-		translatePanelAr.setBounds(0, 0, this.getWidth(), 60);
-		translatePanelAb.setBounds(0, this.getHeight()-90, this.getWidth(), 60);
+		translatePanelI.setBounds(0, 0, 30, this.getWidth());
+		translatePanelD.setBounds(this.getWidth()-30, 0, 60, this.getHeight());
+		translatePanelAr.setBounds(0, 0, this.getWidth(), 30);
+		translatePanelAb.setBounds(0, this.getHeight()-30, this.getWidth(), 60);
 		
 		translatePanelI.addMouseListener(this);
 		translatePanelD.addMouseListener(this);
