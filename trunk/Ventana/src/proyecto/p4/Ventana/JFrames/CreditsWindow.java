@@ -61,7 +61,7 @@ public class CreditsWindow extends javax.swing.JFrame implements ActionListener{
         Implementation.setText("Implementacion");
 
         Credits.setFont(new java.awt.Font("DejaVu Sans", 1, 18)); // NOI18N
-        Credits.setText(Language.getString("label_credits"));
+        Credits.setText(Language.getString("label_credits"+":"));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -118,7 +118,7 @@ public class CreditsWindow extends javax.swing.JFrame implements ActionListener{
                 .addComponent(Eneko)
                 .addGap(18, 18, 18)
                 .addComponent(Button, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(59, 59, 59))
+                .addGap(84, 84, 84))
         );
 
         pack();
