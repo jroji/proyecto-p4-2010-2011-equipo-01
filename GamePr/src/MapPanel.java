@@ -232,14 +232,6 @@ public class MapPanel extends JPanel implements MouseListener{
 							this.repaint();
 							enc =true;
 						}
-						else{
-							if(unitsimg02.get(z).equals(selectedUnit)){
-								unitsimg02.get(z).setLocation(mapa[i][j].getLocation().x+10,mapa[i][j].getLocation().y-50);
-								layer.setLayer(unitsimg01.get(z), layer.getLayer(x)+2);
-								this.repaint();
-								enc=true;
-						}
-						}
 							z++;
 					}
 					System.out.println(i+","+j);
