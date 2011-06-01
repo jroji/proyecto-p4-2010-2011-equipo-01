@@ -5,7 +5,7 @@ import java.util.ResourceBundle;
 import javax.swing.JFrame;
 import javax.swing.JTable;
 
-import Languages.MyResources_En;
+import Languages.*;
 
 import proyecto.p4.Ventana.JPanels.ListAndImage;
 import proyecto.p4.PiezasOldWarriorTales.PiezaOldWarriorTales;
