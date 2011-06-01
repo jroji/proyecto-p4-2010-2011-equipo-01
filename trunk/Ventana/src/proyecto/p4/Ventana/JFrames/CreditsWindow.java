@@ -62,8 +62,6 @@ public class CreditsWindow extends javax.swing.JFrame implements ActionListener{
 
         Eneko.setText("Eneko Villaroel Labanda");
 
-        Button.setText("jButton1");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -83,7 +81,7 @@ public class CreditsWindow extends javax.swing.JFrame implements ActionListener{
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
             .addContainerGap(256, Short.MAX_VALUE)
             .addComponent(Button, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(48, 48, 48))
+            .addGap(60, 60, 60))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -110,7 +108,7 @@ public class CreditsWindow extends javax.swing.JFrame implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		if(e.getSource()==Button){
+		if(e.getSource()== Button.getOldWarriorButton()){
 			this.dispose();
 	    	new OptionWindow(Language,Sound);
 		}
