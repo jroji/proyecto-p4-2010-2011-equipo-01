@@ -27,10 +27,11 @@ public class MapGoldSelectionWindows extends javax.swing.JFrame implements Actio
     private Juego J;
     
     public MapGoldSelectionWindows(ResourceBundle language,boolean sound,Juego j) {
-    	J = j
+    	J = j;
     	Sound = sound;
     	Language = language;
         initComponents();
+        this.setVisible(true);
     }
 
     

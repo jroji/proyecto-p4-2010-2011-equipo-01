@@ -13,6 +13,7 @@ import javax.swing.JLayeredPane;
 
 import Languages.*;
 
+import proyecto.p4.Juego.Juego;
 import proyecto.p4.Ventana.Button.BotoneraV;
 
 public class MainWindow extends JFrame implements ActionListener{
@@ -24,16 +25,12 @@ public class MainWindow extends JFrame implements ActionListener{
 	BotoneraV Buttons;
 	private ResourceBundle Language;
 	boolean Sound;
-	private String Nick1;
-	private String Nick2;
-
+	private Juego selectedGame;
 
 	BotoneraV botoneraV;
 	
-	public MainWindow(ResourceBundle language,boolean Sound,String nick1, String nick2){
-		
-		Nick1 = nick1;
-		Nick2 = nick2;
+	public MainWindow(ResourceBundle language,boolean Sound, Juego ju){
+		selectedGame=ju;
 		Language=language;
 		this.Sound=Sound;
 		Buttons=new BotoneraV(Language.getString("label_quickGame"),Language.getString("label_customGame"),
@@ -77,11 +74,6 @@ public class MainWindow extends JFrame implements ActionListener{
 //		   }
 		
 	}
-	
-	public static void main(String[] args)
-	{
-		MainWindow x = new MainWindow(new MyResources_En(),true);
-	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -92,14 +84,14 @@ public class MainWindow extends JFrame implements ActionListener{
 		else{
 			if(e.getSource()==Buttons.getBoton2().getOldWarriorButton()){
 				this.dispose();
-				new MapGoldSelectionWindows(Language,Sound, Nick1, Nick2);
+				new MapGoldSelectionWindows(Language,Sound,selectedGame);
 			}else{
 				if(e.getSource()==Buttons.getBoton3().getOldWarriorButton()){
 				}else{
 					if(e.getSource()==Buttons.getBoton4().getOldWarriorButton()){
 							Buttons.setButtonP3(false);
 			   				this.dispose();
-			   				new OptionWindow(Language,Sound);
+			   				new OptionWindow(Language,Sound,selectedGame);
 					}else{
 						if(e.getSource()==Buttons.getBoton5().getOldWarriorButton()){
 							Buttons.setButtonP5(false);

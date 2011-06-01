@@ -9,7 +9,6 @@ import java.util.ResourceBundle;
 
 import proyecto.p4.Juego.*;
 import proyecto.p4.Ventana.Button.BotoneraV;
-import proyecto.p4.Ventana.JPanels.CreditsPanel;
 import proyecto.p4.Ventana.JPanels.LanguagePanel;
 import Languages.*;
 import proyecto.p4.Ventana.JPanels.SoundPanel;
@@ -26,7 +25,7 @@ public class OptionWindow extends javax.swing.JFrame implements ActionListener /
     private SoundPanel soundPanel1;
     private ResourceBundle Language;
     private boolean Sound;
-    private Jugador selectedGame;
+    private Juego selectedGame;
 
  
 	public OptionWindow(ResourceBundle language,boolean sound,Juego j) {
@@ -114,13 +113,8 @@ public class OptionWindow extends javax.swing.JFrame implements ActionListener /
 		}
 		
 	}
-    public static void main(String args[]) {
-    	MyResources_Es language = new MyResources_Es();
-    	OptionWindow x = new OptionWindow(language,true);
-   }
 
-
-	}
+}
 
 
 
