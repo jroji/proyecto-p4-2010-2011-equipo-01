@@ -9,29 +9,27 @@ import java.util.ResourceBundle;
  import javax.swing.*;
 
 
-import proyecto.p4.Jugador.Jugador;
- import proyecto.p4.Ventana.Button.BotoneraH;
+import proyecto.p4.Juego.*;
+import proyecto.p4.Ventana.Button.BotoneraH;
 import proyecto.p4.Ventana.Button.OldWarriorButton;
 import proyecto.p4.Ventana.JPanels.AvatarPanel;
  
  
 public class MapGoldSelectionWindows extends javax.swing.JFrame implements ActionListener{
 
-	private JPanel AvatarPanel;
-    private JPanel Botonera;
+	private AvatarPanel AvatarPanel;
+    private BotoneraH Botonera;
     private JSlider GoldSelection;
     private JList MapList;
     private JScrollPane jScrollPane1;
     private ResourceBundle Language;
     private boolean Sound;
-    private Jugador Nick1;
-    private Jugador Nick2;
+    private Juego J;
     
-    public MapGoldSelectionWindows(ResourceBundle language,boolean sound,Jugador J1, Jugador J2) {
+    public MapGoldSelectionWindows(ResourceBundle language,boolean sound,Juego j) {
+    	J = j
     	Sound = sound;
     	Language = language;
-    	Nick1 = J1;
-    	Nick2 = J2;
         initComponents();
     }
 
@@ -42,7 +40,7 @@ public class MapGoldSelectionWindows extends javax.swing.JFrame implements Actio
         MapList = new JList();
         GoldSelection = new JSlider();
         Botonera = new BotoneraH(Language.getString("label_back"),"",Language.getString("label_accept"));
-        AvatarPanel = new AvatarPanel(Nick1,Nick2);
+        AvatarPanel = new AvatarPanel(J);
         
         ((OldWarriorButton)Botonera.getComponent(0)).getOldWarriorButton().addActionListener(this);
 		((OldWarriorButton)Botonera.getComponent(2)).getOldWarriorButton().addActionListener(this);
@@ -127,7 +125,7 @@ public class MapGoldSelectionWindows extends javax.swing.JFrame implements Actio
 		// TODO Auto-generated method stub
 		if(e.getSource()==((OldWarriorButton)Botonera.getComponent(0)).getOldWarriorButton()){
 			this.dispose();
-			new MainWindow(Language, Sound, Nick1, Nick2);
+			new MainWindow(Language, Sound,J);
 		}else{
 			this.dispose();
 		}
