@@ -35,12 +35,22 @@ public class MapPanel extends JPanel implements MouseListener{
 	ImageIcon castillo = new ImageIcon(getClass().getResource("/img/castillo.png"));
 	ImageIcon villa = new ImageIcon(getClass().getResource("/img/villa.png"));
 	Icon viejoimg;
-//	Board tab = new Board();
+	boolean seleccionado = false;
+	JLabel selectedUnit;
+	Board tab;
 	
-//	JLabel fondo = new JLabel(fond);
+	PiezaOldWarriorTales unidad;
 	
-	//	JLabel circrojo01 = new JLabel(circrojo);
-	
+	public PiezaOldWarriorTales getUnidad() {
+		return unidad;
+	}
+
+	public void setUnidad(PiezaOldWarriorTales unidad) {
+		this.unidad = unidad;
+	}
+
+	ArrayList<PiezaOldWarriorTales> piezasJugador1;
+	ArrayList<PiezaOldWarriorTales> piezasJugador2;
 	
 	ArrayList<JLabel> unitsimg01 = new ArrayList<JLabel>();
 	ArrayList<JLabel> unitsimg02 = new ArrayList<JLabel>();
@@ -59,7 +69,9 @@ public class MapPanel extends JPanel implements MouseListener{
 //	public MapPanel(Board map){
 	public MapPanel(Board map, ArrayList<PiezaOldWarriorTales> piezasJugador1,ArrayList<PiezaOldWarriorTales> piezasJugador2){	
 	
-		//tab = map;
+		this.piezasJugador2 = piezasJugador2;
+		this.piezasJugador1 = piezasJugador1;
+		tab = map;
 		iniMap(map, mapa);
 		this.setOpaque(false);
 		
@@ -74,29 +86,18 @@ public class MapPanel extends JPanel implements MouseListener{
 		
 		//Añade al layerPane las casillas del mapa.
 		anyadirArray(mapa);
-		layer.add(suelo, new Integer(-1));
-	
-
-		anyadirUnidades(piezasJugador1, piezasJugador2, unitsimg01,unitsimg02);
-		
-		
-		
+		layer.add(suelo, new Integer(-1));		
 
 	//	layer.add(circrojo01, new Integer(13));
 		
 		int x = 800;
 		int y = 50;
 		colocarMapa(mapa,x,y);
+		anyadirUnidades(piezasJugador1, piezasJugador2, this.unitsimg01,this.unitsimg02);
 		suelo.setBounds(70, 450, 1500, 800);
-//		unit01.setBounds(520, 150, sold.getIconWidth(), sold.getIconHeight());
-//		unit02.setBounds(520, 150, sold.getIconWidth(), sold.getIconHeight());
 
-	//	circrojo01.setBounds(unit01.getX()+3, unit01.getY()+30, sold.getIconWidth(), sold.getIconHeight());
 	}
 
-	/* 1 = norte, 2 = este, 3 = sur, 4 = oeste
-	 * 
-	 */
 	public void iniMap(Board map, JLabel[][] array)
 	{
 		for(int i = 0;i<array.length;i++)
@@ -132,17 +133,16 @@ public class MapPanel extends JPanel implements MouseListener{
 			labels.add(new JLabel(unidadesjug1.get(i).getImagen()));
 			int x = unidadesjug1.get(i).getPosition_x();
 			int y = unidadesjug1.get(i).getPosition_y();
-			System.out.println(mapa[x][y].getX());
-			labels.get(i).setBounds(mapa[x][y].getX(), mapa[x][y].getY(), 70, 125);
-			layer.add(labels.get(i), new Integer(layer.getLayer(mapa[x][y])));
+			layer.add(labels.get(i), new Integer(layer.getLayer(this.mapa[x][y])+2));
+			labels.get(i).addMouseListener(this);
+			labels.get(i).setBounds(this.mapa[x][y].getLocation().x+10, mapa[x][y].getLocation().y-55, 70, 125);
 		}
 		for(int i = 0;i<unidadesjug2.size();i++){
 			labels2.add(new JLabel(unidadesjug2.get(i).getImagen()));
 			int x = unidadesjug2.get(i).getPosition_x();
 			int y = unidadesjug2.get(i).getPosition_y();
-			labels.get(i).setBounds(mapa[x][y].getX(), mapa[x][y].getY(), 70, 125);
-			layer.add(labels2.get(i), new Integer(layer.getLayer(mapa[x][y])));
-
+			layer.add(labels2.get(i), new Integer(layer.getLayer(mapa[x][y])+2));
+			labels2.get(i).setBounds(mapa[x][y].getX(), mapa[x][y].getY(), 70, 125);
 		}
 	}
 	/**Coloca los JLabel del array en el layerpane  
@@ -178,15 +178,32 @@ public class MapPanel extends JPanel implements MouseListener{
 		// TODO Auto-generated method stub
 	}
 
+	public boolean esUnidad(JLabel x){
+		int i =0;
+		boolean enc = false;
+		while(i<unitsimg01.size()&&!enc){
+			if(unitsimg01.get(i).equals(x))
+				enc = true;
+			i++;
+		}
+		if(!enc){
+			System.out.println("hola");
+			return false;}
+		else
+			return true;
+	}
+	
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
 		// TODO Auto-generated method stub
+		if(!(esUnidad((JLabel)arg0.getSource()))){
 		JLabel x = (JLabel) arg0.getSource();
 		viejoimg = x.getIcon();
 		x.setIcon(selected);
 		String nombre = x.getName();
 	//	buscarCasilla(nombre);
 		viejo = x;
+	}
 	}
 
 	@Override
@@ -198,15 +215,58 @@ public class MapPanel extends JPanel implements MouseListener{
 	@Override
 	public void mousePressed(MouseEvent arg0) {
 		// TODO Auto-generated method stub
+	if(seleccionado){
 		JLabel x = (JLabel) arg0.getSource();
 		for(int i = 0; i<mapa.length;i++ ){
 			for(int j = 0; j<mapa[i].length;j++){
 				if(mapa[i][j].equals(x)){
+					int z = 0;
+					if(tab.getBoard()[i][j].getPiece()==null){
+					boolean enc = false;
+					while(z<=unitsimg01.size()&&!enc){
+						System.out.println(unitsimg01.size());
+						if(unitsimg01.get(z).equals(selectedUnit)){
+							unitsimg01.get(z).setBounds(this.mapa[i][j].getLocation().x+10,this.mapa[i][j].getLocation().y-50,80,90);
+							layer.setLayer(unitsimg01.get(z), layer.getLayer(x)+2);
+							seleccionado=false;
+							this.repaint();
+							enc =true;
+						}
+						else{
+							if(unitsimg02.get(z).equals(selectedUnit)){
+								unitsimg02.get(z).setLocation(mapa[i][j].getLocation().x+10,mapa[i][j].getLocation().y-50);
+								layer.setLayer(unitsimg01.get(z), layer.getLayer(x)+2);
+								this.repaint();
+								enc=true;
+						}
+						}
+							z++;
+					}
 					System.out.println(i+","+j);
 					System.out.println("CAPA : "+ layer.getLayer(x));				
-			}
+			}}
 		}
 		}
+	}
+	else{
+		for(int y = 0;y<unitsimg01.size();y++){
+			if(unitsimg01.get(y).equals(arg0.getSource())){
+				System.out.println("OKAY, TENGO TU UNIDAD");
+				selectedUnit = (JLabel) arg0.getSource();
+				int i = 0;
+				boolean en = false;
+				while(i<unitsimg01.size()&&!en){
+					if(selectedUnit == unitsimg01.get(i)){
+						en = true;
+						unidad = piezasJugador1.get(i);
+				}
+					i++;
+				}
+					
+				seleccionado = true;
+		}
+		}
+	}
 //		layer.setLayer(unit01, layer.getLayer(x)+2);
 //		unit01.setLocation(x.getX(), x.getY()-50);
 	}
