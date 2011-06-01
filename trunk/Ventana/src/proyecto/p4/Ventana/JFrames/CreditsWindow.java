@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ResourceBundle;
 
+import proyecto.p4.Juego.*;
 import proyecto.p4.Ventana.Button.OldWarriorButton;
 
 
@@ -21,9 +22,11 @@ public class CreditsWindow extends javax.swing.JFrame implements ActionListener 
     private javax.swing.JLabel bandaSonora;
     private ResourceBundle Language;
     private boolean Sound;
+    private Juego selectedGame;
 
 	
-    public CreditsWindow(ResourceBundle language,boolean sound) {
+    public CreditsWindow(ResourceBundle language,boolean sound,Jugador j) {
+    	selectedGame = j;
     	Language = language;
     	Sound=sound;
         initComponents();
@@ -129,7 +132,7 @@ public class CreditsWindow extends javax.swing.JFrame implements ActionListener 
 		// TODO Auto-generated method stub
     	if(e.getSource()==Button.getOldWarriorButton()){
 		this.dispose();
-    	new OptionWindow(Language,Sound);
+    	new OptionWindow(Language,Sound,selectedGame);
 	}
     }
 }
