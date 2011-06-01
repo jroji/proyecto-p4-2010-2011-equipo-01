@@ -61,7 +61,7 @@ public class CreditsWindow extends javax.swing.JFrame implements ActionListener{
         Implementation.setText("Implementacion");
 
         Credits.setFont(new java.awt.Font("DejaVu Sans", 1, 18)); // NOI18N
-        Credits.setText(Language.getString("label_credits"+":"));
+        Credits.setText(Language.getString("label_credits")+":");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
