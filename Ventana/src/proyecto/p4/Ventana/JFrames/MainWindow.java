@@ -89,12 +89,11 @@ public class MainWindow extends JFrame implements ActionListener{
 				System.out.println("boton2");
 			}else{
 				if(e.getSource()==Buttons.getBoton3().getOldWarriorButton()){
-					Buttons.setButtonP3(false);
-		   			this.dispose();
-					new OptionWindow(Language,Sound);
 				}else{
 					if(e.getSource()==Buttons.getBoton4().getOldWarriorButton()){
-						System.out.println("boton4");
+							Buttons.setButtonP3(false);
+			   				this.dispose();
+			   				new OptionWindow(Language,Sound);
 					}else{
 						if(e.getSource()==Buttons.getBoton5().getOldWarriorButton()){
 							Buttons.setButtonP5(false);
