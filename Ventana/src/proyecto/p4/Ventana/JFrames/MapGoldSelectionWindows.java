@@ -24,10 +24,10 @@ public class MapGoldSelectionWindows extends javax.swing.JFrame implements Actio
     private JScrollPane jScrollPane1;
     private ResourceBundle Language;
     private boolean Sound;
-    private String Nick1;
-    private String Nick2;
+    private Jugador Nick1;
+    private Jugador Nick2;
     
-    public MapGoldSelectionWindows(ResourceBundle language,boolean sound,String J1, String J2) {
+    public MapGoldSelectionWindows(ResourceBundle language,boolean sound,Jugador J1, Jugador J2) {
     	Sound = sound;
     	Language = language;
     	Nick1 = J1;
@@ -55,6 +55,8 @@ public class MapGoldSelectionWindows extends javax.swing.JFrame implements Actio
         GoldSelection.setMaximum(5000);
         GoldSelection.setMinimum(1000);
         GoldSelection.setValue(3000);
+        GoldSelection.setPaintTicks(true);
+        GoldSelection.setPaintTrack(true);
 
         javax.swing.GroupLayout BotoneraLayout = new javax.swing.GroupLayout(Botonera);
         Botonera.setLayout(BotoneraLayout);
