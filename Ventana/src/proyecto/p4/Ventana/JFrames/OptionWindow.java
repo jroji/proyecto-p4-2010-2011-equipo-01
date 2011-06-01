@@ -35,7 +35,7 @@ public class OptionWindow extends javax.swing.JFrame implements ActionListener /
 
     private void initComponents(boolean Sound){
     	
-    	//CORREGIR!!!!!!
+    	
     	Buttons = new BotoneraV("",Language.getString("label_credits"),Language.getString("label_exit"),"","");
     	this.setResizable(false);
 
