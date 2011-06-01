@@ -92,7 +92,7 @@ public class MainWindow extends JFrame implements ActionListener{
 		else{
 			if(e.getSource()==Buttons.getBoton2().getOldWarriorButton()){
 				this.dispose();
-				new MapGoldSelectionWindows(Language, Nick1, Nick2);
+				new MapGoldSelectionWindows(Language,Sound, Nick1, Nick2);
 			}else{
 				if(e.getSource()==Buttons.getBoton3().getOldWarriorButton()){
 				}else{

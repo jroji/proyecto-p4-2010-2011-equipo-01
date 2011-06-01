@@ -2,17 +2,20 @@
 
  package proyecto.p4.Ventana.JFrames;
 
- import java.util.ResourceBundle;
+ import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ResourceBundle;
 
  import javax.swing.*;
 
 
 import proyecto.p4.Jugador.Jugador;
  import proyecto.p4.Ventana.Button.BotoneraH;
+import proyecto.p4.Ventana.Button.OldWarriorButton;
 import proyecto.p4.Ventana.JPanels.AvatarPanel;
  
  
-public class MapGoldSelectionWindows extends javax.swing.JFrame {
+public class MapGoldSelectionWindows extends javax.swing.JFrame implements ActionListener{
 
 	private JPanel AvatarPanel;
     private JPanel Botonera;
@@ -20,12 +23,15 @@ public class MapGoldSelectionWindows extends javax.swing.JFrame {
     private JList MapList;
     private JScrollPane jScrollPane1;
     private ResourceBundle Language;
+    private boolean Sound;
     private String Nick1;
     private String Nick2;
     
-    public MapGoldSelectionWindows(ResourceBundle language,String J1, String J2) {
+    public MapGoldSelectionWindows(ResourceBundle language,boolean sound,String J1, String J2) {
+    	Sound = sound;
     	Language = language;
     	Nick1 = J1;
+    	Nick2 = J2;
         initComponents();
     }
 
@@ -37,6 +43,9 @@ public class MapGoldSelectionWindows extends javax.swing.JFrame {
         GoldSelection = new JSlider();
         Botonera = new BotoneraH(Language.getString("label_back"),"",Language.getString("label_accept"));
         AvatarPanel = new AvatarPanel(Nick1,Nick2);
+        
+        ((OldWarriorButton)Botonera.getComponent(0)).getOldWarriorButton().addActionListener(this);
+		((OldWarriorButton)Botonera.getComponent(2)).getOldWarriorButton().addActionListener(this);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -109,5 +118,18 @@ public class MapGoldSelectionWindows extends javax.swing.JFrame {
 //            }
 //        });
 //    }
+
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		if(e.getSource()==((OldWarriorButton)Botonera.getComponent(0)).getOldWarriorButton()){
+			this.dispose();
+			new MainWindow(Language, Sound, Nick1, Nick2);
+		}else{
+			this.dispose();
+		}
+		
+	}
 
 }
