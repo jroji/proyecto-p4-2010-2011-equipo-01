@@ -20,6 +20,7 @@ import proyecto.p4.Ventana.JPanels.HabilitiesButton;
 import proyecto.p4.Ventana.JPanels.UnitData;
 import proyecto.p4.piezaOldWarriorTales.Unidades.Arquero;
 import proyecto.p4.piezaOldWarriorTales.Unidades.Killer;
+import proyecto.p4.piezaOldWarriorTales.Unidades.Magician;
 
 /**
  * Clase que crea y gestiona la ventana en la que se realizan las acciones principales
@@ -52,7 +53,7 @@ public class GameWindow extends JFrame implements MouseListener, ListSelectionLi
 		inicializarPiezasJugador(piezasJugador1, piezasJugador2, mapa);
 		this.setSize(1225,720);
 		unitData = new UnitData(new Killer());
-		habilitiesButtons = new HabilitiesButton(new Arquero());
+		habilitiesButtons = new HabilitiesButton(new Killer());
 		gamePanel = new GamePanel(mapa,piezasJugador1, piezasJugador2);
 		units = new JList(piezasJugador1.toArray());
 		this.setLayout(null);
@@ -60,12 +61,13 @@ public class GameWindow extends JFrame implements MouseListener, ListSelectionLi
 
 		this.add(layer);
 
+		this.addMouseListener(this);
 		units.addListSelectionListener(this);
 		AttackBotton.addMouseListener(this);
 		
 		gamePanel.setBounds(10,10,gamePanel.getWidth(),gamePanel.getHeight());
 		unitData.setBounds(875,50,250,125);
-		habilitiesButtons.setBounds(200,600, 500, 200);		
+		habilitiesButtons.setBounds(200,600, 750, 200);		
 
 		layer.add(gamePanel, new Integer (1));
 		layer.add(unitData, new Integer(2));
@@ -116,8 +118,25 @@ public class GameWindow extends JFrame implements MouseListener, ListSelectionLi
 	{
 		Board z = new Board();
 		Arquero arq = new Arquero();
-	//	arq.setPosition(10, 5);
+		arq.setPosition(10, 5);
 		arq.setColor(Colours.blanco);
+		
+		Arquero arq2 = new Arquero();
+		arq2.setPosition(10, 10);
+		arq2.setColor(Colours.blanco);
+		
+//
+//		Magician mag = new Magician();
+//		mag.setPosition(10, 5);
+//		mag.setColor(Colours.blanco);
+//
+//		Killer kill = new Killer();
+//		kill.setPosition(10, 5);
+//		kill.setColor(Colours.blanco);
+//		
+//		Barbarian bar = new Barbarian();
+//		bar.setColor(Colours.negro);
+		z.getBoard()[10][10].setPiece(arq2);
 		z.getBoard()[10][5].setPiece(arq);
 		new GameWindow(new Jugador(), new Jugador(), z);
 	}
@@ -125,6 +144,8 @@ public class GameWindow extends JFrame implements MouseListener, ListSelectionLi
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
+		unitData.update(gamePanel.mapPanel.getUnidad());
+		habilitiesButtons.update(gamePanel.getMapPanel().getUnidad());
 	}
 
 	@Override
