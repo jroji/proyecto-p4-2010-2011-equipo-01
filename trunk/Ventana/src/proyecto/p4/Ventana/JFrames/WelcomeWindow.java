@@ -2,8 +2,6 @@ package proyecto.p4.Ventana.JFrames;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.ResourceBundle;
 
 import javax.swing.ImageIcon;
@@ -54,25 +52,7 @@ public class WelcomeWindow extends JFrame implements ActionListener{
 		this.setVisible(true);
 		((OldWarriorButton)botonera.getComponent(0)).getOldWarriorButton().addActionListener(this);
 		((OldWarriorButton)botonera.getComponent(1)).getOldWarriorButton().addActionListener(this);
-		((OldWarriorButton)botonera.getComponent(2)).getOldWarriorButton().addActionListener(this);
-		//�?�?�?�?�? action listener �?�?�?�?�?
-//		    while(true){
-//		   		if(botonera.getButtonP1()){
-//		   			botonera.setButtonP1(false);
-//		   			this.dispose();
-//					new MainWindow(language,Sound);
-//				}else if(botonera.getButtonP2()){
-//					botonera.setButtonP2(false);
-//					//this.dispose();
-//					System.exit(0);
-//		       }
-//				else if(botonera.getButtonP3()){
-//					botonera.setButtonP3(false);
-//					new NewPlayerWindow();
-//
-//		}
-//		}
-		    
+		((OldWarriorButton)botonera.getComponent(2)).getOldWarriorButton().addActionListener(this);	    
 	}
 	
 
