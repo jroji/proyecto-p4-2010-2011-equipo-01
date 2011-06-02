@@ -229,10 +229,12 @@ public class MapPanel extends JPanel implements MouseListener{
 							seleccionado=false;
 							this.repaint();
 							enc =true;
+							System.out.println(tab.getBoard()[unidad.getPosition_x()][unidad.getPosition_y()].getPiece());
+							tab.getBoard()[unidad.getPosition_x()][unidad.getPosition_y()].setPiece(null);
+							tab.getBoard()[i][j].setPiece(unidad);
+							System.out.println(tab.getBoard()[unidad.getPosition_x()][unidad.getPosition_y()].getPiece());
 							try {
 								unidad.move(i, j);
-								tab.getBoard()[i][j].setPiece(null);
-								tab.getBoard()[i][j].setPiece(unidad);
 							} catch (Exception e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
