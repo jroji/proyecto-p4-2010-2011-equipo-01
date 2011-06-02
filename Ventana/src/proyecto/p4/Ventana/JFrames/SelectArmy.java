@@ -41,9 +41,5 @@ public class SelectArmy extends JFrame{
 		x.setBounds(0, 0, 280, 720);
 		this.setVisible(true);
 	}
-	public static void main(String[] args)
-	{
-		MyResources_En lang=new MyResources_En();
-		SelectArmy x = new SelectArmy(lang, false);
-	}
+	
 }
