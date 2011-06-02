@@ -1,6 +1,8 @@
 package proyecto.p4.Ventana.JPanels;
 
 import java.awt.Component;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -18,7 +20,7 @@ import proyecto.p4.PiezasOldWarriorTales.PiezaOldWarriorTales;
  *
  * @author Jon
  */
-public class ListAndImage extends javax.swing.JPanel {
+public class ListAndImage extends javax.swing.JPanel implements ActionListener {
 	
     /**
 	 * 
@@ -28,16 +30,20 @@ public class ListAndImage extends javax.swing.JPanel {
     private JScrollPane scrollPane;
     private OldWarriorButton oldWarriorButton1;
     private ResourceBundle Language;
+    private PiezaOldWarriorTales p;
+    private ArrayList<Object> instancias;
 
     /** Creates new form Units */
    public ListAndImage(ResourceBundle language) {
    //   public ListAndImage() {
 
+	    p= null;
 	   	Language = language;
         ImagePanel = new JPanel();
         scrollPane = new JScrollPane();
         UnitList = new JList();
         oldWarriorButton1 = new OldWarriorButton(Language.getString("label_reclute"));
+        oldWarriorButton1.getOldWarriorButton().addActionListener(this);
         //oldWarriorButton1 = new OldWarriorButton("H");
         
     	PiezaOldWarriorTales[] array = new PiezaOldWarriorTales[8];
@@ -109,19 +115,37 @@ public class ListAndImage extends javax.swing.JPanel {
 
 
       public void cargarUnidadesEnList(){
-      	ArrayList<Object> instancias;
-      	ArrayList<Object> nombres= new ArrayList<Object>(); 
+      	
+      	//ArrayList<Object> nombres= new ArrayList<Object>(); 
       	instancias=Reflectividad.instanciarDireccion("UnitsFile");
       	for (Object o:instancias){
       		if (o instanceof PiezaOldWarriorTales){
       			UnitList.add(o.getClass().getName(), new JLabel (o.toString()));
-      			nombres.add(o);
+      			//nombres.add(o);
       		}
       	}
-      	 UnitList.setModel(new javax.swing.DefaultComboBoxModel(nombres.toArray()));
-  //        Language.setSelectedIndex(0);
+      	 //UnitList.setModel(new javax.swing.DefaultComboBoxModel(instancias.toArray()));
 
       }
+
+
+	public PiezaOldWarriorTales getP() {
+		return p;
+	}
+
+
+	public void setP(PiezaOldWarriorTales p) {
+		this.p = p;
+	}
+
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		if(e.getSource() == oldWarriorButton1.getOldWarriorButton()){
+			p= (PiezaOldWarriorTales) instancias.get(UnitList.getSelectedIndex());
+		}
+	}
       
 }
 
