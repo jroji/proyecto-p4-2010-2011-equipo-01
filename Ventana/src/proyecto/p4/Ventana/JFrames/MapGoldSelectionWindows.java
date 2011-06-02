@@ -130,7 +130,7 @@ public class MapGoldSelectionWindows extends javax.swing.JFrame implements Actio
 			new MainWindow(Language, Sound,J);
 		}else{
 			this.dispose();
-			SelectArma(Language,Sound,J);
+			SelectArmy(Language,Sound,J);
 		}
 		
 	}
