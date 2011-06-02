@@ -155,6 +155,7 @@ public class GameWindow extends JFrame implements MouseListener, ListSelectionLi
 //		kill.setColor(Colours.blanco);
 //		
 		Barbarian bar = new Barbarian();
+		bar.setBoard(z);
 		bar.setColor(Colours.blanco);
 		bar.setPosition(5, 5);
 		z.getBoard()[5][5].setPiece(bar);
