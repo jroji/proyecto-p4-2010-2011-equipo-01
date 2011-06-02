@@ -246,9 +246,7 @@ public class MapPanel extends JPanel implements MouseListener{
 //							tab.getBoard()[i][j].setPiece(unidad);
 //							System.out.println(tab.getBoard()[unidad.getPosition_x()][unidad.getPosition_y()].getPiece());
 							try {
-								System.out.println("ERROR PRE-MOVE");
 								unidad.move(i, j);
-								System.out.println("ERROR POST-MOVE");
 								unitsimg01.get(z).setBounds(this.mapa[i][j].getLocation().x+10,this.mapa[i][j].getLocation().y-50,80,90);
 								layer.setLayer(unitsimg01.get(z), layer.getLayer(x)+2);
 								seleccionado=false;
