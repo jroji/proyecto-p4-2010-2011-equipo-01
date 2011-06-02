@@ -2,6 +2,7 @@ package proyecto.p4.Ventana.JFrames;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ResourceBundle;
 
 import javax.swing.JFrame;
 
@@ -17,10 +18,14 @@ public class NewPlayerWindow extends JFrame implements ActionListener{
 	 */
 	private static final long serialVersionUID = -2962497854265702665L;
 	PlayerCreationPanel panel;
+	private ResourceBundle idioma;
+	private boolean sonido;
 	
-	public NewPlayerWindow(){
+	public NewPlayerWindow(ResourceBundle language,boolean sound){
+		idioma=language;
+		sonido=sound;
 		this.setSize(355,330);
-		panel = new PlayerCreationPanel(new MyResources_En());
+		panel = new PlayerCreationPanel(idioma);
 		this.add(panel);
 		this.setVisible(true);
 		this.setResizable(false);
