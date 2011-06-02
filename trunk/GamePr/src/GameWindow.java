@@ -14,8 +14,10 @@ import javax.swing.event.ListSelectionListener;
 
 import proyecto.p4.Jugador.Jugador;
 import proyecto.p4.Mapa.Board;
+import proyecto.p4.Mapa.Casilla;
 import proyecto.p4.Piece.Colours;
 import proyecto.p4.PiezasOldWarriorTales.PiezaOldWarriorTales;
+import proyecto.p4.Tipo.OldWarriorTales.TerrainGrass;
 import proyecto.p4.Ventana.JPanels.HabilitiesButton;
 import proyecto.p4.Ventana.JPanels.UnitData;
 import proyecto.p4.piezaOldWarriorTales.Unidades.Arquero;
@@ -123,11 +125,20 @@ public class GameWindow extends JFrame implements MouseListener, ListSelectionLi
 	public static void main(String[] args)
 	{
 		Board z = new Board();
+//		for (int i=0;i<z.getBoard().length;i++)
+//		{
+//			for (int j=0;j<z.getBoard()[1].length;j++)
+//			{
+//				z.getBoard()[i][j]= new Casilla();
+//			}
+//		}
 		Arquero arq = new Arquero();
+		arq.setBoard(z);
 		arq.setPosition(10, 5);
 		arq.setColor(Colours.blanco);
 		
 		Arquero arq2 = new Arquero();
+		arq2.setBoard(z);
 		arq2.setPosition(10, 10);
 		arq2.setColor(Colours.blanco);
 		
