@@ -43,6 +43,6 @@ public class NewPlayerWindow extends JFrame implements ActionListener{
 	}
 	
 	public static void main(String[] args){
-		new NewPlayerWindow();
+		//new NewPlayerWindow();
 	}
 }

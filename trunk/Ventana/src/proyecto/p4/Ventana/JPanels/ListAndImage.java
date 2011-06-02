@@ -31,7 +31,7 @@ public class ListAndImage extends javax.swing.JPanel implements ActionListener {
     private OldWarriorButton oldWarriorButton1;
     private ResourceBundle Language;
     private PiezaOldWarriorTales p;
-    private ArrayList<PiezasOldWarriorTales> instancias;
+    private ArrayList<PiezaOldWarriorTales> instancias;
 
     public OldWarriorButton getOldWarriorButton1() {
 		return oldWarriorButton1;
@@ -125,7 +125,7 @@ public class ListAndImage extends javax.swing.JPanel implements ActionListener {
       	nombres=Reflectividad.instanciarDireccion("UnitsFile");
       	for (Object o:instancias){
       		if (o instanceof PiezaOldWarriorTales){
-      			instancias.add(o);
+      			instancias.add((PiezaOldWarriorTales) o);
       			UnitList.add(o.getClass().getName(), new JLabel (o.toString()));
       			//nombres.add(o);
       		}
