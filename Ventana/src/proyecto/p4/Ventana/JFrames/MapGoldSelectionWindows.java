@@ -4,6 +4,7 @@
 
  import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
  import javax.swing.*;
@@ -41,7 +42,9 @@ public class MapGoldSelectionWindows extends javax.swing.JFrame implements Actio
         MapList = new JList();
         GoldSelection = new JSlider();
         Botonera = new BotoneraH(Language.getString("label_back"),"",Language.getString("label_accept"));
+        Botonera.setVisible(true);
         AvatarPanel = new AvatarPanel(J);
+        AvatarPanel.setVisible(true);
         
         ((OldWarriorButton)Botonera.getComponent(0)).getOldWarriorButton().addActionListener(this);
 		((OldWarriorButton)Botonera.getComponent(2)).getOldWarriorButton().addActionListener(this);
@@ -123,7 +126,9 @@ public class MapGoldSelectionWindows extends javax.swing.JFrame implements Actio
 			new MainWindow(Language, Sound,J);
 		}else{
 			this.dispose();
-			//new SelectArmy(Language,Sound,J);
+			ArrayList<Object> Jugador1 = new ArrayList<Object>();
+			ArrayList<Object> Jugador2 = new ArrayList<Object>();
+			new SelectArmy(Language,Sound,J,Jugador1,Jugador2);
 
 		}
 		
