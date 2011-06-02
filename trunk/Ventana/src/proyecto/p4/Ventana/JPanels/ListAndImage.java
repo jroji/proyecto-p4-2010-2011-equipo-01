@@ -31,7 +31,7 @@ public class ListAndImage extends javax.swing.JPanel implements ActionListener {
     private OldWarriorButton oldWarriorButton1;
     private ResourceBundle Language;
     private PiezaOldWarriorTales p;
-    private ArrayList<Object> instancias;
+    private ArrayList<PiezasOldWarriorTales> instancias;
 
     /** Creates new form Units */
    public ListAndImage(ResourceBundle language) {
@@ -116,10 +116,11 @@ public class ListAndImage extends javax.swing.JPanel implements ActionListener {
 
       public void cargarUnidadesEnList(){
       	
-      	//ArrayList<Object> nombres= new ArrayList<Object>(); 
-      	instancias=Reflectividad.instanciarDireccion("UnitsFile");
+      	ArrayList<Object> nombres= new ArrayList<Object>(); 
+      	nombres=Reflectividad.instanciarDireccion("UnitsFile");
       	for (Object o:instancias){
       		if (o instanceof PiezaOldWarriorTales){
+      			instancias.add(o);
       			UnitList.add(o.getClass().getName(), new JLabel (o.toString()));
       			//nombres.add(o);
       		}
@@ -143,7 +144,7 @@ public class ListAndImage extends javax.swing.JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if(e.getSource() == oldWarriorButton1.getOldWarriorButton()){
-			p= (PiezaOldWarriorTales) instancias.get(UnitList.getSelectedIndex());
+			p= instancias.get(UnitList.getSelectedIndex());
 		}
 	}
       
