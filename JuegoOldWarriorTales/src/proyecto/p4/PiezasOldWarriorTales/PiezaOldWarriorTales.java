@@ -57,7 +57,7 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable{
 		cargarHabilidades();
 		blindness=false;
 		poisson=false;
-		able_to_move=new boolean[13][13];
+		able_to_move=new boolean[14][13];
 	}
 	public void setOrientation(Orientations orientacion) {
 		this.orientacion = orientacion;
@@ -223,11 +223,9 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable{
  		}
  		else
  		{
-	 		
 	 		//extraccion de la casilla actual y la casilla a la que se va a mover
 	 		Casilla casillaActual=board.getCasilla(this.getPosition_x(), this.getPosition_y());
 	 		Casilla casillaAMover= board.getCasilla(x_a_mover, y_a_mover);
-	 		
 	 		//mover de la casilla actual a la casilla a mover
 	 		super.move(casillaActual, casillaAMover);
 	 		
