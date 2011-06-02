@@ -33,7 +33,12 @@ public class ListAndImage extends javax.swing.JPanel implements ActionListener {
     private PiezaOldWarriorTales p;
     private ArrayList<PiezasOldWarriorTales> instancias;
 
-    /** Creates new form Units */
+    public OldWarriorButton getOldWarriorButton1() {
+		return oldWarriorButton1;
+	}
+
+
+	/** Creates new form Units */
    public ListAndImage(ResourceBundle language) {
    //   public ListAndImage() {
 
