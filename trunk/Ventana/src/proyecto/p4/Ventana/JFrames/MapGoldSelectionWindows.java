@@ -113,13 +113,6 @@ public class MapGoldSelectionWindows extends javax.swing.JFrame implements Actio
         );
         pack();
     }
-//    public static void main(String args[]) {
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new MapGoldSelectionWindows().setVisible(true);
-//            }
-//        });
-//    }
 
 
 	@Override
@@ -129,8 +122,7 @@ public class MapGoldSelectionWindows extends javax.swing.JFrame implements Actio
 			this.dispose();
 			new MainWindow(Language, Sound,J);
 		}else{
-			this.dispose();
-
+			this.dispose();SS
 			new SelectArmy(Language,Sound,J);
 
 		}
