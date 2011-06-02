@@ -24,6 +24,30 @@ import proyecto.p4.PiezasOldWarriorTales.PiezaOldWarriorTales;
  */
 
 public class MapPanel extends JPanel implements MouseListener{
+	
+//	ImageIcon piedra = new ImageIcon(getClass().getResource("/img/piedra.png"));
+	JLabel suelo  = new JLabel(new ImageIcon(getClass().getResource("/img/suelo.png")));
+	public boolean isMover() {
+		return mover;
+	}
+
+	public void setMover(boolean mover) {
+		this.mover = mover;
+	}
+
+	ImageIcon selected = new ImageIcon(getClass().getResource("/img/SELECCION.png"));
+//	ImageIcon circrojo = new ImageIcon(getClass().getResource("/img/marcaroja.png"));
+	ImageIcon castillo = new ImageIcon(getClass().getResource("/img/castillo.png"));
+	JLabel flecha = new JLabel(new ImageIcon(getClass().getResource("/img/flechaSeleccionado.gif")));
+	ImageIcon villa = new ImageIcon(getClass().getResource("/img/villa.png"));
+	Icon viejoimg;
+	boolean seleccionado = false;
+	JLabel selectedUnit;
+	Board tab;
+	
+	boolean mover = false;
+	
+	PiezaOldWarriorTales unidad;
 
 	private static final long serialVersionUID = 1L;
 	ImageIcon img = new ImageIcon(getClass().getResource("/img/hierba.png"));
@@ -43,20 +67,6 @@ public class MapPanel extends JPanel implements MouseListener{
 		this.seleccionado = seleccionado;
 	}
 
-	ImageIcon piedra = new ImageIcon(getClass().getResource("/img/piedra.png"));
-	JLabel suelo  = new JLabel(new ImageIcon(getClass().getResource("/img/suelo.png")));
-	ImageIcon selected = new ImageIcon(getClass().getResource("/img/SELECCION.png"));
-//	ImageIcon circrojo = new ImageIcon(getClass().getResource("/img/marcaroja.png"));
-	ImageIcon castillo = new ImageIcon(getClass().getResource("/img/castillo.png"));
-	ImageIcon villa = new ImageIcon(getClass().getResource("/img/villa.png"));
-	Icon viejoimg;
-	boolean seleccionado = false;
-	JLabel selectedUnit;
-	Board tab;
-	
-	boolean need_to_update;
-	
-	PiezaOldWarriorTales unidad;
 	
 	public PiezaOldWarriorTales getUnidad() {
 		return unidad;
@@ -103,6 +113,7 @@ public class MapPanel extends JPanel implements MouseListener{
 		
 		//Añade al layerPane las casillas del mapa.
 		anyadirArray(mapa);
+		layer.add(flecha,new Integer(20));
 		layer.add(suelo, new Integer(-1));		
 
 	//	layer.add(circrojo01, new Integer(13));
@@ -231,7 +242,7 @@ public class MapPanel extends JPanel implements MouseListener{
 	@Override
 	public void mousePressed(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-	if(seleccionado){
+	if(seleccionado&&mover==true){
 		JLabel x = (JLabel) arg0.getSource();
 		for(int i = 0; i<mapa.length;i++ ){
 			for(int j = 0; j<mapa[i].length;j++){
@@ -241,19 +252,16 @@ public class MapPanel extends JPanel implements MouseListener{
 					boolean enc = false;
 					while(z<unitsimg01.size()&&!enc){
 						if(unitsimg01.get(z).equals(selectedUnit)){
-//							System.out.println(tab.getBoard()[unidad.getPosition_x()][unidad.getPosition_y()].getPiece());
-//							tab.getBoard()[unidad.getPosition_x()][unidad.getPosition_y()].setPiece(null);
-//							tab.getBoard()[i][j].setPiece(unidad);
-//							System.out.println(tab.getBoard()[unidad.getPosition_x()][unidad.getPosition_y()].getPiece());
 							try {
 								unidad.move(i, j);
 								unitsimg01.get(z).setBounds(this.mapa[i][j].getLocation().x+10,this.mapa[i][j].getLocation().y-50,80,90);
 								layer.setLayer(unitsimg01.get(z), layer.getLayer(x)+2);
+								flecha.setBounds(unitsimg01.get(z).getX()+15,unitsimg01.get(z).getY()-35,36,57);
 								seleccionado=false;
+								mover = false;
 								this.repaint();
 								enc =true;
 							} catch (Exception e) {
-								e.printStackTrace();
 								// TODO Auto-generated catch block
 								JOptionPane.showMessageDialog(this, e.getMessage());
 								seleccionado = false;
@@ -263,19 +271,19 @@ public class MapPanel extends JPanel implements MouseListener{
 					}			
 			}}
 		}
-		need_to_update = false;
 		}
 	}
 	else{
 		for(int y = 0;y<unitsimg01.size();y++){
 			if(unitsimg01.get(y).equals(arg0.getSource())){
 				selectedUnit = (JLabel) arg0.getSource();
-				need_to_update = true;
 				int i = 0;
 				boolean en = false;
 				while(i<unitsimg01.size()&&!en){
 					if(selectedUnit == unitsimg01.get(i)){
 						en = true;
+						flecha.setVisible(true);
+						flecha.setBounds(unitsimg01.get(i).getX()+10,unitsimg01.get(i).getY()-20,36,57);
 						unidad = piezasJugador1.get(i);
 				}
 					i++;
@@ -289,13 +297,14 @@ public class MapPanel extends JPanel implements MouseListener{
 //		unit01.setLocation(x.getX(), x.getY()-50);
 	}
 	
-	public boolean isNeed_to_update() {
-		return need_to_update;
+	public JLabel getFlecha() {
+		return flecha;
 	}
 
-	public void setNeed_to_update(boolean need_to_update) {
-		this.need_to_update = need_to_update;
+	public void setFlecha(JLabel flecha) {
+		this.flecha = flecha;
 	}
+
 
 	public ArrayList<JLabel> getUnitsimg01() {
 		return unitsimg01;
