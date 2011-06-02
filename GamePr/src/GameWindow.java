@@ -47,6 +47,7 @@ public class GameWindow extends JFrame implements MouseListener, ListSelectionLi
 	ArrayList<PiezaOldWarriorTales> piezasJugador1 = new ArrayList<PiezaOldWarriorTales>();
 	ArrayList<PiezaOldWarriorTales> piezasJugador2 = new ArrayList<PiezaOldWarriorTales>();
 	JLabel AttackButton = new JLabel(new ImageIcon(getClass().getResource("/img/botonatacar.png")));
+	JLabel TurnButton = new JLabel(new ImageIcon(getClass().getResource("/img/botonturno.jpg")));
 	JLabel MoveButton = new JLabel(new ImageIcon(getClass().getResource("/img/botonmover.png")));
 	JList units;
 	
@@ -69,6 +70,7 @@ public class GameWindow extends JFrame implements MouseListener, ListSelectionLi
 		units.addListSelectionListener(this);
 		AttackButton.addMouseListener(this);
 		MoveButton.addMouseListener(this);
+		TurnButton.addMouseListener(this);
 		
 		gamePanel.setBounds(10,10,gamePanel.getWidth(),gamePanel.getHeight());
 		unitData.setBounds(875,50,250,125);
@@ -84,13 +86,15 @@ public class GameWindow extends JFrame implements MouseListener, ListSelectionLi
 		layer.add(imgMANA, new Integer(3));
 		layer.add(imgPerg, new Integer(2));
 		layer.add(AttackButton, new Integer(2));
+		layer.add(TurnButton, new Integer(2));
 		layer.add(MoveButton, new Integer(2));
 		layer.add(units, new Integer (3));
 		
-		units.setBounds(900, 250, 300, 300);
+		units.setBounds(880, 250, 300, 300);
 		
 		AttackButton.setBounds(20, 590, 100, 100);
 		MoveButton.setBounds(125, 590, 150, 100);
+		TurnButton.setBounds(940,570,170,100);
 		imgEXP.setBounds(1100, 112, 80, 80);
 		imgMANA.setBounds(1100, 65, 80, 80);
 		imgLIFE.setBounds(1100, 28, 80, 80);
@@ -167,6 +171,12 @@ public class GameWindow extends JFrame implements MouseListener, ListSelectionLi
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
+		System.out.println("hola");
+		if(e.getSource()==this.gamePanel){
+			unitData.update(gamePanel.getMapPanel().getUnidad());
+			habilitiesButtons.update(gamePanel.getMapPanel().getUnidad());
+			
+		}
 	}
 
 	@Override
@@ -184,12 +194,22 @@ public class GameWindow extends JFrame implements MouseListener, ListSelectionLi
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
-		JLabel x = (JLabel) e.getSource();
+		Object x =  e.getSource();
 		if(x==AttackButton)
-			x.setIcon(new ImageIcon(getClass().getResource("/img/botonatacarpulsado.png")));
-		if(x==MoveButton)
-			x.setIcon(new ImageIcon(getClass().getResource("/img/botonmoverpulsado.png")));
-	}
+			((JLabel) x).setIcon(new ImageIcon(getClass().getResource("/img/botonatacarpulsado.png")));
+		if(x==MoveButton){
+			((JLabel) x).setIcon(new ImageIcon(getClass().getResource("/img/botonmoverpulsado.png")));
+			gamePanel.getMapPanel().setMover(true);
+		}
+		if(x==TurnButton){
+			for(int i = 0; i < piezasJugador1.size();i++){
+				piezasJugador1.get(i).finalizarTurno();
+			}
+			gamePanel.getMapPanel().getFlecha().setVisible(false);
+			((JLabel) x).setIcon(new ImageIcon(getClass().getResource("/img/botonturnopulsado.jpg")));
+		}
+		}
+
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
@@ -199,6 +219,8 @@ public class GameWindow extends JFrame implements MouseListener, ListSelectionLi
 			((JLabel) x).setIcon(new ImageIcon(getClass().getResource("/img/botonatacar.png")));
 		if(x==MoveButton)
 			((JLabel) x).setIcon(new ImageIcon(getClass().getResource("/img/botonmover.png")));
+		if(x==TurnButton)
+			((JLabel) x).setIcon(new ImageIcon(getClass().getResource("/img/botonturno.jpg")));
 		}
 	
 
@@ -207,6 +229,7 @@ public class GameWindow extends JFrame implements MouseListener, ListSelectionLi
 		// TODO Auto-generated method stub
 		gamePanel.getMapPanel().setUnidad(piezasJugador1.get(units.getSelectedIndex()));
 		gamePanel.getMapPanel().setSelectedUnit(gamePanel.getMapPanel().getUnitsimg01().get(units.getSelectedIndex()));
+		gamePanel.getMapPanel().getFlecha().setBounds(gamePanel.getMapPanel().getUnitsimg01().get(units.getSelectedIndex()).getX()+15, gamePanel.getMapPanel().getUnitsimg01().get(units.getSelectedIndex()).getY()-25, 36, 57);
 		gamePanel.getMapPanel().setSeleccionado(true);
 		unitData.update((PiezaOldWarriorTales)  units.getSelectedValue());
 		habilitiesButtons.update((PiezaOldWarriorTales) units.getSelectedValue());
