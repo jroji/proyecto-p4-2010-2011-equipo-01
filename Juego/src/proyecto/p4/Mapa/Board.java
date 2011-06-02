@@ -49,7 +49,16 @@ public class Board implements storableInDataBase
 
 	@Override
 	public int insertIntoDataBase() {
-		// TODO Auto-generated method stub
+		for(int i=0; i<map.length;i++)
+		{
+			for(int j=0; j<map[0].length;j++)
+			{
+				map[i][j].insertIntoDataBase();
+				if (map[i][j].getPiece()!=null)
+					map[i][j].getPiece().insertIntoDataBase();
+			}
+		}
+		
 		return 0;
 	}
 
