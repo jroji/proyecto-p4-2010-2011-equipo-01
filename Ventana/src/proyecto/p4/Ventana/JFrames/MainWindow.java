@@ -57,21 +57,7 @@ public class MainWindow extends JFrame implements ActionListener{
 		Buttons.getBoton3().getOldWarriorButton().addActionListener(this);
 		Buttons.getBoton4().getOldWarriorButton().addActionListener(this);
 		Buttons.getBoton5().getOldWarriorButton().addActionListener(this);
-//	       while(true){
-//		   		if(Buttons.getButtonP3()){
-//					Buttons.setButtonP3(false);
-//		   			this.dispose();
-//					new OptionWindow(Language,Sound);
-//				}else if(Buttons.getButtonP5()){
-//					Buttons.setButtonP5(false);
-//					this.dispose();
-//					new WelcomeWindow(Language,Sound);
-//		       }
-//				else if(Buttons.getButtonP1()){
-//					Buttons.setButtonP1(false);
-//					this.dispose();
-//		       }
-//		   }
+
 		
 	}
 
