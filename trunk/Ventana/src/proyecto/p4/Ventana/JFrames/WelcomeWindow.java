@@ -27,13 +27,15 @@ public class WelcomeWindow extends JFrame implements ActionListener{
 	private ResourceBundle language;
 	private boolean sound;
 	public Juego selectedGame;
+
 	
 	public WelcomeWindow(ResourceBundle language,boolean Sound){
 
+		
 		botonera= new BotoneraH(language.getString("label_accept"),language.getString("label_exit"),language.getString("label_newPlayer"));
 		this.setResizable(false);
 		this.language=language;
-		sound=Sound;
+		this.sound=Sound;
 		this.setSize(1024, 728);
 		JLayeredPane layer = new JLayeredPane();
 		this.setLayout(null);
@@ -72,7 +74,7 @@ public class WelcomeWindow extends JFrame implements ActionListener{
 			}else{
 				if(e.getSource()==((OldWarriorButton) botonera.getComponent(2)).getOldWarriorButton()) {
 					botonera.setButtonP3(false);
-					new NewPlayerWindow();
+					new NewPlayerWindow(language,sound);
 				}
 			}
 		}
