@@ -42,7 +42,6 @@ public class MapGoldSelectionWindows extends javax.swing.JFrame implements Actio
         MapList = new JList();
         GoldSelection = new JSlider();
         Botonera = new BotoneraH(Language.getString("label_back"),"",Language.getString("label_accept"));
-        Botonera.setVisible(true);
         AvatarPanel = new AvatarPanel(J);
         AvatarPanel.setVisible(true);
         
@@ -61,27 +60,6 @@ public class MapGoldSelectionWindows extends javax.swing.JFrame implements Actio
         GoldSelection.setPaintTrack(true);
         GoldSelection.setPaintLabels(true);
 
-        javax.swing.GroupLayout BotoneraLayout = new javax.swing.GroupLayout(Botonera);
-        Botonera.setLayout(BotoneraLayout);
-        BotoneraLayout.setHorizontalGroup(
-            BotoneraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 260, Short.MAX_VALUE)
-        );
-        BotoneraLayout.setVerticalGroup(
-            BotoneraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 63, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout AvatarPanelLayout = new javax.swing.GroupLayout(AvatarPanel);
-        AvatarPanel.setLayout(AvatarPanelLayout);
-        AvatarPanelLayout.setHorizontalGroup(
-            AvatarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 198, Short.MAX_VALUE)
-        );
-        AvatarPanelLayout.setVerticalGroup(
-            AvatarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
