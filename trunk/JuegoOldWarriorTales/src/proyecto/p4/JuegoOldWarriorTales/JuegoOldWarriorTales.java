@@ -7,6 +7,8 @@ import javax.swing.JOptionPane;
 
 import proyecto.p4.Juego.Juego;
 import proyecto.p4.Jugador.Jugador;
+import proyecto.p4.Mapa.Board;
+import proyecto.p4.Mapa.Casilla;
 
 
 import ConnectionInterface.PieceJDBC;
@@ -39,9 +41,9 @@ public class JuegoOldWarriorTales extends Juego implements storableInDataBase{
 		try {
 			p = new PieceJDBC();
 			p.insert(this.getClass().getSimpleName(), this);
-			p.insert("Jugador",this.getJugador1());
-			p.insert("Jugador",this.getJugador2());
-		//	p.insert(this.getClass().getSimpleName(), this.getTablero());
+//			p.insert("Jugador",this.getJugador1());
+//			p.insert("Jugador",this.getJugador2());
+		//p.insert("Casilla", this.getTablero());
 		} catch (ClassNotFoundException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -74,8 +76,8 @@ public class JuegoOldWarriorTales extends Juego implements storableInDataBase{
 		try {
 			p = new PieceJDBC();
 			p.remove("JuegoOldWarriorTales", this);
-			p.remove("Jugador",this.getJugador1());
-			p.remove("Jugador", this.getJugador2());
+//			p.remove("Jugador",this.getJugador1());
+//			p.remove("Jugador", this.getJugador2());
 			//tablero es un atributo de juego de la clase mapa/board que es un array de casillas
 		//p.remove(name, (storableInDataBase)this.getTablero());
 		} catch (ClassNotFoundException e) {
@@ -125,6 +127,9 @@ public class JuegoOldWarriorTales extends Juego implements storableInDataBase{
 	public static void main (String []args) throws Exception{
 		JuegoOldWarriorTales j= new JuegoOldWarriorTales();
 		Jugador j1= new Jugador();
+		
+		Board d= new Board();
+	
 		j1.setNick("jugador 1");
 		j1.setAvatar("avatar");
 		Jugador j2= new Jugador();
@@ -134,15 +139,17 @@ public class JuegoOldWarriorTales extends Juego implements storableInDataBase{
 		j.setJugador1(j1);
 		j.setJugador2(j2);
 		//j.deleteFromDataBase();
+		
 		j.insertIntoDataBase();
 		
-		ArrayList<storableInDataBase>array=j.takeOutFromDataBase();
-		for(storableInDataBase stor:array)
-		{
-			System.out.println(((JuegoOldWarriorTales)stor).getName());
-			System.out.println(((JuegoOldWarriorTales)stor).getJugador2().getNick());
-			System.out.println(((JuegoOldWarriorTales)stor).getJugador1().getNick());
-		}
+		
+//		ArrayList<storableInDataBase>array=j.takeOutFromDataBase();
+//		for(storableInDataBase stor:array)
+//		{
+//			System.out.println(((JuegoOldWarriorTales)stor).getName());
+//			System.out.println(((JuegoOldWarriorTales)stor).getJugador2().getNick());
+//			System.out.println(((JuegoOldWarriorTales)stor).getJugador1().getNick());
+//		}
 		
 	
 	
