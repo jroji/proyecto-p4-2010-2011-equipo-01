@@ -21,7 +21,6 @@ public class UnitData extends JPanel {
     private JProgressBar HealthBar; //Muestra la vida restante de la pieza
     private JLabel Image;
     private PiezaOldWarriorTales P; //Pieza de la que obtendremos toda la informacion
-    private String experience;
     
     
     public UnitData(PiezaOldWarriorTales p) {
@@ -34,8 +33,7 @@ public class UnitData extends JPanel {
         HealthBar = new JProgressBar();
         EnergyBar = new JProgressBar();
         ExperienceBar = new JProgressBar();
-        experience = new String();
-        experience.
+
 
         this.setOpaque(false);
         
