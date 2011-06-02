@@ -56,6 +56,7 @@ public class MapGoldSelectionWindows extends javax.swing.JFrame implements Actio
         GoldSelection.setValue(3000);
         GoldSelection.setPaintTicks(true);
         GoldSelection.setPaintTrack(true);
+        GoldSelection.setPaintLabels(true);
 
         javax.swing.GroupLayout BotoneraLayout = new javax.swing.GroupLayout(Botonera);
         Botonera.setLayout(BotoneraLayout);
