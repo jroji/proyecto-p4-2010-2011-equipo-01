@@ -8,6 +8,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 
@@ -238,22 +239,26 @@ public class MapPanel extends JPanel implements MouseListener{
 					int z = 0;
 					if(tab.getBoard()[i][j].getPiece()==null){
 					boolean enc = false;
-					while(z<=unitsimg01.size()&&!enc){
+					while(z<unitsimg01.size()&&!enc){
+						System.out.println(unitsimg01.size());
 						if(unitsimg01.get(z).equals(selectedUnit)){
-							unitsimg01.get(z).setBounds(this.mapa[i][j].getLocation().x+10,this.mapa[i][j].getLocation().y-50,80,90);
-							layer.setLayer(unitsimg01.get(z), layer.getLayer(x)+2);
-							seleccionado=false;
-							this.repaint();
-							enc =true;
 //							System.out.println(tab.getBoard()[unidad.getPosition_x()][unidad.getPosition_y()].getPiece());
 //							tab.getBoard()[unidad.getPosition_x()][unidad.getPosition_y()].setPiece(null);
 //							tab.getBoard()[i][j].setPiece(unidad);
 //							System.out.println(tab.getBoard()[unidad.getPosition_x()][unidad.getPosition_y()].getPiece());
 							try {
+								System.out.println("ERROR PRE-MOVE");
 								unidad.move(i, j);
+								System.out.println("ERROR POST-MOVE");
+								unitsimg01.get(z).setBounds(this.mapa[i][j].getLocation().x+10,this.mapa[i][j].getLocation().y-50,80,90);
+								layer.setLayer(unitsimg01.get(z), layer.getLayer(x)+2);
+								seleccionado=false;
+								this.repaint();
+								enc =true;
 							} catch (Exception e) {
 								// TODO Auto-generated catch block
-								e.printStackTrace();
+								JOptionPane.showMessageDialog(this, e.getMessage());
+								seleccionado = false;
 							}
 						}
 							z++;
