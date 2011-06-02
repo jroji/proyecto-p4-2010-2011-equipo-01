@@ -57,12 +57,10 @@ public class UnitData extends JPanel {
         EnergyBar.setString(P.getEnergy()+"/100");
         EnergyBar.setStringPainted(true);
 
-        //ExperienceBar.setBackground(new java.awt.Color(0, 51, 204));
-        ExperienceBar.setForeground(new java.awt.Color(51, 255, 51));
         ExperienceBar.setValue(P.getExperience());
         ExperienceBar.setString(P.getExperience()+"");
         ExperienceBar.setStringPainted(true);
-        ExperienceBar.setForeground(java.awt.Color.red);
+        ExperienceBar.setForeground(java.awt.Color.orange);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
