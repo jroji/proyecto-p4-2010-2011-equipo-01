@@ -1,7 +1,7 @@
 package proyecto.p4.Ventana.JFrames;
 
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -22,25 +22,27 @@ import proyecto.p4.piezaOldWarriorTales.Unidades.Soldier;
 import proyecto.p4.piezaOldWarriorTales.Unidades.knight;
 
 
-public class SelectArmy extends JFrame implements MouseListener{
+public class SelectArmy extends JFrame implements ActionListener{
 
      /**
 	 * 
 	 */
 	private static final long serialVersionUID = -710066457784512920L;
 	ListAndImage  x ;
+	x.getOldWarriorButton1().getOldWarriorButton().addActionListener();
      JTable table = new JTable();
      private Juego J;
      private ArrayList<Object> jugador1;
      private ArrayList<Object> jugador2;
      private boolean selected;
+     private DefaultTableModel modelo;
 	
 	public SelectArmy(ResourceBundle Language,boolean Sound,Juego j,ArrayList<Object> j1,ArrayList<Object> j2,boolean j1Selected)
 	{
 		jugador1 = j1;
 		jugador2 = j2;
 		selected = j1Selected;
-		DefaultTableModel modelo = new DefaultTableModel();
+		modelo = new DefaultTableModel();
 		modelo.setColumnCount(3);
 		Object [] l= {Language.getString("Name"),Language.getString("Health"),Language.getString("Mana")};
 		modelo.setColumnIdentifiers(l);
@@ -59,9 +61,9 @@ public class SelectArmy extends JFrame implements MouseListener{
 	}
 	
 	@Override
-	public void mouseClicked(MouseEvent e) {
+	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		if(e.getSource()==x){
+		if(e.getSource()==x.getOldWarriorButton1().getOldWarriorButton()){
 			if(x.getP()==!null){
 				Object[]fila=new String[3];
 				fila[0] = x.getP().getType();
@@ -74,25 +76,5 @@ public class SelectArmy extends JFrame implements MouseListener{
 					jugador2.add(x.getP());
 			}
 		}
-	}
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
 }
