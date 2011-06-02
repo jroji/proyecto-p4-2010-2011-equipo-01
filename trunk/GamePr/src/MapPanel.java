@@ -26,8 +26,22 @@ public class MapPanel extends JPanel implements MouseListener{
 
 	private static final long serialVersionUID = 1L;
 	ImageIcon img = new ImageIcon(getClass().getResource("/img/hierba.png"));
-	ImageIcon sold = new ImageIcon(getClass().getResource("/img/arquero.png"));
-	ImageIcon Barbaro = new ImageIcon(getClass().getResource("/img/barbaro.gif"));
+	public JLabel getSelectedUnit() {
+		return selectedUnit;
+	}
+
+	public void setSelectedUnit(JLabel selectedUnit) {
+		this.selectedUnit = selectedUnit;
+	}
+
+	public boolean isSeleccionado() {
+		return seleccionado;
+	}
+
+	public void setSeleccionado(boolean seleccionado) {
+		this.seleccionado = seleccionado;
+	}
+
 	ImageIcon piedra = new ImageIcon(getClass().getResource("/img/piedra.png"));
 	JLabel suelo  = new JLabel(new ImageIcon(getClass().getResource("/img/suelo.png")));
 	ImageIcon selected = new ImageIcon(getClass().getResource("/img/SELECCION.png"));
@@ -38,6 +52,8 @@ public class MapPanel extends JPanel implements MouseListener{
 	boolean seleccionado = false;
 	JLabel selectedUnit;
 	Board tab;
+	
+	boolean need_to_update;
 	
 	PiezaOldWarriorTales unidad;
 	
@@ -244,12 +260,14 @@ public class MapPanel extends JPanel implements MouseListener{
 					}			
 			}}
 		}
+		need_to_update = false;
 		}
 	}
 	else{
 		for(int y = 0;y<unitsimg01.size();y++){
 			if(unitsimg01.get(y).equals(arg0.getSource())){
 				selectedUnit = (JLabel) arg0.getSource();
+				need_to_update = true;
 				int i = 0;
 				boolean en = false;
 				while(i<unitsimg01.size()&&!en){
@@ -268,6 +286,30 @@ public class MapPanel extends JPanel implements MouseListener{
 //		unit01.setLocation(x.getX(), x.getY()-50);
 	}
 	
+	public boolean isNeed_to_update() {
+		return need_to_update;
+	}
+
+	public void setNeed_to_update(boolean need_to_update) {
+		this.need_to_update = need_to_update;
+	}
+
+	public ArrayList<JLabel> getUnitsimg01() {
+		return unitsimg01;
+	}
+
+	public void setUnitsimg01(ArrayList<JLabel> unitsimg01) {
+		this.unitsimg01 = unitsimg01;
+	}
+
+	public ArrayList<JLabel> getUnitsimg02() {
+		return unitsimg02;
+	}
+
+	public void setUnitsimg02(ArrayList<JLabel> unitsimg02) {
+		this.unitsimg02 = unitsimg02;
+	}
+
 	@Override
 	public void mouseReleased(MouseEvent arg0) {
 		// TODO Auto-generated method stub
