@@ -8,6 +8,7 @@ import javax.swing.JTable;
 import Languages.*;
 
 import proyecto.p4.Ventana.JPanels.ListAndImage;
+import proyecto.p4.Juego.*;
 import proyecto.p4.PiezasOldWarriorTales.PiezaOldWarriorTales;
 import proyecto.p4.piezaOldWarriorTales.Unidades.Arquero;
 import proyecto.p4.piezaOldWarriorTales.Unidades.Killer;
@@ -25,9 +26,11 @@ public class SelectArmy extends JFrame{
 	private static final long serialVersionUID = -710066457784512920L;
 	ListAndImage  x ;
      JTable table = new JTable();
+     private Juego J;
 	
-	public SelectArmy(ResourceBundle Language,boolean Sound)
+	public SelectArmy(ResourceBundle Language,boolean Sound,Juego j)
 	{
+		J=j;
 		this.setSize(1024,720);
 		this.setLayout(null);
 		x = new ListAndImage(Language);
