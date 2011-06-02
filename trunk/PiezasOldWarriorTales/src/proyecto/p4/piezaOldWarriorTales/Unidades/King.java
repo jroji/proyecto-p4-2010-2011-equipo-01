@@ -13,7 +13,7 @@ public class King extends proyecto.p4.PiezasOldWarriorTales.PiezaOldWarriorTales
 		blindness=false;
 		poisson=false;
 		counterattack=false;
-		CanonicalName= this.getClass().getSimpleName();
+		type= this.getClass().getSimpleName();
 	}
 	@Override
 	protected void cargarHabilidades() {

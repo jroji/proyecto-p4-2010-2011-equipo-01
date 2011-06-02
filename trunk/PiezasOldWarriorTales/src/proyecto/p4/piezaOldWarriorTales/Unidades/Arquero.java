@@ -25,7 +25,9 @@ public class Arquero extends PiezaOldWarriorTales{
 		blindness=false;
 		poisson=false;
 		counterattack=true;
-		CanonicalName= this.getClass().getSimpleName();
+
+		type= this.getClass().getSimpleName();
+
 	
 //	this.setImagen(new ImageIcon(getClass().getResource("/img/arquero.gif")));
 
@@ -57,7 +59,7 @@ public class Arquero extends PiezaOldWarriorTales{
 
 		Arquero a=new Arquero();
 		a.setPosition(5, 5);
-		a.setCodePiece(1);
+		a.setCodePiece(33);
 		a.setColor(Colours.blanco);
 		a.setOrientation(Orientations.South);
 		a.setLife(60);
@@ -65,11 +67,12 @@ public class Arquero extends PiezaOldWarriorTales{
 		a.setExperience(200);
 		a.setBlindness(false);
 		a.setPoisson(true);
+		//a.insertIntoDataBase();
 		a.deleteFromDataBase();
 		ArrayList<storableInDataBase> array=a.takeOutFromDataBase();
-//		for(storableInDataBase stor: array){
-//			((PiezaOldWarriorTales)stor).mostrar();
-//		}
+		for(storableInDataBase stor: array){
+			((PiezaOldWarriorTales)stor).mostrar();
+		}
 
 	}
 
