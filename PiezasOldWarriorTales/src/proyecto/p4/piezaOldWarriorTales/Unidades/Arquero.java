@@ -25,7 +25,7 @@ public class Arquero extends PiezaOldWarriorTales{
 		blindness=false;
 		poisson=false;
 		counterattack=true;
-	CanonicalName= this.getClass().getSimpleName();
+		CanonicalName= this.getClass().getSimpleName();
 	
 //	this.setImagen(new ImageIcon(getClass().getResource("/img/arquero.gif")));
 
