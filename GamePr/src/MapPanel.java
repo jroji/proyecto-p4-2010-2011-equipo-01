@@ -240,7 +240,6 @@ public class MapPanel extends JPanel implements MouseListener{
 					if(tab.getBoard()[i][j].getPiece()==null){
 					boolean enc = false;
 					while(z<unitsimg01.size()&&!enc){
-						System.out.println(unitsimg01.size());
 						if(unitsimg01.get(z).equals(selectedUnit)){
 //							System.out.println(tab.getBoard()[unidad.getPosition_x()][unidad.getPosition_y()].getPiece());
 //							tab.getBoard()[unidad.getPosition_x()][unidad.getPosition_y()].setPiece(null);
@@ -256,6 +255,7 @@ public class MapPanel extends JPanel implements MouseListener{
 								this.repaint();
 								enc =true;
 							} catch (Exception e) {
+								e.printStackTrace();
 								// TODO Auto-generated catch block
 								JOptionPane.showMessageDialog(this, e.getMessage());
 								seleccionado = false;
