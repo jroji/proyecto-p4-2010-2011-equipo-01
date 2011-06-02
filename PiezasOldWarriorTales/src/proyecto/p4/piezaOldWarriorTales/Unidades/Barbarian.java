@@ -1,8 +1,14 @@
 package proyecto.p4.piezaOldWarriorTales.Unidades;
 
+import java.util.ArrayList;
+
 import javax.swing.ImageIcon;
 
+import ConnectionInterface.storableInDataBase;
+
 import proyecto.p4.Mapa.Casilla;
+import proyecto.p4.Piece.Colours;
+import proyecto.p4.PiezasOldWarriorTales.Orientations;
 import proyecto.p4.PiezasOldWarriorTales.PiezaOldWarriorTales;
 import proyecto.p4.PiezasOldWarriorTales.Habilidades.Hability;
 import proyecto.p4.habilidades.AtaqueCertero;
@@ -18,7 +24,7 @@ public class Barbarian extends PiezaOldWarriorTales {
 		blindness=false;
 		poisson=false;
 		counterattack=false;
-		CanonicalName= this.getClass().getSimpleName();
+		type= this.getClass().getSimpleName();
 		this.setImagen(new ImageIcon(getClass().getResource("/img/barbaro.gif")));
 	}
 		
@@ -48,5 +54,26 @@ public class Barbarian extends PiezaOldWarriorTales {
 		habilities=new Hability[2];
 		habilities[0]=h1;
 		habilities[1]=h2;
+	}
+	
+	public static void main (String[]args)  {
+
+		Barbarian a = new Barbarian();
+		a.setPosition(5, 5);
+		a.setCodePiece(34);
+		a.setColor(Colours.blanco);
+		a.setOrientation(Orientations.South);
+		a.setLife(60);
+		a.setEnergy(50);
+		a.setExperience(200);
+		a.setBlindness(false);
+		a.setPoisson(true);
+//		a.insertIntoDataBase();
+//		a.deleteFromDataBase();
+		ArrayList<storableInDataBase> array=a.takeOutFromDataBase();
+		for(storableInDataBase stor: array){
+			((PiezaOldWarriorTales)stor).mostrar();
+		}
+
 	}
 }
