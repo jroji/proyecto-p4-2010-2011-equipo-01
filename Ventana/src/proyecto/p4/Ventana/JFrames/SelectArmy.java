@@ -2,6 +2,7 @@ package proyecto.p4.Ventana.JFrames;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import javax.swing.JFrame;
@@ -30,12 +31,18 @@ public class SelectArmy extends JFrame implements MouseListener{
 	ListAndImage  x ;
      JTable table = new JTable();
      private Juego J;
+     private ArrayList<Object> jugador1;
+     private ArrayList<Object> jugador2;
+     private boolean selected;
 	
-	public SelectArmy(ResourceBundle Language,boolean Sound,Juego j)
+	public SelectArmy(ResourceBundle Language,boolean Sound,Juego j,ArrayList<Object> j1,ArrayList<Object> j2,boolean j1Selected)
 	{
+		jugador1 = j1;
+		jugador2 = j2;
+		selected = j1Selected;
 		DefaultTableModel modelo = new DefaultTableModel();
 		modelo.setColumnCount(3);
-		Object [] l= {"Nombre","Vida","Mana"};
+		Object [] l= {Language.getString("Name"),Language.getString("Health"),Language.getString("Mana")};
 		modelo.setColumnIdentifiers(l);
 		table= new JTable(modelo);
 		J=j;
@@ -55,13 +62,16 @@ public class SelectArmy extends JFrame implements MouseListener{
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
 		if(e.getSource()==x){
-			if(x.getP()==null){
-			}else{
+			if(x.getP()==!null){
 				Object[]fila=new String[3];
 				fila[0] = x.getP().getType();
 				fila[1] = x.getP().getLife();
 				fila[2] = x.getP().getEnergy();
 				modelo.addRow(fila);
+				if(selected = true)
+					jugador1.add(x.getP());
+				else
+					jugador2.add(x.getP());
 			}
 		}
 	}
