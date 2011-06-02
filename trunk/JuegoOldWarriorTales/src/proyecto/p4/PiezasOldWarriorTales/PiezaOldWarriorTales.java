@@ -25,7 +25,7 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable{
 	protected int energy;
 	protected int probability;
 
-	protected String CanonicalName;
+	protected String type;
 	
 
 	//flags que indican si la unidad ha sido movida o a atacado en este turno
@@ -69,8 +69,8 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable{
 		return CodePiece;
 	}
 	
-	public String getCanonicalName(){
-		return CanonicalName;
+	public String getType(){
+		return type;
 	}
 	public void setCodePiece(int codePiece) {
 		CodePiece = codePiece;
@@ -411,7 +411,7 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable{
 			array.add(this.getClass().getSuperclass().getDeclaredField("orientacion"));
 			array.add(this.getClass().getSuperclass().getSuperclass().getDeclaredField("color"));	
 			array.add(this.getClass().getSuperclass().getDeclaredField("CodePiece"));
-			array.add(this.getClass().getSuperclass().getDeclaredField("CanonicalName"));
+			array.add(this.getClass().getSuperclass().getDeclaredField("type"));
 			fields=this.getClass().getSuperclass().getSuperclass().getDeclaredFields();
 		}
 		else{
@@ -424,7 +424,7 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable{
 			array.add(this.getClass().getDeclaredField("orientacion"));
 			array.add(this.getClass().getSuperclass().getDeclaredField("color"));	
 			array.add(this.getClass().getDeclaredField("CodePiece"));
-			array.add(this.getClass().getDeclaredField("CanonicalName"));
+			array.add(this.getClass().getDeclaredField("type"));
 			fields=this.getClass().getSuperclass().getDeclaredFields();
 		}
 		array.add(fields[0]);
