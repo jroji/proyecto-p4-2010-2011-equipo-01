@@ -40,12 +40,13 @@ public class UnitData extends JPanel {
 
         Image.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        HealthBar.setForeground(new java.awt.Color(255, 0, 0));
        
         /**
          * Iniciamos las barras con toda la informaci�n necesaria.
          */
         
+
+        HealthBar.setForeground(new java.awt.Color(255, 0, 0));
         HealthBar.setValue(P.getLife());
         HealthBar.setString(P.getLife()+"/100");
         HealthBar.setStringPainted(true);
@@ -60,7 +61,7 @@ public class UnitData extends JPanel {
         ExperienceBar.setValue(P.getExperience());
         ExperienceBar.setString(P.getExperience()+"");
         ExperienceBar.setStringPainted(true);
-        ExperienceBar.setForeground(java.awt.Color.green);
+        ExperienceBar.setForeground(java.awt.Color.red);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
