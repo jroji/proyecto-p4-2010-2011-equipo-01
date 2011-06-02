@@ -136,12 +136,15 @@ public class GameWindow extends JFrame implements MouseListener, ListSelectionLi
 		arq.setBoard(z);
 		arq.setPosition(10, 5);
 		arq.setColor(Colours.blanco);
+		arq.setLife(50);
+		arq.setEnergy(34);
+		arq.setExperience(67);
 		
 		Arquero arq2 = new Arquero();
 		arq2.setBoard(z);
 		arq2.setPosition(10, 10);
 		arq2.setColor(Colours.blanco);
-		
+		arq2.setLife(77);
 //
 //		Magician mag = new Magician();
 //		mag.setPosition(10, 5);
@@ -163,8 +166,6 @@ public class GameWindow extends JFrame implements MouseListener, ListSelectionLi
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-		unitData.update(gamePanel.mapPanel.getUnidad());
-		habilitiesButtons.update(gamePanel.getMapPanel().getUnidad());
 	}
 
 	@Override
@@ -192,16 +193,19 @@ public class GameWindow extends JFrame implements MouseListener, ListSelectionLi
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
-		JLabel x = (JLabel) e.getSource();
+		Object x = e.getSource();
 		if(x==AttackButton)
-			x.setIcon(new ImageIcon(getClass().getResource("/img/botonatacar.png")));
+			((JLabel) x).setIcon(new ImageIcon(getClass().getResource("/img/botonatacar.png")));
 		if(x==MoveButton)
-			x.setIcon(new ImageIcon(getClass().getResource("/img/botonmover.png")));
-	}
+			((JLabel) x).setIcon(new ImageIcon(getClass().getResource("/img/botonmover.png")));
+		}
+	
 
 	@Override
 	public void valueChanged(ListSelectionEvent e) {
 		// TODO Auto-generated method stub
+		gamePanel.getMapPanel().setSelectedUnit(gamePanel.getMapPanel().getUnitsimg01().get(units.getSelectedIndex()));
+		gamePanel.getMapPanel().setSeleccionado(true);
 		unitData.update((PiezaOldWarriorTales)  units.getSelectedValue());
 		habilitiesButtons.update((PiezaOldWarriorTales) units.getSelectedValue());
 	}
