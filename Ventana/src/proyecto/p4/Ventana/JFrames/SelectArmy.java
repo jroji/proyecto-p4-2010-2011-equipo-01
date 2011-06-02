@@ -29,7 +29,7 @@ public class SelectArmy extends JFrame implements ActionListener{
 	 */
 	private static final long serialVersionUID = -710066457784512920L;
 	ListAndImage  x ;
-	x.getOldWarriorButton1().getOldWarriorButton().addActionListener();
+	
      JTable table = new JTable();
      private Juego J;
      private ArrayList<Object> jugador1;
@@ -48,13 +48,13 @@ public class SelectArmy extends JFrame implements ActionListener{
 		modelo.setColumnIdentifiers(l);
 		table= new JTable(modelo);
 		J=j;
-		x.addMouseListener(this);
+		//x.addMouseListener(this);
 		this.setSize(1024,720);
 		this.setLayout(null);
 		x = new ListAndImage(Language);
 		this.add(x);
 		this.add(table);
-		
+		x.getOldWarriorButton1().getOldWarriorButton().addActionListener(this);
 		table.setBounds(280, 320, 650,300 );
 		x.setBounds(0, 0, 280, 720);
 		this.setVisible(true);
@@ -64,7 +64,7 @@ public class SelectArmy extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if(e.getSource()==x.getOldWarriorButton1().getOldWarriorButton()){
-			if(x.getP()==!null){
+			if(x.getP()!=null){
 				Object[]fila=new String[3];
 				fila[0] = x.getP().getType();
 				fila[1] = x.getP().getLife();

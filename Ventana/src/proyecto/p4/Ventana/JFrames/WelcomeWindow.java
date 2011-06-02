@@ -8,9 +8,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
-import javax.swing.JPanel;
-import javax.swing.WindowConstants;
-
 import proyecto.p4.Juego.Juego;
 import proyecto.p4.Ventana.Button.BotoneraH;
 import proyecto.p4.Ventana.Button.OldWarriorButton;
@@ -20,6 +17,10 @@ import Languages.*;
 
 public class WelcomeWindow extends JFrame implements ActionListener{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5305552228910252163L;
 	private NickPanel nicks = new NickPanel();
 	private BotoneraH botonera;
 	private SelectGamePane game = new SelectGamePane(this);
