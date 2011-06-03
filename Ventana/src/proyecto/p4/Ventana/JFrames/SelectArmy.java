@@ -37,7 +37,7 @@ public class SelectArmy extends JFrame implements ActionListener{
      private boolean selected;
      private DefaultTableModel modelo;
 	
-	public SelectArmy(ResourceBundle Language,boolean Sound,Juego j,ArrayList<Object> j1,ArrayList<Object> j2,boolean j1Selected)
+	public SelectArmy(ResourceBundle Language,boolean Sound,Juego j,ArrayList<Object> j1,ArrayList<Object> j2,boolean j1Selected,int gold)
 	{
 		jugador1 = j1;
 		jugador2 = j2;
