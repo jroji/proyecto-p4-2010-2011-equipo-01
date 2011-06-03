@@ -135,6 +135,9 @@ public class ListAndImage extends javax.swing.JPanel{
 
       }
 
+    public BotoneraH getButtons(){
+    	return oldWarriorButton1;
+    }
 
 	public PiezaOldWarriorTales getP() {
 		return instancias.get(UnitList.getSelectedIndex());

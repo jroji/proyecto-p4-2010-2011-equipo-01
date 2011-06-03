@@ -11,6 +11,8 @@ import javax.swing.table.DefaultTableModel;
 
 import Languages.*;
 
+import proyecto.p4.Ventana.Button.BotoneraH;
+import proyecto.p4.Ventana.Button.OldWarriorButton;
 import proyecto.p4.Ventana.JPanels.ListAndImage;
 import proyecto.p4.Juego.*;
 import proyecto.p4.PiezasOldWarriorTales.PiezaOldWarriorTales;
@@ -31,16 +33,22 @@ public class SelectArmy extends JFrame implements ActionListener{
 	ListAndImage  x ;
 	
      JTable table = new JTable();
+     private ResourceBundle language;
      private Juego J;
      private ArrayList<Object> jugador1;
      private ArrayList<Object> jugador2;
      private boolean selected;
      private DefaultTableModel modelo;
+     private boolean sound;
+     private int gold;
 	
 	public SelectArmy(ResourceBundle Language,boolean Sound,Juego j,ArrayList<Object> j1,ArrayList<Object> j2,boolean j1Selected,int gold)
 	{
+		language = Language;
+		this.gold=gold;
 		jugador1 = j1;
 		jugador2 = j2;
+		sound = Sound;
 		selected = j1Selected;
 		modelo = new DefaultTableModel();
 		modelo.setColumnCount(3);
@@ -54,7 +62,8 @@ public class SelectArmy extends JFrame implements ActionListener{
 		x = new ListAndImage(Language);
 		this.add(x);
 		this.add(table);
-		x.getOldWarriorButton1().getOldWarriorButton().addActionListener(this);
+		((OldWarriorButton)x.getButtons().getComponent(0)).getOldWarriorButton().addActionListener(this);
+		((OldWarriorButton)x.getButtons().getComponent(2)).getOldWarriorButton().addActionListener(this);	  
 		table.setBounds(280, 320, 650,300 );
 		x.setBounds(0, 0, 280, 720);
 		this.setVisible(true);
@@ -63,7 +72,7 @@ public class SelectArmy extends JFrame implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		if(e.getSource()==x.getOldWarriorButton1().getOldWarriorButton()){
+		if(e.getSource()==((OldWarriorButton)x.getButtons().getComponent(0)).getOldWarriorButton()){
 			if(x.getP()!=null){
 				Object[]fila=new String[3];
 				fila[0] = x.getP().getType();
@@ -75,6 +84,9 @@ public class SelectArmy extends JFrame implements ActionListener{
 				else
 					jugador2.add(x.getP());
 			}
+		}else if(e.getSource()==((OldWarriorButton)x.getButtons().getComponent(2)).getOldWarriorButton()){
+			this.dispose();
+			new SelectArmy(language,sound,J,jugador1,jugador2,false,gold);
 		}
 	}
 }
