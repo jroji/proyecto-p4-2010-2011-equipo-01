@@ -27,6 +27,14 @@ public class BotoneraH extends JPanel {
         oldWarriorButton1 = new OldWarriorButton(Button1);
         oldWarriorButton2 = new OldWarriorButton(Button2);
         oldWarriorButton3 = new OldWarriorButton(Button3);
+        
+        if(Button1==" "){
+        	oldWarriorButton1.setVisible(false);        	
+        }else if(Button2==" "){
+        	oldWarriorButton2.setVisible(false);        	
+        }else if(Button3==" "){
+        	oldWarriorButton1.setVisible(false);
+        }
 
         this.setOpaque(false);
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
