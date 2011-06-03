@@ -324,8 +324,10 @@ public class MapPanel extends JPanel implements MouseListener{
 									if(unidadEnemiga.getLife()<=0){
 										int indice = i;
 										System.out.println(piezasJugador1.get(i).getLife());
+										selectedUnit=null;
 										unitsimg01.get(i).setVisible(false);
 										unitsimg01.remove(indice);
+										System.out.println(unitsimg01.get(indice));
 										piezasJugador1.remove(indice);
 										tab.getBoard()[unidadEnemiga.getPosition_x()][unidadEnemiga.getPosition_y()].setPiece(null);
 										unidadEnemiga = null;
