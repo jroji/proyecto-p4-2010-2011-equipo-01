@@ -38,7 +38,7 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable{
 	//flags que indican si la unidad ha sido movida o a atacado en este turno
 	private boolean hasBeenMoved;
 	private boolean hasAttacked;
-
+	protected int attackDistance;
 	
 	//se necesitara el tablero para acceder a las casillas y piezas de el
 	protected Board board;
@@ -49,9 +49,11 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable{
 	protected boolean poisson;
 	//indica si puede contraatacar o no
 	protected boolean counterattack;
+	//indica las posiciones a las que puede atacar
+	
 	//array de habilidades
 	protected Hability []habilities;
-	
+	protected boolean [][] attackAble;
 
 	/**
 	 * Constructor que inicializa los atributos energy life y experience
@@ -66,6 +68,7 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable{
 		blindness=false;
 		poisson=false;
 		able_to_move=new boolean[14][13];
+		attackAble= new boolean [14][13];
 		
 	}
 	
@@ -167,6 +170,11 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable{
 	public void setHasAttacked(boolean hasAttacked) {
 		this.hasAttacked = hasAttacked;
 	}
+	public void setPosition(int positionX, int positionY) {
+		super.setPosition(positionX, positionY);
+		setAttackAble();
+		
+	}
 	/**
 	 *  devuelve al atributo probability valor inicial
 	 */
@@ -225,6 +233,14 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable{
 			return randomNumber<=10;
 		}else
 			return randomNumber<=this.probability;
+	}
+	public void setAttackAble ()
+	{
+		for (int i =0; i<attackAble.length;i++)
+		{
+			for(int j=0; j<attackAble[i].length;j++)
+				attackAble[i][j]= canAttack(i,j);
+		}
 	}
 	
 	/** Metodo que gestiona el ataque de una pieza a otra basandose en la siguiente formula:
@@ -338,6 +354,22 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable{
 			habilities[num_habilidad].execute(coordenadas);
 		}else 
 			throw new Exception("el numero de habilidad deve estar entre 0-"+(habilities.length-1));
+	}
+	
+	public boolean canAttack (int posx, int posy)
+	{
+		int res=getPosition_x()-posx;
+		res=Math.abs(res);
+		if (res>attackDistance){
+			return false;
+		}else{
+			int res2=getPosition_y()-posy;
+			res2=Math.abs(res2);
+			res+=res2;
+			if (res>attackDistance){
+				return false;
+			}else return true;
+		}
 	}
 	/**
 	 * Metodo que se ejecuta al finalizar el turno del jugador
