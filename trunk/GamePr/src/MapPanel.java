@@ -317,22 +317,19 @@ public class MapPanel extends JPanel implements MouseListener{
 					while(i<unitsimg01.size()&&!en){
 						if(objectiveUnit == unitsimg01.get(i)){
 							en = true;
-							unitsimg01.get(i).repaint();
 							atacar= false;							
 							unidadEnemiga = piezasJugador1.get(i);
 							try {
 								if(unidad.attack(unidadEnemiga.getPosition_x(), unidadEnemiga.getPosition_y()))
 									if(unidadEnemiga.getLife()<=0){
-										System.out.println("hi");
+										int indice = i;
 										System.out.println(piezasJugador1.get(i).getLife());
-										piezasJugador1.remove(i);
 										unitsimg01.get(i).setVisible(false);
-										unitsimg01.remove(i);
+										unitsimg01.remove(indice);
+										piezasJugador1.remove(indice);
 										tab.getBoard()[unidadEnemiga.getPosition_x()][unidadEnemiga.getPosition_y()].setPiece(null);
-										System.out.println("true");
+										unidadEnemiga = null;
 									}
-								else
-									System.out.println("false");
 							} catch (Exception e) {
 								// TODO Auto-generated catch block
 								JOptionPane.showMessageDialog(this, e.getMessage());

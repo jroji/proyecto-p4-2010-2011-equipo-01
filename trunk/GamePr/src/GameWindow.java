@@ -142,7 +142,7 @@ public class GameWindow extends JFrame implements MouseListener, ListSelectionLi
 		arq.setBoard(z);
 		arq.setPosition(10, 5);
 		arq.setColor(Colours.blanco);
-		arq.setLife(50);
+		arq.setLife(5);
 		arq.setEnergy(34);
 		arq.setExperience(67);
 		
