@@ -196,7 +196,7 @@ public class GameWindow extends JFrame implements MouseListener, ListSelectionLi
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
 		Object x =  e.getSource();
-		if(x==AttackButton)
+		if(x==AttackButton){
 			((JLabel) x).setIcon(new ImageIcon(getClass().getResource("/img/botonatacarpulsado.png")));
 		if(gamePanel.getMapPanel().getUnidad()!=null&&gamePanel.getMapPanel().isSeleccionado()){
 			gamePanel.getMapPanel().setAtacar(true);
@@ -209,6 +209,7 @@ public class GameWindow extends JFrame implements MouseListener, ListSelectionLi
 	}
 		}
 	}
+		}
 		if(x==MoveButton){
 			((JLabel) x).setIcon(new ImageIcon(getClass().getResource("/img/botonmoverpulsado.png")));
 			if(gamePanel.getMapPanel().getUnidad()!=null&&gamePanel.getMapPanel().isSeleccionado()){
