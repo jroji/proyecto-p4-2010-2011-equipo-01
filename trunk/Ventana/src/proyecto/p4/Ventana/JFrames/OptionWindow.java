@@ -104,7 +104,7 @@ public class OptionWindow extends javax.swing.JFrame implements ActionListener /
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource()==Buttons.getBoton2().getOldWarriorButton()){
 			this.dispose();
-  			new CreditsWindow(Language,Sound,selectedGame);
+  			new CreditsWindow(Language,Sound,selectedGame).setVisible(true);
 		}else if(e.getSource()==Buttons.getBoton3().getOldWarriorButton()){
 			Buttons.setButtonP3(false);
    			this.dispose();
