@@ -30,6 +30,7 @@ public class JuegoOldWarriorTales extends Juego implements storableInDataBase{
 		array.add(this.getClass().getSuperclass().getDeclaredField("name"));
 		array.add(this.getClass().getSuperclass().getDeclaredField("jugador1"));
 		array.add(this.getClass().getSuperclass().getDeclaredField("jugador2"));
+		array.add(this.getClass().getSuperclass().getDeclaredField("playing"));
 	
 		return array;
 	}
@@ -41,8 +42,19 @@ public class JuegoOldWarriorTales extends Juego implements storableInDataBase{
 		try {
 			p = new PieceJDBC();
 			p.insert(this.getClass().getSimpleName(), this);
-
-			this.tablero.insertIntoDataBase();
+			
+			for(int i=0; i<this.tablero.getBoard().length;i++)
+			{
+				for(int j=0; j<this.tablero.getBoard().length;j++)
+				{
+					this.tablero.getBoard()[i][j].setNombreJuego(this.name);
+					this.tablero.getBoard()[i][j].insertIntoDataBase();
+					if (this.tablero.getBoard()[i][j].getPiece()!=null){
+						this.tablero.getBoard()[i][j].getPiece().setNombreJuego(this.name);
+						this.tablero.getBoard()[i][j].getPiece().insertIntoDataBase();
+					}
+				}
+			}
 		
 		} catch (ClassNotFoundException e1) {
 			// TODO Auto-generated catch block
