@@ -30,7 +30,7 @@ public class Arquero extends PiezaOldWarriorTales{
 //	this.setImagen(new ImageIcon(getClass().getResource("/img/arquero.gif")));
 
 
-	this.setImagen(new ImageIcon(getClass().getResource("/img/arquero.png")));
+	this.setImagen(new ImageIcon(getClass().getResource("/img/arquero.gif")));
 
 	}
 
