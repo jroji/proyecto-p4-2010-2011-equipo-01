@@ -14,13 +14,15 @@ import proyecto.p4.Juego.*;
 import proyecto.p4.Ventana.Button.BotoneraH;
 import proyecto.p4.Ventana.Button.OldWarriorButton;
 import proyecto.p4.Ventana.JPanels.AvatarPanel;
+import proyecto.p4.Ventana.JPanels.GoldSelectionPanel;
  
  
 public class MapGoldSelectionWindows extends javax.swing.JFrame implements ActionListener{
 
 	private AvatarPanel AvatarPanel;
     private BotoneraH Botonera;
-    private JSlider GoldSelection;
+  //  private JSlider GoldSelection;
+    private GoldSelectionPanel GoldSelection;
     private JList MapList;
     private JScrollPane jScrollPane1;
     private ResourceBundle Language;
@@ -40,7 +42,7 @@ public class MapGoldSelectionWindows extends javax.swing.JFrame implements Actio
 
         jScrollPane1 = new JScrollPane();
         MapList = new JList();
-        GoldSelection = new JSlider();
+        GoldSelection = new GoldSelectionPanel(Language);
         Botonera = new BotoneraH(Language.getString("label_back"),"",Language.getString("label_accept"));
         AvatarPanel = new AvatarPanel(J);
         AvatarPanel.setVisible(true);
@@ -48,17 +50,13 @@ public class MapGoldSelectionWindows extends javax.swing.JFrame implements Actio
         ((OldWarriorButton)Botonera.getComponent(0)).getOldWarriorButton().addActionListener(this);
 		((OldWarriorButton)Botonera.getComponent(2)).getOldWarriorButton().addActionListener(this);
 
+		GoldSelection.getAdd().getOldWarriorButton().addActionListener(this);
+		GoldSelection.getMinus().getOldWarriorButton().addActionListener(this);
+		
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         MapList.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jScrollPane1.setViewportView(MapList);
-
-        GoldSelection.setMaximum(5000);
-        GoldSelection.setMinimum(1000);
-        GoldSelection.setValue(3000);
-        GoldSelection.setPaintTicks(true);
-        GoldSelection.setPaintTrack(true);
-        GoldSelection.setPaintLabels(true);
 
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -102,12 +100,20 @@ public class MapGoldSelectionWindows extends javax.swing.JFrame implements Actio
 		if(e.getSource()==((OldWarriorButton)Botonera.getComponent(0)).getOldWarriorButton()){
 			this.dispose();
 			new MainWindow(Language, Sound,J);
-		}else{
+		}else if (e.getSource()==((OldWarriorButton)Botonera.getComponent(2)).getOldWarriorButton()){
 			this.dispose();
 			ArrayList<Object> Jugador1 = new ArrayList<Object>();
 			ArrayList<Object> Jugador2 = new ArrayList<Object>();
 			new SelectArmy(Language,Sound,J,Jugador1,Jugador2,true);
 
+		}else if(e.getSource()==GoldSelection.getAdd().getOldWarriorButton()){
+			if(GoldSelection.getText()+1000<=5000){
+				GoldSelection.setText(Integer.toString(GoldSelection.getText()+1000));
+			}
+		}else if(e.getSource()==GoldSelection.getMinus().getOldWarriorButton()){
+			if(GoldSelection.getText()-1000>=1000){
+				GoldSelection.setText(Integer.toString(GoldSelection.getText()-1000));
+			}
 		}
 		
 	}
