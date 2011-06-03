@@ -2,8 +2,6 @@ package proyecto.p4.Ventana.JFrames;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
@@ -13,6 +11,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
+import javax.swing.JOptionPane;
+
 import proyecto.p4.Juego.Juego;
 import proyecto.p4.Jugador.Jugador;
 import proyecto.p4.Ventana.Button.BotoneraH;
@@ -22,7 +22,7 @@ import proyecto.p4.Ventana.JPanels.SelectGamePane;
 import ConnectionInterface.storableInDataBase;
 import Languages.*;
 
-public class WelcomeWindow extends JFrame implements ActionListener,KeyListener,FocusListener{
+public class WelcomeWindow extends JFrame implements ActionListener,KeyListener{
 	
 	/**
 	 * 
@@ -68,9 +68,6 @@ public class WelcomeWindow extends JFrame implements ActionListener,KeyListener,
 		((OldWarriorButton)botonera.getComponent(0)).getOldWarriorButton().addActionListener(this);
 		((OldWarriorButton)botonera.getComponent(1)).getOldWarriorButton().addActionListener(this);
 		((OldWarriorButton)botonera.getComponent(2)).getOldWarriorButton().addActionListener(this);	 
-		
-		nicks.getNick1TF().addFocusListener(this);
-		nicks.getNick2TF().addFocusListener(this);
 	}
 	
 
@@ -79,9 +76,30 @@ public class WelcomeWindow extends JFrame implements ActionListener,KeyListener,
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==((OldWarriorButton) botonera.getComponent(0)).getOldWarriorButton())
 		{
-			botonera.setButtonP1(false);
-			new MainWindow(language,sound,selectedGame);
-			this.dispose();
+			Jugador j = new Jugador();
+			boolean enc1 = false;
+			boolean enc2 = false;
+			//Metodo buscar jugador
+			for(int i = 0;i<j.takeOutFromDataBase().size() || enc1!=false && enc2!=false ; i++){
+				j=(Jugador) j.takeOutFromDataBase().get(i);
+				if(nicks.getNicktext().equals(j.getNick())){
+					enc1=true;
+				}else if(nicks.getNicktext2().equals(j.getNick())){
+					enc2 = true;
+				}
+			}
+			if(enc1&& enc2){
+				botonera.setButtonP1(false);
+				new MainWindow(language,sound,selectedGame);
+				this.dispose();
+			}else if(!enc1 && !enc2){
+				JOptionPane.showMessageDialog(this,language.getString("noPlayer12"),"",JOptionPane.ERROR_MESSAGE);
+			}else if(!enc1){
+				JOptionPane.showMessageDialog(this,language.getString("noPlayer1"),"",JOptionPane.ERROR_MESSAGE);
+			}else{
+				JOptionPane.showMessageDialog(this,language.getString("noPlayer2"),"",JOptionPane.ERROR_MESSAGE);
+			}
+			
 		}else{
 			if(e.getSource()==((OldWarriorButton) botonera.getComponent(1)).getOldWarriorButton()){
 				botonera.setButtonP2(false);
@@ -132,25 +150,5 @@ public class WelcomeWindow extends JFrame implements ActionListener,KeyListener,
 	public void keyTyped(KeyEvent arg0) {
 		// TODO Auto-generated method stub
 		
-	}
-
-
-
-	@Override
-	public void focusGained(FocusEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-
-	@Override
-	public void focusLost(FocusEvent e) {
-		// TODO Auto-generated method stub
-		if(e.getSource()==nicks.getNick1TF()){
-			//metodo para comprobar que existe
-		}else if(e.getSource()==nicks.getNick2TF()){
-			//metodo para comprobar que existe
-		}
 	}
 }
