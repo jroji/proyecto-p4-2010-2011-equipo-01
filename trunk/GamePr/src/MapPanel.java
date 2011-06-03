@@ -43,6 +43,7 @@ public class MapPanel extends JPanel implements MouseListener{
 	JLabel objectiveUnit;
 	Board tab;
 	GameWindow gameWindow;
+	int turno = 0;
 	
 	boolean mover = false;
 	boolean atacar = false;
@@ -192,8 +193,9 @@ public class MapPanel extends JPanel implements MouseListener{
 			labels2.add(new JLabel(unidadesjug2.get(i).getImagen()));
 			int x = unidadesjug2.get(i).getPosition_x();
 			int y = unidadesjug2.get(i).getPosition_y();
-			layer.add(labels2.get(i), new Integer(layer.getLayer(mapa[x][y])+2));
-			labels2.get(i).setBounds(mapa[x][y].getX(), mapa[x][y].getY(), 70, 125);
+			layer.add(labels2.get(i), new Integer(layer.getLayer(this.mapa[x][y])+2));
+			labels2.get(i).addMouseListener(this);
+			labels2.get(i).setBounds(this.mapa[x][y].getLocation().x+10, mapa[x][y].getLocation().y-55, 70, 125);
 		}
 	}
 	/**Coloca los JLabel del array en el layerpane  
@@ -255,6 +257,8 @@ public class MapPanel extends JPanel implements MouseListener{
 					int z = 0;
 					if(tab.getBoard()[i][j].getPiece()==null){
 					boolean enc = false;
+					if(turno==0)
+					{
 					while(z<unitsimg01.size()&&!enc){
 						if(unitsimg01.get(z).equals(selectedUnit)){
 							try {
@@ -276,35 +280,61 @@ public class MapPanel extends JPanel implements MouseListener{
 						}
 							z++;
 					}			
-			}}
+			}
+					else{
+						while(z<unitsimg02.size()&&!enc){
+							if(unitsimg02.get(z).equals(selectedUnit)){
+								try {
+									unidad.move(i, j);
+									unitsimg02.get(z).setBounds(this.mapa[i][j].getLocation().x+10,this.mapa[i][j].getLocation().y-50,80,90);
+									layer.setLayer(unitsimg02.get(z), layer.getLayer(x)+2);
+									flecha.setBounds(unitsimg02.get(z).getX()+15,unitsimg02.get(z).getY()-35,36,57);
+									seleccionado=false;
+									mover = false;
+									this.repaint();
+									enc =true;
+									flecha.setVisible(false);
+								} catch (Exception e) {
+									// TODO Auto-generated catch block
+									JOptionPane.showMessageDialog(this, e.getMessage());
+									seleccionado = false;
+								}
+								recargarMapa();
+							}
+								z++;
+						}			
+					}
+					}
+			}
 		}
 		}
 	}
 	else if(seleccionado&&atacar==true){
-			for(int y = 0;y<unitsimg01.size();y++){
-				if(unitsimg01.get(y).equals(arg0.getSource())){
+			if(turno==0){
+			for(int y = 0;y<unitsimg02.size();y++){
+				if(unitsimg02.get(y).equals(arg0.getSource())){
 					objectiveUnit = (JLabel) arg0.getSource();
 					int i = 0;
+					selectedUnit.setIcon(new ImageIcon(getClass().getResource("/img/"+unidad.getType()+".gif")));
 					boolean en = false;
-					while(i<unitsimg01.size()&&!en){
-						if(objectiveUnit == unitsimg01.get(i)){
+					while(i<unitsimg02.size()&&!en){
+						if(objectiveUnit == unitsimg02.get(i)){
 							en = true;
 							atacar= false;							
-							unidadEnemiga = piezasJugador1.get(i);
+							unidadEnemiga = piezasJugador2.get(i);
 							try {
 								if(unidad.attack(unidadEnemiga.getPosition_x(), unidadEnemiga.getPosition_y()))
 									if(unidadEnemiga.getLife()<=0){
 										unidad.setExperience(unidad.getExperience()+25);
 										int indice = i;
-										System.out.println(piezasJugador1.get(i).getLife());
+										System.out.println(piezasJugador2.get(i).getLife());
 										selectedUnit=null;
-										unitsimg01.get(i).setVisible(false);
-										unitsimg01.remove(indice);
-										System.out.println(unitsimg01.get(indice));
-										piezasJugador1.remove(indice);
+										unitsimg02.get(i).setVisible(false);
+										unitsimg02.remove(indice);
+										piezasJugador2.remove(indice);
 										tab.getBoard()[unidadEnemiga.getPosition_x()][unidadEnemiga.getPosition_y()].setPiece(null);
 										unidadEnemiga = null;
-										gameWindow.units.setListData(piezasJugador1.toArray());
+										gameWindow.units.setListData(piezasJugador2.toArray());
 									}
 							} catch (Exception e) {
 								// TODO Auto-generated catch block
@@ -319,10 +349,50 @@ public class MapPanel extends JPanel implements MouseListener{
 					seleccionado = true;
 			}
 			}
-//		}
+		}
+			else{
+				for(int y = 0;y<unitsimg01.size();y++){
+					if(unitsimg01.get(y).equals(arg0.getSource())){
+						objectiveUnit = (JLabel) arg0.getSource();
+						int i = 0;
+						selectedUnit.setIcon(new ImageIcon(getClass().getResource("/img/"+unidad.getType()+".gif")));
+						boolean en = false;
+						while(i<unitsimg01.size()&&!en){
+							if(objectiveUnit == unitsimg01.get(i)){
+								en = true;
+								atacar= false;							
+								unidadEnemiga = piezasJugador1.get(i);
+								try {
+									if(unidad.attack(unidadEnemiga.getPosition_x(), unidadEnemiga.getPosition_y()))
+										if(unidadEnemiga.getLife()<=0){
+											unidad.setExperience(unidad.getExperience()+25);
+											int indice = i;
+											selectedUnit=null;
+											unitsimg01.get(i).setVisible(false);
+											unitsimg01.remove(indice);
+											piezasJugador1.remove(indice);
+											tab.getBoard()[unidadEnemiga.getPosition_x()][unidadEnemiga.getPosition_y()].setPiece(null);
+											unidadEnemiga = null;
+											gameWindow.units.setListData(piezasJugador1.toArray());
+										}
+								} catch (Exception e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+									JOptionPane.showMessageDialog(this, e.getMessage());
+								}
+								recargarMapa();
+						}
+							i++;
+						}
+							
+						seleccionado = true;
+				}
+				}
+			}
 	}
 	else{
 		recargarMapa();
+		if(turno==0){
 		for(int y = 0;y<unitsimg01.size();y++){
 			if(unitsimg01.get(y).equals(arg0.getSource())){
 				selectedUnit = (JLabel) arg0.getSource();
@@ -344,6 +414,28 @@ public class MapPanel extends JPanel implements MouseListener{
 		}
 		}
 	}
+		else
+				for(int y = 0;y<unitsimg02.size();y++){
+					if(unitsimg02.get(y).equals(arg0.getSource())){
+						selectedUnit = (JLabel) arg0.getSource();
+						int i = 0;
+						boolean en = false;
+						while(i<unitsimg02.size()&&!en){
+							if(selectedUnit == unitsimg02.get(i)){
+								en = true;
+								flecha.setVisible(true);
+								flecha.setBounds(unitsimg02.get(i).getX()+10,unitsimg02.get(i).getY()-20,36,57);
+								unidad = piezasJugador1.get(i);
+								gameWindow.getHabilitiesButtons().update(unidad);
+								gameWindow.getUnitData().update(unidad);
+						}
+							i++;
+						}
+							
+						seleccionado = true;
+				}
+				}
+			}
 //		layer.setLayer(unit01, layer.getLayer(x)+2);
 //		unit01.setLocation(x.getX(), x.getY()-50);
 	}
@@ -358,6 +450,14 @@ public class MapPanel extends JPanel implements MouseListener{
 
 	public JLabel getFlecha() {
 		return flecha;
+	}
+
+	public int getTurno() {
+		return turno;
+	}
+
+	public void setTurno(int turno) {
+		this.turno = turno;
 	}
 
 	public void setFlecha(JLabel flecha) {
