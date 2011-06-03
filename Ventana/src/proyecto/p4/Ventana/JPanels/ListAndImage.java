@@ -136,7 +136,7 @@ public class ListAndImage extends javax.swing.JPanel implements ActionListener {
 
 
 	public PiezaOldWarriorTales getP() {
-		return p;
+		return instancias.get(UnitList.getSelectedIndex());
 	}
 
 
