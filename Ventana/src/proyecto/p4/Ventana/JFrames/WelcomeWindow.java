@@ -2,6 +2,8 @@ package proyecto.p4.Ventana.JFrames;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
@@ -20,7 +22,7 @@ import proyecto.p4.Ventana.JPanels.SelectGamePane;
 import ConnectionInterface.storableInDataBase;
 import Languages.*;
 
-public class WelcomeWindow extends JFrame implements ActionListener,KeyListener{
+public class WelcomeWindow extends JFrame implements ActionListener,KeyListener,FocusListener{
 	
 	/**
 	 * 
@@ -62,9 +64,13 @@ public class WelcomeWindow extends JFrame implements ActionListener,KeyListener{
 		nicks.setBounds(500, 380, 500, 500);
 		botonera.setBounds(50, 550, 600, 200);
 		this.setVisible(true);
+		
 		((OldWarriorButton)botonera.getComponent(0)).getOldWarriorButton().addActionListener(this);
 		((OldWarriorButton)botonera.getComponent(1)).getOldWarriorButton().addActionListener(this);
-		((OldWarriorButton)botonera.getComponent(2)).getOldWarriorButton().addActionListener(this);	    
+		((OldWarriorButton)botonera.getComponent(2)).getOldWarriorButton().addActionListener(this);	 
+		
+		nicks.getNick1TF().addFocusListener(this);
+		nicks.getNick2TF().addFocusListener(this);
 	}
 	
 
@@ -126,5 +132,25 @@ public class WelcomeWindow extends JFrame implements ActionListener,KeyListener{
 	public void keyTyped(KeyEvent arg0) {
 		// TODO Auto-generated method stub
 		
+	}
+
+
+
+	@Override
+	public void focusGained(FocusEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public void focusLost(FocusEvent e) {
+		// TODO Auto-generated method stub
+		if(e.getSource()==nicks.getNick1TF()){
+			//metodo para comprobar que existe
+		}else if(e.getSource()==nicks.getNick2TF()){
+			//metodo para comprobar que existe
+		}
 	}
 }

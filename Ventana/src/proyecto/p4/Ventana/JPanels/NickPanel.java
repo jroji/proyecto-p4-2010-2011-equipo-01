@@ -84,5 +84,13 @@ public class NickPanel extends javax.swing.JPanel {
 	public void setNicktext2(JTextField nicktext2) {
 		this.nicktext2 = nicktext2;
 	}
+	
+	public JTextField getNick1TF(){
+		return  nicktext;
+	}
+	
+	public JTextField getNick2TF(){
+		return nicktext2;
+	}
 
 }
