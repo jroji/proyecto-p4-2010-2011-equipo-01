@@ -189,7 +189,7 @@ public class GameWindow extends JFrame implements MouseListener, ListSelectionLi
 //		
 		Barbarian bar = new Barbarian();
 		bar.setBoard(z);
-		bar.setColor(Colours.blanco);
+		bar.setColor(Colours.negro);
 		bar.setPosition(5, 5);
 		z.getBoard()[5][5].setPiece(bar);
 		z.getBoard()[10][10].setPiece(arq2);
@@ -224,6 +224,7 @@ public class GameWindow extends JFrame implements MouseListener, ListSelectionLi
 		// TODO Auto-generated method stub
 		Object x =  e.getSource();
 		if(x==AttackButton){
+			gamePanel.getMapPanel().recargarMapa();
 			((JLabel) x).setIcon(new ImageIcon(getClass().getResource("/img/botonatacarpulsado.png")));
 		if(gamePanel.getMapPanel().getUnidad()!=null&&gamePanel.getMapPanel().isSeleccionado()){
 			gamePanel.getMapPanel().setAtacar(true);
@@ -238,7 +239,7 @@ public class GameWindow extends JFrame implements MouseListener, ListSelectionLi
 	}
 		}
 		if(x==MoveButton){
-			units.repaint();
+			gamePanel.getMapPanel().recargarMapa();
 			((JLabel) x).setIcon(new ImageIcon(getClass().getResource("/img/botonmoverpulsado.png")));
 			if(gamePanel.getMapPanel().getUnidad()!=null&&gamePanel.getMapPanel().isSeleccionado()){
 				gamePanel.getMapPanel().setMover(true);
@@ -256,7 +257,16 @@ public class GameWindow extends JFrame implements MouseListener, ListSelectionLi
 			for(int i = 0; i < piezasJugador1.size();i++){
 				piezasJugador1.get(i).finalizarTurno();
 			}
+			if(gamePanel.getMapPanel().getTurno()==0){
+				gamePanel.getMapPanel().setTurno(1);
+				units.setListData(piezasJugador2.toArray());
+			}
+			else{
+				gamePanel.getMapPanel().setTurno(0);
+				units.setListData(piezasJugador1.toArray());
+			}
 			gamePanel.getMapPanel().getFlecha().setVisible(false);
+			gamePanel.getMapPanel().recargarMapa();
 			((JLabel) x).setIcon(new ImageIcon(getClass().getResource("/img/botonturnopulsado.jpg")));
 		}
 		}
@@ -278,9 +288,16 @@ public class GameWindow extends JFrame implements MouseListener, ListSelectionLi
 	public void valueChanged(ListSelectionEvent e) {
 		// TODO Auto-generated method stub
 		gamePanel.getMapPanel().recargarMapa();
+		if(gamePanel.getMapPanel().getTurno()==0){
 		gamePanel.getMapPanel().setUnidad(piezasJugador1.get(units.getSelectedIndex()));
 		gamePanel.getMapPanel().setSelectedUnit(gamePanel.getMapPanel().getUnitsimg01().get(units.getSelectedIndex()));
 		gamePanel.getMapPanel().getFlecha().setBounds(gamePanel.getMapPanel().getUnitsimg01().get(units.getSelectedIndex()).getX()+15, gamePanel.getMapPanel().getUnitsimg01().get(units.getSelectedIndex()).getY()-25, 36, 57);
+		}
+		else{
+			gamePanel.getMapPanel().setUnidad(piezasJugador1.get(units.getSelectedIndex()));
+			gamePanel.getMapPanel().setSelectedUnit(gamePanel.getMapPanel().getUnitsimg02().get(units.getSelectedIndex()));
+			gamePanel.getMapPanel().getFlecha().setBounds(gamePanel.getMapPanel().getUnitsimg02().get(units.getSelectedIndex()).getX()+15, gamePanel.getMapPanel().getUnitsimg02().get(units.getSelectedIndex()).getY()-25, 36, 57);
+		}
 		gamePanel.getMapPanel().setSeleccionado(true);
 		unitData.update((PiezaOldWarriorTales)  units.getSelectedValue());
 		habilitiesButtons.update((PiezaOldWarriorTales) units.getSelectedValue());
