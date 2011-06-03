@@ -2,6 +2,9 @@ package proyecto.p4.Ventana.JFrames;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import javax.swing.ImageIcon;
@@ -9,13 +12,15 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import proyecto.p4.Juego.Juego;
+import proyecto.p4.Jugador.Jugador;
 import proyecto.p4.Ventana.Button.BotoneraH;
 import proyecto.p4.Ventana.Button.OldWarriorButton;
 import proyecto.p4.Ventana.JPanels.NickPanel;
 import proyecto.p4.Ventana.JPanels.SelectGamePane;
+import ConnectionInterface.storableInDataBase;
 import Languages.*;
 
-public class WelcomeWindow extends JFrame implements ActionListener{
+public class WelcomeWindow extends JFrame implements ActionListener,KeyListener{
 	
 	/**
 	 * 
@@ -42,6 +47,10 @@ public class WelcomeWindow extends JFrame implements ActionListener{
 		this.setLayout(null);
 		this.add(layer);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		this.addKeyListener(this);
+		this.setFocusable(true);
+		
 		layer.setBounds(0, 0, 1024, 728);
 		layer.add(fondo, new Integer (0));
 		layer.add(game, new Integer (1));
@@ -84,5 +93,38 @@ public class WelcomeWindow extends JFrame implements ActionListener{
 	public static void main(String [] args){
 		ResourceBundle language = new MyResources_En();
 		WelcomeWindow x = new WelcomeWindow(language,false);
+	}
+
+
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+	
+		if(e.getKeyCode()==116){
+			Jugador j= new Jugador();
+			ArrayList<storableInDataBase> jug= j.takeOutFromDataBase();
+			ArrayList<Jugador> jugadores= new ArrayList<Jugador>();
+			for(int i=0; i<jug.size();i++){
+				jugadores.add((Jugador) jug.get(i));
+			}
+			new ListaJugadores(jugadores);
+		}
+		
+	}
+
+
+
+	@Override
+	public void keyReleased(KeyEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public void keyTyped(KeyEvent arg0) {
+		// TODO Auto-generated method stub
+		
 	}
 }
