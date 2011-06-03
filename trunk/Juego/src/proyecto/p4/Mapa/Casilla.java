@@ -32,7 +32,7 @@ public class Casilla implements storableInDataBase{
 	private int PosX;
 	private int PosY;
 	private Piece piece;
-	final static String nombreFichero= "Contador";
+	private String nombreJuego;
 	
 	public  Casilla (){
 		square=null;
@@ -51,6 +51,17 @@ public class Casilla implements storableInDataBase{
 		piece=pie;
 	}
 	
+	
+	public String getNombreJuego() {
+		return nombreJuego;
+	}
+
+
+	public void setNombreJuego(String nombreJuego) {
+		this.nombreJuego = nombreJuego;
+	}
+
+
 	public Piece getPiece() {
 		return piece;
 	}
@@ -85,7 +96,6 @@ public class Casilla implements storableInDataBase{
 	
 	public ArrayList <Field> fieldsToStore() throws SecurityException, NoSuchFieldException{
 		ArrayList<Field> array= new ArrayList<Field>();
-		array.add(this.getClass().getDeclaredField("CodeCasilla"));
 		array.add(this.getClass().getDeclaredField("PosX"));
 		array.add(this.getClass().getDeclaredField("PosY"));
 		Field [] fields=this.square.getClass().getSuperclass().getSuperclass().getDeclaredFields();
@@ -128,35 +138,6 @@ public class Casilla implements storableInDataBase{
 
 	@Override
 	public int insertIntoDataBase() {
-		//CodeCasilla autoincremental.
-		try {
-			FileInputStream fileInputStream = new FileInputStream(nombreFichero);
-			InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
-			BufferedReader bufferedReader= new BufferedReader(inputStreamReader);
-			String line = bufferedReader.readLine();
-			new Integer(0);
-			CodeCasilla=Integer.parseInt(line);
-			System.out.println("CodeCasilla: "+CodeCasilla);
-			fileInputStream.close();
-			inputStreamReader.close();
-			bufferedReader.close();
-			Integer variable= CodeCasilla+1;
-			FileOutputStream fos= new FileOutputStream(nombreFichero);
-			OutputStreamWriter osw= new OutputStreamWriter(fos);
-			BufferedWriter bw= new BufferedWriter(osw);
-			bw.write(variable.toString());
-			bw.close();
-			fos.close();
-			osw.close();
-			
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
 		PieceJDBC p;
 		try {
 			p = new PieceJDBC();
