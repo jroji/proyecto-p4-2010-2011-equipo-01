@@ -44,19 +44,8 @@ public class NewPlayerWindow extends JFrame implements ActionListener{
 			panel.getAcceptButton().setBP(false);
 			this.dispose();
 			j= new Jugador(panel.getNick(),panel.getAvatar());
-			//Guardar j en la base de datos
-			PieceJDBC p;
-			try {
-				p = new PieceJDBC();
-				p.insert("Jugador", j);
-			} catch (ClassNotFoundException e) {
-				e.printStackTrace();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			
+			j.insertIntoDataBase();
+			//Guardar j en la base de datos		
 		}
 		
 	}
