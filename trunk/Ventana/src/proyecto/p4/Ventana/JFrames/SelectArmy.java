@@ -85,8 +85,13 @@ public class SelectArmy extends JFrame implements ActionListener{
 					jugador2.add(x.getP());
 			}
 		}else if(e.getSource()==((OldWarriorButton)x.getButtons().getComponent(2)).getOldWarriorButton()){
+			if(selected){
 			this.dispose();
 			new SelectArmy(language,sound,J,jugador1,jugador2,false,gold);
+			}else{
+				this.dispose();
+				//cargar Partida con el mapa y las unidades.
+			}
 		}
 	}
 }
