@@ -1,5 +1,13 @@
 package proyecto.p4.PiezasOldWarriorTales;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.lang.reflect.Field;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -26,6 +34,7 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable{
 	protected int probability;
 
 	protected String type;
+	final static String nombreFichero= "Contador";
 	
 
 	//flags que indican si la unidad ha sido movida o a atacado en este turno
@@ -44,6 +53,7 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable{
 	protected boolean counterattack;
 	//array de habilidades
 	protected Hability []habilities;
+	
 
 	/**
 	 * Constructor que inicializa los atributos energy life y experience
@@ -58,6 +68,7 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable{
 		blindness=false;
 		poisson=false;
 		able_to_move=new boolean[14][13];
+		
 	}
 	public void setOrientation(Orientations orientacion) {
 		this.orientacion = orientacion;
@@ -141,7 +152,18 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable{
 	public void setHabilities(Hability[] habilities) {
 		this.habilities = habilities;
 	}
-
+	public boolean isHasBeenMoved() {
+		return hasBeenMoved;
+	}
+	public void setHasBeenMoved(boolean hasBeenMoved) {
+		this.hasBeenMoved = hasBeenMoved;
+	}
+	public boolean isHasAttacked() {
+		return hasAttacked;
+	}
+	public void setHasAttacked(boolean hasAttacked) {
+		this.hasAttacked = hasAttacked;
+	}
 	/**
 	 *  devuelve al atributo probability valor inicial
 	 */
@@ -362,6 +384,35 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable{
 
 	@Override
 	public int insertIntoDataBase() {
+		
+		try {
+			FileInputStream fileInputStream = new FileInputStream(nombreFichero);
+			InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
+			BufferedReader bufferedReader= new BufferedReader(inputStreamReader);
+			String line = bufferedReader.readLine();
+			new Integer(0);
+			CodePiece=Integer.parseInt(line);
+			System.out.println("CodePiece: "+CodePiece);
+			fileInputStream.close();
+			inputStreamReader.close();
+			bufferedReader.close();
+			Integer variable= CodePiece+1;
+			FileOutputStream fos= new FileOutputStream(nombreFichero);
+			OutputStreamWriter osw= new OutputStreamWriter(fos);
+			BufferedWriter bw= new BufferedWriter(osw);
+			bw.write(variable.toString());
+			bw.close();
+			fos.close();
+			osw.close();
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		PieceJDBC p;
 		try {
 			p = new PieceJDBC();
@@ -427,6 +478,8 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable{
 			array.add(this.getClass().getSuperclass().getDeclaredField("color"));	
 			array.add(this.getClass().getDeclaredField("CodePiece"));
 			array.add(this.getClass().getDeclaredField("type"));
+			array.add(this.getClass().getSuperclass().getDeclaredField("hasBeenMoved"));
+			array.add(this.getClass().getSuperclass().getDeclaredField("hasAttacked"));
 			fields=this.getClass().getSuperclass().getDeclaredFields();
 		}
 		array.add(fields[0]);
@@ -435,6 +488,7 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable{
 
 	return array;
 	}
+	
 	
 	@Override
 	public ArrayList<storableInDataBase> takeOutFromDataBase() {
