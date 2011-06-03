@@ -104,7 +104,7 @@ public class MapGoldSelectionWindows extends javax.swing.JFrame implements Actio
 			this.dispose();
 			ArrayList<Object> Jugador1 = new ArrayList<Object>();
 			ArrayList<Object> Jugador2 = new ArrayList<Object>();
-			new SelectArmy(Language,Sound,J,Jugador1,Jugador2,true);
+			new SelectArmy(Language,Sound,J,Jugador1,Jugador2,true,GoldSelection.getText());
 
 		}else if(e.getSource()==GoldSelection.getAdd().getOldWarriorButton()){
 			if(GoldSelection.getText()+1000<=5000){
