@@ -50,11 +50,13 @@ public class GameWindow extends JFrame implements MouseListener, ListSelectionLi
 	JLabel TurnButton = new JLabel(new ImageIcon(getClass().getResource("/img/botonturno.jpg")));
 	JLabel MoveButton = new JLabel(new ImageIcon(getClass().getResource("/img/botonmover.png")));
 	JList units;
+	Board map;
 	
 	
 	public GameWindow(Jugador jug1, Jugador jug2, Board mapa)
 //	public GameWindow()
 	{
+		map = mapa;
 		inicializarPiezasJugador(piezasJugador1, piezasJugador2, mapa);
 		this.setSize(1225,720);
 		unitData = new UnitData(new Killer());
@@ -199,7 +201,17 @@ public class GameWindow extends JFrame implements MouseListener, ListSelectionLi
 			((JLabel) x).setIcon(new ImageIcon(getClass().getResource("/img/botonatacarpulsado.png")));
 		if(x==MoveButton){
 			((JLabel) x).setIcon(new ImageIcon(getClass().getResource("/img/botonmoverpulsado.png")));
+			if(gamePanel.getMapPanel().getUnidad()!=null);
 			gamePanel.getMapPanel().setMover(true);
+			boolean[][] array = gamePanel.getMapPanel().getUnidad().getAble_to_move();
+			for(int i = 0; i<array.length;i++){
+				for(int j = 0; j<array[i].length;j++){
+					if(array[i][j]){
+						System.out.println("HOLA!");
+						gamePanel.getMapPanel().getMapa()[i][j].setIcon(gamePanel.getMapPanel().getSelected());
+					}
+		}
+			}
 		}
 		if(x==TurnButton){
 			for(int i = 0; i < piezasJugador1.size();i++){
@@ -209,7 +221,6 @@ public class GameWindow extends JFrame implements MouseListener, ListSelectionLi
 			((JLabel) x).setIcon(new ImageIcon(getClass().getResource("/img/botonturnopulsado.jpg")));
 		}
 		}
-
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
