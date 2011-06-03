@@ -193,10 +193,8 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable{
 			if (piezaAtacada==null)
 				throw new Exception("no hay una pieza en las coordenadas indicadas");
 			
-			//validar que la pieza este en una casilla cercana
-			int x= Math.abs(piezaAtacada.getPosition_x()-this.getPosition_x());
-			int y= Math.abs(piezaAtacada.getPosition_y()-this.getPosition_y());
-			if(x<2&&y<2){
+			
+			if(attackAble[posX][posY]){
 				//flag de attack a true
 				hasAttacked=true;
 				
@@ -205,7 +203,7 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable{
 					takingLife (piezaAtacada);
 					return true;
 				}else return false;
-			}else return false;
+			}else throw new Exception("La pieza es demasiado lejana");
 			
 		}
 	}
