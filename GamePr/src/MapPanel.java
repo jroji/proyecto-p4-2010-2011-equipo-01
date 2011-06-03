@@ -36,7 +36,7 @@ public class MapPanel extends JPanel implements MouseListener{
 	}
 
 	ImageIcon selected = new ImageIcon(getClass().getResource("/img/SELECCION.png"));
-//	ImageIcon circrojo = new ImageIcon(getClass().getResource("/img/marcaroja.png"));
+	//	ImageIcon circrojo = new ImageIcon(getClass().getResource("/img/marcaroja.png"));
 	ImageIcon castillo = new ImageIcon(getClass().getResource("/img/castillo.png"));
 	JLabel flecha = new JLabel(new ImageIcon(getClass().getResource("/img/flechaSeleccionado.gif")));
 	ImageIcon villa = new ImageIcon(getClass().getResource("/img/villa.png"));
@@ -51,6 +51,16 @@ public class MapPanel extends JPanel implements MouseListener{
 
 	private static final long serialVersionUID = 1L;
 	ImageIcon img = new ImageIcon(getClass().getResource("/img/hierba.png"));
+
+	
+	public ImageIcon getSelected() {
+		return selected;
+	}
+
+	public void setSelected(ImageIcon selected) {
+		this.selected = selected;
+	}
+
 	public JLabel getSelectedUnit() {
 		return selectedUnit;
 	}
@@ -261,6 +271,12 @@ public class MapPanel extends JPanel implements MouseListener{
 								mover = false;
 								this.repaint();
 								enc =true;
+								for(int p = 0;p<mapa.length;p++){
+									for(int o = 0;o<mapa[p].length;o++){
+										mapa[p][o].setIcon(new ImageIcon(getClass().getResource(tab.getBoard()[p][o].getSquare().getImage())));
+									}
+									
+								}
 							} catch (Exception e) {
 								// TODO Auto-generated catch block
 								JOptionPane.showMessageDialog(this, e.getMessage());
@@ -297,6 +313,14 @@ public class MapPanel extends JPanel implements MouseListener{
 //		unit01.setLocation(x.getX(), x.getY()-50);
 	}
 	
+	public JLabel[][] getMapa() {
+		return mapa;
+	}
+
+	public void setMapa(JLabel[][] mapa) {
+		this.mapa = mapa;
+	}
+
 	public JLabel getFlecha() {
 		return flecha;
 	}
