@@ -17,6 +17,7 @@ import proyecto.p4.Mapa.Board;
 import proyecto.p4.Mapa.Casilla;
 import proyecto.p4.Piece.Piece;
 import proyecto.p4.PiezasOldWarriorTales.Habilidades.Hability;
+import proyecto.p4.piezaOldWarriorTales.Unidades.Arquero;
 import ConnectionInterface.PieceJDBC;
 import ConnectionInterface.storableInDataBase;
 
@@ -32,10 +33,7 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable{
 	protected int life;
 	protected int energy;
 	protected int probability;
-
 	protected String type;
-	final static String nombreFichero= "Contador";
-	
 
 	//flags que indican si la unidad ha sido movida o a atacado en este turno
 	private boolean hasBeenMoved;
@@ -69,6 +67,11 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable{
 		poisson=false;
 		able_to_move=new boolean[14][13];
 		
+	}
+	
+	public PiezaOldWarriorTales (Board board){
+		this();
+		this.board=board;
 	}
 	public void setOrientation(Orientations orientacion) {
 		this.orientacion = orientacion;
@@ -385,34 +388,6 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable{
 	@Override
 	public int insertIntoDataBase() {
 		
-		try {
-			FileInputStream fileInputStream = new FileInputStream(nombreFichero);
-			InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
-			BufferedReader bufferedReader= new BufferedReader(inputStreamReader);
-			String line = bufferedReader.readLine();
-			new Integer(0);
-			CodePiece=Integer.parseInt(line);
-			System.out.println("CodePiece: "+CodePiece);
-			fileInputStream.close();
-			inputStreamReader.close();
-			bufferedReader.close();
-			Integer variable= CodePiece+1;
-			FileOutputStream fos= new FileOutputStream(nombreFichero);
-			OutputStreamWriter osw= new OutputStreamWriter(fos);
-			BufferedWriter bw= new BufferedWriter(osw);
-			bw.write(variable.toString());
-			bw.close();
-			fos.close();
-			osw.close();
-			
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
 		PieceJDBC p;
 		try {
 			p = new PieceJDBC();
@@ -460,12 +435,15 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable{
 			array.add(this.getClass().getSuperclass().getDeclaredField("poisson"));
 			//enum
 			array.add(this.getClass().getSuperclass().getDeclaredField("orientacion"));
-			array.add(this.getClass().getSuperclass().getSuperclass().getDeclaredField("color"));	
-			array.add(this.getClass().getSuperclass().getDeclaredField("CodePiece"));
+			array.add(this.getClass().getSuperclass().getSuperclass().getDeclaredField("color"));
 			array.add(this.getClass().getSuperclass().getDeclaredField("type"));
 			array.add(this.getClass().getSuperclass().getDeclaredField("hasBeenMoved"));
 			array.add(this.getClass().getSuperclass().getDeclaredField("hasAttacked"));
-			fields=this.getClass().getSuperclass().getSuperclass().getDeclaredFields();
+			array.add(this.getClass().getSuperclass().getSuperclass().getDeclaredField("name"));
+			array.add(this.getClass().getSuperclass().getSuperclass().getDeclaredField("position_y"));
+			array.add(this.getClass().getSuperclass().getSuperclass().getDeclaredField("position_x"));
+
+//			fields=this.getClass().getSuperclass().getSuperclass().getDeclaredFields();
 		}
 		else{
 			array.add(this.getClass().getDeclaredField("life"));
@@ -475,15 +453,17 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable{
 			array.add(this.getClass().getDeclaredField("poisson"));
 			//enum
 			array.add(this.getClass().getDeclaredField("orientacion"));
-			array.add(this.getClass().getSuperclass().getDeclaredField("color"));	
-			array.add(this.getClass().getDeclaredField("CodePiece"));
+			array.add(this.getClass().getSuperclass().getDeclaredField("color"));
 			array.add(this.getClass().getDeclaredField("type"));
-			array.add(this.getClass().getSuperclass().getDeclaredField("hasBeenMoved"));
-			array.add(this.getClass().getSuperclass().getDeclaredField("hasAttacked"));
-			fields=this.getClass().getSuperclass().getDeclaredFields();
+			array.add(this.getClass().getDeclaredField("hasBeenMoved"));
+			array.add(this.getClass().getDeclaredField("hasAttacked"));
+			array.add(this.getClass().getSuperclass().getDeclaredField("name"));
+			array.add(this.getClass().getSuperclass().getDeclaredField("position_y"));
+			array.add(this.getClass().getSuperclass().getDeclaredField("position_x"));
+			//fields=this.getClass().getSuperclass().getDeclaredFields();
 		}
-		array.add(fields[0]);
-		array.add(fields[1]);
+//		array.add(fields[0]);
+//		array.add(fields[1]);
 
 
 	return array;
@@ -526,6 +506,5 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable{
 		System.out.println("blindnes: "+blindness);
 		System.out.println("poisson: "+poisson);
 	}
-
 
 }
