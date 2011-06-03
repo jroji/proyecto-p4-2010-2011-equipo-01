@@ -17,7 +17,7 @@ public class Arquero extends PiezaOldWarriorTales{
 	
 	
 	public Arquero(){
-	
+		attackDistance=5;
 		movement=4;
 		defense=15;
 		attack=30;
