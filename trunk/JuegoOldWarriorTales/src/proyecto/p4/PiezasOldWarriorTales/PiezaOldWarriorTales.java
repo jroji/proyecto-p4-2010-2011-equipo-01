@@ -515,6 +515,14 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable{
 		
 	}
 
+	public boolean[][] getAttackAble() {
+		return attackAble;
+	}
+
+	public void setAttackAble(boolean[][] attackAble) {
+		this.attackAble = attackAble;
+	}
+
 	public void mostrar(){
 		System.out.println("PIEZA......................");
 		System.out.println("CodePiece: "+CodePiece);
