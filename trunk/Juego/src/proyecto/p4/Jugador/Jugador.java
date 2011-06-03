@@ -135,16 +135,11 @@ public ArrayList<storableInDataBase> takeOutFromDataBase() {
  * @throws Exception
  */
 public static void main (String []arts) throws Exception{
-	
-	//LA INSERT FUNCIONA,EL GETALL FUNCIONA, REMOVE NO FUNCIONA
-	
 	Jugador c1= new Jugador ();
-	
-	
 	c1.setNick("juen");
-	c1.setAvatar("img5");
-	c1.insertIntoDataBase();
-	
+	c1.setAvatar("img6");
+	//c1.insertIntoDataBase();
+	c1.deleteFromDataBase();
 	//System.out.println(c1.deleteFromDataBase());
 	ArrayList<storableInDataBase> array=c1.takeOutFromDataBase();
 	

@@ -98,8 +98,10 @@ public class Casilla implements storableInDataBase{
 		ArrayList<Field> array= new ArrayList<Field>();
 		array.add(this.getClass().getDeclaredField("PosX"));
 		array.add(this.getClass().getDeclaredField("PosY"));
-		Field [] fields=this.square.getClass().getSuperclass().getSuperclass().getDeclaredFields();
-		array.add(fields[1]);
+		array.add(this.square.getClass().getSuperclass().getSuperclass().getDeclaredField("terrain"));
+		array.add(this.getClass().getDeclaredField("nombreJuego"));
+//		Field [] fields=this.square.getClass().getSuperclass().getSuperclass().getDeclaredFields();
+//		array.add(fields[1]);
 
 	return array;
 	}
@@ -190,12 +192,9 @@ public class Casilla implements storableInDataBase{
 		c.setSquare(t);
 		c.setPosX(5);
 		c.setPosY(18);
-		//c.setCodeCasilla(67);
-		//c.deleteFromDataBase();
+		c.setCodeCasilla(13);
+		c.deleteFromDataBase();
 		c.insertIntoDataBase();
-		Casilla c2= new Casilla();
-		c2.setSquare(t);
-		c2.insertIntoDataBase();
 		ArrayList<storableInDataBase> a=c.takeOutFromDataBase();
 		for (storableInDataBase s: a)
 		{
