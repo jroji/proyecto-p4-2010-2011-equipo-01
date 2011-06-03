@@ -331,6 +331,7 @@ public class PieceJDBC implements PieceDataSource {
 		String valores="";
 		//se recorre el array de atributos
 		for(Field field: fields){
+
 			Class<?> clase = this.getClass();	
 				try{
 				clase = Class.forName(field.getType().getName());
@@ -347,7 +348,7 @@ public class PieceJDBC implements PieceDataSource {
 								//si el atributo es de una clase dentro de la propia clase
 								//carga esa clase y busca dentro el valor del atributo
 								
-								Class<?> cla=field.getClass(); //e cambiado object por field (Nota para mi mismo, Julen)
+								Class<?> cla=field.getClass();
 								Field[] classFields=cla.getDeclaredFields();
 								
 								boolean enc= false;
