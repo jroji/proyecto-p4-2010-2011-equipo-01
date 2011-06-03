@@ -335,7 +335,7 @@ public class MapPanel extends JPanel implements MouseListener{
 										tab.getBoard()[unidadEnemiga.getPosition_x()][unidadEnemiga.getPosition_y()].setPiece(null);
 										unidadEnemiga = null;
 										System.out.println(piezasJugador1.get(0));
-										gameWindow.setUnits( new JList(piezasJugador1.toArray()));
+										gameWindow.units.setListData(piezasJugador1.toArray());
 									}
 							} catch (Exception e) {
 								// TODO Auto-generated catch block

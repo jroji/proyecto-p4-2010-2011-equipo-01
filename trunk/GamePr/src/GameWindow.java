@@ -258,6 +258,7 @@ public class GameWindow extends JFrame implements MouseListener, ListSelectionLi
 	@Override
 	public void valueChanged(ListSelectionEvent e) {
 		// TODO Auto-generated method stub
+		System.out.println("prueba"+units.getSelectedIndex());
 		gamePanel.getMapPanel().setUnidad(piezasJugador1.get(units.getSelectedIndex()));
 		gamePanel.getMapPanel().setSelectedUnit(gamePanel.getMapPanel().getUnitsimg01().get(units.getSelectedIndex()));
 		gamePanel.getMapPanel().getFlecha().setBounds(gamePanel.getMapPanel().getUnitsimg01().get(units.getSelectedIndex()).getX()+15, gamePanel.getMapPanel().getUnitsimg01().get(units.getSelectedIndex()).getY()-25, 36, 57);
