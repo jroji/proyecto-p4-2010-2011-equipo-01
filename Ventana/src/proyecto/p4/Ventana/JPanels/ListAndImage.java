@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import proyect.Reflectividad;
+import proyecto.p4.Ventana.Button.BotoneraH;
 import proyecto.p4.Ventana.Button.OldWarriorButton;
 import proyecto.p4.PiezasOldWarriorTales.PiezaOldWarriorTales;
 
@@ -20,7 +21,7 @@ import proyecto.p4.PiezasOldWarriorTales.PiezaOldWarriorTales;
  *
  * @author Jon
  */
-public class ListAndImage extends javax.swing.JPanel implements ActionListener {
+public class ListAndImage extends javax.swing.JPanel{
 	
     /**
 	 * 
@@ -28,14 +29,14 @@ public class ListAndImage extends javax.swing.JPanel implements ActionListener {
 	private JList UnitList;
     private JPanel ImagePanel;
     private JScrollPane scrollPane;
-    private OldWarriorButton oldWarriorButton1;
+    private BotoneraH oldWarriorButton1;
     private ResourceBundle Language;
     private PiezaOldWarriorTales p;
     private ArrayList<PiezaOldWarriorTales> instancias;
 
-    public OldWarriorButton getOldWarriorButton1() {
-		return oldWarriorButton1;
-	}
+//    public OldWarriorButton getOldWarriorButton1() {
+//		return oldWarriorButton1;
+//	}
 
 
 	/** Creates new form Units */
@@ -47,8 +48,8 @@ public class ListAndImage extends javax.swing.JPanel implements ActionListener {
         ImagePanel = new JPanel();
         scrollPane = new JScrollPane();
         UnitList = new JList();
-        oldWarriorButton1 = new OldWarriorButton(Language.getString("label_reclute"));
-        oldWarriorButton1.getOldWarriorButton().addActionListener(this);
+        oldWarriorButton1 = new BotoneraH(Language.getString("label_reclute"),"",Language.getString("label_accept"));  
+        //oldWarriorButton1.getOldWarriorButton().addActionListener(this);
         //oldWarriorButton1 = new OldWarriorButton("H");
         
     	PiezaOldWarriorTales[] array = new PiezaOldWarriorTales[8];
@@ -144,14 +145,5 @@ public class ListAndImage extends javax.swing.JPanel implements ActionListener {
 		this.p = p;
 	}
 
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		if(e.getSource() == oldWarriorButton1.getOldWarriorButton()){
-			p= instancias.get(UnitList.getSelectedIndex());
-		}
-	}
-      
 }
 
