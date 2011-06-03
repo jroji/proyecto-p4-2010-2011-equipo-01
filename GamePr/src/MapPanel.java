@@ -31,9 +31,7 @@ public class MapPanel extends JPanel implements MouseListener{
 	ImageIcon selected = new ImageIcon(getClass().getResource("/img/SELECCION.png"));
 	ImageIcon atacable = new ImageIcon(getClass().getResource("/img/atacable.png"));
 	//	ImageIcon circrojo = new ImageIcon(getClass().getResource("/img/marcaroja.png"));
-	ImageIcon castillo = new ImageIcon(getClass().getResource("/img/castillo.png"));
 	JLabel flecha = new JLabel(new ImageIcon(getClass().getResource("/img/flechaSeleccionado.gif")));
-	ImageIcon villa = new ImageIcon(getClass().getResource("/img/villa.png"));
 	PiezaOldWarriorTales unidad;
 	PiezaOldWarriorTales unidadEnemiga;
 	private static final long serialVersionUID = 1L;
@@ -49,6 +47,16 @@ public class MapPanel extends JPanel implements MouseListener{
 	boolean mover = false;
 	boolean atacar = false;
 	
+	ArrayList<PiezaOldWarriorTales> piezasJugador1;
+	ArrayList<PiezaOldWarriorTales> piezasJugador2;
+	ArrayList<JLabel> unitsimg01 = new ArrayList<JLabel>();
+	ArrayList<JLabel> unitsimg02 = new ArrayList<JLabel>();
+	int SelectedX;
+	int SelectedY;
+	JLabel viejo = new JLabel(img);
+	JLabel[][] mapa = new JLabel[14][13];
+	JLayeredPane layer = new JLayeredPane();
+
 	public ImageIcon getAtacable() {
 		return atacable;
 	}
@@ -97,7 +105,6 @@ public class MapPanel extends JPanel implements MouseListener{
 	public void setSeleccionado(boolean seleccionado) {
 		this.seleccionado = seleccionado;
 	}
-
 	
 	public PiezaOldWarriorTales getUnidad() {
 		return unidad;
@@ -106,22 +113,6 @@ public class MapPanel extends JPanel implements MouseListener{
 	public void setUnidad(PiezaOldWarriorTales unidad) {
 		this.unidad = unidad;
 	}
-
-	ArrayList<PiezaOldWarriorTales> piezasJugador1;
-	ArrayList<PiezaOldWarriorTales> piezasJugador2;
-	
-	ArrayList<JLabel> unitsimg01 = new ArrayList<JLabel>();
-	ArrayList<JLabel> unitsimg02 = new ArrayList<JLabel>();
-	
-	int SelectedX;
-	int SelectedY;
-	
-	JLabel viejo = new JLabel(img);
-	
-	JLabel[][] mapa = new JLabel[14][13];
-	
-	
-	JLayeredPane layer = new JLayeredPane();
 
 
 //	public MapPanel(Board map){
@@ -214,24 +205,6 @@ public class MapPanel extends JPanel implements MouseListener{
 			layer.add(arr[j][i], new Integer(arr[j].length-i));
 			}
 	}}
-	
-//	public Casilla buscarCasilla(String x){
-//	int i = 0;
-//	int j = 0;
-//	boolean encontrado= false;
-//		while(j<mapa.length&&!encontrado){
-//			while(i<mapa[j].length&&!encontrado){
-//				if(mapa[j][i].getName().equals(x))
-//					encontrado = true;
-//				else
-//					i++;
-//				}
-//		if(!encontrado)
-//			j++;
-//		}
-//		return tab.getMap()[j][i];
-//	}
-//	
 
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
@@ -325,6 +298,7 @@ public class MapPanel extends JPanel implements MouseListener{
 							try {
 								if(unidad.attack(unidadEnemiga.getPosition_x(), unidadEnemiga.getPosition_y()))
 									if(unidadEnemiga.getLife()<=0){
+										unidad.setExperience(unidad.getExperience()+25);
 										int indice = i;
 										System.out.println(piezasJugador1.get(i).getLife());
 										selectedUnit=null;
@@ -334,7 +308,6 @@ public class MapPanel extends JPanel implements MouseListener{
 										piezasJugador1.remove(indice);
 										tab.getBoard()[unidadEnemiga.getPosition_x()][unidadEnemiga.getPosition_y()].setPiece(null);
 										unidadEnemiga = null;
-										System.out.println(piezasJugador1.get(0));
 										gameWindow.units.setListData(piezasJugador1.toArray());
 									}
 							} catch (Exception e) {
@@ -368,6 +341,8 @@ public class MapPanel extends JPanel implements MouseListener{
 						flecha.setVisible(true);
 						flecha.setBounds(unitsimg01.get(i).getX()+10,unitsimg01.get(i).getY()-20,36,57);
 						unidad = piezasJugador1.get(i);
+						gameWindow.getHabilitiesButtons().update(unidad);
+						gameWindow.getUnitData().update(unidad);
 				}
 					i++;
 				}
