@@ -1,13 +1,4 @@
 package proyecto.p4.PiezasOldWarriorTales;
-
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 import java.lang.reflect.Field;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -69,6 +60,7 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable{
 		poisson=false;
 		able_to_move=new boolean[14][13];
 		attackAble= new boolean [14][13];
+		attackDistance=1;
 		
 	}
 	
