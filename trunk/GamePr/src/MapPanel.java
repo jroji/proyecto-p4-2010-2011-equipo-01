@@ -272,11 +272,7 @@ public class MapPanel extends JPanel implements MouseListener{
 								JOptionPane.showMessageDialog(this, e.getMessage());
 								seleccionado = false;
 							}
-							for(int p = 0;p<mapa.length;p++){
-								for(int o = 0;o<mapa[p].length;o++){
-									mapa[p][o].setIcon(new ImageIcon(getClass().getResource(tab.getBoard()[p][o].getSquare().getImage())));
-								}
-							}
+							recargarMapa();
 						}
 							z++;
 					}			
@@ -315,11 +311,7 @@ public class MapPanel extends JPanel implements MouseListener{
 								e.printStackTrace();
 								JOptionPane.showMessageDialog(this, e.getMessage());
 							}
-							for(int p = 0;p<mapa.length;p++){
-								for(int o = 0;o<mapa[p].length;o++){
-									mapa[p][o].setIcon(new ImageIcon(getClass().getResource(tab.getBoard()[p][o].getSquare().getImage())));
-								}
-							}
+							recargarMapa();
 					}
 						i++;
 					}
@@ -330,6 +322,7 @@ public class MapPanel extends JPanel implements MouseListener{
 //		}
 	}
 	else{
+		recargarMapa();
 		for(int y = 0;y<unitsimg01.size();y++){
 			if(unitsimg01.get(y).equals(arg0.getSource())){
 				selectedUnit = (JLabel) arg0.getSource();
@@ -391,5 +384,12 @@ public class MapPanel extends JPanel implements MouseListener{
 	@Override
 	public void mouseReleased(MouseEvent arg0) {
 		// TODO Auto-generated method stub
+	}
+	public void recargarMapa(){
+		for(int p = 0;p<mapa.length;p++){
+			for(int o = 0;o<mapa[p].length;o++){
+				mapa[p][o].setIcon(new ImageIcon(getClass().getResource(tab.getBoard()[p][o].getSquare().getImage())));
+			}
+		}
 	}
 }
