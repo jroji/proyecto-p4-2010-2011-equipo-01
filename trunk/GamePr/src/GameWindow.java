@@ -211,6 +211,7 @@ public class GameWindow extends JFrame implements MouseListener, ListSelectionLi
 	}
 		}
 		if(x==MoveButton){
+			units.repaint();
 			((JLabel) x).setIcon(new ImageIcon(getClass().getResource("/img/botonmoverpulsado.png")));
 			if(gamePanel.getMapPanel().getUnidad()!=null&&gamePanel.getMapPanel().isSeleccionado()){
 				gamePanel.getMapPanel().setMover(true);
