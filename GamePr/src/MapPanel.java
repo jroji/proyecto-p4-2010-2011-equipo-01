@@ -309,10 +309,6 @@ public class MapPanel extends JPanel implements MouseListener{
 		}
 	}
 	else if(seleccionado&&atacar==true){
-//		if(objetivoFijado){
-//		unidad.attack(posX, posY)
-//		}
-//		else{
 			for(int y = 0;y<unitsimg01.size();y++){
 				if(unitsimg01.get(y).equals(arg0.getSource())){
 					objectiveUnit = (JLabel) arg0.getSource();
@@ -321,13 +317,20 @@ public class MapPanel extends JPanel implements MouseListener{
 					while(i<unitsimg01.size()&&!en){
 						if(objectiveUnit == unitsimg01.get(i)){
 							en = true;
-							System.out.println("ataca!!!");
 							unitsimg01.get(i).repaint();
 							atacar= false;							
 							unidadEnemiga = piezasJugador1.get(i);
 							try {
 								if(unidad.attack(unidadEnemiga.getPosition_x(), unidadEnemiga.getPosition_y()))
-									System.out.println("true");
+									if(unidadEnemiga.getLife()<=0){
+										System.out.println("hi");
+										System.out.println(piezasJugador1.get(i).getLife());
+										piezasJugador1.remove(i);
+										unitsimg01.get(i).setVisible(false);
+										unitsimg01.remove(i);
+										tab.getBoard()[unidadEnemiga.getPosition_x()][unidadEnemiga.getPosition_y()].setPiece(null);
+										System.out.println("true");
+									}
 								else
 									System.out.println("false");
 							} catch (Exception e) {
