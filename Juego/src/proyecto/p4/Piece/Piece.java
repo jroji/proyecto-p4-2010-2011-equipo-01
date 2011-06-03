@@ -29,6 +29,14 @@ public abstract class Piece implements Moveable, storableInDataBase{
 		return imagen;
 	}
 
+	public boolean[][] getAble_to_move() {
+		return able_to_move;
+	}
+
+	public void setAble_to_move(boolean[][] able_to_move) {
+		this.able_to_move = able_to_move;
+	}
+
 	public void setImagen(ImageIcon imagen) {
 		this.imagen = imagen;
 	}
