@@ -91,6 +91,7 @@ public class SelectArmy extends JFrame implements ActionListener{
 			}else{
 				this.dispose();
 				//cargar Partida con el mapa y las unidades.
+				
 			}
 		}
 	}
