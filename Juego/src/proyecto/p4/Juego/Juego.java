@@ -10,6 +10,7 @@ public abstract class Juego {
 	protected Jugador jugador1;
 	protected Jugador jugador2;
 	protected String name;
+	protected String playing;
 	public String getName() {
 		return name;
 	}

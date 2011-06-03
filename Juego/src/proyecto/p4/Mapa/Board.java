@@ -1,12 +1,8 @@
 package proyecto.p4.Mapa;
-
-import java.lang.reflect.Field;
-import java.util.ArrayList;
 import proyecto.p4.Piece.Piece;
 import proyecto.p4.Tipo.OldWarriorTales.TerrainGrass;
-import ConnectionInterface.storableInDataBase;
 
-public class Board implements storableInDataBase
+public class Board 
 {
 	
 	private Casilla[][] map;
@@ -34,37 +30,5 @@ public class Board implements storableInDataBase
 		return map[x][y];
 	}
 
-	@Override
-	public int deleteFromDataBase() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public ArrayList<Field> fieldsToStore() throws SecurityException,
-			NoSuchFieldException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public int insertIntoDataBase() {
-		for(int i=0; i<map.length;i++)
-		{
-			for(int j=0; j<map[0].length;j++)
-			{
-				map[i][j].insertIntoDataBase();
-				if (map[i][j].getPiece()!=null)
-					map[i][j].getPiece().insertIntoDataBase();
-			}
-		}
-		
-		return 0;
-	}
-
-	@Override
-	public ArrayList<storableInDataBase> takeOutFromDataBase() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 }

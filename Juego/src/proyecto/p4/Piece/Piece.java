@@ -22,19 +22,9 @@ public abstract class Piece implements Moveable, storableInDataBase{
 	private Colours color;
 	//array bidimensional booleano que indica las casillas a las que se puede mover
 	protected boolean [][] able_to_move;
-
-
+	private String nombreJuego;
+	
 	//METODOS:
-	
-	
-	public boolean[][] getAble_to_move() {
-		return able_to_move;
-	}
-
-	public void setAble_to_move(boolean[][] able_to_move) {
-		this.able_to_move = able_to_move;
-	}
-	
 	public ImageIcon getImagen() {
 		return imagen;
 	}
@@ -43,6 +33,14 @@ public abstract class Piece implements Moveable, storableInDataBase{
 		this.imagen = imagen;
 	}
 	
+	public String getNombreJuego() {
+		return nombreJuego;
+	}
+
+	public void setNombreJuego(String nombreJuego) {
+		this.nombreJuego = nombreJuego;
+	}
+
 	public Colours getColor() {
 		return color;
 	}
@@ -65,8 +63,8 @@ public abstract class Piece implements Moveable, storableInDataBase{
 	 * @param positionY
 	 */
 	public void setPosition(int positionX, int positionY) {
-		this.position_x = positionX;
-		this.position_y = positionY;
+		position_x = positionX;
+		position_y = positionY;
 		setAbleToMove();
 	}
 	
