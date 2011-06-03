@@ -8,6 +8,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -43,6 +44,7 @@ public class MapPanel extends JPanel implements MouseListener{
 	JLabel selectedUnit;
 	JLabel objectiveUnit;
 	Board tab;
+	GameWindow gameWindow;
 	
 	boolean mover = false;
 	boolean atacar = false;
@@ -123,7 +125,7 @@ public class MapPanel extends JPanel implements MouseListener{
 
 
 //	public MapPanel(Board map){
-	public MapPanel(Board map, ArrayList<PiezaOldWarriorTales> piezasJugador1,ArrayList<PiezaOldWarriorTales> piezasJugador2){	
+	public MapPanel(Board map, ArrayList<PiezaOldWarriorTales> piezasJugador1,ArrayList<PiezaOldWarriorTales> piezasJugador2,GameWindow gameWindow){	
 	
 		this.piezasJugador2 = piezasJugador2;
 		this.piezasJugador1 = piezasJugador1;
@@ -331,9 +333,12 @@ public class MapPanel extends JPanel implements MouseListener{
 										piezasJugador1.remove(indice);
 										tab.getBoard()[unidadEnemiga.getPosition_x()][unidadEnemiga.getPosition_y()].setPiece(null);
 										unidadEnemiga = null;
+										System.out.println(piezasJugador1.get(0));
+										gameWindow.setUnits( new JList(piezasJugador1.toArray()));
 									}
 							} catch (Exception e) {
 								// TODO Auto-generated catch block
+								e.printStackTrace();
 								JOptionPane.showMessageDialog(this, e.getMessage());
 							}
 							for(int p = 0;p<mapa.length;p++){

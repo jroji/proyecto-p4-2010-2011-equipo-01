@@ -61,7 +61,7 @@ public class GameWindow extends JFrame implements MouseListener, ListSelectionLi
 		this.setSize(1225,720);
 		unitData = new UnitData(new Killer());
 		habilitiesButtons = new HabilitiesButton(new Killer());
-		gamePanel = new GamePanel(mapa,piezasJugador1, piezasJugador2);
+		gamePanel = new GamePanel(mapa,piezasJugador1, piezasJugador2, this);
 		units = new JList(piezasJugador1.toArray());
 		this.setLayout(null);
 		layer.setBounds(0,0,this.getWidth(),this.getHeight());
@@ -106,6 +106,14 @@ public class GameWindow extends JFrame implements MouseListener, ListSelectionLi
 		this.setResizable(false);
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+
+	public JList getUnits() {
+		return units;
+	}
+
+	public void setUnits(JList units) {
+		this.units = units;
 	}
 
 	/**Inicializa un arraylist introduciendo las piezas que existen en el mapa en los arrays de las piezas de los jugadores
