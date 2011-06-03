@@ -12,7 +12,8 @@ public class MyResources_Es extends ListResourceBundle{
 			{"label_probability","Probability"},{"label_back","Volver"},{"AtacarYHuir","Atacar y huir"},{"AtaqueCertero","Ataque certero"},
 			{"AtaqueEnZona","Ataque en zona"},{"Cegar","Cegar"},{"Convertir","Convertir"},{"CurarEstados","Curar estados"},{"CurarZona","Curar zona"},
 			{"Envenenar","Envenenar"},{"LanzarSuriquen","Lanzar suriken"},{"Sprint","Sprint"},{"Yes","Si"},{"No","No"},
-			{"label_loadGame","Cargar Partida"},{"Name","Nombre"},{"Mana","Mana"},{"Health","Vida"}
+			{"label_loadGame","Cargar Partida"},{"Name","Nombre"},{"Mana","Mana"},{"Health","Vida"},{"noPlayer12","Ninguno de los jugadores existe"},
+			{"noPlayer1","El primer jugador no existe"},{"noPlayer2","El segundo jugador no existe"}
 	};
 	@Override
 	public Object[][] getContents() {

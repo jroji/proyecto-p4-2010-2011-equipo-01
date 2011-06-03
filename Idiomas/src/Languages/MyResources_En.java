@@ -12,7 +12,8 @@ public class MyResources_En extends ListResourceBundle{
 			{"label_probability","Probabilidad"},{"label_back","Back"},{"AtacarYHuir","Attack and escape"},{"AtaqueCertero","Accurate attack"},
 			{"AtaqueEnZona","Attack zone"},{"Cegar","Blind"},{"Convertir","Convert"},{"CurarEstados","Heal states"},{"CurarZona","Heal Zone"},
 			{"Envenenar","Poison"},{"LanzarSuriquen","Throw Suriken"},{"Sprint","Sprint"},{"Yes","Yes"},{"No","No"},
-			{"label_loadGame","Load Game"},{"Name","Name"},{"Mana","Mana"},{"Health","Health"}
+			{"label_loadGame","Load Game"},{"Name","Name"},{"Mana","Mana"},{"Health","Health"},{"noPlayer12","The two players doesn't exist"},
+			{"noPlayer1","The first player don't exist"},{"noPlayer2","The second player don't exist"}
 		
 	};
 	
