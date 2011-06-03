@@ -106,8 +106,13 @@ public class PlayerCreationPanel extends javax.swing.JPanel implements ActionLis
 		AcceptButton = acceptButton;
 	}
 
-
+	public String getNick(){
+		return NickSelection.getText();
+	}
 	
+	public String getAvatar(){
+		return "/img/"+(String)AvatarSelection.getSelectedItem();
+	}
 	/**
 	 * Metodo que nos permite que el label de la imagen se modifique cuando cambiamos la opcion del JComboBox
 	 */

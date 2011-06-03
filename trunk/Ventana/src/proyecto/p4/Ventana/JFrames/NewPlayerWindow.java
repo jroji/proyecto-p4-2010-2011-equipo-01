@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 
 import Languages.MyResources_En;
 
+import proyecto.p4.Jugador.Jugador;
 import proyecto.p4.Ventana.JPanels.PlayerCreationPanel;
 import proyecto.p4.piezaOldWarriorTales.Unidades.Killer;
 
@@ -20,6 +21,7 @@ public class NewPlayerWindow extends JFrame implements ActionListener{
 	PlayerCreationPanel panel;
 	private ResourceBundle idioma;
 	private boolean sonido;
+	private Jugador j;
 	
 	public NewPlayerWindow(ResourceBundle language,boolean sound){
 		idioma=language;
@@ -38,6 +40,8 @@ public class NewPlayerWindow extends JFrame implements ActionListener{
 		if(arg0.getSource()==panel.getAcceptButton().getOldWarriorButton()){
 			panel.getAcceptButton().setBP(false);
 			this.dispose();
+			j= new Jugador(panel.getNick(),panel.getAvatar());
+			//Guardar j en la base de datos
 		}
 		
 	}
