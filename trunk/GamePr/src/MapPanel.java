@@ -127,6 +127,7 @@ public class MapPanel extends JPanel implements MouseListener{
 //	public MapPanel(Board map){
 	public MapPanel(Board map, ArrayList<PiezaOldWarriorTales> piezasJugador1,ArrayList<PiezaOldWarriorTales> piezasJugador2,GameWindow gameWindow){	
 	
+		this.gameWindow = gameWindow;
 		this.piezasJugador2 = piezasJugador2;
 		this.piezasJugador1 = piezasJugador1;
 		tab = map;
