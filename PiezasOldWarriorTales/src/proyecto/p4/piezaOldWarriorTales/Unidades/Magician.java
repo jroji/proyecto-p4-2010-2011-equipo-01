@@ -11,6 +11,7 @@ import proyecto.p4.habilidades.Envenenar;
 public class Magician extends PiezaOldWarriorTales {
 
 		public Magician(){
+			attackDistance=5;
 			movement=2;
 			defense=5;
 			attack=50;
