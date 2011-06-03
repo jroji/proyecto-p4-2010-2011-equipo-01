@@ -1,7 +1,10 @@
 
+import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -110,6 +113,22 @@ public class GameWindow extends JFrame implements MouseListener, ListSelectionLi
 
 	public JList getUnits() {
 		return units;
+	}
+
+	public UnitData getUnitData() {
+		return unitData;
+	}
+
+	public void setUnitData(UnitData unitData) {
+		this.unitData = unitData;
+	}
+
+	public HabilitiesButton getHabilitiesButtons() {
+		return habilitiesButtons;
+	}
+
+	public void setHabilitiesButtons(HabilitiesButton habilitiesButtons) {
+		this.habilitiesButtons = habilitiesButtons;
 	}
 
 	public void setUnits(JList units) {
