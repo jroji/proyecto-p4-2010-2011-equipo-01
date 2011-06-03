@@ -79,10 +79,12 @@ public class WelcomeWindow extends JFrame implements ActionListener,KeyListener{
 			Jugador j = new Jugador();
 			boolean enc1 = false;
 			boolean enc2 = false;
+			ArrayList<storableInDataBase> array=j.takeOutFromDataBase();
 			//Metodo buscar jugador
-			for(int i = 0;i<j.takeOutFromDataBase().size() || enc1!=false && enc2!=false ; i++){
-				j=(Jugador) j.takeOutFromDataBase().get(i);
+			for(int i = 0;i<array.size()&& (!enc1 || !enc2); i++){
+				j=(Jugador) array.get(i);
 				if(nicks.getNicktext().equals(j.getNick())){
+					
 					enc1=true;
 				}else if(nicks.getNicktext2().equals(j.getNick())){
 					enc2 = true;
