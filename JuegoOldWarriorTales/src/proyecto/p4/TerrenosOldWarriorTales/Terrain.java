@@ -10,6 +10,7 @@ public abstract class Terrain extends Square {
 		super();
 		iniMovement();
 		
+		
 	}
 	public abstract void iniMovement() ;
 

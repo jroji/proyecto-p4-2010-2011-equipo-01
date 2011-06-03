@@ -41,9 +41,9 @@ public class JuegoOldWarriorTales extends Juego implements storableInDataBase{
 		try {
 			p = new PieceJDBC();
 			p.insert(this.getClass().getSimpleName(), this);
-//			p.insert("Jugador",this.getJugador1());
-//			p.insert("Jugador",this.getJugador2());
-		//p.insert("Casilla", this.getTablero());
+
+			this.tablero.insertIntoDataBase();
+		
 		} catch (ClassNotFoundException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -127,15 +127,18 @@ public class JuegoOldWarriorTales extends Juego implements storableInDataBase{
 	public static void main (String []args) throws Exception{
 		JuegoOldWarriorTales j= new JuegoOldWarriorTales();
 		Jugador j1= new Jugador();
+		//recoge el tablero que contiene el array de casillas pertenecientes al juego.
 		
-		Board d= new Board();
+		Board t= new Board();
+		j.setTablero(t);
+		
 	
 		j1.setNick("jugador 1");
 		j1.setAvatar("avatar");
 		Jugador j2= new Jugador();
 		j2.setNick("jugador 2");
 		j2.setAvatar("avatar");
-		j.setName("juego2");
+		j.setName("juego24565");
 		j.setJugador1(j1);
 		j.setJugador2(j2);
 		//j.deleteFromDataBase();
