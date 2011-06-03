@@ -46,12 +46,12 @@ public class GamePanel extends JPanel implements MouseListener{
 
 		
 	
-	public GamePanel(Board map, ArrayList<PiezaOldWarriorTales> piezasJugador1, ArrayList<PiezaOldWarriorTales> piezasJugador2){
+	public GamePanel(Board map, ArrayList<PiezaOldWarriorTales> piezasJugador1, ArrayList<PiezaOldWarriorTales> piezasJugador2,GameWindow x){
 //public GamePanel(ArrayList<Piece> PlayerUnits1, ArrayList<Piece> PlayerUn
 		
 		setSize(800,575);
 		//mapPanel = new MapPanel(map);
-		mapPanel = new MapPanel(map,piezasJugador1, piezasJugador2);
+		mapPanel = new MapPanel(map,piezasJugador1, piezasJugador2,x);
 		setLayout(null);
 		this.add(layer);
 		
