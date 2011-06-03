@@ -528,5 +528,9 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable{
 		System.out.println("blindnes: "+blindness);
 		System.out.println("poisson: "+poisson);
 	}
-
+	public static void main (String []args)
+	{
+		Arquero a= new Arquero();
+		System.out.println(a.canAttack());
+	}
 }
