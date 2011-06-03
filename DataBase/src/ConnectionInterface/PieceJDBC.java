@@ -10,23 +10,21 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
- * 
- * @author Raquel
- * Esta clase implementa en interfaz PieceDataSource, y codifica los métodos insert, getAll y remove además de hacer
+ * Esta clase implementa el interfaz PieceDataSource, y codifica los métodos insert, getAll y remove además de hacer
  * la conexión con la Base de Datos de OldWarriorTales.
  */
 public class PieceJDBC implements PieceDataSource {
 
 	public static final String DRIVER_CLASS_NAME = "org.sqlite.JDBC";
-	public static final String CONNECTION_URL = "jdbc:sqlite:C:/Users/Julen/eclipseWorkSpaces/workspace/DataBase/src/OldWarriorTales.s3db";
-	//public static final String CONNECTION_URL = "jdbc:sqlite:C:/Users/Raquel/workspace/DataBase/src/OldWarriorTales.s3db";
+	//public static final String CONNECTION_URL = "jdbc:sqlite:C:/Users/Julen/eclipseWorkSpaces/workspace/DataBase/src/OldWarriorTales.s3db";
+	public static final String CONNECTION_URL = "jdbc:sqlite:C:/Users/Raquel/workspace/DataBase/src/OldWarriorTales.s3db";
 	public static Connection connection;
 	
 	/**
 	 * Constructor por defecto que crea un nuevo objeto PieceJDBC con una connection a la base de datos indicada en el
 	 * atributo CONNECTION_URL.
-	 * @throws ClassNotFoundException 
-	 * @throws SQLException
+	 * @throws ClassNotFoundException the specified class could not found.
+	 * @throws SQLException if there is any mistake during the access to the dataBase
 	 */
 	public PieceJDBC() throws ClassNotFoundException, SQLException{
 		Class.forName(DRIVER_CLASS_NAME);
@@ -36,15 +34,18 @@ public class PieceJDBC implements PieceDataSource {
 	/**
 	 * This method prints the names of each table of the database.
 	 * 
-	 * @throws SQLException
-	 * @throws ClassNotFoundException 
+	 * @throws SQLException if there is any mistake during the access to the dataBase
+	 * @throws ClassNotFoundException the specified class could not found.
 	 */
 	public void nombreTablas() throws SQLException, ClassNotFoundException{
 		
 		connection= DriverManager.getConnection(CONNECTION_URL);
-		String nombreTablas = "%"; // Listamos todas las tablas
-		String tipos[] = new String[1]; // Listamos solo tablas
+		// Listamos todas las tablas
+		String nombreTablas = "%"; 
+		// Listamos solo tablas
+		String tipos[] = new String[1]; 
 		tipos[0] = "TABLE";
+		//get the information about the dataBase
 		DatabaseMetaData dbmd = connection.getMetaData();
 		ResultSet tablas = dbmd.getTables( null, null, 
 		  nombreTablas, tipos );
@@ -76,7 +77,7 @@ public class PieceJDBC implements PieceDataSource {
 				
 				field.set(instance,Integer.parseInt(valor));
 			}catch(Exception ex){
-				
+				//Para poder insertar booleanos en la base de datos hay que hacer una conversión de char a boolean.
 				try{
 					if(valor.equals("Y"))
 						valor="true";
@@ -92,13 +93,15 @@ public class PieceJDBC implements PieceDataSource {
 						try{
 							field.set(instance,valor.toCharArray()[0] );
 						}catch(Exception excep){
+							//si lo que se va a insertar es una clase:
 							try{
 								//carga una clase con el nombre del atributo
 								Class<?> clase = Class.forName(field.getType().getCanonicalName());
 								
-								//es un enum
+								//si es un enum
 								if(clase.isEnum()){
 									boolean encontrado=false;
+									//busca el elemento del enum que sea igual a valor
 									for(int i=0; i<clase.getEnumConstants().length&&!encontrado;i++)
 									{
 										if(clase.getEnumConstants()[i].toString().equalsIgnoreCase(valor))
@@ -121,55 +124,55 @@ public class PieceJDBC implements PieceDataSource {
 								boolean seguir = tablas.next();
 								
 								//recorre todas las tablas de la base de datos
-								while( seguir ) {
+									while( seguir ) {
 									//comprueba que el nombre de la tabla sea igual al nombre del tipo del atributo (o clase)
-								  if(tablas.getString(tablas.findColumn( "TABLE_NAME" )).toLowerCase().equals(clase.getSimpleName().toLowerCase())){									
-									seguir=false;
-									//recoge en un arrayList el contenido de la tabla
-								    ArrayList<storableInDataBase> array=getAll(clase.getSimpleName(),clase.getName());
-								    //obtiene las claves primarias de la tabla
-								    ResultSet primaryKeys= dbmd.getPrimaryKeys(null,null, clase.getSimpleName());
-								    boolean hayMasClavesPrimarias=primaryKeys.next();
-								    
-								    //recorre todas las claves primarias de la tabla
-								    while(hayMasClavesPrimarias){
-								    	
-								    	boolean encontrado=false;
-								    	
-								    	//recoge el atributo de la clase con el mismo nombre que la clave primaria
-							    		Field field1=clase.getDeclaredField(primaryKeys.getString("COLUMN_NAME"));
-							    		
-							    		//recorre el array de objetos cargados de la tabla
-								    	for(int i=0;i<array.size()&&!encontrado;i++){
-								    		
-								    		Object object=array.get(i);
-								    		//comprueba que el valor de la clave primaria sea igual al valor del atributo
-								    		//con el mismo nombre
-								    		try{
-								    		if(valor.equals(field1.get(object).toString())){
-								    			//introduce el objeto como atributo
-								    			field.set(instance, object);
-								    			
-								    			encontrado=true;
-								    		}
-								    		}//si el atributo no es accesible
-								    		catch (IllegalAccessException iae) {
-									    		field1.setAccessible(true);
-									    		if(valor.equals(field1.get(object).toString())){
-										    		//introduce el objeto como atributo
-										    		field.set(instance, object);
+										if(tablas.getString(tablas.findColumn( "TABLE_NAME" )).toLowerCase().equals(clase.getSimpleName().toLowerCase())){									
+											seguir=false;
+											//recoge en un arrayList el contenido de la tabla
+										    ArrayList<storableInDataBase> array=getAll(clase.getSimpleName(),clase.getName());
+										    //obtiene las claves primarias de la tabla
+										    ResultSet primaryKeys= dbmd.getPrimaryKeys(null,null, clase.getSimpleName());
+										    boolean hayMasClavesPrimarias=primaryKeys.next();
+										    
+										    //recorre todas las claves primarias de la tabla
+										    while(hayMasClavesPrimarias){
+										    	
+										    	boolean encontrado=false;
+										    	
+										    	//recoge el atributo de la clase con el mismo nombre que la clave primaria
+									    		Field field1=clase.getDeclaredField(primaryKeys.getString("COLUMN_NAME"));
+									    		
+									    		//recorre el array de objetos cargados de la tabla
+										    	for(int i=0;i<array.size()&&!encontrado;i++){
 										    		
-										    		encontrado=true;
+										    		Object object=array.get(i);
+										    		//comprueba que el valor de la clave primaria sea igual al valor del atributo
+										    		//con el mismo nombre
+										    		try{
+										    		if(valor.equals(field1.get(object).toString())){
+										    			//introduce el objeto como atributo
+										    			field.set(instance, object);
+										    			
+										    			encontrado=true;
+										    		}
+										    		}//si el atributo no es accesible
+										    		catch (IllegalAccessException iae) {
+											    		field1.setAccessible(true);
+											    		if(valor.equals(field1.get(object).toString())){
+												    		//introduce el objeto como atributo
+												    		field.set(instance, object);
+												    		
+												    		encontrado=true;
+												    	}
+											    		field1.setAccessible(false);
+										    		}
+		
 										    	}
-									    		field1.setAccessible(false);
-								    		}
-
-								    	}
-								    	hayMasClavesPrimarias=primaryKeys.next();
-								    }
-								  }
-								  else
-									  seguir = tablas.next();
+										    	hayMasClavesPrimarias=primaryKeys.next();
+										    }
+										  }
+										else
+											seguir = tablas.next();
 								}
 								}
 							
@@ -185,7 +188,7 @@ public class PieceJDBC implements PieceDataSource {
 	}
 	}
 	
-	/**
+	/** this method returns an arrayList that contains all the storableInDataBase objects from the specified table of the data base.
 	 * @param tableName This is the name of the database table from which value fields will be extracted.
 	 * @param className this is the name of the class of the object that we want to get the information
 	 * @returns ArrayList<storableInDataBase> this is the ArrayList which contains the name and the value of each attribute inside it
@@ -195,6 +198,7 @@ public class PieceJDBC implements PieceDataSource {
 		ArrayList <storableInDataBase> c= new ArrayList <storableInDataBase>();
 		//Consulta de todos los datos
 		Statement statement = connection.createStatement();
+		//Crea la sentencia sql
 		String sqlStatementString = "SELECT * FROM "+ tableName+";";
 		ResultSet resultSet= statement.executeQuery(sqlStatementString);
 		ResultSetMetaData metaData=resultSet.getMetaData();
@@ -202,7 +206,7 @@ public class PieceJDBC implements PieceDataSource {
 		Class<?>claseInt=clase;
 		//Obtiene los interfaces que implementa la clase
 		Class<?>[] interfaces=new Class[0];
-		
+		//copia al array interfaces todos los interfaces que implementa la clase y sus clases padre.
 		do{
 			Class<?>[] interfac=claseInt.getInterfaces();
 			Class<?>[]aux=interfaces;
@@ -220,6 +224,7 @@ public class PieceJDBC implements PieceDataSource {
 				}
 			claseInt=claseInt.getSuperclass();
 		}while (!claseInt.getSimpleName().equals("Object"));
+		
 		//comprobar si la clase implementa storableInDataBase
 		int j=0;
 		boolean implementa=false;
@@ -232,10 +237,9 @@ public class PieceJDBC implements PieceDataSource {
 		if(implementa)
 		{
 		//obtiene los atributos de la clase
-		//Field fields[]=clase.getDeclaredFields();
 			claseInt=clase;
 			Field[] fields=new Field[0];
-			
+			//copia al array fields los atributos de la clase y de sus clases padre
 			do{
 				Field[] fiel=claseInt.getDeclaredFields();
 				Field[]auxField=fields;
@@ -256,12 +260,14 @@ public class PieceJDBC implements PieceDataSource {
 
 		while (resultSet.next()){
 			Object instance = clase.newInstance();
+			//Recorre el array de fields comprobando si es nulo o no
 			for (Field field : fields){
 				if(field==null){
 				}else{
 					
 					int i=0;
 					boolean enc =false;
+					//si no es nulo realiza el insertFields
 					while(i<metaData.getColumnCount() && !enc){
 						// si el nombre de la columna es igual al nombre del atributo coge el valor de éste 
 						
@@ -299,7 +305,7 @@ public class PieceJDBC implements PieceDataSource {
 	}
 	
 	 
-	/**
+	/** this method insert a new storableInDataBase object on the specified table of the data base. 
 	 * @param tableName this is the name of the table in which the object will be inserted
 	 * @param object this is the object whose type is storableInDataBase that will be inserted into the tableName
 	 * @return insertadas  it returns the number of the inserted rows.
@@ -384,7 +390,7 @@ public class PieceJDBC implements PieceDataSource {
 								}
 						
 					}
-					// todo igual pero haciendo el atributo accesible
+					
 					catch (IllegalAccessException iae){
 						//si el atributo no es accesible lo pone a accesible
 						field.setAccessible(true);
@@ -402,7 +408,7 @@ public class PieceJDBC implements PieceDataSource {
 							for(int i=0; i<classFields.length&&!enc;i++){
 								try
 								{
-									//encontrado el atributo
+									//si se encuentra el atributo
 									if(classFields[i].getClass().getName().equals(field.getClass().getName())){
 										//devuelve el valor del atributo que pertenece a la clase que es atributo de la clase incial.
 										Object ob=classFields[i].get(object);
@@ -442,18 +448,20 @@ public class PieceJDBC implements PieceDataSource {
 					}
 				//el atributo no es string o enum
 				else{
-					//atributo booleano
+					//para atributos booleanos
 					if(field.getType().getName().equals("boolean")){
 						try{
-							
+								//si el valor del atributo es true se convierte a 1
 								if(field.get(object).toString().equals("true")){
 								valores=valores+"1,";
 								columnas=columnas+field.getName()+",";}
+								//si el valor del atributo es false se convierte a 0
 								else {
 									valores=valores+"0,";
 									columnas=columnas+field.getName()+",";}
 								
 							}
+						//si el field no es accesible se pone accesible y se realiza la misma acción.
 						catch (IllegalAccessException iae){
 							field.setAccessible(true);
 								if(field.get(object).toString().equals("true")){
@@ -471,8 +479,7 @@ public class PieceJDBC implements PieceDataSource {
 							//comprobar si el atributo es una clase y existe como tabla en la BBDD:
 							Class<?>atributo=field.getType();
 							atributo.getSimpleName();
-							//recorrer tablas comparando con el nombre del typo del atributo
-							//connection= DriverManager.getConnection(CONNECTION_URL);
+							//recorrer tablas comparando con el nombre del tipo del atributo
 							String nombreTablas = "%"; // Listamos todas las tablas
 							String tipos[] = new String[1]; // Listamos solo tablas
 							tipos[0] = "TABLE";
@@ -481,11 +488,10 @@ public class PieceJDBC implements PieceDataSource {
 							  nombreTablas, tipos );
 							boolean seguir = tablas.next();
 							boolean realizado=false;
+							//si hay más tablas en la base de datos
 							while( seguir ) {
-								System.out.println("nombre tabla: "+tablas.getString(tablas.findColumn( "TABLE_NAME" ))+ " nombre atributo:"+atributo.getSimpleName());
 								//existe el atributo como tabla y se introduce la clave primaria
 								if (tablas.getString(tablas.findColumn( "TABLE_NAME" )).toLowerCase().equals(atributo.getSimpleName().toLowerCase())){
-									System.out.println("entrada2");
 									seguir=false;
 									//buscar la clave primaria de la tabla
 										ResultSet rs=dbmd.getPrimaryKeys(null, null, tablas.getString(tablas.findColumn( "TABLE_NAME" )));
@@ -497,16 +503,15 @@ public class PieceJDBC implements PieceDataSource {
 											try{
 												valores=valores+"'"+priField.get(field.get(object))+"'"+",";
 												columnas=columnas+field.getName()+",";
+												//si el field no es accesible lo pone accesible
 											}catch (IllegalAccessException ia)
 											{
-												System.out.println("catch");
 												priField.setAccessible(true);
 												field.setAccessible(true);
 												valores=valores+"'"+priField.get(field.get(object))+"'"+",";
 												columnas=columnas+field.getName()+",";
 												priField.setAccessible(false);
 												field.setAccessible(true);
-												System.out.println("fin catch");
 											}
 											realizado=true;
 										}
@@ -552,7 +557,12 @@ public class PieceJDBC implements PieceDataSource {
 	}
 	
 	                            
-	 //busca en la tabla el objecto que tenga el valor de los atributos del objecto que le pasamos.
+	 /** This method remove an storableInDataBase object from one of the table of the data base.
+	  * @param tableName this is the name of the table in which objectToRemove will be deleted.
+	  * @param objectToRemove this is the storableInDataBase object that will be deleted from the data base.
+	  * @throws Exception Exception If there is any error during the removal of the given object.
+	  * @return the number of objects that have already deleted from the data base.
+	  */
 	 public int remove (String tableName, storableInDataBase objectToRemove) throws Exception{
 		 //crea la conexión con la url correcta
 		connection= DriverManager.getConnection(CONNECTION_URL);
@@ -560,7 +570,6 @@ public class PieceJDBC implements PieceDataSource {
 		Statement statement = null;
 		statement = connection.createStatement();
 		DatabaseMetaData dbmd = connection.getMetaData();
-		System.out.println("creado");
 		//obtiene las claves primarias de la tabla
 	    ResultSet primaryKeys= dbmd.getPrimaryKeys(null,null, tableName);
 	    boolean hayMasClavesPrimarias=primaryKeys.next();
@@ -569,6 +578,7 @@ public class PieceJDBC implements PieceDataSource {
 	    Class <?> classe= Class.forName(objectToRemove.getClass().getCanonicalName());
 	    Class <?> classeI= classe;
 	 
+	    //copia en el array fields los atributos de la clase del objeto a borrar y los de sus clases padre.
 		 Field [] fields = new Field[0];
 		 do{
 			 Field[]fiel =classeI.getDeclaredFields();
@@ -603,17 +613,14 @@ public class PieceJDBC implements PieceDataSource {
 					fieldFound=true;
 				 }
 			 }
-    		//field1=objectToRemove.getClass().getDeclaredField(primaryKeys.getString("COLUMN_NAME"));
     		
-    		//System.out.println(field1);
     		//guarda en el array la información de la tabla a la que pertenece el objeto a borrar
     		ArrayList<storableInDataBase>arrayWithData= getAll(tableName, objectToRemove.getClass().getName());
     		
     		//recorre el array hasta que el objecto a borrar sea igual que el del array
     		for(int i=0; i<arrayWithData.size()&&!encontrado;i++){
     			Object obj= arrayWithData.get(i);
-    			//System.out.println(arrayWithData.get(i));
-    			//si el atributo no es accesible lo cambia
+    			//si el atributo no es accesible lo cambia a accesible
     			if(!field1.isAccessible()){
         			field1.setAccessible(true);	
         			//si el objecto a borrar es igual que el que contiene el array en la posición i deja de recorrer el array
@@ -622,9 +629,7 @@ public class PieceJDBC implements PieceDataSource {
 	    				encontrado=true;
 	    				//si el tipo del atributo es string coloca comillas simples en el valor del objecto a borrar y concatena las condiciones
 	    				if(field1.getType().getSimpleName().equals("String"))
-	    					{
-	    					System.out.println("string");
-	    					
+	    					{	    					
 	    				conditions=conditions.concat( field1.getName() +" = '"+field1.get(objectToRemove)+"' and");}
 	    				//si no es string hace lo mismo pero sin poner comillas simples al valor del objecto a borrar
 	    				else
@@ -650,7 +655,6 @@ public class PieceJDBC implements PieceDataSource {
 		int deleteRows= statement.executeUpdate(sqlStatementString);
 		statement.close();
 		connection.close();
-		System.out.println("despues de cerrar");
 		connection= DriverManager.getConnection(CONNECTION_URL);
 		//devuelve el número de filas borradas si hay condición
 		 return deleteRows;}

@@ -1,6 +1,7 @@
 package ConnectionInterface;
 
 import java.lang.reflect.Field;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public interface storableInDataBase {
@@ -13,7 +14,7 @@ public interface storableInDataBase {
 	 * @throws SecurityException 
 	 */
 	public ArrayList <Field> fieldsToStore() throws SecurityException, NoSuchFieldException;
-		
+	
 	public int insertIntoDataBase();
 	
 	public ArrayList<storableInDataBase> takeOutFromDataBase();
