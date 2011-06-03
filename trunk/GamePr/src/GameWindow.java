@@ -173,7 +173,6 @@ public class GameWindow extends JFrame implements MouseListener, ListSelectionLi
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-		System.out.println("hola");
 		if(e.getSource()==this.gamePanel){
 			unitData.update(gamePanel.getMapPanel().getUnidad());
 			habilitiesButtons.update(gamePanel.getMapPanel().getUnidad());
@@ -199,19 +198,30 @@ public class GameWindow extends JFrame implements MouseListener, ListSelectionLi
 		Object x =  e.getSource();
 		if(x==AttackButton)
 			((JLabel) x).setIcon(new ImageIcon(getClass().getResource("/img/botonatacarpulsado.png")));
-		if(x==MoveButton){
-			((JLabel) x).setIcon(new ImageIcon(getClass().getResource("/img/botonmoverpulsado.png")));
-			if(gamePanel.getMapPanel().getUnidad()!=null);
-			gamePanel.getMapPanel().setMover(true);
-			boolean[][] array = gamePanel.getMapPanel().getUnidad().getAble_to_move();
+		if(gamePanel.getMapPanel().getUnidad()!=null&&gamePanel.getMapPanel().isSeleccionado()){
+			gamePanel.getMapPanel().setAtacar(true);
+			boolean[][] array = gamePanel.getMapPanel().getUnidad().getAttackAble();
 			for(int i = 0; i<array.length;i++){
 				for(int j = 0; j<array[i].length;j++){
 					if(array[i][j]){
-						System.out.println("HOLA!");
-						gamePanel.getMapPanel().getMapa()[i][j].setIcon(gamePanel.getMapPanel().getSelected());
+						gamePanel.getMapPanel().getMapa()[i][j].setIcon(gamePanel.getMapPanel().getAtacable());
+				}
+	}
+		}
+	}
+		if(x==MoveButton){
+			((JLabel) x).setIcon(new ImageIcon(getClass().getResource("/img/botonmoverpulsado.png")));
+			if(gamePanel.getMapPanel().getUnidad()!=null&&gamePanel.getMapPanel().isSeleccionado()){
+				gamePanel.getMapPanel().setMover(true);
+				boolean[][] array = gamePanel.getMapPanel().getUnidad().getAble_to_move();
+				for(int i = 0; i<array.length;i++){
+					for(int j = 0; j<array[i].length;j++){
+						if(array[i][j]){
+							gamePanel.getMapPanel().getMapa()[i][j].setIcon(gamePanel.getMapPanel().getSelected());
 					}
 		}
 			}
+		}
 		}
 		if(x==TurnButton){
 			for(int i = 0; i < piezasJugador1.size();i++){

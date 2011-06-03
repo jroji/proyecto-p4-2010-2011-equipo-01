@@ -27,6 +27,42 @@ public class MapPanel extends JPanel implements MouseListener{
 	
 //	ImageIcon piedra = new ImageIcon(getClass().getResource("/img/piedra.png"));
 	JLabel suelo  = new JLabel(new ImageIcon(getClass().getResource("/img/suelo.png")));
+	ImageIcon selected = new ImageIcon(getClass().getResource("/img/SELECCION.png"));
+	ImageIcon atacable = new ImageIcon(getClass().getResource("/img/atacable.png"));
+	//	ImageIcon circrojo = new ImageIcon(getClass().getResource("/img/marcaroja.png"));
+	ImageIcon castillo = new ImageIcon(getClass().getResource("/img/castillo.png"));
+	JLabel flecha = new JLabel(new ImageIcon(getClass().getResource("/img/flechaSeleccionado.gif")));
+	ImageIcon villa = new ImageIcon(getClass().getResource("/img/villa.png"));
+	PiezaOldWarriorTales unidad;
+	PiezaOldWarriorTales unidadEnemiga;
+	private static final long serialVersionUID = 1L;
+	ImageIcon img = new ImageIcon(getClass().getResource("/img/hierba.png"));
+	Icon viejoimg;
+	boolean seleccionado = false;
+	boolean objetivoFijado = false;
+	JLabel selectedUnit;
+	JLabel objectiveUnit;
+	Board tab;
+	
+	boolean mover = false;
+	boolean atacar = false;
+	
+	public ImageIcon getAtacable() {
+		return atacable;
+	}
+
+	public void setAtacable(ImageIcon atacable) {
+		this.atacable = atacable;
+	}
+
+	public boolean isAtacar() {
+		return atacar;
+	}
+
+	public void setAtacar(boolean atacar) {
+		this.atacar = atacar;
+	}
+
 	public boolean isMover() {
 		return mover;
 	}
@@ -34,23 +70,6 @@ public class MapPanel extends JPanel implements MouseListener{
 	public void setMover(boolean mover) {
 		this.mover = mover;
 	}
-
-	ImageIcon selected = new ImageIcon(getClass().getResource("/img/SELECCION.png"));
-	//	ImageIcon circrojo = new ImageIcon(getClass().getResource("/img/marcaroja.png"));
-	ImageIcon castillo = new ImageIcon(getClass().getResource("/img/castillo.png"));
-	JLabel flecha = new JLabel(new ImageIcon(getClass().getResource("/img/flechaSeleccionado.gif")));
-	ImageIcon villa = new ImageIcon(getClass().getResource("/img/villa.png"));
-	Icon viejoimg;
-	boolean seleccionado = false;
-	JLabel selectedUnit;
-	Board tab;
-	
-	boolean mover = false;
-	
-	PiezaOldWarriorTales unidad;
-
-	private static final long serialVersionUID = 1L;
-	ImageIcon img = new ImageIcon(getClass().getResource("/img/hierba.png"));
 
 	
 	public ImageIcon getSelected() {
@@ -271,16 +290,16 @@ public class MapPanel extends JPanel implements MouseListener{
 								mover = false;
 								this.repaint();
 								enc =true;
-								for(int p = 0;p<mapa.length;p++){
-									for(int o = 0;o<mapa[p].length;o++){
-										mapa[p][o].setIcon(new ImageIcon(getClass().getResource(tab.getBoard()[p][o].getSquare().getImage())));
-									}
-									
-								}
+								flecha.setVisible(false);
 							} catch (Exception e) {
 								// TODO Auto-generated catch block
 								JOptionPane.showMessageDialog(this, e.getMessage());
 								seleccionado = false;
+							}
+							for(int p = 0;p<mapa.length;p++){
+								for(int o = 0;o<mapa[p].length;o++){
+									mapa[p][o].setIcon(new ImageIcon(getClass().getResource(tab.getBoard()[p][o].getSquare().getImage())));
+								}
 							}
 						}
 							z++;
@@ -288,6 +307,46 @@ public class MapPanel extends JPanel implements MouseListener{
 			}}
 		}
 		}
+	}
+	else if(seleccionado&&atacar==true){
+//		if(objetivoFijado){
+//		unidad.attack(posX, posY)
+//		}
+//		else{
+			for(int y = 0;y<unitsimg01.size();y++){
+				if(unitsimg01.get(y).equals(arg0.getSource())){
+					objectiveUnit = (JLabel) arg0.getSource();
+					int i = 0;
+					boolean en = false;
+					while(i<unitsimg01.size()&&!en){
+						if(objectiveUnit == unitsimg01.get(i)){
+							en = true;
+							System.out.println("ataca!!!");
+							unitsimg01.get(i).repaint();
+							atacar= false;							
+							unidadEnemiga = piezasJugador1.get(i);
+							try {
+								if(unidad.attack(unidadEnemiga.getPosition_x(), unidadEnemiga.getPosition_y()))
+									System.out.println("true");
+								else
+									System.out.println("false");
+							} catch (Exception e) {
+								// TODO Auto-generated catch block
+								JOptionPane.showMessageDialog(this, e.getMessage());
+							}
+							for(int p = 0;p<mapa.length;p++){
+								for(int o = 0;o<mapa[p].length;o++){
+									mapa[p][o].setIcon(new ImageIcon(getClass().getResource(tab.getBoard()[p][o].getSquare().getImage())));
+								}
+							}
+					}
+						i++;
+					}
+						
+					seleccionado = true;
+			}
+			}
+//		}
 	}
 	else{
 		for(int y = 0;y<unitsimg01.size();y++){
