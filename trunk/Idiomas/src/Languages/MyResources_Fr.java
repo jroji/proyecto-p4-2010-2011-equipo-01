@@ -13,7 +13,8 @@ public class MyResources_Fr extends ListResourceBundle{
 			{"label_probability","Probabilitï¿½"},{"label_back","Retour"},{"AtacarYHuir","Attaque et de s'enfuir"},{"AtaqueCertero","Attaque prï¿½cise"},
 			{"AtaqueEnZona","Zone d'attaque"},{"Cegar","Blind"},{"Convertir","Transformer"},{"CurarEstados","Etats Cure"},{"CurarZona","Zone Cure"},
 			{"Envenenar","Poison "},{"LanzarSuriquen","Paru le shuriken"},{"Sprint","Sprint"},{"Yes","Oui"},{"No","No"},
-			{"label_loadGame","Chargement du jeu"},{"Name","Nom"},{"Mana","Manne"},{"Health","Vie"}
+			{"label_loadGame","Chargement du jeu"},{"Name","Nom"},{"Mana","Manne"},{"Health","Vie"},{"noPlayer12","Aucun des joueurs, il y"},
+			{"noPlayer1","Le premier joueur il"},{"noPlayer2","Le deuxième joueur n'existe pas"}
 	};
 	
 	@Override
