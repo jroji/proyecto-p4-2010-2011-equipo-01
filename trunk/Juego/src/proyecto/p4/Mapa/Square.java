@@ -4,11 +4,8 @@ package proyecto.p4.Mapa;
 public abstract class Square {
 
 	protected String image; //Contiene la imagen del terreno
-	protected String terrain; // Contiene el nombre del terreno
+	protected String terrain;
 	
-	public void setTerrain(String terrain) {
-		this.terrain = terrain;
-	}
 
 	public Square (){
 		iniName();
@@ -25,11 +22,16 @@ public abstract class Square {
 	public  String getImage(){
 		return image;
 	}
-	
-	//Devuelve el nombre del terreno
-	public String getTerrain(){
+
+	public String getTerrain() {
 		return terrain;
 	}
+
+	public void setTerrain(String terrain) {
+		this.terrain = terrain;
+	}
+	
+
 
 
 }

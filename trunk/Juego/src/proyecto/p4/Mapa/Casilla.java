@@ -4,8 +4,10 @@ package proyecto.p4.Mapa;
 
 import javax.swing.JOptionPane;
 
+import proyect.Reflectividad;
 import proyecto.p4.Piece.Piece;
 
+import proyecto.p4.TerrenosOldWarriorTales.Terrain;
 import proyecto.p4.Tipo.OldWarriorTales.*;
 
 import java.io.BufferedReader;
@@ -34,6 +36,7 @@ public class Casilla implements storableInDataBase{
 	private int PosY;
 	private Piece piece;
 	private String nombreJuego;
+	private String terrain;
 	
 	/**
 	 * Constructor por defecto
@@ -59,6 +62,7 @@ public class Casilla implements storableInDataBase{
 		PosX=X;
 		PosY=Y;
 		piece=pie;
+		terrain=sq.getClass().getSimpleName();
 	}
 	
 	
@@ -114,7 +118,7 @@ public class Casilla implements storableInDataBase{
 		ArrayList<Field> array= new ArrayList<Field>();
 		array.add(this.getClass().getDeclaredField("PosX"));
 		array.add(this.getClass().getDeclaredField("PosY"));
-		array.add(this.square.getClass().getSuperclass().getSuperclass().getDeclaredField("terrain"));
+		array.add(this.getClass().getDeclaredField("terrain"));
 		array.add(this.getClass().getDeclaredField("nombreJuego"));
 
 
@@ -200,9 +204,31 @@ public class Casilla implements storableInDataBase{
 	@Override
 	public ArrayList<storableInDataBase> takeOutFromDataBase() {
 		PieceJDBC p;
+		ArrayList<Object>instancias=Reflectividad.instanciarDireccion("Terrenos");
+		ArrayList<Terrain>terrenos= new ArrayList<Terrain>();
+		
+		for(Object o: instancias)
+		{
+			if(o instanceof Terrain)
+				terrenos.add((Terrain) o);
+		}
 		try {
 			p = new PieceJDBC();
-			ArrayList<storableInDataBase> array= p.getAll(this.getClass().getSimpleName(),this.getClass().getName());		
+			ArrayList<storableInDataBase> array= p.getAll(this.getClass().getSimpleName(),this.getClass().getName());
+			
+			for (storableInDataBase stor: array)
+			{
+				boolean encontrado=false;
+				int i =0;
+				do
+				{
+					if (((Casilla)stor).terrain.equals(terrenos.get(i).getTerrain()))
+					{
+						((Casilla)stor).square=terrenos.get(i).getClass().newInstance();
+					}
+					i++;
+				}while (encontrado==false && i<terrenos.size());
+			}
 			return array;
 		} catch (ClassNotFoundException e) {
 			JOptionPane.showMessageDialog(null,"Error al cargar1","Error",JOptionPane.OK_OPTION,null);  
@@ -222,14 +248,14 @@ public class Casilla implements storableInDataBase{
 		c.setPosY(18);
 
 		c.setCodeCasilla(13);
-		c.deleteFromDataBase();
+		//c.deleteFromDataBase();
 
-		c.insertIntoDataBase();
+		//c.insertIntoDataBase();
 
 		ArrayList<storableInDataBase> a=c.takeOutFromDataBase();
 		for (storableInDataBase s: a)
 		{
-			System.out.println(((Casilla)s).getCodeCasilla());
+			System.out.println(((Casilla)s).getSquare().getClass().getSimpleName());
 		}
 		c.setCodeCasilla(70);
 		//c.deleteFromDataBase();
