@@ -26,7 +26,7 @@ public class MapGoldSelectionWindows extends javax.swing.JFrame implements Actio
   //  private JSlider GoldSelection;
     private GoldSelectionPanel GoldSelection;
     private JList MapList;
-    private JScrollPane jScrollPane1;
+    private JScrollPane mapList;
     private ResourceBundle Language;
     private boolean Sound;
     private Juego J;
@@ -40,26 +40,79 @@ public class MapGoldSelectionWindows extends javax.swing.JFrame implements Actio
     }
 
     
+//    private void initComponents() {
+//
+//        jScrollPane1 = new JScrollPane();
+//        MapList = new JList();
+//        GoldSelection = new GoldSelectionPanel(Language);
+//        Botonera = new BotoneraH(Language.getString("label_back"),"",Language.getString("label_accept"));
+//        AvatarPanel = new AvatarPanel(J);
+//        AvatarPanel.setVisible(true);
+//        
+//        ((OldWarriorButton)Botonera.getComponent(0)).getOldWarriorButton().addActionListener(this);
+//		((OldWarriorButton)Botonera.getComponent(2)).getOldWarriorButton().addActionListener(this);
+//
+//		GoldSelection.getAdd().addActionListener(this);
+//		GoldSelection.getMinus().addActionListener(this);
+//		
+//        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+//
+//        MapList.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+//        jScrollPane1.setViewportView(MapList);
+//
+//
+//        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+//        getContentPane().setLayout(layout);
+//        layout.setHorizontalGroup(
+//            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+//            .addGroup(layout.createSequentialGroup()
+//            .addContainerGap()
+//            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+//            .addGap(18, 18, 18)
+//            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+//            .addComponent(Botonera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+//            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+//            .addComponent(AvatarPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+//            .addComponent(GoldSelection, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+//            .addContainerGap())
+//        );
+//        layout.setVerticalGroup(
+//            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+//            .addGroup(layout.createSequentialGroup()
+//            .addGap(31, 31, 31)
+//            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+//            .addGroup(layout.createSequentialGroup()
+//            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
+//            .addContainerGap())
+//            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+//            .addComponent(AvatarPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+//            .addGap(18, 18, 18)
+//            .addComponent(GoldSelection, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+//            .addGap(13, 13,13)
+//            .addComponent(Botonera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+//            .addGap(21, 21, 21))))
+//        );
+//        pack();
+//    }
+    
     private void initComponents() {
 
-        jScrollPane1 = new JScrollPane();
-        MapList = new JList();
-        GoldSelection = new GoldSelectionPanel(Language);
+        mapList = new javax.swing.JScrollPane();
+        MapList = new javax.swing.JList();
         Botonera = new BotoneraH(Language.getString("label_back"),"",Language.getString("label_accept"));
+        GoldSelection = new GoldSelectionPanel(Language);
         AvatarPanel = new AvatarPanel(J);
         AvatarPanel.setVisible(true);
-        
+
         ((OldWarriorButton)Botonera.getComponent(0)).getOldWarriorButton().addActionListener(this);
 		((OldWarriorButton)Botonera.getComponent(2)).getOldWarriorButton().addActionListener(this);
 
 		GoldSelection.getAdd().addActionListener(this);
 		GoldSelection.getMinus().addActionListener(this);
-		
+        
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        MapList.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jScrollPane1.setViewportView(MapList);
-
+        
+        mapList.setViewportView(MapList);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -67,31 +120,33 @@ public class MapGoldSelectionWindows extends javax.swing.JFrame implements Actio
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
             .addContainerGap()
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(MapList, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+            .addGap(84, 84, 84)
+            .addComponent(GoldSelection, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
             .addGap(18, 18, 18)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Botonera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-            .addComponent(AvatarPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(GoldSelection, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addComponent(AvatarPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(Botonera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-            .addGap(31, 31, 31)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
-            .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-            .addComponent(AvatarPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addContainerGap()
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(layout.createSequentialGroup()
+            .addComponent(AvatarPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGap(18, 18, 18)
             .addComponent(GoldSelection, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(13, 13,13)
-            .addComponent(Botonera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(21, 21, 21))))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(Botonera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(MapList, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE))
+            .addContainerGap())
         );
+
         pack();
     }
 
