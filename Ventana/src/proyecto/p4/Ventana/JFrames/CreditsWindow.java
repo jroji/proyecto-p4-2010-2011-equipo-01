@@ -32,6 +32,7 @@ public class CreditsWindow extends JFrameFondo implements ActionListener {
     	Sound=sound;
         initComponents();
         this.setSize(300, 400);
+        this.setVisible(true);
     }
 
 
@@ -144,7 +145,7 @@ public class CreditsWindow extends JFrameFondo implements ActionListener {
 		// TODO Auto-generated method stub
     	if(e.getSource()==Button.getOldWarriorButton()){
 		this.dispose();
-    	new OptionWindow(Language,Sound,selectedGame);
+    	//new OptionWindow(Language,Sound,selectedGame);
 	}
     }
 }

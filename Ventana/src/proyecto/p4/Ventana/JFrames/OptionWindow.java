@@ -95,7 +95,7 @@ public class OptionWindow extends JFrameFondo implements ActionListener // imple
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource()==Buttons.getBoton2().getOldWarriorButton()){
-			this.dispose();
+			//this.dispose();
   			new CreditsWindow(Language,Sound,selectedGame).setVisible(true);
 		}else if(e.getSource()==Buttons.getBoton3().getOldWarriorButton()){
 			Buttons.setButtonP3(false);

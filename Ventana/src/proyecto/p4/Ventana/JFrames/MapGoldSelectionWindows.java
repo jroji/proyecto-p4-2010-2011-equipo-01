@@ -55,7 +55,8 @@ public class MapGoldSelectionWindows extends JFrameFondo implements ActionListen
         GoldSelection = new GoldSelectionPanel(Language);
         AvatarPanel = new AvatarPanel(J);
         AvatarPanel.setVisible(true);
-
+        GoldSelection.setOpaque(false);
+        AvatarPanel.setOpaque(false);
         ((OldWarriorButton)Botonera.getComponent(0)).getOldWarriorButton().addActionListener(this);
 		((OldWarriorButton)Botonera.getComponent(2)).getOldWarriorButton().addActionListener(this);
 
@@ -143,6 +144,7 @@ public class MapGoldSelectionWindows extends JFrameFondo implements ActionListen
 			}
 		}
 		MapList.setListData(nameArray.toArray());
+		MapList.setSelectedIndex(0);
 	}
 
 }
