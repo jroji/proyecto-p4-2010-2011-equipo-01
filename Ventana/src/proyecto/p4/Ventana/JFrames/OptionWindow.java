@@ -83,7 +83,7 @@ public class OptionWindow extends JFrameFondo implements ActionListener // imple
         );
 
         pack();
-        setImagen("img/madera.jpg");
+        setImagen("/img/madera.jpg");
         this.setVisible(true);
         Buttons.getBoton3().getOldWarriorButton().addActionListener(this);
         Buttons.getBoton2().getOldWarriorButton().addActionListener(this);
