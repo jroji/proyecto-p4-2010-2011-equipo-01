@@ -136,11 +136,11 @@ public class AvatarPanel extends javax.swing.JPanel {
         player1Nick = new javax.swing.JLabel();
         player2Nick = new javax.swing.JLabel();
         
-        player2Avatar.setOpaque(true);
-        player1Avatar.setOpaque(true);
-        VS.setOpaque(true);
-        player1Nick.setOpaque(true);
-        player2Nick.setOpaque(true);
+        player2Avatar.setOpaque(false);
+        player1Avatar.setOpaque(false);
+        VS.setOpaque(false);
+        player1Nick.setOpaque(false);
+        player2Nick.setOpaque(false);
 
 
         player2Nick.setText(j.getJugador2().getNick());
