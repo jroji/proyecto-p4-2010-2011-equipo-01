@@ -61,7 +61,7 @@ public class SelectArmy extends JFrameFondo implements ActionListener{
 		modelo.setColumnIdentifiers(l);
 		table= new JTable(modelo);
 		J=j;
-		
+		Ventana= new JPanel();
 		//x.addMouseListener(this);
 		Ventana.setSize(1024,720);
 		Ventana.setLayout(null);
@@ -74,6 +74,7 @@ public class SelectArmy extends JFrameFondo implements ActionListener{
 		x.setBounds(0, 0, 280, 720);
 		Ventana.setVisible(true);
 		setImagen("/img/madera.jpg");
+		this.setVisible(true);
 	}
 	
 	@Override
