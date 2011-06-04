@@ -6,7 +6,6 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
-import proyecto.p4.Ventana.JFrames.NewPlayerWindow;
 
 import ConnectionInterface.PieceJDBC;
 import ConnectionInterface.storableInDataBase;
