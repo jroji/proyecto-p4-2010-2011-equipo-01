@@ -3,12 +3,17 @@ package proyecto.p4.JuegoOldWarriorTales;
 import java.lang.reflect.Field;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
+
 import javax.swing.JOptionPane;
 
 import proyecto.p4.Juego.Juego;
 import proyecto.p4.Jugador.Jugador;
 import proyecto.p4.Mapa.Board;
 import proyecto.p4.Mapa.Casilla;
+import proyecto.p4.Piece.Colours;
+import proyecto.p4.Ventana.JFrames.MainWindow;
+import proyecto.p4.piezaOldWarriorTales.Unidades.Arquero;
 
 
 import ConnectionInterface.PieceJDBC;
@@ -45,12 +50,14 @@ public class JuegoOldWarriorTales extends Juego implements storableInDataBase{
 			
 			for(int i=0; i<this.tablero.getBoard().length;i++)
 			{
-				for(int j=0; j<this.tablero.getBoard().length;j++)
+				for(int j=0; j<this.tablero.getBoard()[i].length;j++)
 				{
 					this.tablero.getBoard()[i][j].setNombreJuego(this.name);
+					System.out.println(tablero.getBoard()[i][j]);
 					this.tablero.getBoard()[i][j].insertIntoDataBase();
 					if (this.tablero.getBoard()[i][j].getPiece()!=null){
 						this.tablero.getBoard()[i][j].getPiece().setNombreJuego(this.name);
+						System.out.println("PiezaIntroducida________________________________________5");
 						this.tablero.getBoard()[i][j].getPiece().insertIntoDataBase();
 					}
 				}
@@ -83,26 +90,12 @@ public class JuegoOldWarriorTales extends Juego implements storableInDataBase{
 	
 	@Override
 	public int deleteFromDataBase() {
-		PieceJDBC p;
 		
-		try {
-			p = new PieceJDBC();
-			p.remove("JuegoOldWarriorTales", this);
-//			p.remove("Jugador",this.getJugador1());
-//			p.remove("Jugador", this.getJugador2());
+			DeleteGame del= new DeleteGame(this);
+			del.start();
 			//tablero es un atributo de juego de la clase mapa/board que es un array de casillas
 		//p.remove(name, (storableInDataBase)this.getTablero());
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-			JOptionPane.showMessageDialog(null,"Error al sobreescribir","Error",JOptionPane.OK_OPTION,null);  
-		} catch (SQLException e) {
-			e.printStackTrace();
-			JOptionPane.showMessageDialog(null,"Error al sobreescribir","Error",JOptionPane.OK_OPTION,null);  
-		} catch (Exception e) {
-			e.printStackTrace();
-			JOptionPane.showMessageDialog(null,"Error al sobreescribir","Error",JOptionPane.OK_OPTION,null);  
-	
-		}
+		
 		
 	
 	return 0;
@@ -140,22 +133,26 @@ public class JuegoOldWarriorTales extends Juego implements storableInDataBase{
 		JuegoOldWarriorTales j= new JuegoOldWarriorTales();
 		Jugador j1= new Jugador();
 		//recoge el tablero que contiene el array de casillas pertenecientes al juego.
-		
 		Board t= new Board();
-		j.setTablero(t);
-		
-	
+		Arquero a1= new Arquero();
+		a1.setPosition(0, 3);
+		a1.setBoard(t);
+		a1.setColor(Colours.blanco);
+		t.getCasilla(a1.getPosition_x(), a1.getPosition_y()).setPiece(a1);
 		j1.setNick("jugador 1");
 		j1.setAvatar("avatar");
 		Jugador j2= new Jugador();
 		j2.setNick("jugador 2");
 		j2.setAvatar("avatar");
 		j.setName("juego24565");
+		
+		
+		j.setTablero(t);
 		j.setJugador1(j1);
 		j.setJugador2(j2);
-		//j.deleteFromDataBase();
+		j.deleteFromDataBase();
 		
-		j.insertIntoDataBase();
+		//j.insertIntoDataBase();
 		
 		
 //		ArrayList<storableInDataBase>array=j.takeOutFromDataBase();
@@ -169,5 +166,24 @@ public class JuegoOldWarriorTales extends Juego implements storableInDataBase{
 	
 	
 	}
+//	public static void main (String []args) throws InterruptedException
+//	{
+//		System.out.println("uno");
+//		DeleteGame thread = new DeleteGame(null);
+//		thread.start();
+//		Thread.sleep(500l);
+//		System.out.println("dos");
+//	}
+
+
+
+	@Override
+	public void throwWindow(ResourceBundle arg0, boolean arg1) {
+		new MainWindow(arg0,arg1,this);	
+	}
+
+
+
+
 
 }
