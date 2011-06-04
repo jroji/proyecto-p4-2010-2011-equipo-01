@@ -31,7 +31,6 @@ public class MapGoldSelectionWindows extends JFrameFondo implements ActionListen
     private ResourceBundle Language;
     private boolean Sound;
     private Juego J;
-    private JLabel fondo;
     
     public MapGoldSelectionWindows(ResourceBundle language,boolean sound,Juego j) {
     	J = j;

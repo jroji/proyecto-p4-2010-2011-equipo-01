@@ -45,7 +45,6 @@ public class SelectArmy extends JFrameFondo implements ActionListener{
      private DefaultTableModel modelo;
      private boolean sound;
      private int gold;
-     private JLabel fondo;
      private JPanel Ventana;
 	
 	public SelectArmy(ResourceBundle Language,boolean Sound,Juego j,ArrayList<Object> j1,ArrayList<Object> j2,boolean j1Selected,int gold)
