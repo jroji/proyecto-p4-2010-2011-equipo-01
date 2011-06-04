@@ -56,6 +56,17 @@ public class Barbarian extends PiezaOldWarriorTales {
 		habilities[1]=h2;
 	}
 	
+	private void updateProbability(){
+ 		Casilla casilla= board.getCasilla(getPosition_x(), getPosition_y());
+ 		if (casilla.getSquare().getClass().getName()=="Castle"){
+			probability=100;
+		}else if (casilla.getSquare().getClass().getName()=="TerrainWater"){
+			probability-=10;
+		}else if(casilla.getSquare().getClass().getName()=="Stones"){
+			probability+=30;
+		}
+ 	}
+	
 	public static void main (String[]args)  {
 
 		Barbarian a = new Barbarian();
