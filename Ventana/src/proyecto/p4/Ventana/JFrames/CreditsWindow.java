@@ -1,5 +1,6 @@
 package proyecto.p4.Ventana.JFrames;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ResourceBundle;
@@ -8,7 +9,7 @@ import proyecto.p4.Juego.*;
 import proyecto.p4.Ventana.Button.OldWarriorButton;
 
 
-public class CreditsWindow extends javax.swing.JFrame implements ActionListener {
+public class CreditsWindow extends JFrameFondo implements ActionListener {
 
  
     private OldWarriorButton Button;
@@ -37,14 +38,23 @@ public class CreditsWindow extends javax.swing.JFrame implements ActionListener 
     private void initComponents() {
 
         Julen = new javax.swing.JLabel();
+        Julen.setForeground(java.awt.Color.yellow);
         Raquel = new javax.swing.JLabel();
+        Raquel.setForeground(java.awt.Color.yellow);
         Jon = new javax.swing.JLabel();
+        Jon.setForeground(java.awt.Color.yellow);
         Pello = new javax.swing.JLabel();
+        Pello.setForeground(java.awt.Color.yellow);        
         bandaSonora = new javax.swing.JLabel();
+        bandaSonora.setForeground(java.awt.Color.yellow);
         Eneko = new javax.swing.JLabel();
+        Eneko.setForeground(java.awt.Color.yellow);
         Button = new OldWarriorButton(Language.getString("label_back"));
+        Button.setOpaque(false);
         Implementation = new javax.swing.JLabel();
+        Implementation.setForeground(java.awt.Color.yellow);
         Credits = new javax.swing.JLabel(Language.getString("label_credits")+":");
+        Credits.setForeground(java.awt.Color.yellow);
         Button.getOldWarriorButton().addActionListener(this);
         
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -126,6 +136,8 @@ public class CreditsWindow extends javax.swing.JFrame implements ActionListener 
         );
 
         pack();
+        
+        setImagen("/img/madera.jpg");
     }
     @Override
 	public void actionPerformed(ActionEvent e) {
