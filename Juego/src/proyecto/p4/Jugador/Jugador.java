@@ -120,7 +120,7 @@ public int insertIntoDataBase() {
 		//especificado por lo que se le dirá si desea sobrescribir el jugador o no.
 		Object [] option ={"SI","NO"};
 		int pane=JOptionPane.showOptionDialog(null,
-			    "¿Desea sobrescribir? ","Sobreescribir",JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE,null,option,option[0]);
+			    "¿Desea sobrescribir? ","Sobrescribir",JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE,null,option,option[0]);
 		
 		//Si desea sobrescribir borrará de la base de datos el jugador que tenga el nick especificado e 
 		//insertará el nuevo jugador con el mismo nick pero con posibilidad de tener el avatar diferente.
