@@ -11,15 +11,15 @@ public class GoldSelectionPanel extends JPanel {
 	
 	private JLabel gold;
 	private JTextField goldSelection;
-	private OldWarriorButton add;
-	private OldWarriorButton minus;
+	private JButton add;
+	private JButton minus;
 	
 	public GoldSelectionPanel(ResourceBundle language){
 	gold = new JLabel(language.getString("label_gold")+":");
 	goldSelection = new JTextField(10);
 	goldSelection.setText("3000");
-	add = new OldWarriorButton("+");
-	minus = new OldWarriorButton("-");
+	add = new JButton("+");
+	minus = new JButton("-");
 	this.setLayout(new FlowLayout());
 	this.add(gold);
 	this.add(goldSelection);
@@ -34,10 +34,10 @@ public class GoldSelectionPanel extends JPanel {
 	public int getText(){
 		return Integer.parseInt(goldSelection.getText());
 	}
-	public OldWarriorButton getAdd(){
+	public JButton getAdd(){
 		return add;
 	}
-	public OldWarriorButton getMinus(){
+	public JButton getMinus(){
 		return minus;
 	}
 	
