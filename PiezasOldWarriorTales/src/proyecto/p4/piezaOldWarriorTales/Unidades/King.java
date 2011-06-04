@@ -1,6 +1,9 @@
 package proyecto.p4.piezaOldWarriorTales.Unidades;
 
+
+import javax.swing.ImageIcon;
 import proyecto.p4.Mapa.Casilla;
+
 
 
 
@@ -16,6 +19,7 @@ public class King extends proyecto.p4.PiezasOldWarriorTales.PiezaOldWarriorTales
 		poisson=false;
 		counterattack=false;
 		type= this.getClass().getSimpleName();
+		this.setImagen(new ImageIcon(getClass().getResource("/img/king.png")));
 	}
 	@Override
 	protected void cargarHabilidades() {
