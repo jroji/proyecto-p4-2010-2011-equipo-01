@@ -46,7 +46,6 @@ public class Arquero extends PiezaOldWarriorTales{
 	@Override
 	protected void cargarHabilidades() {
 		Envenenar h1;
-		
 		h1= new Envenenar(this);
 		Cegar h2= new Cegar(this);
 		habilities=new Hability[2];
@@ -57,7 +56,7 @@ public class Arquero extends PiezaOldWarriorTales{
 
 		Arquero a=new Arquero();
 		a.setPosition(5, 5);
-		a.setCodePiece(33);
+		a.setCodePiece(7);
 		a.setColor(Colours.blanco);
 		a.setOrientation(Orientations.South);
 		a.setLife(60);
@@ -65,6 +64,7 @@ public class Arquero extends PiezaOldWarriorTales{
 		a.setExperience(200);
 		a.setBlindness(false);
 		a.setPoisson(true);
+		a.setHasAttacked(true);
 		//a.insertIntoDataBase();
 		a.deleteFromDataBase();
 		ArrayList<storableInDataBase> array=a.takeOutFromDataBase();
