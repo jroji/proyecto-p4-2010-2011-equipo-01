@@ -42,10 +42,14 @@ public class PlayerCreationPanel extends javax.swing.JPanel implements ActionLis
    
     private void initComponents() {
         Nick = new JLabel();
+        Nick.setOpaque(false);
+        Nick.setForeground(java.awt.Color.yellow);
         NickSelection = new JTextField();
+        //NickSelection.setOpaque(false);
         AvatarSelection = new JComboBox(NombreAvatares); //Cargamos los avatares en el JComboBox
         AvatarSelection.setSelectedIndex(0);
         Avatar = new JLabel(new ImageIcon(getClass().getResource("/img/"+(String)AvatarSelection.getSelectedItem()))); //Cargamos en el label la imagen del avatar que ha seleccionado.
+        Avatar.setOpaque(false);
         AcceptButton = new OldWarriorButton(Language.getString("label_accept"));
         
         Nick.setText("Nick: ");

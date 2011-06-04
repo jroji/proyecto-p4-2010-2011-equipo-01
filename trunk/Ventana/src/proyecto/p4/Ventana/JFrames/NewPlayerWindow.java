@@ -15,7 +15,7 @@ import proyecto.p4.Jugador.Jugador;
 import proyecto.p4.Ventana.JPanels.PlayerCreationPanel;
 import proyecto.p4.piezaOldWarriorTales.Unidades.Killer;
 
-public class NewPlayerWindow extends JFrame implements ActionListener{
+public class NewPlayerWindow extends JFrameFondo implements ActionListener{
 	
 	/**
 	 * 
@@ -31,11 +31,13 @@ public class NewPlayerWindow extends JFrame implements ActionListener{
 		sonido=sound;
 		this.setSize(355,330);
 		panel = new PlayerCreationPanel(idioma);
+		panel.setOpaque(false);
 		this.add(panel);
 		this.setVisible(true);
 		this.setResizable(false);
 		panel.getAcceptButton().getOldWarriorButton().addActionListener(this);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		setImagen("/img/madera.jpg");
 	}
 
 	@Override
