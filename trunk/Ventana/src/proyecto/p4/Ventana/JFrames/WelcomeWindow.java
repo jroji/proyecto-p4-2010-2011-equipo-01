@@ -42,7 +42,7 @@ public class WelcomeWindow extends JFrame implements ActionListener,KeyListener{
 	
 	public WelcomeWindow(ResourceBundle language,boolean Sound){
 
-		StartMusic("C:/Users/Jon/proyecto/Game/src/img/epicarojilarga.wav");
+		//StartMusic("epicarojilarga.wav");
 		botonera= new BotoneraH(language.getString("label_accept"),language.getString("label_exit"),language.getString("label_newPlayer"));
 		this.setResizable(false);
 		this.language=language;
@@ -79,7 +79,7 @@ public class WelcomeWindow extends JFrame implements ActionListener,KeyListener{
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==((OldWarriorButton) botonera.getComponent(0)).getOldWarriorButton())
 		{
-			//botonera.setButtonP1(false);
+			botonera.setButtonP1(false);
 			//new MainWindow(language,sound,selectedGame);
 
 			Jugador j = new Jugador();
@@ -104,8 +104,8 @@ public class WelcomeWindow extends JFrame implements ActionListener,KeyListener{
 				selectedGame.setJugador1(j1);
 				selectedGame.setJugador2(j2);
 				selectedGame.throwWindow(language,sound);
-				//new MainWindow(language,sound,selectedGame);
 				this.dispose();
+				System.out.println("fuera");
 			}else if(!enc1 && !enc2){
 				JOptionPane.showMessageDialog(this,language.getString("noPlayer12"),"",JOptionPane.ERROR_MESSAGE);
 			}else if(!enc1){
@@ -144,7 +144,7 @@ public class WelcomeWindow extends JFrame implements ActionListener,KeyListener{
 		  sonido.open(AudioSystem.getAudioInputStream(new File(ruta)));
 		}catch(Exception e)
 		  {
-			System.out.println("Error: "+e);}
+			e.printStackTrace();}
 		sonido.loop(Clip.LOOP_CONTINUOUSLY); //Para que se reproduzca indefinidamente
 		sonido.start();
 	}
