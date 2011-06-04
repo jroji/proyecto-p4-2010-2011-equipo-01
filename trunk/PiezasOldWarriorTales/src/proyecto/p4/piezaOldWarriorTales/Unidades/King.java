@@ -1,5 +1,7 @@
 package proyecto.p4.piezaOldWarriorTales.Unidades;
 
+import proyecto.p4.Mapa.Casilla;
+
 
 
 public class King extends proyecto.p4.PiezasOldWarriorTales.PiezaOldWarriorTales {
@@ -26,5 +28,18 @@ public class King extends proyecto.p4.PiezasOldWarriorTales.PiezaOldWarriorTales
 		probability=100;
 		
 	}
+	private void updateProbability(){
+ 		Casilla casilla= board.getCasilla(getPosition_x(), getPosition_y());
+ 		if (casilla.getSquare().getClass().getName()=="Castle"){
+			probability=100;
+		}else if (casilla.getSquare().getClass().getName()=="TerrainWater"){
+			probability-=10;
+		}else if(casilla.getSquare().getClass().getName()=="Stones"){
+			probability-=20;
+		}else if (casilla.getSquare().getClass().getName()=="Village")
+		{
+			probability-=10;
+		}
+ 	}
 
 }
