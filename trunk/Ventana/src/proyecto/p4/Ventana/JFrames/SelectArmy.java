@@ -63,16 +63,16 @@ public class SelectArmy extends JFrameFondo implements ActionListener{
 		J=j;
 		Ventana= new JPanel();
 		//x.addMouseListener(this);
-		Ventana.setSize(1024,720);
-		Ventana.setLayout(null);
+		this.setSize(1024,720);
+		this.setLayout(null);
 		x = new ListAndImage(Language);
-		Ventana.add(x);
-		Ventana.add(table);
+		this.add(x);
+		this.add(table);
 		((OldWarriorButton)x.getButtons().getComponent(0)).getOldWarriorButton().addActionListener(this);
 		((OldWarriorButton)x.getButtons().getComponent(2)).getOldWarriorButton().addActionListener(this);	  
 		table.setBounds(280, 320, 650,300 );
 		x.setBounds(0, 0, 280, 720);
-		Ventana.setVisible(true);
+		this.setVisible(true);
 		setImagen("/img/madera.jpg");
 		this.setVisible(true);
 	}
