@@ -32,10 +32,10 @@ public class OptionWindow extends JFrameFondo implements ActionListener // imple
 		selectedGame = j;
 		Language=language;
 		Sound = sound;
-        initComponents(Sound);
+        initComponents();
     }
 
-    private void initComponents(boolean Sound){
+    private void initComponents(){
     	
     	
     	Buttons = new BotoneraV("",Language.getString("label_credits"),Language.getString("label_exit"),"","");
