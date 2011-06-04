@@ -16,8 +16,8 @@ import java.util.ArrayList;
 public class PieceJDBC implements PieceDataSource {
 
 	public static final String DRIVER_CLASS_NAME = "org.sqlite.JDBC";
-	//public static final String CONNECTION_URL = "jdbc:sqlite:C:/Users/Julen/eclipseWorkSpaces/workspace/DataBase/src/OldWarriorTales.s3db";
-	public static final String CONNECTION_URL = "jdbc:sqlite:C:/Users/Raquel/workspace/DataBase/src/OldWarriorTales.s3db";
+	public static final String CONNECTION_URL = "jdbc:sqlite:C:/Users/Julen/eclipseWorkSpaces/workspace/DataBase/src/OldWarriorTales.s3db";
+	//public static final String CONNECTION_URL = "jdbc:sqlite:C:/Users/Raquel/workspace/DataBase/src/OldWarriorTales.s3db";
 	public static Connection connection;
 	
 	/**
