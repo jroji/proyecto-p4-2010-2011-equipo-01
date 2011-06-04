@@ -5,8 +5,6 @@ import javax.swing.ImageIcon;
 import proyecto.p4.PiezasOldWarriorTales.PiezaOldWarriorTales;
 import proyecto.p4.PiezasOldWarriorTales.Habilidades.Hability;
 import proyecto.p4.habilidades.AtaqueCertero;
-import proyecto.p4.habilidades.Cegar;
-import proyecto.p4.habilidades.Envenenar;
 import proyecto.p4.habilidades.Sprint;
 
 
@@ -22,7 +20,7 @@ public class knight extends PiezaOldWarriorTales {
 			counterattack=false;
 			type= this.getClass().getSimpleName();
 
-			//this.setImagen(new ImageIcon(getClass().getResource("/img/caballero.gif")));
+			this.setImagen(new ImageIcon(getClass().getResource("/img/caballero.gif")));
 		}
 
 		@Override
