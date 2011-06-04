@@ -76,6 +76,8 @@ public class WelcomeWindow extends JFrame implements ActionListener,KeyListener{
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==((OldWarriorButton) botonera.getComponent(0)).getOldWarriorButton())
 		{
+
+			//new MainWindow(language,sound,selectedGame);
 			Jugador j = new Jugador();
 			boolean enc1 = false;
 			boolean enc2 = false;
