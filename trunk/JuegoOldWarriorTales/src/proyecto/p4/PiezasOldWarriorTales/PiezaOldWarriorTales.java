@@ -476,7 +476,7 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable{
 			array.add(this.getClass().getSuperclass().getDeclaredField("type"));
 			array.add(this.getClass().getSuperclass().getDeclaredField("hasBeenMoved"));
 			array.add(this.getClass().getSuperclass().getDeclaredField("hasAttacked"));
-			array.add(this.getClass().getSuperclass().getSuperclass().getDeclaredField("name"));
+			array.add(this.getClass().getSuperclass().getSuperclass().getDeclaredField("nombreJuego"));
 			array.add(this.getClass().getSuperclass().getSuperclass().getDeclaredField("position_y"));
 			array.add(this.getClass().getSuperclass().getSuperclass().getDeclaredField("position_x"));
 
