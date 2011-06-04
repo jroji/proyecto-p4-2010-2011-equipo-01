@@ -3,6 +3,11 @@ package proyecto.p4.piezaOldWarriorTales.Unidades;
 import javax.swing.ImageIcon;
 
 import proyecto.p4.PiezasOldWarriorTales.PiezaOldWarriorTales;
+import proyecto.p4.PiezasOldWarriorTales.Habilidades.Hability;
+import proyecto.p4.habilidades.AtaqueCertero;
+import proyecto.p4.habilidades.Cegar;
+import proyecto.p4.habilidades.Envenenar;
+import proyecto.p4.habilidades.Sprint;
 
 
 public class knight extends PiezaOldWarriorTales {
@@ -28,7 +33,11 @@ public class knight extends PiezaOldWarriorTales {
 
 		@Override
 		protected void cargarHabilidades() {
-			// TODO Auto-generated method stub
-			
+			AtaqueCertero a1;
+			a1= new AtaqueCertero();
+			Sprint h2= new Sprint();
+			habilities=new Hability[2];
+			habilities[0]=a1;
+			habilities[1]=h2;
 		}
 }
