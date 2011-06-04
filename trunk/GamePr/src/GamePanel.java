@@ -79,8 +79,6 @@ public class GamePanel extends JPanel implements MouseListener{
 		
 		layer.add(mapPanel, new Integer(0));
 		
-		StartMusic("/img/epicarojilarga.wav");
-		
 
 		}
 
@@ -104,21 +102,6 @@ public class GamePanel extends JPanel implements MouseListener{
 		}
 		
 
-	/** Reproduce el archivo de sonido .wav que se encuentra en la ruta que 
-	 * recibe como atributo.
-	 */
-	public static void StartMusic(String ruta){
-		Clip sonido = null;
-		try
-		{
-		  sonido=AudioSystem.getClip();
-		  sonido.open(AudioSystem.getAudioInputStream(new File(ruta)));
-		}catch(Exception e)
-		  {
-			System.out.println("Error: "+e);}
-		sonido.loop(Clip.LOOP_CONTINUOUSLY); //Para que se reproduzca indefinidamente
-		sonido.start();
-	}
 
 	@Override
 	public void mouseClicked(MouseEvent arg0) {

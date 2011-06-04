@@ -317,6 +317,7 @@ public class MapPanel extends JPanel implements MouseListener{
 								} catch (Exception e) {
 									// TODO Auto-generated catch block
 									JOptionPane.showMessageDialog(this, e.getMessage());
+									e.printStackTrace();
 									seleccionado = false;
 								}
 								recargarMapa();
@@ -335,7 +336,11 @@ public class MapPanel extends JPanel implements MouseListener{
 				if(unitsimg02.get(y).equals(arg0.getSource())){
 					objectiveUnit = (JLabel) arg0.getSource();
 					int i = 0;
+					try{
 					selectedUnit.setIcon(new ImageIcon(getClass().getResource("/img/"+unidad.getType()+".gif")));
+					}
+					catch(Exception e){
+					}
 					boolean en = false;
 					while(i<unitsimg02.size()&&!en){
 						if(objectiveUnit == unitsimg02.get(i)){
@@ -375,7 +380,11 @@ public class MapPanel extends JPanel implements MouseListener{
 					if(unitsimg01.get(y).equals(arg0.getSource())){
 						objectiveUnit = (JLabel) arg0.getSource();
 						int i = 0;
+						try{
 						selectedUnit.setIcon(new ImageIcon(getClass().getResource("/img/"+unidad.getType()+".gif")));
+						}
+						catch(Exception e){
+						}
 						boolean en = false;
 						while(i<unitsimg01.size()&&!en){
 							if(objectiveUnit == unitsimg01.get(i)){
