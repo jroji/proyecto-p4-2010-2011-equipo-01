@@ -1,11 +1,13 @@
 package proyecto.p4.Ventana.JFrames;
 
 
+import java.awt.Desktop;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
+import java.io.IOException;
 import java.util.ResourceBundle;
 
 import javax.sound.sampled.AudioSystem;
@@ -14,6 +16,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
+import javax.swing.JOptionPane;
 
 import Languages.*;
 
@@ -66,15 +69,16 @@ public class MainWindow extends JFrame implements ActionListener, MouseListener{
 		Buttons.getBoton3().getOldWarriorButton().addActionListener(this);
 		Buttons.getBoton4().getOldWarriorButton().addActionListener(this);
 		Buttons.getBoton5().getOldWarriorButton().addActionListener(this);
-
 		helpButton.addMouseListener(this);
 
 		if(Sound&&!sonando){
-			StartMusic("C:/Users/Jon/proyecto/Game/src/img/epicarojilarga.wav");
+			StartMusic("epicarojilarga.wav");
 			sonando = true ;
 		}
-		else
-			sonido.stop();
+		else{
+			//sonido.stop();
+		}
+			
 	}
 
 	/** Reproduce el archivo de sonido .wav que se encuentra en la ruta que 
@@ -88,7 +92,7 @@ public class MainWindow extends JFrame implements ActionListener, MouseListener{
 		  sonido.open(AudioSystem.getAudioInputStream(new File(ruta)));
 		}catch(Exception e)
 		  {
-			System.out.println("Error: "+e);}
+			e.printStackTrace();}
 		sonido.loop(Clip.LOOP_CONTINUOUSLY); //Para que se reproduzca indefinidamente
 		sonido.start();
 	}
@@ -133,7 +137,14 @@ public class MainWindow extends JFrame implements ActionListener, MouseListener{
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
 		if(e.getSource()==helpButton)
+		{
 			helpButton.setIcon(new ImageIcon(getClass().getResource("/img/botontutorialpulsado.png")));
+			try {
+				Desktop.getDesktop().open(new File ("src/TUTORIAL.pdf"));
+			} catch (IOException e1) {
+				JOptionPane.showMessageDialog(null, "Archivo de ayuda no disponible", "Warning", JOptionPane.ERROR_MESSAGE, null);
+			} 
+		}
 	}
 
 	@Override

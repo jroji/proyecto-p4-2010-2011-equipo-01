@@ -91,7 +91,6 @@ public class SelectGamePane extends JPanel {
     	ArrayList<String>  model= new ArrayList<String>();
     	
     	for (Object o:inst){
-    		System.out.println(o.getClass().getSimpleName());
     		if (o instanceof Juego){
     			instancias.add(o);
     			model.add(o.toString());
