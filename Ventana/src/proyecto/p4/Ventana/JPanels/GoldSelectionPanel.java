@@ -13,14 +13,17 @@ public class GoldSelectionPanel extends JPanel {
 	private JTextField goldSelection;
 	private JButton add;
 	private JButton minus;
+	private JLabel d;
 	
 	public GoldSelectionPanel(ResourceBundle language){
 	gold = new JLabel(language.getString("label_gold")+":");
+	d= new JLabel("                                                 ");
 	goldSelection = new JTextField(10);
 	goldSelection.setText("3000");
 	add = new JButton("+");
 	minus = new JButton("-");
 	this.setLayout(new FlowLayout());
+	this.add(d);
 	this.add(gold);
 	this.add(goldSelection);
 	this.add(add);
