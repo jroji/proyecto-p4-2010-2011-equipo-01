@@ -33,15 +33,12 @@ public class AvatarPanel extends javax.swing.JPanel {
 
         Player2Name.setFont(new java.awt.Font("Tahoma", 0, 18));
         Player1Name.setFont(new java.awt.Font("Tahoma", 0, 18));
-        //correguir!!!!!!!!!!!!
-        //Player2Name.setText(j.getJugador1().getNick());
-        //Player1Name.setText(j.getJugador2().getNick());
-        //quitar esto:
-        Player2Name.setText("nick1");
-        Player1Name.setText("Nick2");
         
-      //  Player1Avatar= new javax.swing.JLabel(new ImageIcon(getClass().getResource(j.getJugador1().getAvatar())));
-       // Player2Avatar = new javax.swing.JLabel(new ImageIcon(getClass().getResource(j.getJugador2().getAvatar())));
+        Player2Name.setText(j.getJugador2().getNick());
+        Player1Name.setText(j.getJugador1().getNick());
+        
+        Player1Avatar= new javax.swing.JLabel(new ImageIcon(getClass().getResource(j.getJugador1().getAvatar())));
+        Player2Avatar = new javax.swing.JLabel(new ImageIcon(getClass().getResource(j.getJugador2().getAvatar())));
 
         this.setOpaque(false);
         

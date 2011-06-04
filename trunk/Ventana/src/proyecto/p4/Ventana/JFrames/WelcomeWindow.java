@@ -80,19 +80,25 @@ public class WelcomeWindow extends JFrame implements ActionListener,KeyListener{
 			boolean enc1 = false;
 			boolean enc2 = false;
 			ArrayList<storableInDataBase> array=j.takeOutFromDataBase();
+			Jugador j2= new Jugador();
+			Jugador j1= new Jugador();
 			//Metodo buscar jugador
 			for(int i = 0;i<array.size()&& (!enc1 || !enc2); i++){
 				j=(Jugador) array.get(i);
 				if(nicks.getNicktext().equals(j.getNick())){
-					
+					j1=j;
 					enc1=true;
 				}else if(nicks.getNicktext2().equals(j.getNick())){
+					j2=j;
 					enc2 = true;
 				}
 			}
 			if(enc1&& enc2){
 				botonera.setButtonP1(false);
-				new MainWindow(language,sound,selectedGame);
+				selectedGame.setJugador1(j1);
+				selectedGame.setJugador2(j2);
+				selectedGame.throwWindow(language,sound);
+				//new MainWindow(language,sound,selectedGame);
 				this.dispose();
 			}else if(!enc1 && !enc2){
 				JOptionPane.showMessageDialog(this,language.getString("noPlayer12"),"",JOptionPane.ERROR_MESSAGE);
