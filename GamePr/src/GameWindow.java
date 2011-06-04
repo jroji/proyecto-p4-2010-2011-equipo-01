@@ -12,6 +12,10 @@ import javax.swing.event.ListSelectionListener;
 
 
 
+import proyecto.p4.DefaultBoards.DefaultBoard;
+import proyecto.p4.DefaultBoards.IslandBoard;
+import proyecto.p4.DefaultBoards.RoadBoard;
+import proyecto.p4.DefaultBoards.WaterBoard;
 import proyecto.p4.Juego.Juego;
 import proyecto.p4.JuegoOldWarriorTales.JuegoOldWarriorTales;
 import proyecto.p4.Jugador.Jugador;
@@ -154,8 +158,7 @@ public class GameWindow extends JFrame implements MouseListener, ListSelectionLi
 				pieza = (PiezaOldWarriorTales) mapa.getCasilla(i, j).getPiece();
 				if(pieza!=null){
 					if(pieza.getColor()==Colours.blanco){
-						array1.add(pieza);
-					System.out.println(pieza);}
+						array1.add(pieza);;}
 					else
 						array2.add(pieza);
 				}
@@ -163,56 +166,56 @@ public class GameWindow extends JFrame implements MouseListener, ListSelectionLi
 		}
 	}
 
-	
-	public static void main(String[] args)
-	{
-		Board z = new Board();
-
-		Arquero arq = new Arquero();
-		arq.setBoard(z);
-		arq.setPosition(10, 5);
-		arq.setColor(Colours.blanco);
-		arq.setLife(5);
-		arq.setEnergy(34);
-		arq.setExperience(67);
-		
-		Arquero arq2 = new Arquero();
-		arq2.setBoard(z);
-		arq2.setPosition(10, 10);
-		arq2.setColor(Colours.blanco);
-		arq2.setLife(77);
-
-		Magician mag = new Magician();
-		mag.setPosition(11,12);
-		mag.setColor(Colours.blanco);
-		mag.setBoard(z);
-		z.getBoard()[11][12].setPiece(mag);
-
-		knight kill = new knight();
-		kill.setBoard(z);
-		kill.setPosition(2,2);
-		kill.setColor(Colours.negro);
-		z.getBoard()[2][2].setPiece(kill);
-		
-		Barbarian bar = new Barbarian();
-		bar.setBoard(z);
-		bar.setColor(Colours.negro);
-		bar.setPosition(5, 5);
-		
-		z.getBoard()[5][5].setPiece(bar);
-		z.getBoard()[10][10].setPiece(arq2);
-		z.getBoard()[10][5].setPiece(arq);
-		Jugador j1 = new Jugador();
-		Jugador j2 = new Jugador();
-		j1.setNick("Pello");
-		j2.setNick("Julen");
-		JuegoOldWarriorTales j= new JuegoOldWarriorTales();
-		j.setJugador1(j1);
-		j.setJugador2(j2);
-		j.setTablero(z);
-		
-		new GameWindow(j);
-	}
+//	
+//	public static void main(String[] args)
+//	{
+//		Board z = new Board();
+//
+//		Arquero arq = new Arquero();
+//		arq.setBoard(z);
+//		arq.setPosition(10, 5);
+//		arq.setColor(Colours.blanco);
+//		arq.setLife(5);
+//		arq.setEnergy(34);
+//		arq.setExperience(67);
+//		
+//		Arquero arq2 = new Arquero();
+//		arq2.setBoard(z);
+//		arq2.setPosition(10, 10);
+//		arq2.setColor(Colours.blanco);
+//		arq2.setLife(77);
+//
+//		Magician mag = new Magician();
+//		mag.setPosition(11,12);
+//		mag.setColor(Colours.blanco);
+//		mag.setBoard(z);
+//		z.getBoard()[11][12].setPiece(mag);
+//
+//		knight kill = new knight();
+//		kill.setBoard(z);
+//		kill.setPosition(2,2);
+//		kill.setColor(Colours.negro);
+//		z.getBoard()[2][2].setPiece(kill);
+//		
+//		Barbarian bar = new Barbarian();
+//		bar.setBoard(z);
+//		bar.setColor(Colours.negro);
+//		bar.setPosition(5, 5);
+//		
+//		z.getBoard()[5][5].setPiece(bar);
+//		z.getBoard()[10][10].setPiece(arq2);
+//		z.getBoard()[10][5].setPiece(arq);
+//		Jugador j1 = new Jugador();
+//		Jugador j2 = new Jugador();
+//		j1.setNick("Pello");
+//		j2.setNick("Julen");
+//		JuegoOldWarriorTales j= new JuegoOldWarriorTales();
+//		j.setJugador1(j1);
+//		j.setJugador2(j2);
+//		j.setTablero(z);
+//		
+//		new GameWindow(j);
+//	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
@@ -323,5 +326,16 @@ public class GameWindow extends JFrame implements MouseListener, ListSelectionLi
 		gamePanel.getMapPanel().setSeleccionado(true);
 		unitData.update((PiezaOldWarriorTales)  units.getSelectedValue());
 		habilitiesButtons.update((PiezaOldWarriorTales) units.getSelectedValue());
+	}
+	public static void main (String []args)
+	{
+		JuegoOldWarriorTales jug= new JuegoOldWarriorTales();
+		Board board=new RoadBoard();
+		jug.setTablero(board);
+		Jugador juga=new Jugador();
+		juga.setNick("Julen");
+		jug.setJugador1(juga);
+		jug.setJugador2(juga);
+		new GameWindow (jug);
 	}
 }
