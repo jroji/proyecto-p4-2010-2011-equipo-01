@@ -4,6 +4,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.JOptionPane;
+
+
 import proyecto.p4.Mapa.Board;
 import proyecto.p4.Mapa.Casilla;
 import proyecto.p4.Piece.Piece;
@@ -41,13 +43,13 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable{
 	//indica si puede contraatacar o no
 	protected boolean counterattack;
 	//indica las posiciones a las que puede atacar
-	
+	protected boolean [][] attackAble;
 	//array de habilidades
 	protected Hability []habilities;
-	protected boolean [][] attackAble;
+	
 
 	/**
-	 * Constructor que inicializa los atributos energy life y experience
+	 * Constructor que inicializa los atributos 
 	 */
 	public PiezaOldWarriorTales(){
 		experience=0;
@@ -378,9 +380,13 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable{
 		return this.getClass().getSimpleName();
 	}
 	
-	
+	/**
+	 * Método que se encarga de borrar de la base de datos una pieza del juego Old Warrior Tales.
+	 * @return valueToReturn que indica el número de piezas borradas de la base de datos.
+	 */
 	@SuppressWarnings("finally")
 	@Override
+	
 	public int deleteFromDataBase() {
 		PieceJDBC p;
 		int valueToReturn=0;
@@ -407,6 +413,10 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable{
 			}
 	}
 
+	/**
+	 * Método que se encarga de insertar una nueva pieza en la base de datos 
+	 * @return un entero que indica el número de filas insertadas en la tabla.
+	 */
 	@Override
 	public int insertIntoDataBase() {
 		
@@ -418,11 +428,15 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable{
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		} catch (SQLException e) {
+			//Si salta la excepción de SQLException será porque ya existe en la base de datos la pieza 
+			//especificada por lo que se le dirá si desea sobrescribir el pieza o no.
 			Object [] option ={"SI","NO"};
 			e.printStackTrace();
 			int pane=JOptionPane.showOptionDialog(null,
-				    "¿Desea sobreescribir? ","Sobreescribir",JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE,null,option,option[0]);
+				    "¿Desea sobrescribir? ","Sobrescribir",JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE,null,option,option[0]);
 			
+			//si desea sobrescribir borrará de la base de datos la pieza con la misma clave primera que la que 
+			//se pretende escribir e insertará la nueva pieza.
 			if(pane==0){
 				deleteFromDataBase();
 				return insertIntoDataBase();
@@ -438,16 +452,17 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable{
 		}
 		return 1;
 		}
-		
+	
+	/**
+	 * Método que se encarga de decidir que atributos se guardarán en la base de datos.
+	 * @throws SecurityException indica una violación de la seguridad.
+	 * @throws NoSuchFielException indica que la clase no tiene el atributo con el nombre especificado.
+	 * @return array es un ArrayList que contiene aquellos atributos que se guardarán en la base de datos.
+	 */ 
+	 
 	public ArrayList <Field> fieldsToStore() throws SecurityException, NoSuchFieldException{
 		ArrayList<Field> array= new ArrayList<Field>();
 		
-		System.out.println(this.getClass().getSuperclass().getDeclaredFields()[0]);
-		
-//		Field [] fields=this.getClass().getSuperclass().getDeclaredFields();
-//		System.out.println(fields[1].getName());
-//		array.add(fields[1]);
-
 		Field [] fields;
 		if(!this.getClass().getSimpleName().equals("PiezaOldWarriorTales")){
 			array.add(this.getClass().getSuperclass().getDeclaredField("life"));
@@ -465,7 +480,7 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable{
 			array.add(this.getClass().getSuperclass().getSuperclass().getDeclaredField("position_y"));
 			array.add(this.getClass().getSuperclass().getSuperclass().getDeclaredField("position_x"));
 
-//			fields=this.getClass().getSuperclass().getSuperclass().getDeclaredFields();
+
 		}
 		else{
 			array.add(this.getClass().getDeclaredField("life"));
@@ -482,17 +497,21 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable{
 			array.add(this.getClass().getSuperclass().getDeclaredField("name"));
 			array.add(this.getClass().getSuperclass().getDeclaredField("position_y"));
 			array.add(this.getClass().getSuperclass().getDeclaredField("position_x"));
-			//fields=this.getClass().getSuperclass().getDeclaredFields();
+			
 		}
-//		array.add(fields[0]);
-//		array.add(fields[1]);
 
 
 	return array;
 	}
 	
+	/**
+	 * Método que se encarga de devolver el contenido de la tabla PiezaOldWarriorTales de la base
+	 * de datos
+	 * @return array que será el array que contenta toda la información de dicha tabla.
+	 */
 	
 	@Override
+	
 	public ArrayList<storableInDataBase> takeOutFromDataBase() {
 		PieceJDBC p;
 		try {
