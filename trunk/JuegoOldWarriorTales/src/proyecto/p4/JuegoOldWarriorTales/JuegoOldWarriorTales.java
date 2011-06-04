@@ -12,6 +12,7 @@ import proyecto.p4.Jugador.Jugador;
 import proyecto.p4.Mapa.Board;
 import proyecto.p4.Mapa.Casilla;
 import proyecto.p4.Piece.Colours;
+import proyecto.p4.PiezasOldWarriorTales.PiezaOldWarriorTales;
 import proyecto.p4.Ventana.JFrames.MainWindow;
 import proyecto.p4.piezaOldWarriorTales.Unidades.Arquero;
 
@@ -28,6 +29,7 @@ public class JuegoOldWarriorTales extends Juego implements storableInDataBase{
 	public JuegoOldWarriorTales (){
 		name="Old Warrior Tales";
 		rutaImagen= "src/img/lgo.jpg";
+		tablero= new Board();
 	}
 
 	/**
@@ -73,7 +75,6 @@ public class JuegoOldWarriorTales extends Juego implements storableInDataBase{
 					this.tablero.getBoard()[i][j].insertIntoDataBase();
 					if (this.tablero.getBoard()[i][j].getPiece()!=null){
 						this.tablero.getBoard()[i][j].getPiece().setNombreJuego(this.name);
-						System.out.println("PiezaIntroducida________________________________________5");
 						this.tablero.getBoard()[i][j].getPiece().insertIntoDataBase();
 					}
 				}
@@ -112,20 +113,11 @@ public class JuegoOldWarriorTales extends Juego implements storableInDataBase{
 	 */
 	@Override
 	public int deleteFromDataBase() {
-		
-
 			DeleteGame del= new DeleteGame(this);
 			del.start();
-			//tablero es un atributo de juego de la clase mapa/board que es un array de casillas
-		//p.remove(name, (storableInDataBase)this.getTablero());
-
-		
-		
 	
 	return 0;
 	}
-
-
 
 	/**
 	 * Método que introduce en un ArrayList el contenido de la tabla JuegoOldWarriorTales.
@@ -137,9 +129,33 @@ public class JuegoOldWarriorTales extends Juego implements storableInDataBase{
 		PieceJDBC p;
 		try {
 			p = new PieceJDBC();
-			ArrayList<storableInDataBase> array= new ArrayList <storableInDataBase>();
-			array= p.getAll(this.getClass().getSimpleName(),this.getClass().getName());
-			return array;
+			 ArrayList<storableInDataBase> juegos= p.getAll(this.getClass().getSimpleName(),this.getClass().getName());
+			// ArrayList<storableInDataBase> jugadores= new Jugador().takeOutFromDataBase();
+			 ArrayList<storableInDataBase> casillas= new Casilla().takeOutFromDataBase();
+			 ArrayList<storableInDataBase> piezas= new Arquero().takeOutFromDataBase();
+			 System.out.println("Numero de juegos: "+juegos.size());
+			 System.out.println("Numero de casillas: "+casillas.size());
+			 System.out.println("Numero de piezas: "+piezas.size());
+			 for(storableInDataBase jueg: juegos)
+			 {
+				
+				 for(storableInDataBase cas: casillas)
+				 {
+					 if (((Casilla)cas).getNombreJuego().equals(((JuegoOldWarriorTales)jueg).name))
+					 { 
+						 ((JuegoOldWarriorTales)jueg).tablero.getBoard()[((Casilla)cas).getPosX()][((Casilla)cas).getPosY()]=(Casilla) cas;
+					 }
+				 }
+				 for(storableInDataBase piez: piezas)
+				 {
+					 if(((PiezaOldWarriorTales)piez).getNombreJuego().equals(((JuegoOldWarriorTales)jueg).name))
+					 {
+						 ((PiezaOldWarriorTales)piez).setBoard(this.tablero);
+						 ((JuegoOldWarriorTales)jueg).tablero.getBoard()[((PiezaOldWarriorTales)piez).getPosition_x()][((PiezaOldWarriorTales)piez).getPosition_y()].setPiece((PiezaOldWarriorTales)piez);
+					 }
+				 }
+			 }
+			return juegos;
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 			JOptionPane.showMessageDialog(null,"Error al cargar","Error",JOptionPane.OK_OPTION,null);  
@@ -166,10 +182,10 @@ public class JuegoOldWarriorTales extends Juego implements storableInDataBase{
 		a1.setBoard(t);
 		a1.setColor(Colours.blanco);
 		t.getCasilla(a1.getPosition_x(), a1.getPosition_y()).setPiece(a1);
-		j1.setNick("jugador 1");
+		j1.setNick("Jon");
 		j1.setAvatar("avatar");
 		Jugador j2= new Jugador();
-		j2.setNick("jugador 2");
+		j2.setNick("Raquel");
 		j2.setAvatar("avatar");
 		j.setName("juego24565");
 		
@@ -177,10 +193,17 @@ public class JuegoOldWarriorTales extends Juego implements storableInDataBase{
 		j.setTablero(t);
 		j.setJugador1(j1);
 		j.setJugador2(j2);
-		j.deleteFromDataBase();
+		//j.deleteFromDataBase();
 		
 		//j.insertIntoDataBase();
-		
+		ArrayList<storableInDataBase>ar=j.takeOutFromDataBase();
+		for(storableInDataBase stor: ar)
+		{
+			System.out.println(((JuegoOldWarriorTales)stor).getName());
+			System.out.println(((JuegoOldWarriorTales)stor).tablero.getBoard().length);
+			System.out.println(((JuegoOldWarriorTales)stor).tablero.getBoard()[0][3].getPiece().getClass().getSimpleName());
+			System.out.println(((JuegoOldWarriorTales)stor).tablero.getBoard()[0][3].getPiece().getColor());
+		}
 		
 //		ArrayList<storableInDataBase>array=j.takeOutFromDataBase();
 //		for(storableInDataBase stor:array)
