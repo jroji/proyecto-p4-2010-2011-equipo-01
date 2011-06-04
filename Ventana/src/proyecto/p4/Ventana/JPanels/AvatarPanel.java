@@ -142,7 +142,7 @@ public class AvatarPanel extends javax.swing.JPanel {
         player1Avatar= new javax.swing.JLabel(new ImageIcon(getClass().getResource(j.getJugador1().getAvatar())));
         player2Avatar = new javax.swing.JLabel(new ImageIcon(getClass().getResource(j.getJugador2().getAvatar())));
         
-        VS = new javax.swing.JLabel(new ImageIcon(getClass().getResource("/img/VS")));
+        VS = new javax.swing.JLabel(new ImageIcon(getClass().getResource("/img/VS.gif")));
         
         player2Avatar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
