@@ -16,10 +16,15 @@ public class GoldSelectionPanel extends JPanel {
 	
 	public GoldSelectionPanel(ResourceBundle language){
 	gold = new JLabel(language.getString("label_gold")+":");
+	gold.setOpaque(false);
+	gold.setForeground(java.awt.Color.yellow);
 	goldSelection = new JTextField(10);
 	goldSelection.setText("3000");
+	goldSelection.setOpaque(false);
 	add = new JButton("+");
+	add.setOpaque(false);
 	minus = new JButton("-");
+	minus.setOpaque(false);
 	this.setLayout(new FlowLayout());
 	this.add(gold);
 	this.add(goldSelection);
