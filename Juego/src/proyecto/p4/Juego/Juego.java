@@ -1,6 +1,8 @@
 package proyecto.p4.Juego;
 
 
+import java.util.ResourceBundle;
+
 import proyecto.p4.Mapa.Board;
 import proyecto.p4.Jugador.Jugador;
 
@@ -44,5 +46,6 @@ public abstract class Juego {
 	public String getRuta(){
 		return this.rutaImagen;
 	}
+	public abstract void throwWindow(ResourceBundle rb, boolean bool);
 
 }
