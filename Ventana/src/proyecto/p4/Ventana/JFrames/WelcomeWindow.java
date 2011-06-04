@@ -4,9 +4,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -39,7 +42,7 @@ public class WelcomeWindow extends JFrame implements ActionListener,KeyListener{
 	
 	public WelcomeWindow(ResourceBundle language,boolean Sound){
 
-		
+		StartMusic("C:/Users/Jon/proyecto/Game/src/img/epicarojilarga.wav");
 		botonera= new BotoneraH(language.getString("label_accept"),language.getString("label_exit"),language.getString("label_newPlayer"));
 		this.setResizable(false);
 		this.language=language;
@@ -76,8 +79,9 @@ public class WelcomeWindow extends JFrame implements ActionListener,KeyListener{
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==((OldWarriorButton) botonera.getComponent(0)).getOldWarriorButton())
 		{
+			botonera.setButtonP1(false);
+			new MainWindow(language,sound,selectedGame);
 
-			//new MainWindow(language,sound,selectedGame);
 			Jugador j = new Jugador();
 			boolean enc1 = false;
 			boolean enc2 = false;
@@ -129,6 +133,21 @@ public class WelcomeWindow extends JFrame implements ActionListener,KeyListener{
 		WelcomeWindow x = new WelcomeWindow(language,false);
 	}
 
+	/** Reproduce el archivo de sonido .wav que se encuentra en la ruta que 
+	 * recibe como atributo.
+	 */
+	public static void StartMusic(String ruta){
+		Clip sonido = null;
+		try
+		{
+		  sonido=AudioSystem.getClip();
+		  sonido.open(AudioSystem.getAudioInputStream(new File(ruta)));
+		}catch(Exception e)
+		  {
+			System.out.println("Error: "+e);}
+		sonido.loop(Clip.LOOP_CONTINUOUSLY); //Para que se reproduzca indefinidamente
+		sonido.start();
+	}
 
 
 	@Override
