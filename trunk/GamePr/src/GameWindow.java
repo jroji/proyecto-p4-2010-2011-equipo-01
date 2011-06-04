@@ -12,6 +12,8 @@ import javax.swing.event.ListSelectionListener;
 
 
 
+import proyecto.p4.Juego.Juego;
+import proyecto.p4.JuegoOldWarriorTales.JuegoOldWarriorTales;
 import proyecto.p4.Jugador.Jugador;
 import proyecto.p4.Mapa.Board;
 import proyecto.p4.Mapa.Casilla;
@@ -56,17 +58,22 @@ public class GameWindow extends JFrame implements MouseListener, ListSelectionLi
 	Jugador jug2;
 	
 	
-	public GameWindow(Jugador jug1, Jugador jug2, Board mapa)
-//	public GameWindow()
+	//public GameWindow(Jugador jug1, Jugador jug2, Board mapa)
+	public GameWindow(JuegoOldWarriorTales j)
 	{
-		this.jug1=jug1;
-		this.jug2=jug2;
-		map = mapa;
-		inicializarPiezasJugador(piezasJugador1, piezasJugador2, mapa);
+		this.jug1=j.getJugador1();
+		this.jug2=j.getJugador2();
+		map=j.getTablero();
+//		this.jug1=jug1;
+//		this.jug2=jug2;
+//		map = mapa;
+//		inicializarPiezasJugador(piezasJugador1, piezasJugador2, mapa);
+		inicializarPiezasJugador(piezasJugador1, piezasJugador2, j.getTablero());
 		this.setSize(1225,720);
 		unitData = new UnitData(new Killer());
 		habilitiesButtons = new HabilitiesButton(new Killer());
-		gamePanel = new GamePanel(mapa,piezasJugador1, piezasJugador2, this);
+		//gamePanel = new GamePanel(mapa,piezasJugador1, piezasJugador2, this);
+		gamePanel = new GamePanel(map,piezasJugador1, piezasJugador2, this);
 		units = new JList(piezasJugador1.toArray());
 		this.setLayout(null);
 		layer.setBounds(0,0,this.getWidth(),this.getHeight());
@@ -160,13 +167,7 @@ public class GameWindow extends JFrame implements MouseListener, ListSelectionLi
 	public static void main(String[] args)
 	{
 		Board z = new Board();
-//		for (int i=0;i<z.getBoard().length;i++)
-//		{
-//			for (int j=0;j<z.getBoard()[1].length;j++)
-//			{
-//				z.getBoard()[i][j]= new Casilla();
-//			}
-//		}
+
 		Arquero arq = new Arquero();
 		arq.setBoard(z);
 		arq.setPosition(10, 5);
@@ -205,7 +206,12 @@ public class GameWindow extends JFrame implements MouseListener, ListSelectionLi
 		Jugador j2 = new Jugador();
 		j1.setNick("Pello");
 		j2.setNick("Julen");
-		new GameWindow(j1,j2, z);
+		JuegoOldWarriorTales j= new JuegoOldWarriorTales();
+		j.setJugador1(j1);
+		j.setJugador2(j2);
+		j.setTablero(z);
+		
+		new GameWindow(j);
 	}
 
 	@Override
