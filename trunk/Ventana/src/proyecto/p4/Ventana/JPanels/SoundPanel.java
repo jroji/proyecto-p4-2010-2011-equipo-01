@@ -1,7 +1,8 @@
  package proyecto.p4.Ventana.JPanels;
  
- import java.util.ResourceBundle;
- import javax.swing.*;
+ import java.awt.Color;
+import java.util.ResourceBundle;
+import javax.swing.*;
 
  /**
   * 
@@ -36,13 +37,16 @@
         NoButton.setOpaque(false);
 
         SoundLabel.setText(Language.getString("label_sound") + ":");
+        SoundLabel.setForeground(java.awt.Color.yellow);
 
 
         buttonGroup1.add(YesButton);
         YesButton.setText(Language.getString("Yes"));
+        YesButton.setForeground(java.awt.Color.yellow);
 
         buttonGroup1.add(NoButton);
         NoButton.setText(Language.getString("No"));
+        NoButton.setForeground(java.awt.Color.yellow);
         
         //buttonGroup1.setSelected((ButtonModel) YesButton, true);
         
