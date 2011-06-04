@@ -42,11 +42,14 @@ public class OptionWindow extends JFrameFondo implements ActionListener // imple
     	this.setResizable(false);
 
         soundPanel1 = new SoundPanel(Language);
+        soundPanel1.setOpaque(false);
         languagePanel1 = new LanguagePanel(Language);
+        languagePanel1.setOpaque(false);
         
         Logo = new JLabel();
         Logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/lgo.jpg")));
-        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
 
      
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -87,18 +90,6 @@ public class OptionWindow extends JFrameFondo implements ActionListener // imple
         this.setVisible(true);
         Buttons.getBoton3().getOldWarriorButton().addActionListener(this);
         Buttons.getBoton2().getOldWarriorButton().addActionListener(this);
-//        while(true){
-//       		if(Buttons.getButtonP3()){
-//    			Buttons.setButtonP3(false);
-//       			this.dispose();
-//       			Language= languagePanel1.GetSelection();
-//    			new MainWindow(Language,soundPanel1.SoundOn());
-//    		}
-//       		else if(Buttons.getButtonP2()){
-//       			this.dispose();
-//      			new CreditsPanel(Language,Sound);
-//           }
-//    }
     }
 
 	@Override

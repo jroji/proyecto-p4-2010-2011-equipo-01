@@ -1,5 +1,6 @@
 package proyecto.p4.Ventana.JPanels;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -28,6 +29,7 @@ public class LanguagePanel extends JPanel {
     private void initComponents() {
     	
         LanguageText = new javax.swing.JLabel();
+        LanguageText.setForeground(java.awt.Color.yellow);
         Language = new javax.swing.JComboBox();
         Language.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Español", "English","French"}));
 
