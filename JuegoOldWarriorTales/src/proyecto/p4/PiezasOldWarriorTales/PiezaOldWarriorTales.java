@@ -6,10 +6,12 @@ import java.util.Random;
 import javax.swing.JOptionPane;
 
 
+import proyect.Reflectividad;
 import proyecto.p4.Mapa.Board;
 import proyecto.p4.Mapa.Casilla;
 import proyecto.p4.Piece.Piece;
 import proyecto.p4.PiezasOldWarriorTales.Habilidades.Hability;
+import proyecto.p4.TerrenosOldWarriorTales.Terrain;
 import proyecto.p4.piezaOldWarriorTales.Unidades.Arquero;
 import ConnectionInterface.PieceJDBC;
 import ConnectionInterface.storableInDataBase;
@@ -514,9 +516,46 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable{
 	
 	public ArrayList<storableInDataBase> takeOutFromDataBase() {
 		PieceJDBC p;
+		ArrayList<Object>instancias=Reflectividad.instanciarDireccion("Piezas");
+		ArrayList<PiezaOldWarriorTales>piezas= new ArrayList<PiezaOldWarriorTales>();
+		
+		for(Object o: instancias)
+		{
+			if(o instanceof PiezaOldWarriorTales)
+				piezas.add((PiezaOldWarriorTales) o);
+		}
 		try {
 			p = new PieceJDBC();
 			ArrayList<storableInDataBase> array= p.getAll("PiezaOldWarriorTales",this.getClass().getName());		
+			
+			for (storableInDataBase stor: array)
+			{
+				boolean encontrado=false;
+				int i =0;
+				do
+				{
+					if (((PiezaOldWarriorTales)stor).type.equals(piezas.get(i).type))
+					{
+						PiezaOldWarriorTales piezaNueva= piezas.get(i).getClass().newInstance();
+						piezaNueva.setCodePiece(((PiezaOldWarriorTales)stor).getCodePiece());
+						piezaNueva.setColor(((PiezaOldWarriorTales)stor).getColor());
+						piezaNueva.setPosition(((PiezaOldWarriorTales)stor).getPosition_x(), ((PiezaOldWarriorTales)stor).getPosition_y());
+						piezaNueva.setOrientation(((PiezaOldWarriorTales)stor).getOrientacion());
+						piezaNueva.setLife(((PiezaOldWarriorTales)stor).getLife());
+						piezaNueva.setLife(((PiezaOldWarriorTales)stor).getLife());
+						piezaNueva.setEnergy(((PiezaOldWarriorTales)stor).getEnergy());
+						piezaNueva.setExperience(((PiezaOldWarriorTales)stor).getExperience());
+						piezaNueva.setBlindness(((PiezaOldWarriorTales)stor).isBlind());
+						piezaNueva.setPoisson(((PiezaOldWarriorTales)stor).isPoissoned());
+						piezaNueva.setHasBeenMoved(((PiezaOldWarriorTales)stor).isHasBeenMoved());
+						piezaNueva.setHasAttacked(((PiezaOldWarriorTales)stor).isHasAttacked());
+						piezaNueva.setNombreJuego(((PiezaOldWarriorTales)stor).getNombreJuego());
+						stor=piezaNueva;
+						
+					}
+					i++;
+				}while (encontrado==false && i<piezas.size());
+			}
 			
 			return array;
 		} catch (ClassNotFoundException e) {
