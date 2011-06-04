@@ -5,9 +5,10 @@ import javax.swing.JFrame;
 import Languages.MyResources_En;
 import Languages.MyResources_Es;
 
+import proyecto.p4.Ventana.JFrames.JFrameFondo;
 import proyecto.p4.piezaOldWarriorTales.Unidades.Killer;
 
-public class NewPlayerWindow extends JFrame{
+public class NewPlayerWindow extends JFrameFondo{
 	
 	/**
 	 * 
@@ -17,15 +18,10 @@ public class NewPlayerWindow extends JFrame{
 	public NewPlayerWindow(){
 		this.setSize(400,400);
 		PlayerCreationPanel x = new PlayerCreationPanel(new MyResources_En());
+		x.setOpaque(false);
 		this.add(x);
 		this.setVisible(true);
-		
-		  while(true){
-          	if(x.getAcceptButton().isPulsed()){
-          		x.getAcceptButton().setBP(false);
-          		this.dispose();
-          	}
-          }
+		setImagen("/img/madera.jpg");
 
 	}
 	
