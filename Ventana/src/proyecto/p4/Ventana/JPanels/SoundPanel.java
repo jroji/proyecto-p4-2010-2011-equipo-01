@@ -29,8 +29,11 @@
     	
         buttonGroup1 = new javax.swing.ButtonGroup();
         SoundLabel = new javax.swing.JLabel();
+        SoundLabel.setOpaque(false);
         YesButton = new javax.swing.JRadioButton();
+        YesButton.setOpaque(false);
         NoButton = new javax.swing.JRadioButton();
+        NoButton.setOpaque(false);
 
         SoundLabel.setText(Language.getString("label_sound") + ":");
 

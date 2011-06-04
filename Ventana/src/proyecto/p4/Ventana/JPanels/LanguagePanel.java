@@ -29,8 +29,6 @@ public class LanguagePanel extends JPanel {
     	
         LanguageText = new javax.swing.JLabel();
         Language = new javax.swing.JComboBox();
-        LanguageText.setText("Idioma:");
-
         Language.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Español", "English","French"}));
 
        	LanguageText.setText(selectedLanguage.getString("label_language") + ":");
