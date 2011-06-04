@@ -6,7 +6,7 @@ public class Board
 {
 	
 	private Casilla[][] map;
-	
+	private String BoardName;
 	public Board (){
 		map= new Casilla[14][13];
 		for(int i = 0;i<map.length;i++)
@@ -30,5 +30,21 @@ public class Board
 		return map[x][y];
 	}
 
+	public Casilla[][] getMap() {
+		return map;
+	}
+
+	public void setMap(Casilla[][] map) {
+		this.map = map;
+	}
+
+	public String getBoardName() {
+		return BoardName;
+	}
+
+	public void setBoardName(String boardName) {
+		BoardName = boardName;
+	}
+	
 	
 }
