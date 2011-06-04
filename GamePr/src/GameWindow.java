@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -27,6 +28,7 @@ import proyecto.p4.piezaOldWarriorTales.Unidades.Arquero;
 import proyecto.p4.piezaOldWarriorTales.Unidades.Barbarian;
 import proyecto.p4.piezaOldWarriorTales.Unidades.Killer;
 import proyecto.p4.piezaOldWarriorTales.Unidades.Magician;
+import proyecto.p4.piezaOldWarriorTales.Unidades.knight;
 
 /**
  * Clase que crea y gestiona la ventana en la que se realizan las acciones principales
@@ -54,11 +56,15 @@ public class GameWindow extends JFrame implements MouseListener, ListSelectionLi
 	JLabel MoveButton = new JLabel(new ImageIcon(getClass().getResource("/img/botonmover.png")));
 	JList units;
 	Board map;
+	Jugador jug1;
+	Jugador jug2;
 	
 	
 	public GameWindow(Jugador jug1, Jugador jug2, Board mapa)
 //	public GameWindow()
 	{
+		this.jug1=jug1;
+		this.jug2=jug2;
 		map = mapa;
 		inicializarPiezasJugador(piezasJugador1, piezasJugador2, mapa);
 		this.setSize(1225,720);
@@ -178,23 +184,32 @@ public class GameWindow extends JFrame implements MouseListener, ListSelectionLi
 		arq2.setPosition(10, 10);
 		arq2.setColor(Colours.blanco);
 		arq2.setLife(77);
-//
-//		Magician mag = new Magician();
-//		mag.setPosition(10, 5);
-//		mag.setColor(Colours.blanco);
-//
-//		Killer kill = new Killer();
-//		kill.setPosition(10, 5);
-//		kill.setColor(Colours.blanco);
-//		
+
+		Magician mag = new Magician();
+		mag.setPosition(11,12);
+		mag.setColor(Colours.blanco);
+		mag.setBoard(z);
+		z.getBoard()[11][12].setPiece(mag);
+
+		knight kill = new knight();
+		kill.setBoard(z);
+		kill.setPosition(2,2);
+		kill.setColor(Colours.negro);
+		z.getBoard()[2][2].setPiece(kill);
+		
 		Barbarian bar = new Barbarian();
 		bar.setBoard(z);
 		bar.setColor(Colours.negro);
 		bar.setPosition(5, 5);
+		
 		z.getBoard()[5][5].setPiece(bar);
 		z.getBoard()[10][10].setPiece(arq2);
 		z.getBoard()[10][5].setPiece(arq);
-		new GameWindow(new Jugador(), new Jugador(), z);
+		Jugador j1 = new Jugador();
+		Jugador j2 = new Jugador();
+		j1.setNick("Pello");
+		j2.setNick("Julen");
+		new GameWindow(j1,j2, z);
 	}
 
 	@Override
@@ -254,7 +269,9 @@ public class GameWindow extends JFrame implements MouseListener, ListSelectionLi
 		}
 		}
 		if(x==TurnButton){
+			((JLabel) x).setIcon(new ImageIcon(getClass().getResource("/img/botonturnopulsado.jpg")));
 			if(gamePanel.getMapPanel().getTurno()==0){
+				JOptionPane.showMessageDialog(this, "Turno de "+jug2.getNick());
 				for(int i = 0; i < piezasJugador2.size();i++){
 					piezasJugador2.get(i).finalizarTurno();
 				}
@@ -262,6 +279,7 @@ public class GameWindow extends JFrame implements MouseListener, ListSelectionLi
 				units.setListData(piezasJugador2.toArray());
 			}
 			else{
+				JOptionPane.showMessageDialog(this, "Turno de "+jug1.getNick());
 				for(int i = 0; i < piezasJugador1.size();i++){
 					piezasJugador1.get(i).finalizarTurno();}
 				gamePanel.getMapPanel().setTurno(0);
@@ -269,7 +287,7 @@ public class GameWindow extends JFrame implements MouseListener, ListSelectionLi
 			}
 			gamePanel.getMapPanel().getFlecha().setVisible(false);
 			gamePanel.getMapPanel().recargarMapa();
-			((JLabel) x).setIcon(new ImageIcon(getClass().getResource("/img/botonturnopulsado.jpg")));
+			((JLabel) x).setIcon(new ImageIcon(getClass().getResource("/img/botonturno.jpg")));
 		}
 		}
 
