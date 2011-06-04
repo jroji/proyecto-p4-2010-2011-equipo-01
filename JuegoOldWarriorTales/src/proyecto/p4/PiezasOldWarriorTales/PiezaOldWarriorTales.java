@@ -303,11 +303,13 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable{
  	 */
  	private void updateProbability(){
  		Casilla casilla= board.getCasilla(getPosition_x(), getPosition_y());
- 		if (casilla.getSquare().getClass().getName()=="TerrainGrass"){
-			probability-=20;
-		}else if (casilla.getSquare().getClass().getName()=="TerrainWater"){
+ 		if (casilla.getSquare().getClass().getName()=="Castle"){
 			probability=100;
-		}	
+		}else if (casilla.getSquare().getClass().getName()=="TerrainWater"){
+			probability-=10;
+		}else if(casilla.getSquare().getClass().getName()=="Stones"){
+			probability-=20;
+		}
  	}
 	
 	/** Metodo del interfaz Mooveable:
