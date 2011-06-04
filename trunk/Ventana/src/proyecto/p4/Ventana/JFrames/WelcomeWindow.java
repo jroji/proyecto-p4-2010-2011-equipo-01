@@ -105,7 +105,6 @@ public class WelcomeWindow extends JFrame implements ActionListener,KeyListener{
 				selectedGame.setJugador2(j2);
 				selectedGame.throwWindow(language,sound);
 				this.dispose();
-				System.out.println("fuera");
 			}else if(!enc1 && !enc2){
 				JOptionPane.showMessageDialog(this,language.getString("noPlayer12"),"",JOptionPane.ERROR_MESSAGE);
 			}else if(!enc1){
@@ -122,6 +121,7 @@ public class WelcomeWindow extends JFrame implements ActionListener,KeyListener{
 			}else{
 				if(e.getSource()==((OldWarriorButton) botonera.getComponent(2)).getOldWarriorButton()) {
 					botonera.setButtonP3(false);
+					
 					new NewPlayerWindow(language,sound);
 				}
 			}

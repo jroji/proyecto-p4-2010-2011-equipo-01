@@ -13,7 +13,10 @@ import java.util.ResourceBundle;
  import javax.swing.*;
 
 
+import proyect.Reflectividad;
 import proyecto.p4.Juego.*;
+import proyecto.p4.JuegoOldWarriorTales.JuegoOldWarriorTales;
+import proyecto.p4.Mapa.Board;
 import proyecto.p4.Ventana.Button.BotoneraH;
 import proyecto.p4.Ventana.Button.OldWarriorButton;
 import proyecto.p4.Ventana.JPanels.AvatarPanel;
@@ -31,11 +34,14 @@ public class MapGoldSelectionWindows extends JFrameFondo implements ActionListen
     private ResourceBundle Language;
     private boolean Sound;
     private Juego J;
+    private ArrayList<Board> boardArray;
+    private JuegoOldWarriorTales juego;
     
     public MapGoldSelectionWindows(ResourceBundle language,boolean sound,Juego j) {
     	J = j;
     	Sound = sound;
     	Language = language;
+    	juego=new JuegoOldWarriorTales();
         initComponents();
         this.setVisible(true);
     }
@@ -44,6 +50,7 @@ public class MapGoldSelectionWindows extends JFrameFondo implements ActionListen
 
         mapList = new javax.swing.JScrollPane();
         MapList = new javax.swing.JList();
+        cargarMapas();
         Botonera = new BotoneraH(Language.getString("label_back"),"",Language.getString("label_accept"));
         GoldSelection = new GoldSelectionPanel(Language);
         AvatarPanel = new AvatarPanel(J);
@@ -108,6 +115,7 @@ public class MapGoldSelectionWindows extends JFrameFondo implements ActionListen
 			this.dispose();
 			ArrayList<Object> Jugador1 = new ArrayList<Object>();
 			ArrayList<Object> Jugador2 = new ArrayList<Object>();
+			juego.setTablero(boardArray.get(MapList.getSelectedIndex()));
 			new SelectArmy(Language,Sound,J,Jugador1,Jugador2,true,GoldSelection.getText());
 
 		}else if(e.getSource()==GoldSelection.getAdd()){
@@ -120,6 +128,21 @@ public class MapGoldSelectionWindows extends JFrameFondo implements ActionListen
 			}
 		}
 		
+	}
+	private void cargarMapas()
+	{
+		ArrayList<Object> array=Reflectividad.instanciarDireccion("Mapas");
+		ArrayList<String> nameArray=new ArrayList<String>();
+		boardArray= new ArrayList<Board>();
+		for(Object o: array)
+		{
+			if (o instanceof Board)
+			{
+				nameArray.add(((Board) o).getBoardName());
+				boardArray.add((Board) o);
+			}
+		}
+		MapList.setListData(nameArray.toArray());
 	}
 
 }
