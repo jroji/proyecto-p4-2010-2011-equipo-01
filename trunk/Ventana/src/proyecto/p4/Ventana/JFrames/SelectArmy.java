@@ -5,7 +5,11 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
+import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -41,9 +45,12 @@ public class SelectArmy extends JFrame implements ActionListener{
      private DefaultTableModel modelo;
      private boolean sound;
      private int gold;
+     private JLabel fondo;
+     private JPanel Ventana;
 	
 	public SelectArmy(ResourceBundle Language,boolean Sound,Juego j,ArrayList<Object> j1,ArrayList<Object> j2,boolean j1Selected,int gold)
 	{
+		fondo = new JLabel(new ImageIcon(getClass().getResource("/img/madera.jpg")));
 		language = Language;
 		this.gold=gold;
 		jugador1 = j1;
@@ -56,17 +63,24 @@ public class SelectArmy extends JFrame implements ActionListener{
 		modelo.setColumnIdentifiers(l);
 		table= new JTable(modelo);
 		J=j;
-		//x.addMouseListener(this);
-		this.setSize(1024,720);
+		
+		JLayeredPane layer = new JLayeredPane();
 		this.setLayout(null);
+		this.add(layer);
+		//x.addMouseListener(this);
+		Ventana.setSize(1024,720);
+		Ventana.setLayout(null);
 		x = new ListAndImage(Language);
-		this.add(x);
-		this.add(table);
+		Ventana.add(x);
+		Ventana.add(table);
 		((OldWarriorButton)x.getButtons().getComponent(0)).getOldWarriorButton().addActionListener(this);
 		((OldWarriorButton)x.getButtons().getComponent(2)).getOldWarriorButton().addActionListener(this);	  
 		table.setBounds(280, 320, 650,300 );
 		x.setBounds(0, 0, 280, 720);
-		this.setVisible(true);
+		Ventana.setVisible(true);
+		layer.setBounds(0, 0, 1024, 728);
+		layer.add(fondo, new Integer (0));
+		layer.add(Ventana, new Integer (1));
 	}
 	
 	@Override
