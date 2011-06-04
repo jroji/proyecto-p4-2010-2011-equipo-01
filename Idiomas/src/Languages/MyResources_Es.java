@@ -5,7 +5,7 @@ import java.util.ListResourceBundle;
 public class MyResources_Es extends ListResourceBundle{
 
 	static final Object [][] contents={{"label_accept","Aceptar"},{"label_exit","Salir"},{"label_newGame","Nueva Partida"},
-			{"label_options","Opciones"},{"label_quickGame","Partida R�pida"},{"label_customGame","P. Personalizada"},
+			{"label_options","Opciones"},{"label_quickGame","Partida Rapida"},{"label_customGame","P. Personalizada"},
 			{"label_newPlayer","Nuevo jugador"},{"label_tutorial","Tutorial"},{"label_gold","Oro"},{"label_units","Unidades"},
 			{"label_credits","Creditos"},{"label_mapEditor","Editor de mapas"},{"label_reclute","Reclutar"},{"label_language","Idioma"},
 			{"label_sound","Sonido"},{"label_attack","Attack"},{"label_defense","Defense"},{"label_movement","Movement"},
