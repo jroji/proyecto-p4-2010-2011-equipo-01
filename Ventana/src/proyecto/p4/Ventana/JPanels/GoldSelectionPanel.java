@@ -20,7 +20,6 @@ public class GoldSelectionPanel extends JPanel {
 	gold.setForeground(java.awt.Color.yellow);
 	goldSelection = new JTextField(10);
 	goldSelection.setText("3000");
-	goldSelection.setOpaque(false);
 	add = new JButton("+");
 	add.setOpaque(false);
 	minus = new JButton("-");
