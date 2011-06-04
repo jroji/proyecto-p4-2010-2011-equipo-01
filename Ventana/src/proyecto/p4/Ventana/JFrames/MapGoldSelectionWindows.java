@@ -20,7 +20,7 @@ import proyecto.p4.Ventana.JPanels.AvatarPanel;
 import proyecto.p4.Ventana.JPanels.GoldSelectionPanel;
  
  
-public class MapGoldSelectionWindows extends javax.swing.JFrame implements ActionListener{
+public class MapGoldSelectionWindows extends JFrameFondo implements ActionListener{
 
 	private AvatarPanel AvatarPanel;
     private BotoneraH Botonera;
@@ -43,16 +43,12 @@ public class MapGoldSelectionWindows extends javax.swing.JFrame implements Actio
 
     private void initComponents() {
 
-    	fondo = new JLabel(new ImageIcon(getClass().getResource("/img/madera.jpg")));
         mapList = new javax.swing.JScrollPane();
         MapList = new javax.swing.JList();
         Botonera = new BotoneraH(Language.getString("label_back"),"",Language.getString("label_accept"));
         GoldSelection = new GoldSelectionPanel(Language);
         AvatarPanel = new AvatarPanel(J);
         AvatarPanel.setVisible(true);
-        JLayeredPane layer = new JLayeredPane();
-		this.setLayout(null);
-		this.add(layer);
 
         ((OldWarriorButton)Botonera.getComponent(0)).getOldWarriorButton().addActionListener(this);
 		((OldWarriorButton)Botonera.getComponent(2)).getOldWarriorButton().addActionListener(this);
@@ -98,11 +94,7 @@ public class MapGoldSelectionWindows extends javax.swing.JFrame implements Actio
             .addContainerGap())
         );
 
-        JPanel j = new JPanel(layout);
-        
-        layer.setBounds(0, 0, 1024, 728);
-		layer.add(fondo, new Integer (0));
-		layer.add(j, new Integer (1));
+        setImagen("/img/madera.jpg");
         pack();
     }
 
