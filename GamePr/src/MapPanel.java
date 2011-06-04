@@ -30,7 +30,8 @@ public class MapPanel extends JPanel implements MouseListener{
 	JLabel suelo  = new JLabel(new ImageIcon(getClass().getResource("/img/suelo.png")));
 	ImageIcon selected = new ImageIcon(getClass().getResource("/img/SELECCION.png"));
 	ImageIcon atacable = new ImageIcon(getClass().getResource("/img/atacable.png"));
-	//	ImageIcon circrojo = new ImageIcon(getClass().getResource("/img/marcaroja.png"));
+	ImageIcon circazul = new ImageIcon(getClass().getResource("/img/marcaazul.png"));
+	ImageIcon circrojo = new ImageIcon(getClass().getResource("/img/marcaroja.png"));
 	JLabel flecha = new JLabel(new ImageIcon(getClass().getResource("/img/flechaSeleccionado.gif")));
 	PiezaOldWarriorTales unidad;
 	PiezaOldWarriorTales unidadEnemiga;
@@ -52,8 +53,9 @@ public class MapPanel extends JPanel implements MouseListener{
 	ArrayList<PiezaOldWarriorTales> piezasJugador2;
 	ArrayList<JLabel> unitsimg01 = new ArrayList<JLabel>();
 	ArrayList<JLabel> unitsimg02 = new ArrayList<JLabel>();
-	int SelectedX;
-	int SelectedY;
+	ArrayList<JLabel> redunits = new ArrayList<JLabel>();
+	ArrayList<JLabel> blueunits = new ArrayList<JLabel>();
+	
 	JLabel viejo = new JLabel(img);
 	JLabel[][] mapa = new JLabel[14][13];
 	JLayeredPane layer = new JLayeredPane();
@@ -188,6 +190,9 @@ public class MapPanel extends JPanel implements MouseListener{
 			layer.add(labels.get(i), new Integer(layer.getLayer(this.mapa[x][y])+2));
 			labels.get(i).addMouseListener(this);
 			labels.get(i).setBounds(this.mapa[x][y].getLocation().x+10, mapa[x][y].getLocation().y-55, 70, 125);
+			redunits.add(new JLabel(circrojo));
+			layer.add(redunits.get(i), new Integer(layer.getLayer(this.mapa[x][y])+2));
+			redunits.get(i).setBounds(labels.get(i).getLocation().x,labels.get(i).getLocation().y+60,80,50);
 		}
 		for(int i = 0;i<unidadesjug2.size();i++){
 			labels2.add(new JLabel(unidadesjug2.get(i).getImagen()));
@@ -196,6 +201,9 @@ public class MapPanel extends JPanel implements MouseListener{
 			layer.add(labels2.get(i), new Integer(layer.getLayer(this.mapa[x][y])+2));
 			labels2.get(i).addMouseListener(this);
 			labels2.get(i).setBounds(this.mapa[x][y].getLocation().x+10, mapa[x][y].getLocation().y-55, 70, 125);
+			blueunits.add(new JLabel(circazul));
+			layer.add(blueunits.get(i), new Integer(layer.getLayer(this.mapa[x][y])+2));
+			blueunits.get(i).setBounds(labels2.get(i).getLocation().x,labels2.get(i).getLocation().y+60,80,50);
 		}
 	}
 	/**Coloca los JLabel del array en el layerpane  
@@ -222,9 +230,16 @@ public class MapPanel extends JPanel implements MouseListener{
 			i++;
 		}
 		if(!enc){
-			return false;}
-		else
-			return true;
+			i=0;
+			while(i<unitsimg02.size()&&!enc){
+				if(unitsimg02.get(i).equals(x))
+					enc = true;
+				i++;
+			}
+			if(!enc)
+				return false;
+			}
+		return true;
 	}
 	
 	@Override
@@ -266,6 +281,9 @@ public class MapPanel extends JPanel implements MouseListener{
 								unitsimg01.get(z).setBounds(this.mapa[i][j].getLocation().x+10,this.mapa[i][j].getLocation().y-50,80,90);
 								layer.setLayer(unitsimg01.get(z), layer.getLayer(x)+2);
 								flecha.setBounds(unitsimg01.get(z).getX()+15,unitsimg01.get(z).getY()-35,36,57);
+								redunits.get(z).setBounds(unitsimg01.get(z).getLocation().x,unitsimg01.get(z).getLocation().y+60,80,50);
+								layer.setLayer(redunits.get(z), layer.getLayer(x)+2);
+
 								seleccionado=false;
 								mover = false;
 								this.repaint();
@@ -289,6 +307,8 @@ public class MapPanel extends JPanel implements MouseListener{
 									unitsimg02.get(z).setBounds(this.mapa[i][j].getLocation().x+10,this.mapa[i][j].getLocation().y-50,80,90);
 									layer.setLayer(unitsimg02.get(z), layer.getLayer(x)+2);
 									flecha.setBounds(unitsimg02.get(z).getX()+15,unitsimg02.get(z).getY()-35,36,57);
+									blueunits.get(z).setBounds(unitsimg02.get(z).getLocation().x,unitsimg02.get(z).getLocation().y+60,80,50);
+									layer.setLayer(blueunits.get(z), layer.getLayer(x)+2);
 									seleccionado=false;
 									mover = false;
 									this.repaint();
@@ -331,10 +351,10 @@ public class MapPanel extends JPanel implements MouseListener{
 										selectedUnit=null;
 										unitsimg02.get(i).setVisible(false);
 										unitsimg02.remove(indice);
+										blueunits.remove(indice);
 										piezasJugador2.remove(indice);
 										tab.getBoard()[unidadEnemiga.getPosition_x()][unidadEnemiga.getPosition_y()].setPiece(null);
 										unidadEnemiga = null;
-										gameWindow.units.setListData(piezasJugador2.toArray());
 									}
 							} catch (Exception e) {
 								// TODO Auto-generated catch block
@@ -370,10 +390,11 @@ public class MapPanel extends JPanel implements MouseListener{
 											selectedUnit=null;
 											unitsimg01.get(i).setVisible(false);
 											unitsimg01.remove(indice);
+											redunits.get(i).setVisible(false);
+											redunits.remove(indice);
 											piezasJugador1.remove(indice);
 											tab.getBoard()[unidadEnemiga.getPosition_x()][unidadEnemiga.getPosition_y()].setPiece(null);
 											unidadEnemiga = null;
-											gameWindow.units.setListData(piezasJugador1.toArray());
 										}
 								} catch (Exception e) {
 									// TODO Auto-generated catch block
@@ -425,7 +446,7 @@ public class MapPanel extends JPanel implements MouseListener{
 								en = true;
 								flecha.setVisible(true);
 								flecha.setBounds(unitsimg02.get(i).getX()+10,unitsimg02.get(i).getY()-20,36,57);
-								unidad = piezasJugador1.get(i);
+								unidad = piezasJugador2.get(i);
 								gameWindow.getHabilitiesButtons().update(unidad);
 								gameWindow.getUnitData().update(unidad);
 						}

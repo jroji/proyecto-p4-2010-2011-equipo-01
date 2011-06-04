@@ -254,14 +254,16 @@ public class GameWindow extends JFrame implements MouseListener, ListSelectionLi
 		}
 		}
 		if(x==TurnButton){
-			for(int i = 0; i < piezasJugador1.size();i++){
-				piezasJugador1.get(i).finalizarTurno();
-			}
 			if(gamePanel.getMapPanel().getTurno()==0){
+				for(int i = 0; i < piezasJugador2.size();i++){
+					piezasJugador2.get(i).finalizarTurno();
+				}
 				gamePanel.getMapPanel().setTurno(1);
 				units.setListData(piezasJugador2.toArray());
 			}
 			else{
+				for(int i = 0; i < piezasJugador1.size();i++){
+					piezasJugador1.get(i).finalizarTurno();}
 				gamePanel.getMapPanel().setTurno(0);
 				units.setListData(piezasJugador1.toArray());
 			}
@@ -289,12 +291,12 @@ public class GameWindow extends JFrame implements MouseListener, ListSelectionLi
 		// TODO Auto-generated method stub
 		gamePanel.getMapPanel().recargarMapa();
 		if(gamePanel.getMapPanel().getTurno()==0){
-		gamePanel.getMapPanel().setUnidad(piezasJugador1.get(units.getSelectedIndex()));
-		gamePanel.getMapPanel().setSelectedUnit(gamePanel.getMapPanel().getUnitsimg01().get(units.getSelectedIndex()));
-		gamePanel.getMapPanel().getFlecha().setBounds(gamePanel.getMapPanel().getUnitsimg01().get(units.getSelectedIndex()).getX()+15, gamePanel.getMapPanel().getUnitsimg01().get(units.getSelectedIndex()).getY()-25, 36, 57);
+			gamePanel.getMapPanel().setUnidad(piezasJugador1.get(units.getSelectedIndex()));
+			gamePanel.getMapPanel().setSelectedUnit(gamePanel.getMapPanel().getUnitsimg01().get(units.getSelectedIndex()));
+			gamePanel.getMapPanel().getFlecha().setBounds(gamePanel.getMapPanel().getUnitsimg01().get(units.getSelectedIndex()).getX()+15, gamePanel.getMapPanel().getUnitsimg01().get(units.getSelectedIndex()).getY()-25, 36, 57);
 		}
 		else{
-			gamePanel.getMapPanel().setUnidad(piezasJugador1.get(units.getSelectedIndex()));
+			gamePanel.getMapPanel().setUnidad(piezasJugador2.get(units.getSelectedIndex()));
 			gamePanel.getMapPanel().setSelectedUnit(gamePanel.getMapPanel().getUnitsimg02().get(units.getSelectedIndex()));
 			gamePanel.getMapPanel().getFlecha().setBounds(gamePanel.getMapPanel().getUnitsimg02().get(units.getSelectedIndex()).getX()+15, gamePanel.getMapPanel().getUnitsimg02().get(units.getSelectedIndex()).getY()-25, 36, 57);
 		}
