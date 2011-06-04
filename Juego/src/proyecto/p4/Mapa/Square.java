@@ -6,6 +6,10 @@ public abstract class Square {
 	protected String image; //Contiene la imagen del terreno
 	protected String terrain; // Contiene el nombre del terreno
 	
+	public void setTerrain(String terrain) {
+		this.terrain = terrain;
+	}
+
 	public Square (){
 		iniName();
 		iniImage();
