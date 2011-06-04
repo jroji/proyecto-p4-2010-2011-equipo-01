@@ -5,6 +5,7 @@ package proyecto.p4.Mapa;
 import javax.swing.JOptionPane;
 
 import proyecto.p4.Piece.Piece;
+
 import proyecto.p4.Tipo.OldWarriorTales.*;
 
 import java.io.BufferedReader;
@@ -34,6 +35,9 @@ public class Casilla implements storableInDataBase{
 	private Piece piece;
 	private String nombreJuego;
 	
+	/**
+	 * Constructor por defecto
+	 */
 	public  Casilla (){
 		square=null;
 		PosX=0;
@@ -43,7 +47,13 @@ public class Casilla implements storableInDataBase{
 		
 	}
 	
-
+	/**
+	 * Constructor con parámetros
+	 * @param sq inicializa el atributo square con sq
+	 * @param X inicializa PosX con X
+	 * @param Y inicializa PosY con Y
+	 * @param pie inicializa el atributo piece con pie
+	 */
 	public  Casilla (Square sq, int X, int Y, Piece pie){
 		square= sq;
 		PosX=X;
@@ -94,18 +104,27 @@ public class Casilla implements storableInDataBase{
 		PosY = posY;
 	}
 	
+	/** Método que decide que atributos se guardarán en la base de datos.
+	 *  @throws SecurityException indica una violación de la seguridad.
+	 * @throws NoSuchFielException indica que la clase no tiene el atributo con el nombre especificado.
+	 * @return array es un ArrayList que contiene aquellos atributos que se guardarán en la base de datos.
+	 */ 
+	 
 	public ArrayList <Field> fieldsToStore() throws SecurityException, NoSuchFieldException{
 		ArrayList<Field> array= new ArrayList<Field>();
 		array.add(this.getClass().getDeclaredField("PosX"));
 		array.add(this.getClass().getDeclaredField("PosY"));
 		array.add(this.square.getClass().getSuperclass().getSuperclass().getDeclaredField("terrain"));
 		array.add(this.getClass().getDeclaredField("nombreJuego"));
-//		Field [] fields=this.square.getClass().getSuperclass().getSuperclass().getDeclaredFields();
-//		array.add(fields[1]);
+
 
 	return array;
 	}
 
+	/**
+	 * Método que se encarga de borrar de la base de datos la casilla seleccionada.
+	 * @return valueToReturn que devuelve el número de casillas borradas.
+	 */
 	@SuppressWarnings("finally")
 	@Override
 	public int deleteFromDataBase() {
@@ -138,6 +157,10 @@ public class Casilla implements storableInDataBase{
 		
 	}
 
+	/**
+	 * Método que se encarga de insertar una casilla en la base de datos.
+	 * @return devuelve un entero que indica el número de casillas insertadas.
+	 */
 	@Override
 	public int insertIntoDataBase() {
 		PieceJDBC p;
@@ -148,9 +171,10 @@ public class Casilla implements storableInDataBase{
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		} catch (SQLException e) {
+			//si la casilla ya existe se puede sobrescribir
 			Object [] option ={"SI","NO"};
 			int pane=JOptionPane.showOptionDialog(null,
-				    "¿Desea sobreescribir? ","Sobreescribir",JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE,null,option,option[0]);
+				    "¿Desea sobrescribir? ","Sobrescribir",JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE,null,option,option[0]);
 			
 			if(pane==0){
 				deleteFromDataBase();
@@ -168,7 +192,11 @@ public class Casilla implements storableInDataBase{
 		return 1;
 		}
 		
-	
+	/**
+	 * Método que se encarga de introducir en un array el contenido de la tabla casilla.
+	 * @return array que contiene la información de la tabla casilla.
+	 * 
+	 */
 	@Override
 	public ArrayList<storableInDataBase> takeOutFromDataBase() {
 		PieceJDBC p;
@@ -192,9 +220,12 @@ public class Casilla implements storableInDataBase{
 		c.setSquare(t);
 		c.setPosX(5);
 		c.setPosY(18);
+
 		c.setCodeCasilla(13);
 		c.deleteFromDataBase();
+
 		c.insertIntoDataBase();
+
 		ArrayList<storableInDataBase> a=c.takeOutFromDataBase();
 		for (storableInDataBase s: a)
 		{
