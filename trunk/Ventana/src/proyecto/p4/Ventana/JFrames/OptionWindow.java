@@ -15,7 +15,7 @@ import proyecto.p4.Ventana.JPanels.SoundPanel;
 import javax.swing.*;
 
 
-public class OptionWindow extends javax.swing.JFrame implements ActionListener // implements MouseListener 
+public class OptionWindow extends JFrameFondo implements ActionListener // implements MouseListener 
 {
 
 	private static final long serialVersionUID = 217355762236510969L;
@@ -83,6 +83,7 @@ public class OptionWindow extends javax.swing.JFrame implements ActionListener /
         );
 
         pack();
+        setImagen("img/madera.jpg");
         this.setVisible(true);
         Buttons.getBoton3().getOldWarriorButton().addActionListener(this);
         Buttons.getBoton2().getOldWarriorButton().addActionListener(this);
