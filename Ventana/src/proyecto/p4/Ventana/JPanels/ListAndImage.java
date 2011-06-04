@@ -48,6 +48,7 @@ public class ListAndImage extends javax.swing.JPanel{
         ImagePanel = new JPanel();
         scrollPane = new JScrollPane();
         UnitList = new JList();
+        instancias= new ArrayList<PiezaOldWarriorTales>();
         oldWarriorButton1 = new BotoneraH(Language.getString("label_reclute"),"",Language.getString("label_accept"));  
         //oldWarriorButton1.getOldWarriorButton().addActionListener(this);
         //oldWarriorButton1 = new OldWarriorButton("H");
@@ -124,7 +125,7 @@ public class ListAndImage extends javax.swing.JPanel{
       	
       	ArrayList<Object> nombres= new ArrayList<Object>(); 
       	nombres=Reflectividad.instanciarDireccion("UnitsFile");
-      	for (Object o:instancias){
+      	for (Object o:nombres){
       		if (o instanceof PiezaOldWarriorTales){
       			instancias.add((PiezaOldWarriorTales) o);
       			UnitList.add(o.getClass().getName(), new JLabel (o.toString()));
