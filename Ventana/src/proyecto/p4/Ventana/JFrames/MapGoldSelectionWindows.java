@@ -50,8 +50,8 @@ public class MapGoldSelectionWindows extends javax.swing.JFrame implements Actio
         ((OldWarriorButton)Botonera.getComponent(0)).getOldWarriorButton().addActionListener(this);
 		((OldWarriorButton)Botonera.getComponent(2)).getOldWarriorButton().addActionListener(this);
 
-		GoldSelection.getAdd().getOldWarriorButton().addActionListener(this);
-		GoldSelection.getMinus().getOldWarriorButton().addActionListener(this);
+		GoldSelection.getAdd().addActionListener(this);
+		GoldSelection.getMinus().addActionListener(this);
 		
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -106,11 +106,11 @@ public class MapGoldSelectionWindows extends javax.swing.JFrame implements Actio
 			ArrayList<Object> Jugador2 = new ArrayList<Object>();
 			new SelectArmy(Language,Sound,J,Jugador1,Jugador2,true,GoldSelection.getText());
 
-		}else if(e.getSource()==GoldSelection.getAdd().getOldWarriorButton()){
+		}else if(e.getSource()==GoldSelection.getAdd()){
 			if(GoldSelection.getText()+1000<=5000){
 				GoldSelection.setText(Integer.toString(GoldSelection.getText()+1000));
 			}
-		}else if(e.getSource()==GoldSelection.getMinus().getOldWarriorButton()){
+		}else if(e.getSource()==GoldSelection.getMinus()){
 			if(GoldSelection.getText()-1000>=1000){
 				GoldSelection.setText(Integer.toString(GoldSelection.getText()-1000));
 			}
