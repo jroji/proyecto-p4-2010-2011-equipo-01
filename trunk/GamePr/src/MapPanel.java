@@ -17,6 +17,7 @@ import proyecto.p4.Mapa.Casilla;
 import proyecto.p4.Mapa.Board;
 import proyecto.p4.Piece.Piece;
 import proyecto.p4.PiezasOldWarriorTales.PiezaOldWarriorTales;
+import proyecto.p4.Ventana.JFrames.MainWindow;
 
 
 /**
@@ -29,6 +30,7 @@ public class MapPanel extends JPanel implements MouseListener{
 //	ImageIcon piedra = new ImageIcon(getClass().getResource("/img/piedra.png"));
 	JLabel suelo  = new JLabel(new ImageIcon(getClass().getResource("/img/suelo.png")));
 	ImageIcon selected = new ImageIcon(getClass().getResource("/img/SELECCION.png"));
+	ImageIcon selecteds = new ImageIcon(getClass().getResource("/img/SELECCIONs.png"));
 	ImageIcon atacable = new ImageIcon(getClass().getResource("/img/atacable.png"));
 	ImageIcon circazul = new ImageIcon(getClass().getResource("/img/marcaazul.png"));
 	ImageIcon circrojo = new ImageIcon(getClass().getResource("/img/marcaroja.png"));
@@ -85,12 +87,12 @@ public class MapPanel extends JPanel implements MouseListener{
 	}
 
 	
-	public ImageIcon getSelected() {
-		return selected;
+	public ImageIcon getSelecteds() {
+		return selecteds;
 	}
 
-	public void setSelected(ImageIcon selected) {
-		this.selected = selected;
+	public void setSelecteds(ImageIcon selected) {
+		this.selecteds = selected;
 	}
 
 	public JLabel getSelectedUnit() {
@@ -283,18 +285,18 @@ public class MapPanel extends JPanel implements MouseListener{
 								flecha.setBounds(unitsimg01.get(z).getX()+15,unitsimg01.get(z).getY()-35,36,57);
 								redunits.get(z).setBounds(unitsimg01.get(z).getLocation().x,unitsimg01.get(z).getLocation().y+60,80,50);
 								layer.setLayer(redunits.get(z), layer.getLayer(x)+2);
-
-								seleccionado=false;
-								mover = false;
-								this.repaint();
-								enc =true;
-								flecha.setVisible(false);
 							} catch (Exception e) {
 								// TODO Auto-generated catch block
 								JOptionPane.showMessageDialog(this, e.getMessage());
 								seleccionado = false;
 							}
-							recargarMapa();
+							finally{
+								seleccionado=false;
+								mover = false;
+								enc =true;
+								flecha.setVisible(false);
+								recargarMapa();
+							}
 						}
 							z++;
 					}			
@@ -309,18 +311,17 @@ public class MapPanel extends JPanel implements MouseListener{
 									flecha.setBounds(unitsimg02.get(z).getX()+15,unitsimg02.get(z).getY()-35,36,57);
 									blueunits.get(z).setBounds(unitsimg02.get(z).getLocation().x,unitsimg02.get(z).getLocation().y+60,80,50);
 									layer.setLayer(blueunits.get(z), layer.getLayer(x)+2);
-									seleccionado=false;
-									mover = false;
-									this.repaint();
-									enc =true;
-									flecha.setVisible(false);
 								} catch (Exception e) {
 									// TODO Auto-generated catch block
 									JOptionPane.showMessageDialog(this, e.getMessage());
 									e.printStackTrace();
-									seleccionado = false;
+								}finally{
+									seleccionado=false;
+									mover = false;
+									enc =true;
+									flecha.setVisible(false);
+									recargarMapa();
 								}
-								recargarMapa();
 							}
 								z++;
 						}			
@@ -359,6 +360,10 @@ public class MapPanel extends JPanel implements MouseListener{
 										blueunits.remove(indice);
 										piezasJugador2.remove(indice);
 										tab.getBoard()[unidadEnemiga.getPosition_x()][unidadEnemiga.getPosition_y()].setPiece(null);
+										if(unidadEnemiga.getType().equals("King")){
+											JOptionPane.showMessageDialog(this, "El rey enemigo ha caido. Felicidades "+gameWindow.getJug2().getNick()+", has ganado.");
+											gameWindow.dispose();
+										}
 										unidadEnemiga = null;
 									}
 							} catch (Exception e) {
@@ -403,6 +408,10 @@ public class MapPanel extends JPanel implements MouseListener{
 											redunits.remove(indice);
 											piezasJugador1.remove(indice);
 											tab.getBoard()[unidadEnemiga.getPosition_x()][unidadEnemiga.getPosition_y()].setPiece(null);
+											if(unidadEnemiga.getType().equals("King")){
+												JOptionPane.showMessageDialog(this, "El rey enemigo ha caido. Felicidades "+gameWindow.getJug1().getNick()+", has ganado.");
+												gameWindow.dispose();
+											}
 											unidadEnemiga = null;
 										}
 								} catch (Exception e) {
@@ -426,46 +435,31 @@ public class MapPanel extends JPanel implements MouseListener{
 		for(int y = 0;y<unitsimg01.size();y++){
 			if(unitsimg01.get(y).equals(arg0.getSource())){
 				selectedUnit = (JLabel) arg0.getSource();
-				int i = 0;
-				boolean en = false;
-				while(i<unitsimg01.size()&&!en){
-					if(selectedUnit == unitsimg01.get(i)){
-						en = true;
 						flecha.setVisible(true);
-						flecha.setBounds(unitsimg01.get(i).getX()+10,unitsimg01.get(i).getY()-20,36,57);
-						unidad = piezasJugador1.get(i);
+						flecha.setBounds(unitsimg01.get(y).getX()+10,unitsimg01.get(y).getY()-20,36,57);
+						unidad = piezasJugador1.get(y);
 						gameWindow.getHabilitiesButtons().update(unidad);
 						gameWindow.getUnitData().update(unidad);
 				}
-					i++;
-				}
-					
+
 				seleccionado = true;
 		}
 		}
-	}
-		else
-				for(int y = 0;y<unitsimg02.size();y++){
-					if(unitsimg02.get(y).equals(arg0.getSource())){
-						selectedUnit = (JLabel) arg0.getSource();
-						int i = 0;
-						boolean en = false;
-						while(i<unitsimg02.size()&&!en){
-							if(selectedUnit == unitsimg02.get(i)){
-								en = true;
-								flecha.setVisible(true);
-								flecha.setBounds(unitsimg02.get(i).getX()+10,unitsimg02.get(i).getY()-20,36,57);
-								unidad = piezasJugador2.get(i);
-								gameWindow.getHabilitiesButtons().update(unidad);
-								gameWindow.getUnitData().update(unidad);
-						}
-							i++;
-						}
-							
-						seleccionado = true;
-				}
-				}
+		else{
+			for(int y = 0;y<unitsimg02.size();y++){
+				if(unitsimg02.get(y).equals(arg0.getSource())){
+					selectedUnit = (JLabel) arg0.getSource();
+							flecha.setVisible(true);
+							flecha.setBounds(unitsimg02.get(y).getX()+10,unitsimg02.get(y).getY()-20,36,57);
+							unidad = piezasJugador2.get(y);
+							gameWindow.getHabilitiesButtons().update(unidad);
+							gameWindow.getUnitData().update(unidad);
+					}
+
+					seleccionado = true;
 			}
+			}
+	}
 //		layer.setLayer(unit01, layer.getLayer(x)+2);
 //		unit01.setLocation(x.getX(), x.getY()-50);
 	}
