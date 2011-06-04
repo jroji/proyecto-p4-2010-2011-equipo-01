@@ -33,7 +33,7 @@ public class SelectGamePane extends JPanel {
         SelectGameCombo = new javax.swing.JComboBox();
         ImgPane = new javax.swing.JPanel();
         Image = new javax.swing.JLabel();
-
+        instancias= new ArrayList<Object>();
         this.setOpaque(false);
         
         
@@ -86,14 +86,18 @@ public class SelectGamePane extends JPanel {
 
 
     public void cargarJuegos(){
-    	instancias=Reflectividad.instanciarDireccion("GamesFile");
+    	ArrayList<Object>  inst= new ArrayList<Object>();
+    	inst=Reflectividad.instanciarDireccion("GamesFile");
     	ArrayList<String>  model= new ArrayList<String>();
-    	for (Object o:instancias){
+    	
+    	for (Object o:inst){
+    		System.out.println(o.getClass().getSimpleName());
     		if (o instanceof Juego){
+    			instancias.add(o);
     			model.add(o.toString());
     		}
     	}
-    	 SelectGameCombo.setModel(new javax.swing.DefaultComboBoxModel(model.toArray()));
+    	SelectGameCombo.setModel(new javax.swing.DefaultComboBoxModel(model.toArray()));
         SelectGameCombo.setSelectedIndex(0);
     }
     
