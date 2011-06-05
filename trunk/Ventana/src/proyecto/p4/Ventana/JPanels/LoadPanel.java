@@ -25,12 +25,12 @@ public class LoadPanel extends JPanel{
     private JLabel fondo = new JLabel(new ImageIcon(getClass().getResource("/img/madera.jpg")));
     
     public LoadPanel(ResourceBundle language){
-    	this.setSize(500,400);
+    	this.setSize(500,500);
     	this.setLayout(null);
     	
     	Language = language;
 //    	botonera = new BotoneraH(Language.getString("loadGame"),"",Language.getString("label_exit"));  
-    	botonera = new BotoneraH("Cargar","","Salir");  
+    	botonera = new BotoneraH("Cargar","Salir","");  
     	JuegoOldWarriorTales partida = new JuegoOldWarriorTales();
     	list = partida.takeOutFromDataBase();
     	
