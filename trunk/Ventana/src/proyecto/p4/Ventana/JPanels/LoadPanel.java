@@ -1,5 +1,7 @@
 package proyecto.p4.Ventana.JPanels;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -29,12 +31,14 @@ public class LoadPanel extends JPanel{
     	this.setLayout(null);
     	
     	Language = language;
-//    	botonera = new BotoneraH(Language.getString("loadGame"),"",Language.getString("label_exit"));  
-    	botonera = new BotoneraH("","Cargar","Salir");  
+
+    	botonera = new BotoneraH(Language.getString("label_loadGame"),Language.getString("erase"),Language.getString("label_exit"));  
     	JuegoOldWarriorTales partida = new JuegoOldWarriorTales();
     	list = partida.takeOutFromDataBase();
     	
+
     	lista.setListData(list.toArray());
+
     	this.add(layer);
     	layer.add(lista, new Integer(1));
     	lista.setBounds(10,10,420,300);
@@ -43,6 +47,10 @@ public class LoadPanel extends JPanel{
     	fondo.setBounds(0,0,this.getWidth(),this.getHeight());
     	layer.add(botonera,new Integer(1));
     	botonera.setBounds(10,340,400,200);
+    }
+
+    public BotoneraH getBotonera(){
+    	return botonera;
     }
 
 }
