@@ -116,8 +116,8 @@ public class MapGoldSelectionWindows extends JFrameFondo implements ActionListen
 			this.dispose();
 			ArrayList<Object> Jugador1 = new ArrayList<Object>();
 			ArrayList<Object> Jugador2 = new ArrayList<Object>();
-			juego.setTablero(boardArray.get(MapList.getSelectedIndex()));
-			new SelectArmy(Language,Sound,J,Jugador1,Jugador2,true,GoldSelection.getText());
+			J.setTablero(boardArray.get(MapList.getSelectedIndex()));
+			new SelectArmy(Language,Sound,J,true,GoldSelection.getText());
 
 		}else if(e.getSource()==GoldSelection.getAdd()){
 			if(GoldSelection.getText()+1000<=5000){
