@@ -11,7 +11,6 @@ import proyecto.p4.Mapa.Board;
 import proyecto.p4.Mapa.Casilla;
 import proyecto.p4.Piece.Piece;
 import proyecto.p4.PiezasOldWarriorTales.Habilidades.Hability;
-import proyecto.p4.TerrenosOldWarriorTales.Terrain;
 import proyecto.p4.piezaOldWarriorTales.Unidades.Arquero;
 import ConnectionInterface.PieceJDBC;
 import ConnectionInterface.storableInDataBase;
@@ -472,7 +471,6 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable{
 	public ArrayList <Field> fieldsToStore() throws SecurityException, NoSuchFieldException{
 		ArrayList<Field> array= new ArrayList<Field>();
 		
-		Field [] fields;
 		if(!this.getClass().getSimpleName().equals("PiezaOldWarriorTales")){
 			array.add(this.getClass().getSuperclass().getDeclaredField("life"));
 			array.add(this.getClass().getSuperclass().getDeclaredField("energy"));
