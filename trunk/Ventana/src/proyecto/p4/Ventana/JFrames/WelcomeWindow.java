@@ -42,11 +42,9 @@ public class WelcomeWindow extends JFrame implements ActionListener,KeyListener{
 	
 	public WelcomeWindow(ResourceBundle language,boolean Sound){
 
-		//StartMusic("epicarojilarga.wav");
 		botonera= new BotoneraH(language.getString("label_accept"),language.getString("label_exit"),language.getString("label_newPlayer"));
 		this.setResizable(false);
 		this.language=language;
-		this.sound=Sound;
 		this.setSize(1024, 728);
 		JLayeredPane layer = new JLayeredPane();
 		this.setLayout(null);
@@ -130,22 +128,6 @@ public class WelcomeWindow extends JFrame implements ActionListener,KeyListener{
 	public static void main(String [] args){
 		ResourceBundle language = new MyResources_En();
 		WelcomeWindow x = new WelcomeWindow(language,false);
-	}
-
-	/** Reproduce el archivo de sonido .wav que se encuentra en la ruta que 
-	 * recibe como atributo.
-	 */
-	public static void StartMusic(String ruta){
-		Clip sonido = null;
-		try
-		{
-		  sonido=AudioSystem.getClip();
-		  sonido.open(AudioSystem.getAudioInputStream(new File(ruta)));
-		}catch(Exception e)
-		  {
-			e.printStackTrace();}
-		sonido.loop(Clip.LOOP_CONTINUOUSLY); //Para que se reproduzca indefinidamente
-		sonido.start();
 	}
 
 
