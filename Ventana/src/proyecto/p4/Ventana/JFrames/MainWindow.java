@@ -29,8 +29,11 @@ import proyecto.p4.Ventana.Button.BotoneraV;
 import proyecto.p4.VentanaJuego.GameWindow;
 import proyecto.p4.piezaOldWarriorTales.Unidades.Arquero;
 import proyecto.p4.piezaOldWarriorTales.Unidades.Barbarian;
+import proyecto.p4.piezaOldWarriorTales.Unidades.Killer;
 import proyecto.p4.piezaOldWarriorTales.Unidades.King;
 import proyecto.p4.piezaOldWarriorTales.Unidades.Magician;
+import proyecto.p4.piezaOldWarriorTales.Unidades.Monk;
+import proyecto.p4.piezaOldWarriorTales.Unidades.Soldier;
 import proyecto.p4.piezaOldWarriorTales.Unidades.knight;
 
 public class MainWindow extends JFrame implements ActionListener, MouseListener{
@@ -108,6 +111,18 @@ public class MainWindow extends JFrame implements ActionListener, MouseListener{
 			Buttons.setButtonP1(false);
 
 			Board z = new Board();
+			
+			Killer ass = new Killer();
+			ass.setBoard(z);
+			ass.setColor(Colours.blanco);
+			ass.setPosition(0, 4);
+			z.getBoard()[0][4].setPiece(ass);
+			
+			Killer ass2 = new Killer();
+			ass2.setBoard(z);
+			ass2.setColor(Colours.negro);
+			ass2.setPosition(13, 4);
+			z.getBoard()[13][4].setPiece(ass2);
 
 			Arquero arq = new Arquero();
 			arq.setBoard(z);
@@ -128,7 +143,7 @@ public class MainWindow extends JFrame implements ActionListener, MouseListener{
 			z.getBoard()[0][6].setPiece(mag);
 			
 			Magician mag2 = new Magician();
-			mag2.setPosition(0,6);
+			mag2.setPosition(13,6);
 			mag2.setColor(Colours.negro);
 			mag2.setBoard(z);
 			z.getBoard()[13][6].setPiece(mag2);
@@ -168,6 +183,30 @@ public class MainWindow extends JFrame implements ActionListener, MouseListener{
 			bar2.setColor(Colours.negro);
 			bar2.setPosition(13, 9);
 			z.getBoard()[13][9].setPiece(bar2);
+			
+			Monk monje = new Monk();
+			monje.setBoard(z);
+			monje.setColor(Colours.negro);
+			monje.setPosition(0, 10);
+			z.getBoard()[0][10].setPiece(monje);
+			
+			Monk monje2 = new Monk();
+			monje2.setBoard(z);
+			monje2.setColor(Colours.negro);
+			monje2.setPosition(13, 10);
+			z.getBoard()[13][10].setPiece(monje2);
+			
+			Soldier sold = new Soldier();
+			sold.setBoard(z);
+			sold.setColor(Colours.negro);
+			sold.setPosition(0, 11);
+			z.getBoard()[0][11].setPiece(sold);
+			
+			Soldier sold2 = new Soldier();
+			sold2.setBoard(z);
+			sold2.setColor(Colours.negro);
+			sold2.setPosition(13, 11);
+			z.getBoard()[13][10].setPiece(sold2);
 			
 			selectedGame.setTablero(z);
 			
