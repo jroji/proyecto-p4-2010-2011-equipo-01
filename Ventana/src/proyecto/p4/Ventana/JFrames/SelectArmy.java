@@ -1,5 +1,6 @@
 package proyecto.p4.Ventana.JFrames;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -129,7 +130,26 @@ public class SelectArmy extends JFrameFondo implements ActionListener{
         Gold = new javax.swing.JLabel();
         PlayerNick = new javax.swing.JLabel();
         PlayerAvatar = new javax.swing.JLabel();
-       
+        
+        PlayerAvatar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        PlayerNick.setForeground(java.awt.Color.yellow);
+        
+        Gold.setText(language.getString("label_gold")+":");
+        Gold.setForeground(java.awt.Color.yellow);
+        
+        GoldLeft.setText(Integer.toString(gold));
+        GoldLeft.setForeground(java.awt.Color.yellow);
+        
+        if(selected){
+        PlayerNick.setText(J.getJugador1().getNick());
+        
+        PlayerAvatar = new JLabel(new ImageIcon(getClass().getResource(J.getJugador1().getAvatar())));
+        }else{
+        PlayerNick.setText(J.getJugador2().getNick());
+        
+        PlayerAvatar = new JLabel(new ImageIcon(getClass().getResource(J.getJugador2().getAvatar())));
+        }
+        
         ((OldWarriorButton)BotoneraH.getComponent(0)).getOldWarriorButton().addActionListener(this);
 		((OldWarriorButton)BotoneraH.getComponent(1)).getOldWarriorButton().addActionListener(this);
 		((OldWarriorButton)BotoneraH.getComponent(2)).getOldWarriorButton().addActionListener(this);	 
