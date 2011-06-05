@@ -81,7 +81,7 @@ public class MainWindow extends JFrame implements ActionListener, MouseListener{
 			sonando = true ;
 		}
 		else{
-			sonido.stop();
+			//sonido.stop();
 		}
 			
 	}

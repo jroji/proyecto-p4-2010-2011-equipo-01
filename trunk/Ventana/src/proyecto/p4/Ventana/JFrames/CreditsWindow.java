@@ -1,6 +1,5 @@
 package proyecto.p4.Ventana.JFrames;
 
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ResourceBundle;
