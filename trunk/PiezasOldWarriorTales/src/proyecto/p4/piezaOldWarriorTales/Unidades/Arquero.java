@@ -22,6 +22,7 @@ public class Arquero extends PiezaOldWarriorTales{
 		defense=15;
 		attack=30;
 		probability=70;
+		price = 500;
 		blindness=false;
 		poisson=false;
 		counterattack=true;
