@@ -4,10 +4,13 @@ package proyecto.p4.Ventana.JPanels;
 import javax.swing.ImageIcon;
 
 import proyecto.p4.Juego.*;
-import proyecto.p4.Jugador.Jugador;
 
 public class AvatarPanel extends javax.swing.JPanel {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1179646724166210908L;
 	private javax.swing.JLabel VS;
 	private javax.swing.JLabel player1Avatar;
 	private javax.swing.JLabel player1Nick;

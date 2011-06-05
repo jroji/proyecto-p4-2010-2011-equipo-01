@@ -15,6 +15,10 @@ import proyecto.p4.Ventana.Button.BotoneraH;
 
 public class LoadPanel extends JPanel{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5804528487582382868L;
 	private ResourceBundle Language;
 	private ArrayList<storableInDataBase> list;
 	private JList lista = new JList();

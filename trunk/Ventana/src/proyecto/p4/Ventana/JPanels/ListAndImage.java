@@ -1,8 +1,5 @@
 package proyecto.p4.Ventana.JPanels;
 
-import java.awt.Component;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -13,7 +10,6 @@ import javax.swing.JScrollPane;
 
 import proyect.Reflectividad;
 import proyecto.p4.Ventana.Button.BotoneraH;
-import proyecto.p4.Ventana.Button.OldWarriorButton;
 import proyecto.p4.PiezasOldWarriorTales.PiezaOldWarriorTales;
 
 
@@ -26,12 +22,15 @@ public class ListAndImage extends javax.swing.JPanel{
     /**
 	 * 
 	 */
+	private static final long serialVersionUID = -964802027797402638L;
+	/**
+	 * 
+	 */
 	private JList UnitList;
     private JPanel ImagePanel;
     private JScrollPane scrollPane;
     private BotoneraH oldWarriorButton1;
     private ResourceBundle Language;
-    private PiezaOldWarriorTales p;
     private ArrayList<PiezaOldWarriorTales> instancias;
 
 //    public OldWarriorButton getOldWarriorButton1() {
@@ -43,8 +42,7 @@ public class ListAndImage extends javax.swing.JPanel{
    public ListAndImage(ResourceBundle language) {
    //   public ListAndImage() {
 
-	    p= null;
-	   	Language = language;
+	    Language = language;
         ImagePanel = new JPanel();
         scrollPane = new JScrollPane();
         UnitList = new JList();
@@ -78,6 +76,10 @@ public class ListAndImage extends javax.swing.JPanel{
         	
         	
         	/**
+			 * 
+			 */
+			private static final long serialVersionUID = 3449177870918043927L;
+			/**
 			 * 
 			 */
 			//METER DATOS
@@ -146,7 +148,6 @@ public class ListAndImage extends javax.swing.JPanel{
 
 
 	public void setP(PiezaOldWarriorTales p) {
-		this.p = p;
 	}
 
 }

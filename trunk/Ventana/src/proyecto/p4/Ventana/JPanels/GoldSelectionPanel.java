@@ -5,10 +5,12 @@ import java.util.ResourceBundle;
 
 import javax.swing.*;
 
-import proyecto.p4.Ventana.Button.OldWarriorButton;
-
 public class GoldSelectionPanel extends JPanel {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7459961156283125452L;
 	private JLabel gold;
 	private JTextField goldSelection;
 	private JButton add;

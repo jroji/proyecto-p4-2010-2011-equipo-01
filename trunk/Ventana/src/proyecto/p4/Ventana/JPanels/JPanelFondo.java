@@ -7,7 +7,11 @@ import javax.swing.JPanel;
 
 	public class JPanelFondo extends JPanel {
 
-	    private Image imagen;
+	    /**
+		 * 
+		 */
+		private static final long serialVersionUID = -706322407912320098L;
+		private Image imagen;
 
 	    public JPanelFondo() {
 	    }

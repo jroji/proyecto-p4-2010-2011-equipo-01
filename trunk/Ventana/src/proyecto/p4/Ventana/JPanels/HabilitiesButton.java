@@ -4,29 +4,29 @@ package proyecto.p4.Ventana.JPanels;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import javax.swing.JPanel;
-import javax.swing.SpringLayout;
-
 import proyecto.p4.PiezasOldWarriorTales.Habilidades.Hability;
 import proyecto.p4.PiezasOldWarriorTales.PiezaOldWarriorTales;
-import proyecto.p4.Ventana.Button.BotoneraH;
 import proyecto.p4.Ventana.Button.OldWarriorButton;
 
 
 public class HabilitiesButton extends JPanel implements ActionListener{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8645064945784497631L;
 	private ResourceBundle Language;
 	private Hability[] Habilities;
 	private OldWarriorButton[] Buttons;
 	private int habilityPulsed;
 	
-	//public HabilitiesButton(ResourceBundle language,PiezaOldWarriorTales p){
-	public HabilitiesButton(PiezaOldWarriorTales p){
+	public HabilitiesButton(ResourceBundle language,PiezaOldWarriorTales p){
+//	public HabilitiesButton(PiezaOldWarriorTales p){
 
-//		Language=language;
+		Language=language;
 		this.setOpaque(false);
 		
 		Buttons=new OldWarriorButton[4];
@@ -37,8 +37,8 @@ public class HabilitiesButton extends JPanel implements ActionListener{
 		Buttons[3] = new OldWarriorButton("");		
 		this.setLayout(new FlowLayout());
 		for(int i = 0; i<Habilities.length;i++){
-	//		Buttons[i].setText(Language.getString(Habilities[i].getName()));	
-			Buttons[i].setText(Habilities[i].getName());
+			Buttons[i].setText(Language.getString(Habilities[i].getName()));	
+//			Buttons[i].setText(Habilities[i].getName());
 			this.add(Buttons[i]);
 			if(Buttons[i].getText().equals(""))
 				Buttons[i].setVisible(false);
