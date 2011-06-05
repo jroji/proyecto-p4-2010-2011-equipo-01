@@ -49,6 +49,7 @@ public class LoadFrame extends JFrame implements ActionListener {
 		// TODO Auto-generated method stub
 		if(e.getSource()==((OldWarriorButton)botonera.getComponent(0)).getOldWarriorButton()){
 			System.out.println("Nombre Juego: "+loadPanel.getSelectedGame().getTablero().getBoard()[0][0].getCodeCasilla());
+			this.dispose();
 			new GameWindow(loadPanel.getSelectedGame());
 		}else if(e.getSource()==((OldWarriorButton)botonera.getComponent(1)).getOldWarriorButton()){
 			loadPanel.getSelectedGame().deleteFromDataBase();
