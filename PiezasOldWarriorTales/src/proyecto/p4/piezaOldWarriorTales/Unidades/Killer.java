@@ -21,7 +21,7 @@ public class Killer extends PiezaOldWarriorTales{
 			poisson=false;
 			counterattack=false;
 			type= this.getClass().getSimpleName();
-			this.setImagen(new ImageIcon(getClass().getResource("/img/asesino.gif")));
+			this.setImagen(new ImageIcon(getClass().getResource("/img/asesino.png")));
 		}
 		
 		public double takinglife (PiezaOldWarriorTales piezaContraria){
