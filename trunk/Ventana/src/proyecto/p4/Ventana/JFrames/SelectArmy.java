@@ -1,24 +1,37 @@
 package proyecto.p4.Ventana.JFrames;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
+import javax.swing.JPanel;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import Languages.*;
 
 import proyect.Reflectividad;
 import proyecto.p4.Ventana.Button.BotoneraH;
 import proyecto.p4.Ventana.Button.OldWarriorButton;
-import proyecto.p4.VentanaJuego.GameWindow;
-import proyecto.p4.JuegoOldWarriorTales.JuegoOldWarriorTales;
+import proyecto.p4.Ventana.JPanels.ListAndImage;
+import proyecto.p4.Juego.*;
 import proyecto.p4.Mapa.Board;
 import proyecto.p4.Piece.Colours;
 import proyecto.p4.Piece.Piece;
 import proyecto.p4.PiezasOldWarriorTales.PiezaOldWarriorTales;
+import proyecto.p4.piezaOldWarriorTales.Unidades.Arquero;
+import proyecto.p4.piezaOldWarriorTales.Unidades.Killer;
 import proyecto.p4.piezaOldWarriorTales.Unidades.King;
+import proyecto.p4.piezaOldWarriorTales.Unidades.Magician;
+import proyecto.p4.piezaOldWarriorTales.Unidades.Monk;
+import proyecto.p4.piezaOldWarriorTales.Unidades.Soldier;
+import proyecto.p4.piezaOldWarriorTales.Unidades.knight;
 
 
 
@@ -35,7 +48,7 @@ public class SelectArmy extends JFrameFondo implements ActionListener{
 	private javax.swing.JList jList1;
 	private javax.swing.JScrollPane jScrollPane1;
 	private javax.swing.JTable jTable1;
-	private JuegoOldWarriorTales J;
+	private Juego J;
 	private DefaultTableModel modelo;
 	private int gold;
 	private boolean selected;
@@ -44,12 +57,11 @@ public class SelectArmy extends JFrameFondo implements ActionListener{
     private ArrayList<PiezaOldWarriorTales> array ;
 	private ArrayList<PiezaOldWarriorTales> array2 ;
     
-    public SelectArmy(ResourceBundle Language,boolean Sound,JuegoOldWarriorTales j,boolean j1Selected,int gold) {
+    public SelectArmy(ResourceBundle Language,boolean Sound,boolean selected,Juego j,int gold,ArrayList<PiezaOldWarriorTales> array,ArrayList<PiezaOldWarriorTales> array2) {
     	language = Language;
-    	J=j;
 		this.gold=gold;
-		array = new ArrayList<PiezaOldWarriorTales>() ;
-		array2 = new ArrayList<PiezaOldWarriorTales>() ;
+		this.array = array ;
+		this.array2 = array ;
 		King king = new King();
 		king.setBoard(J.getTablero());
 		king.setPosition(0, 6);
@@ -58,13 +70,13 @@ public class SelectArmy extends JFrameFondo implements ActionListener{
 		king.setColor(Colours.azul);
 		array2.add(0, king);
 		sound = Sound;
-		selected = j1Selected;
+		this.selected = selected;
 		modelo = new DefaultTableModel();
 		modelo.setColumnCount(3);
 		instancias= new ArrayList<PiezaOldWarriorTales>();
 		Object [] l= {Language.getString("Name"),Language.getString("Health"),Language.getString("Mana")};
 		modelo.setColumnIdentifiers(l);
-		
+		J=j;
     	initComponents();
         cargarUnidadesEnList();
     	setVisible(true);
@@ -231,6 +243,7 @@ public class SelectArmy extends JFrameFondo implements ActionListener{
 				modelo.addRow(fila);
 				GoldLeft.setText(Integer.toString(Integer.parseInt(GoldLeft.getText())-instancias.get(jList1.getSelectedIndex()).getPrice()));
 				if(selected){
+					System.out.println("soy el jugador 1");
 					Piece p =  instancias.get(jList1.getSelectedIndex());
 					((PiezaOldWarriorTales) p).setBoard(J.getTablero());
 					((PiezaOldWarriorTales) p).setColor(Colours.rojo);
