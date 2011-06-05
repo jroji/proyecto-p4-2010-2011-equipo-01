@@ -13,10 +13,11 @@ public class LoadFrame extends JFrame{
 	LoadPanel loadPanel;
 	
 	public LoadFrame(ResourceBundle language){
-	loadPanel = new LoadPanel(language);
-	this.setVisible(true);
-	this.add(loadPanel);
-	}
+		loadPanel = new LoadPanel(language);
+		this.setVisible(true);
+		this.add(loadPanel);
+		this.setSize(loadPanel.getWidth(),loadPanel.getHeight());
+		}
 	
 	public static void main(String[] args){
 		new LoadFrame(new MyResources_Es());
