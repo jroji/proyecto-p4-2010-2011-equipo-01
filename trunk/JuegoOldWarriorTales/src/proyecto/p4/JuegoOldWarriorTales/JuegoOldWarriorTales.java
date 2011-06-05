@@ -179,7 +179,7 @@ public class JuegoOldWarriorTales extends Juego implements storableInDataBase{
 		Arquero a1= new Arquero();
 		a1.setPosition(0, 3);
 		a1.setBoard(t);
-		a1.setColor(Colours.blanco);
+		a1.setColor(Colours.azul);
 		t.getCasilla(a1.getPosition_x(), a1.getPosition_y()).setPiece(a1);
 		j1.setNick("Jon");
 		j1.setAvatar("avatar");
