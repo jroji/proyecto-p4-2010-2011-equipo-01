@@ -32,7 +32,7 @@ public class LoadPanel extends JPanel{
     	
     	Language = language;
 
-    	botonera = new BotoneraH(Language.getString("label_loadGame"),Language.getString("erase"),Language.getString("label_exit"));  
+    	botonera = new BotoneraH(Language.getString("label_loadGame"),"",Language.getString("label_exit"));  
     	JuegoOldWarriorTales partida = new JuegoOldWarriorTales();
     	list = partida.takeOutFromDataBase();
     	
