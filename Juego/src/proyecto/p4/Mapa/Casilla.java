@@ -253,10 +253,7 @@ public class Casilla implements storableInDataBase{
 		//c.insertIntoDataBase();
 
 		ArrayList<storableInDataBase> a=c.takeOutFromDataBase();
-		for (storableInDataBase s: a)
-		{
-			System.out.println(((Casilla)s).getSquare().getClass().getSimpleName());
-		}
+		
 		c.setCodeCasilla(70);
 		//c.deleteFromDataBase();
 	}

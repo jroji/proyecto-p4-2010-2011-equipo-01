@@ -46,6 +46,13 @@ public abstract class Juego {
 	public String getRuta(){
 		return this.rutaImagen;
 	}
+	
+	public String getPlaying() {
+		return playing;
+	}
+	public void setPlaying(String playing) {
+		this.playing = playing;
+	}
 	public abstract void throwWindow(ResourceBundle rb, boolean bool);
 
 }
