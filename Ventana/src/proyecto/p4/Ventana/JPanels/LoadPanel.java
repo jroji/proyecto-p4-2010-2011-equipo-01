@@ -39,7 +39,7 @@ public class LoadPanel extends JPanel{
     	layer.add(fondo,new Integer(0));
     	fondo.setBounds(0,0,this.getWidth(),this.getHeight());
     	layer.add(botonera,new Integer(1));
-    	botonera.setBounds(10,300,500,200);
+    	botonera.setBounds(10,300,400,200);
     }
 
 }

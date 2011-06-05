@@ -5,7 +5,6 @@ import java.util.ResourceBundle;
 import javax.swing.JFrame;
 
 import Languages.MyResources_Es;
-
 import proyecto.p4.Ventana.JPanels.LoadPanel;
 
 public class LoadFrame extends JFrame{
@@ -13,6 +12,7 @@ public class LoadFrame extends JFrame{
 	LoadPanel loadPanel;
 	
 	public LoadFrame(ResourceBundle language){
+		this.setResizable(false);
 		loadPanel = new LoadPanel(language);
 		this.setVisible(true);
 		this.add(loadPanel);
