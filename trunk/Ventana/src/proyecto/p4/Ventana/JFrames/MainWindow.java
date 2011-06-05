@@ -113,6 +113,8 @@ public class MainWindow extends JFrame implements ActionListener, MouseListener{
 			Buttons.setButtonP1(false);
 
 			ArrayList<PiezaOldWarriorTales> array = new ArrayList<PiezaOldWarriorTales>() ;
+			ArrayList<PiezaOldWarriorTales> array2 = new ArrayList<PiezaOldWarriorTales>() ;
+
 			
 			Board z = new Board();
 		
@@ -222,40 +224,18 @@ public class MainWindow extends JFrame implements ActionListener, MouseListener{
 			array.add(mag);
 			array.add(bar);
 			
+			array2.add(king2);
+			array2.add(arq2);
+			array2.add(kill2);
+			array2.add(ass2);
+			array2.add(sold2);
+			array2.add(monje2);
+			array2.add(mag2);
+			array2.add(bar2);
 			
-			int indice = 1;
-			try{
-				array.get(0).setPosition(0, 6);
-				z.getBoard()[0][6].setPiece(array.get(0));
-				for(int i = 1;i<=2;i++){
-					for(int j = 0;j<i+1;j++){
-						array.get(indice).setPosition(array.get(0).getPosition_x()+j, array.get(0).getPosition_y()-i);
-						z.getBoard()[array.get(0).getPosition_x()+j][array.get(0).getPosition_y()-i].setPiece(array.get(indice));
-						indice++;
-					}
-					if(i==2){
-						array.get(indice).setPosition(array.get(0).getPosition_x()+i, array.get(0).getPosition_y()-1);
-						z.getBoard()[array.get(0).getPosition_x()+i][array.get(0).getPosition_y()-1].setPiece(array.get(indice));
-						indice++;
-					}
-					array.get(indice).setPosition(array.get(0).getPosition_x()+i, array.get(0).getPosition_y());
-					z.getBoard()[array.get(0).getPosition_x()+i][array.get(0).getPosition_y()].setPiece(array.get(indice));
-					indice++;
-					if(i==2){
-						array.get(indice).setPosition(array.get(0).getPosition_x()+i, array.get(0).getPosition_y()+1);
-						z.getBoard()[array.get(0).getPosition_x()+i][array.get(0).getPosition_y()+1].setPiece(array.get(indice));
-						indice++;
-					}
-					for(int j = i;j>=0;j--){
-						array.get(indice).setPosition(array.get(0).getPosition_x()+j, array.get(0).getPosition_y()+i);
-						z.getBoard()[array.get(0).getPosition_x()+j][array.get(0).getPosition_y()+i].setPiece(array.get(indice));
-						indice++;
-					}
-				}
-			}
-			catch(Exception ex){
-				ex.printStackTrace();
-			}
+			
+			colocarUnidades(array, z);
+			colocarUnidades(array2, z);
 			
 			selectedGame.setTablero(z);
 			
@@ -287,6 +267,48 @@ public class MainWindow extends JFrame implements ActionListener, MouseListener{
 			}
 		}
 		
+	}
+	
+	public void colocarUnidades(ArrayList<PiezaOldWarriorTales> array, Board z){
+		int indice = 1;
+	try{
+		if(array.get(0).getColor().equals(Colours.rojo)){
+			array.get(0).setPosition(0, 6);
+			z.getBoard()[0][6].setPiece(array.get(0));}
+		else{
+			array.get(0).setPosition(13, 6);
+			z.getBoard()[13][6].setPiece(array.get(0));
+		}
+			
+		for(int i = 1;i<=2;i++){
+			for(int j = 0;j<i+1;j++){
+				array.get(indice).setPosition(array.get(0).getPosition_x()+j, array.get(0).getPosition_y()-i);
+				z.getBoard()[array.get(0).getPosition_x()+j][array.get(0).getPosition_y()-i].setPiece(array.get(indice));
+				indice++;
+			}
+			if(i==2){
+				array.get(indice).setPosition(array.get(0).getPosition_x()+i, array.get(0).getPosition_y()-1);
+				z.getBoard()[array.get(0).getPosition_x()+i][array.get(0).getPosition_y()-1].setPiece(array.get(indice));
+				indice++;
+			}
+			array.get(indice).setPosition(array.get(0).getPosition_x()+i, array.get(0).getPosition_y());
+			z.getBoard()[array.get(0).getPosition_x()+i][array.get(0).getPosition_y()].setPiece(array.get(indice));
+			indice++;
+			if(i==2){
+				array.get(indice).setPosition(array.get(0).getPosition_x()+i, array.get(0).getPosition_y()+1);
+				z.getBoard()[array.get(0).getPosition_x()+i][array.get(0).getPosition_y()+1].setPiece(array.get(indice));
+				indice++;
+			}
+			for(int j = i;j>=0;j--){
+				array.get(indice).setPosition(array.get(0).getPosition_x()+j, array.get(0).getPosition_y()+i);
+				z.getBoard()[array.get(0).getPosition_x()+j][array.get(0).getPosition_y()+i].setPiece(array.get(indice));
+				indice++;
+			}
+		}
+	}
+	catch(Exception ex){
+		ex.printStackTrace();
+	}
 	}
 
 	@Override
