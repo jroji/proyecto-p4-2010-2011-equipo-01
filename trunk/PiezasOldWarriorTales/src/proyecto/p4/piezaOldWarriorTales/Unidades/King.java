@@ -32,6 +32,7 @@ public class King extends proyecto.p4.PiezasOldWarriorTales.PiezaOldWarriorTales
 		probability=100;
 		
 	}
+	@SuppressWarnings("unused")
 	private void updateProbability(){
  		Casilla casilla= board.getCasilla(getPosition_x(), getPosition_y());
  		if (casilla.getSquare().getClass().getName()=="Castle"){

@@ -57,6 +57,7 @@ public class Barbarian extends PiezaOldWarriorTales {
 		habilities[1]=h2;
 	}
 	
+	@SuppressWarnings("unused")
 	private void updateProbability(){
  		Casilla casilla= board.getCasilla(getPosition_x(), getPosition_y());
  		if (casilla.getSquare().getClass().getName()=="Castle"){
