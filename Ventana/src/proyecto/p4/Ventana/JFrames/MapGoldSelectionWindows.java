@@ -14,6 +14,7 @@ import proyect.Reflectividad;
 import proyecto.p4.Juego.*;
 import proyecto.p4.JuegoOldWarriorTales.JuegoOldWarriorTales;
 import proyecto.p4.Mapa.Board;
+import proyecto.p4.PiezasOldWarriorTales.PiezaOldWarriorTales;
 import proyecto.p4.Ventana.Button.BotoneraH;
 import proyecto.p4.Ventana.Button.OldWarriorButton;
 import proyecto.p4.Ventana.JPanels.AvatarPanel;
@@ -112,7 +113,9 @@ public class MapGoldSelectionWindows extends JFrameFondo implements ActionListen
 		}else if (e.getSource()==((OldWarriorButton)Botonera.getComponent(2)).getOldWarriorButton()){
 			this.dispose();
 			J.setTablero(boardArray.get(MapList.getSelectedIndex()));
-			new SelectArmy(Language,Sound,J,true,GoldSelection.getText());
+			ArrayList<PiezaOldWarriorTales> array = new ArrayList<PiezaOldWarriorTales>() ;
+			ArrayList<PiezaOldWarriorTales> array2 = new ArrayList<PiezaOldWarriorTales>() ;
+			new SelectArmy(Language,Sound,true,J,GoldSelection.getText(),array,array2);
 
 		}else if(e.getSource()==GoldSelection.getAdd()){
 			if(GoldSelection.getText()+1000<=5000){
