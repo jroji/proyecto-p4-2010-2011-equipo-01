@@ -553,11 +553,18 @@ public class PieceJDBC implements PieceDataSource {
 		sqlStatementString = "INSERT INTO "+tableName+"("+columnas+")"+ "VALUES" +"("+valores+");";
 		//System.out.println(sqlStatementString);
 		//número de filas insertadas
-		int insertadas=statement.executeUpdate(sqlStatementString);
-		statement.close();
-		connection.close();
+		int insertadas=0;
+		try{
+			insertadas=statement.executeUpdate(sqlStatementString);
+		}catch(SQLException sql){
+			throw sql;
+		}finally{
+			statement.close();
+			connection.close();
+		}
 		//devuelve el número de filas insertadas
 		return insertadas;
+		
 	}
 	
 	                            
@@ -652,11 +659,13 @@ public class PieceJDBC implements PieceDataSource {
 	    String cond= conditions.substring(0, conditions.length()-4);
 	   
 	    //crea la sentencia sql de borrado
-
+	    
 		sqlStatementString = "DELETE FROM " +tableName+" WHERE "+cond+";";
+	    
 		//número de filas borradas de la tabla de la base de datos
-		//System.out.println(sqlStatementString);
-		int deleteRows= statement.executeUpdate(sqlStatementString);
+		int deleteRows=0;
+	    	deleteRows= statement.executeUpdate(sqlStatementString);
+	 
 		statement.close();
 		connection.close();
 		//devuelve el número de filas borradas si hay condición
