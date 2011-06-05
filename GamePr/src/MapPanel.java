@@ -214,7 +214,7 @@ public class MapPanel extends JPanel implements MouseListener{
 	public void anyadirArray(JLabel[][] arr){
 		for(int j = 0; j<arr.length;j++){
 		for(int i = 0; i<arr[j].length;i++){
-			layer.add(arr[j][i], new Integer(arr[j].length-i));
+			layer.add(arr[j][i], new Integer(i));
 			}
 	}}
 
