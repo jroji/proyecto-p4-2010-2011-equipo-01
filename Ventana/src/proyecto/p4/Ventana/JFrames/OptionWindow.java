@@ -1,16 +1,13 @@
 package proyecto.p4.Ventana.JFrames;
 
-import java.awt.FlowLayout;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.ResourceBundle;
 
 import proyecto.p4.Juego.*;
 import proyecto.p4.Ventana.Button.BotoneraV;
 import proyecto.p4.Ventana.JPanels.LanguagePanel;
-import Languages.*;
 import proyecto.p4.Ventana.JPanels.SoundPanel;
 import javax.swing.*;
 

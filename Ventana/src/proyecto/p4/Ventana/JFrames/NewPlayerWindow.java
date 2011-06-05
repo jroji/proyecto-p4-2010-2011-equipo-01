@@ -2,18 +2,11 @@ package proyecto.p4.Ventana.JFrames;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-import javax.swing.JFrame;
-
-import ConnectionInterface.PieceJDBC;
-import ConnectionInterface.storableInDataBase;
-import Languages.MyResources_En;
 
 import proyecto.p4.Jugador.Jugador;
 import proyecto.p4.Ventana.JPanels.PlayerCreationPanel;
-import proyecto.p4.piezaOldWarriorTales.Unidades.Killer;
 
 public class NewPlayerWindow extends JFrameFondo implements ActionListener{
 	
@@ -23,12 +16,10 @@ public class NewPlayerWindow extends JFrameFondo implements ActionListener{
 	private static final long serialVersionUID = -2962497854265702665L;
 	PlayerCreationPanel panel;
 	private ResourceBundle idioma;
-	private boolean sonido;
 	private Jugador j;
 	
 	public NewPlayerWindow(ResourceBundle language,boolean sound){
 		idioma=language;
-		sonido=sound;
 		this.setSize(355,330);
 		panel = new PlayerCreationPanel(idioma);
 		panel.setOpaque(false);

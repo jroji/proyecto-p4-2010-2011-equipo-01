@@ -4,12 +4,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.io.File;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -125,6 +122,7 @@ public class WelcomeWindow extends JFrame implements ActionListener,KeyListener{
 	}
 	public static void main(String [] args){
 		ResourceBundle language = new MyResources_En();
+		@SuppressWarnings("unused")
 		WelcomeWindow x = new WelcomeWindow(language,true);
 	}
 
