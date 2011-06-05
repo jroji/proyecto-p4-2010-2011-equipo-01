@@ -137,16 +137,16 @@ public class MainWindow extends JFrame implements ActionListener, MouseListener{
 			z.getBoard()[13][5].setPiece(arq2);
 
 			Magician mag = new Magician();
-			mag.setPosition(0,6);
+			mag.setPosition(0,8);
 			mag.setColor(Colours.blanco);
 			mag.setBoard(z);
-			z.getBoard()[0][6].setPiece(mag);
+			z.getBoard()[0][8].setPiece(mag);
 			
 			Magician mag2 = new Magician();
-			mag2.setPosition(13,6);
+			mag2.setPosition(13,8);
 			mag2.setColor(Colours.negro);
 			mag2.setBoard(z);
-			z.getBoard()[13][6].setPiece(mag2);
+			z.getBoard()[13][8].setPiece(mag2);
 
 			knight kill = new knight();
 			kill.setBoard(z);
@@ -162,15 +162,15 @@ public class MainWindow extends JFrame implements ActionListener, MouseListener{
 			
 			King king = new King();
 			king.setBoard(z);
-			king.setPosition(0, 8);
+			king.setPosition(0, 6);
 			king.setColor(Colours.blanco);
-			z.getBoard()[0][8].setPiece(king);
+			z.getBoard()[0][6].setPiece(king);
 			
 			King king2 = new King();
 			king2.setBoard(z);
-			king2.setPosition(13, 8);
+			king2.setPosition(13, 6);
 			king2.setColor(Colours.negro);
-			z.getBoard()[0][8].setPiece(king2);
+			z.getBoard()[13][6].setPiece(king2);
 			
 			Barbarian bar = new Barbarian();
 			bar.setBoard(z);
@@ -186,7 +186,7 @@ public class MainWindow extends JFrame implements ActionListener, MouseListener{
 			
 			Monk monje = new Monk();
 			monje.setBoard(z);
-			monje.setColor(Colours.negro);
+			monje.setColor(Colours.blanco);
 			monje.setPosition(0, 10);
 			z.getBoard()[0][10].setPiece(monje);
 			
@@ -198,7 +198,7 @@ public class MainWindow extends JFrame implements ActionListener, MouseListener{
 			
 			Soldier sold = new Soldier();
 			sold.setBoard(z);
-			sold.setColor(Colours.negro);
+			sold.setColor(Colours.blanco);
 			sold.setPosition(0, 11);
 			z.getBoard()[0][11].setPiece(sold);
 			
