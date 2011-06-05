@@ -30,7 +30,7 @@ public class LoadPanel extends JPanel{
     	
     	Language = language;
 //    	botonera = new BotoneraH(Language.getString("loadGame"),"",Language.getString("label_exit"));  
-    	botonera = new BotoneraH("Cargar","Salir","");  
+    	botonera = new BotoneraH("","Cargar","Salir");  
     	JuegoOldWarriorTales partida = new JuegoOldWarriorTales();
     	list = partida.takeOutFromDataBase();
     	
