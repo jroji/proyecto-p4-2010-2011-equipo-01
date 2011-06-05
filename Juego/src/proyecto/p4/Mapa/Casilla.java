@@ -62,7 +62,7 @@ public class Casilla implements storableInDataBase{
 		PosX=X;
 		PosY=Y;
 		piece=pie;
-		terrain=sq.getClass().getSimpleName();
+		terrain=sq.getTerrain();
 	}
 	
 	
@@ -253,7 +253,7 @@ public class Casilla implements storableInDataBase{
 		//c.insertIntoDataBase();
 
 		ArrayList<storableInDataBase> a=c.takeOutFromDataBase();
-		
+		System.out.println(((Casilla)a.get(0)).getSquare().getTerrain());
 		c.setCodeCasilla(70);
 		//c.deleteFromDataBase();
 	}
