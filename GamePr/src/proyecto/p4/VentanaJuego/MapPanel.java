@@ -42,7 +42,6 @@ public class MapPanel extends JPanel implements MouseListener{
 	ImageIcon img = new ImageIcon(getClass().getResource("/img/hierba.png"));
 	Icon viejoimg;
 	boolean seleccionado = false;
-	boolean objetivoFijado = false;
 	JLabel selectedUnit;
 	JLabel objectiveUnit;
 	Board tab;
