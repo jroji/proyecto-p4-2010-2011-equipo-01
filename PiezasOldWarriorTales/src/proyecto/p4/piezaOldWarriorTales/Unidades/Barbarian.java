@@ -21,7 +21,7 @@ public class Barbarian extends PiezaOldWarriorTales {
 		defense=15;
 		attack=50;
 		probability=40;
-		price = 700;
+		price = 600;
 		blindness=false;
 		poisson=false;
 		counterattack=false;

@@ -16,7 +16,7 @@ public class Killer extends PiezaOldWarriorTales{
 			defense=5;
 			attack=25;
 			probability=60;
-			price= 600;
+			price= 400;
 			blindness=false;
 			poisson=false;
 			counterattack=false;

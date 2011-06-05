@@ -16,6 +16,7 @@ public class knight extends PiezaOldWarriorTales {
 			defense=10;
 			attack=35;
 			probability=70;
+			price = 700;
 			blindness=false;
 			poisson=false;
 			counterattack=false;

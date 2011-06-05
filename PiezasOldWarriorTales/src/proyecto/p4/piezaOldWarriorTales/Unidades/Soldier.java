@@ -15,6 +15,7 @@ public class Soldier extends PiezaOldWarriorTales {
 		defense=10;
 		attack=40;
 		probability=60;
+		price = 500;
 		blindness=false;
 		poisson=false;
 		counterattack=false;

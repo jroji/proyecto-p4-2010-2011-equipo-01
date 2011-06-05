@@ -16,6 +16,7 @@ public class Magician extends PiezaOldWarriorTales {
 			defense=5;
 			attack=50;
 			probability=45;
+			price = 800;
 			blindness=false;
 			poisson=false;
 			counterattack=false;

@@ -15,6 +15,7 @@ public class Monk extends PiezaOldWarriorTales{
 			defense=0;
 			attack=50;
 			probability=100;
+			price = 600;
 			blindness=false;
 			poisson=false;
 			counterattack=false;
