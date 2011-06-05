@@ -29,6 +29,7 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable{
 	protected int energy;
 	protected int probability;
 	protected String type;
+	protected int price;
 
 	//flags que indican si la unidad ha sido movida o a atacado en este turno
 	private boolean hasBeenMoved;
