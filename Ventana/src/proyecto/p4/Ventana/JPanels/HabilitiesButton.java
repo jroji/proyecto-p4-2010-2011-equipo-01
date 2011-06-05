@@ -50,9 +50,9 @@ public class HabilitiesButton extends JPanel implements ActionListener{
 	public void update(PiezaOldWarriorTales piece){
 		this.Habilities=piece.getHabilities();
 		for(int i = 0; i<Habilities.length;i++){
-					Buttons[i].setText(Habilities[i].getName());	
+					//Buttons[i].setText(Habilities[i].getName());	
 				try{
-					//Buttons[i].setText(Language.getString(Habilities[i].getName()));
+					Buttons[i].setText(Habilities[i].getName());
 				}	catch(Exception e){	
 					Buttons[i].setText("");
 					}	
