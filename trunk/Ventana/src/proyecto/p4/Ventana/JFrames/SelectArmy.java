@@ -114,6 +114,7 @@ public class SelectArmy extends JFrameFondo implements ActionListener{
 		modelo.setColumnIdentifiers(l);
 		J=j;
     	initComponents();
+        cargarUnidadesEnList();
     	setVisible(true);
     }
 
@@ -122,7 +123,6 @@ public class SelectArmy extends JFrameFondo implements ActionListener{
     	
         UnitList = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList();
-        cargarUnidadesEnList();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable(modelo);
         BotoneraH = new BotoneraH(language.getString("label_reclute"),"",language.getString("label_accept"));
@@ -231,14 +231,14 @@ public class SelectArmy extends JFrameFondo implements ActionListener{
       	
       	ArrayList<Object> nombres= new ArrayList<Object>(); 
       	nombres=Reflectividad.instanciarDireccion("UnitsFile");
+      	ArrayList<String> nombresPiezas= new ArrayList<String>(); 
       	for (Object o:nombres){
       		if (o instanceof PiezaOldWarriorTales){
       			instancias.add((PiezaOldWarriorTales) o);
-      			jList1.add(o.getClass().getName(), new JLabel (o.toString()));
-      			//jList1.add(o.getClass().getName());
-      			//nombres.add(o);
+      			nombresPiezas.add(o.getClass().getSimpleName());
       		}
       	}
+      	jList1.setListData(nombresPiezas.toArray());
   	}
     
 	@Override
@@ -248,8 +248,8 @@ public class SelectArmy extends JFrameFondo implements ActionListener{
 			if(instancias.get(jList1.getSelectedIndex())!=null){
 				Object[]fila=new String[3];
 				fila[0] = instancias.get(jList1.getSelectedIndex()).getType();
-				fila[1] = instancias.get(jList1.getSelectedIndex()).getLife();
-				fila[2] = instancias.get(jList1.getSelectedIndex()).getEnergy();
+				fila[1] =new Integer(instancias.get(jList1.getSelectedIndex()).getLife()).toString();
+				fila[2] =new Integer (instancias.get(jList1.getSelectedIndex()).getEnergy()).toString();
 				modelo.addRow(fila);
 				if(selected = true)
 					jugador1.add(instancias.get(jList1.getSelectedIndex()));
