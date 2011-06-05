@@ -58,7 +58,7 @@ public class HabilitiesButton extends JPanel implements ActionListener{
 		for(int i = 0; i<Buttons.length;i++){
 			//		Buttons[i].setText(Language.getString(Habilities[i].getName()));	
 				try{
-					Buttons[i].setText(Habilities[i].getName());
+					Buttons[i].setText(Language.getString(Habilities[i].getName()));
 				}	catch(Exception e){	
 					Buttons[i].setText("");
 					}	
