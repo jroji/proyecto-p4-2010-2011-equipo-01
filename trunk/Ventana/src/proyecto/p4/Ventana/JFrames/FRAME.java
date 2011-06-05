@@ -16,7 +16,6 @@ public class FRAME extends JFrame {
 	public FRAME() {
 		this.setSize(1024, 720);
 		this.setLayout(null);
-		Arquero arq = new Arquero();
 		ListAndImage x = new ListAndImage(new MyResources_En());
 		this.add(x);
 		x.setBounds(0, 0, 280, 720);
