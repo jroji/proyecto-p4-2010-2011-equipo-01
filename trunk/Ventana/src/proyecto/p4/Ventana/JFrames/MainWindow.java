@@ -223,7 +223,7 @@ public class MainWindow extends JFrame implements ActionListener, MouseListener{
 			array.add(bar);
 			
 			
-			int indice = 0;
+			int indice = 1;
 			try{
 				array.get(0).setPosition(0, 6);
 				z.getBoard()[0][6].setPiece(array.get(0));
