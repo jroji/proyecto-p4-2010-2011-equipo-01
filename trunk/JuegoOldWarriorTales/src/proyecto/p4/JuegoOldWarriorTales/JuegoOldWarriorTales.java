@@ -71,7 +71,6 @@ public class JuegoOldWarriorTales extends Juego implements storableInDataBase{
 				for(int j=0; j<this.tablero.getBoard()[i].length;j++)
 				{
 					this.tablero.getBoard()[i][j].setNombreJuego(this.name);
-					System.out.println(tablero.getBoard()[i][j]);
 					this.tablero.getBoard()[i][j].insertIntoDataBase();
 					if (this.tablero.getBoard()[i][j].getPiece()!=null){
 						this.tablero.getBoard()[i][j].getPiece().setNombreJuego(this.name);
