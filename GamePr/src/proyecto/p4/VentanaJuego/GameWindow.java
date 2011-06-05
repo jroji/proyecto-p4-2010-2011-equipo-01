@@ -55,16 +55,6 @@ public class GameWindow extends JFrame implements MouseListener, ListSelectionLi
 	private static final long serialVersionUID = 6973735437802698696L;
 	GamePanel gamePanel;
 	UnitData unitData;
-	boolean agua;
-	public boolean isAgua() {
-		return agua;
-	}
-
-	public void setAgua(boolean agua) {
-		this.agua = agua;
-	}
-
-
 	JLayeredPane layer = new JLayeredPane();
 	HabilitiesButton habilitiesButtons;
 	JLabel imgFondo = new JLabel(new ImageIcon(getClass().getResource("/img/madera.jpg"))) ;
@@ -81,7 +71,6 @@ public class GameWindow extends JFrame implements MouseListener, ListSelectionLi
 	JList units;
 	Board map;
 	Jugador jug1;
-	JLabel pez = new JLabel(new ImageIcon(getClass().getResource("/img/pez.gif")));
 	JuegoOldWarriorTales juego;
 	
 	public Jugador getJug1() {
@@ -111,7 +100,6 @@ public class GameWindow extends JFrame implements MouseListener, ListSelectionLi
 		this.jug1=juego.getJugador1();
 		this.jug2=juego.getJugador2();
 		map=juego.getTablero();
-		
 //		this.jug1=jug1;
 //		this.jug2=jug2;
 //		map = mapa;
@@ -141,7 +129,6 @@ public class GameWindow extends JFrame implements MouseListener, ListSelectionLi
 		habilitiesButtons.setBounds(200,600, 750, 200);		
 
 		gamePanel.addMouseListener(this);
-		layer.add(pez,new Integer (20));
 		layer.add(gamePanel, new Integer (1));
 		layer.add(unitData, new Integer(2));
 		layer.add(habilitiesButtons, new Integer(2));
@@ -165,9 +152,6 @@ public class GameWindow extends JFrame implements MouseListener, ListSelectionLi
 		imgMANA.setBounds(1100, 65, 80, 80);
 		imgLIFE.setBounds(1100, 28, 80, 80);
 		imgPerg.setBounds(820, 20, 400, 200);
-		
-		if(map.getBoard()[0][6].getSquare().getTerrain().equals("Water"));
-			pez.setBounds(300,300,150,150);
 
 		imgFondo.setBounds(0, 0, this.getWidth(), this.getHeight());
 		this.setResizable(false);
