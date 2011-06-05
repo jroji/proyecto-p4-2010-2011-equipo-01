@@ -5,8 +5,6 @@ import java.awt.event.ActionListener;
 import java.util.ResourceBundle;
 
 import javax.swing.JFrame;
-
-import Languages.MyResources_Es;
 import proyecto.p4.Juego.Juego;
 import proyecto.p4.Ventana.Button.BotoneraH;
 import proyecto.p4.Ventana.Button.OldWarriorButton;
