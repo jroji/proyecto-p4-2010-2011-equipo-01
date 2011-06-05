@@ -33,54 +33,7 @@ import proyecto.p4.piezaOldWarriorTales.Unidades.Soldier;
 import proyecto.p4.piezaOldWarriorTales.Unidades.knight;
 
 
-//public class SelectArmy extends JFrameFondo implements ActionListener{
-//
-//     /**
-//	 * 
-//	 */
-//	private static final long serialVersionUID = -710066457784512920L;
-//	ListAndImage  x ;
-//	
-//     JTable table = new JTable();
-//     private ResourceBundle language;
-//     private Juego J;
-//     private ArrayList<Object> jugador1;
-//     private ArrayList<Object> jugador2;
-//     private boolean selected;
-//     private DefaultTableModel modelo;
-//     private boolean sound;
-//     private int gold;
-//     private JPanel Ventana;
-//	
-//	public SelectArmy(ResourceBundle Language,boolean Sound,Juego j,ArrayList<Object> j1,ArrayList<Object> j2,boolean j1Selected,int gold)
-//	{
-//		language = Language;
-//		this.gold=gold;
-//		jugador1 = j1;
-//		jugador2 = j2;
-//		sound = Sound;
-//		selected = j1Selected;
-//		modelo = new DefaultTableModel();
-//		modelo.setColumnCount(3);
-//		Object [] l= {Language.getString("Name"),Language.getString("Health"),Language.getString("Mana")};
-//		modelo.setColumnIdentifiers(l);
-//		table= new JTable(modelo);
-//		J=j;
-//		Ventana= new JPanel();
-//		//x.addMouseListener(this);
-//		this.setSize(1024,720);
-//		this.setLayout(null);
-//		x = new ListAndImage(Language);
-//		this.add(x);
-//		this.add(table);
-//		((OldWarriorButton)x.getButtons().getComponent(0)).getOldWarriorButton().addActionListener(this);
-//		((OldWarriorButton)x.getButtons().getComponent(2)).getOldWarriorButton().addActionListener(this);	  
-//		table.setBounds(280, 320, 650,300 );
-//		x.setBounds(0, 0, 280, 720);
-//		this.setVisible(true);
-//		setImagen("/img/madera.jpg");
-//		this.setVisible(true);
-//	}
+
 	
 public class SelectArmy extends JFrameFondo implements ActionListener{
 
@@ -144,7 +97,7 @@ public class SelectArmy extends JFrameFondo implements ActionListener{
         PlayerNick.setText(J.getJugador1().getNick());
         
         PlayerAvatar = new JLabel(new ImageIcon(getClass().getResource(J.getJugador1().getAvatar())));
-        }else{
+        }else  if(!selected){
         PlayerNick.setText(J.getJugador2().getNick());
         
         PlayerAvatar = new JLabel(new ImageIcon(getClass().getResource(J.getJugador2().getAvatar())));
@@ -302,7 +255,7 @@ public class SelectArmy extends JFrameFondo implements ActionListener{
 				J.getTablero().getBoard()[0][6].setPiece(king);
 			this.dispose();
 			new SelectArmy(language,sound,J,false,gold);
-			}else{
+			}else if(!selected){
 				King king = new King();
 				king.setBoard(J.getTablero());
 				king.setPosition(0, 6);
