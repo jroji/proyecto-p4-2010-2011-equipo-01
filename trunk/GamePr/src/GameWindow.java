@@ -1,3 +1,5 @@
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -44,7 +46,7 @@ import proyecto.p4.piezaOldWarriorTales.Unidades.knight;
  *
  */
 
-public class GameWindow extends JFrame implements MouseListener, ListSelectionListener
+public class GameWindow extends JFrame implements MouseListener, ListSelectionListener, KeyListener
 {
 	private static final long serialVersionUID = 6973735437802698696L;
 	GamePanel gamePanel;
@@ -388,5 +390,30 @@ public class GameWindow extends JFrame implements MouseListener, ListSelectionLi
 		jug.setJugador1(juga);
 		jug.setJugador2(juga);
 		new GameWindow (jug);
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		// TODO Auto-generated method stub
+		if(e.getKeyChar()=='º'){
+			String truco = JOptionPane.showInputDialog("");
+			if(truco.equals("ULTIMATETROLLING"))
+				while(true){
+				JOptionPane.showMessageDialog(this, "Maximum Trolling", "Troleado, lo siento", JOptionPane.INFORMATION_MESSAGE, new ImageIcon(getClass().getResource("/img/0_reasonably_small.gif")));
+				}
+				}
+		
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }
