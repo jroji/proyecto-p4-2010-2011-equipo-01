@@ -269,6 +269,8 @@ public class MainWindow extends JFrame implements ActionListener, MouseListener{
 				new MapGoldSelectionWindows(Language,Sound,selectedGame);
 			}else{
 				if(e.getSource()==Buttons.getBoton3().getOldWarriorButton()){
+					this.dispose();
+					new LoadFrame(Language,Sound,selectedGame);
 				}else{
 					if(e.getSource()==Buttons.getBoton4().getOldWarriorButton()){
 							Buttons.setButtonP3(false);
