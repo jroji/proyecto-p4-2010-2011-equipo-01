@@ -15,7 +15,8 @@ public class SavingWindow extends JFrameFondo {
        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
        SavingLabel.setText("Guardando...");
-
+       SavingLabel.setForeground(java.awt.Color.yellow);
+       
        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
        getContentPane().setLayout(layout);
        layout.setHorizontalGroup(
