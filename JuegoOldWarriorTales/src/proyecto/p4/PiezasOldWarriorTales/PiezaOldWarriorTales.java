@@ -533,7 +533,8 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable{
 		}
 		try {
 			p = new PieceJDBC();
-			ArrayList<storableInDataBase> array= p.getAll("PiezaOldWarriorTales",this.getClass().getName());		
+			ArrayList<storableInDataBase> array= p.getAll("PiezaOldWarriorTales",this.getClass().getName());
+			ArrayList<storableInDataBase> array2= new ArrayList<storableInDataBase>();
 			
 			for (storableInDataBase stor: array)
 			{
@@ -541,6 +542,7 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable{
 				int i =0;
 				do
 				{
+
 					if (((PiezaOldWarriorTales)stor).type.equals(piezas.get(i).type))
 					{
 						PiezaOldWarriorTales piezaNueva= piezas.get(i).getClass().newInstance();
@@ -557,14 +559,13 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable{
 						piezaNueva.setHasBeenMoved(((PiezaOldWarriorTales)stor).isHasBeenMoved());
 						piezaNueva.setHasAttacked(((PiezaOldWarriorTales)stor).isHasAttacked());
 						piezaNueva.setNombreJuego(((PiezaOldWarriorTales)stor).getNombreJuego());
-						stor=piezaNueva;
-						
+						array2.add(piezaNueva);
 					}
 					i++;
 				}while (encontrado==false && i<piezas.size());
 			}
 			
-			return array;
+			return array2;
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 			JOptionPane.showMessageDialog(null,"Error al cargar1","Error",JOptionPane.OK_OPTION,null);  

@@ -200,8 +200,8 @@ public class JuegoOldWarriorTales extends Juego implements storableInDataBase{
 		{
 			System.out.println(((JuegoOldWarriorTales)stor).getName());
 			System.out.println(((JuegoOldWarriorTales)stor).tablero.getBoard().length);
-			System.out.println(((JuegoOldWarriorTales)stor).tablero.getBoard()[0][3].getPiece().getClass().getSimpleName());
-			System.out.println(((JuegoOldWarriorTales)stor).tablero.getBoard()[0][3].getPiece().getColor());
+			System.out.println(((JuegoOldWarriorTales)stor).tablero.getBoard()[0][4].getPiece().getClass().getSimpleName());
+			System.out.println(((JuegoOldWarriorTales)stor).tablero.getBoard()[0][4].getSquare().getTerrain());
 		}
 		
 //		ArrayList<storableInDataBase>array=j.takeOutFromDataBase();
