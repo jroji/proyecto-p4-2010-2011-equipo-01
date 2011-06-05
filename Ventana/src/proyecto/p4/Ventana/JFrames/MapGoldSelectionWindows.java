@@ -2,11 +2,8 @@
 
  package proyecto.p4.Ventana.JFrames;
 
- import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -114,8 +111,6 @@ public class MapGoldSelectionWindows extends JFrameFondo implements ActionListen
 			new MainWindow(Language, Sound,J);
 		}else if (e.getSource()==((OldWarriorButton)Botonera.getComponent(2)).getOldWarriorButton()){
 			this.dispose();
-			ArrayList<Object> Jugador1 = new ArrayList<Object>();
-			ArrayList<Object> Jugador2 = new ArrayList<Object>();
 			J.setTablero(boardArray.get(MapList.getSelectedIndex()));
 			new SelectArmy(Language,Sound,J,true,GoldSelection.getText());
 
