@@ -249,15 +249,18 @@ public class SelectArmy extends JFrameFondo implements ActionListener{
 		// TODO Auto-generated method stub
 		if(e.getSource()==((OldWarriorButton)BotoneraH.getComponent(0)).getOldWarriorButton()){
 			if(instancias.get(jList1.getSelectedIndex())!=null){
+				if(Integer.parseInt(GoldLeft.getText())-instancias.get(jList1.getSelectedIndex()).getPrice()){
 				Object[]fila=new String[3];
 				fila[0] = instancias.get(jList1.getSelectedIndex()).getType();
 				fila[1] =new Integer(instancias.get(jList1.getSelectedIndex()).getLife()).toString();
 				fila[2] =new Integer (instancias.get(jList1.getSelectedIndex()).getEnergy()).toString();
 				modelo.addRow(fila);
+				GoldLeft.setText(Integer.toString(Integer.parseInt(GoldLeft.getText())-instancias.get(jList1.getSelectedIndex()).getPrice()));
 				if(selected = true)
 					jugador1.add(instancias.get(jList1.getSelectedIndex()));
 				else
 					jugador2.add(instancias.get(jList1.getSelectedIndex()));
+				}
 			}
 		}else if(e.getSource()==((OldWarriorButton)BotoneraH.getComponent(2)).getOldWarriorButton()){
 			if(selected){
