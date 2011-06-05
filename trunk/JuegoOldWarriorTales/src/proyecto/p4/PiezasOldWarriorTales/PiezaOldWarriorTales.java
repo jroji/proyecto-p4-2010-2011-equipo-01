@@ -73,6 +73,10 @@ public abstract class PiezaOldWarriorTales extends Piece implements Orientable{
 		this();
 		this.board=board;
 	}
+	
+	public int getPrice(){
+		return price;
+	}
 	public void setOrientation(Orientations orientacion) {
 		this.orientacion = orientacion;
 	}
