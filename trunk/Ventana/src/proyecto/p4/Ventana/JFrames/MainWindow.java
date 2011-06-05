@@ -114,97 +114,97 @@ public class MainWindow extends JFrame implements ActionListener, MouseListener{
 			
 			Killer ass = new Killer();
 			ass.setBoard(z);
-			ass.setColor(Colours.blanco);
+			ass.setColor(Colours.rojo);
 			ass.setPosition(0, 4);
 			z.getBoard()[0][4].setPiece(ass);
 			
 			Killer ass2 = new Killer();
 			ass2.setBoard(z);
-			ass2.setColor(Colours.negro);
+			ass2.setColor(Colours.azul);
 			ass2.setPosition(13, 4);
 			z.getBoard()[13][4].setPiece(ass2);
 
 			Arquero arq = new Arquero();
 			arq.setBoard(z);
 			arq.setPosition(0, 5);
-			arq.setColor(Colours.blanco);
+			arq.setColor(Colours.rojo);
 			z.getBoard()[0][5].setPiece(arq);
 			
 			Arquero arq2 = new Arquero();
 			arq2.setBoard(z);
 			arq2.setPosition(13, 5);
-			arq2.setColor(Colours.negro);
+			arq2.setColor(Colours.azul);
 			z.getBoard()[13][5].setPiece(arq2);
 
 			Magician mag = new Magician();
 			mag.setPosition(0,8);
-			mag.setColor(Colours.blanco);
+			mag.setColor(Colours.rojo);
 			mag.setBoard(z);
 			z.getBoard()[0][8].setPiece(mag);
 			
 			Magician mag2 = new Magician();
 			mag2.setPosition(13,8);
-			mag2.setColor(Colours.negro);
+			mag2.setColor(Colours.azul);
 			mag2.setBoard(z);
 			z.getBoard()[13][8].setPiece(mag2);
 
 			knight kill = new knight();
 			kill.setBoard(z);
 			kill.setPosition(0,7);
-			kill.setColor(Colours.blanco);
+			kill.setColor(Colours.rojo);
 			z.getBoard()[0][7].setPiece(kill);
 			
 			knight kill2 = new knight();
 			kill2.setBoard(z);
 			kill2.setPosition(13,7);
-			kill2.setColor(Colours.negro);
+			kill2.setColor(Colours.azul);
 			z.getBoard()[13][7].setPiece(kill2);
 			
 			King king = new King();
 			king.setBoard(z);
 			king.setPosition(0, 6);
-			king.setColor(Colours.blanco);
+			king.setColor(Colours.rojo);
 			z.getBoard()[0][6].setPiece(king);
 			
 			King king2 = new King();
 			king2.setBoard(z);
 			king2.setPosition(13, 6);
-			king2.setColor(Colours.negro);
+			king2.setColor(Colours.azul);
 			z.getBoard()[13][6].setPiece(king2);
 			
 			Barbarian bar = new Barbarian();
 			bar.setBoard(z);
-			bar.setColor(Colours.blanco);
+			bar.setColor(Colours.rojo);
 			bar.setPosition(0, 9);
 			z.getBoard()[0][9].setPiece(bar);
 			
 			Barbarian bar2 = new Barbarian();
 			bar2.setBoard(z);
-			bar2.setColor(Colours.negro);
+			bar2.setColor(Colours.azul);
 			bar2.setPosition(13, 9);
 			z.getBoard()[13][9].setPiece(bar2);
 			
 			Monk monje = new Monk();
 			monje.setBoard(z);
-			monje.setColor(Colours.blanco);
+			monje.setColor(Colours.rojo);
 			monje.setPosition(0, 10);
 			z.getBoard()[0][10].setPiece(monje);
 			
 			Monk monje2 = new Monk();
 			monje2.setBoard(z);
-			monje2.setColor(Colours.negro);
+			monje2.setColor(Colours.azul);
 			monje2.setPosition(13, 10);
 			z.getBoard()[13][10].setPiece(monje2);
 			
 			Soldier sold = new Soldier();
 			sold.setBoard(z);
-			sold.setColor(Colours.blanco);
+			sold.setColor(Colours.rojo);
 			sold.setPosition(0, 11);
 			z.getBoard()[0][11].setPiece(sold);
 			
 			Soldier sold2 = new Soldier();
 			sold2.setBoard(z);
-			sold2.setColor(Colours.negro);
+			sold2.setColor(Colours.azul);
 			sold2.setPosition(13, 11);
 			z.getBoard()[13][10].setPiece(sold2);
 			
