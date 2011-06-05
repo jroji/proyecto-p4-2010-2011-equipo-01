@@ -551,7 +551,7 @@ public class PieceJDBC implements PieceDataSource {
 		
 		//crea la sentencia sql
 		sqlStatementString = "INSERT INTO "+tableName+"("+columnas+")"+ "VALUES" +"("+valores+");";
-		System.out.println(sqlStatementString);
+		//System.out.println(sqlStatementString);
 		//número de filas insertadas
 		int insertadas=statement.executeUpdate(sqlStatementString);
 		statement.close();
@@ -655,7 +655,7 @@ public class PieceJDBC implements PieceDataSource {
 
 		sqlStatementString = "DELETE FROM " +tableName+" WHERE "+cond+";";
 		//número de filas borradas de la tabla de la base de datos
-		System.out.println(sqlStatementString);
+		//System.out.println(sqlStatementString);
 		int deleteRows= statement.executeUpdate(sqlStatementString);
 		statement.close();
 		connection.close();
