@@ -8,7 +8,6 @@ public class SavingWindow extends JFrameFondo {
    public SavingWindow() {
        initComponents();
        this.setResizable(false);
-       this.setVisible(true);
        
    }
 
