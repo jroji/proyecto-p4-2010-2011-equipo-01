@@ -254,9 +254,10 @@ public class SelectArmy extends JFrameFondo implements ActionListener{
       	ArrayList<String> nombresPiezas= new ArrayList<String>(); 
       	for (Object o:nombres){
       		if (o instanceof PiezaOldWarriorTales){
-      			while(!o.getClass().getSimpleName().equals("King")){
-      			instancias.add((PiezaOldWarriorTales) o);
-      			nombresPiezas.add(o.getClass().getSimpleName());}
+      			if(!o.getClass().getSimpleName().equals("King")){
+	      			instancias.add((PiezaOldWarriorTales) o);
+	      			nombresPiezas.add(o.getClass().getSimpleName());
+	      		}
       		}
       	}
       	jList1.setListData(nombresPiezas.toArray());
