@@ -18,15 +18,11 @@ public class HabilitiesButton extends JPanel implements ActionListener{
 	 * 
 	 */
 	private static final long serialVersionUID = -8645064945784497631L;
-	private ResourceBundle Language;
 	private Hability[] Habilities;
 	private OldWarriorButton[] Buttons;
 	private int habilityPulsed;
 	
-	public HabilitiesButton(ResourceBundle language,PiezaOldWarriorTales p){
-//	public HabilitiesButton(PiezaOldWarriorTales p){
-
-		Language=language;
+	public HabilitiesButton(PiezaOldWarriorTales p){
 		this.setOpaque(false);
 		
 		Buttons=new OldWarriorButton[4];
