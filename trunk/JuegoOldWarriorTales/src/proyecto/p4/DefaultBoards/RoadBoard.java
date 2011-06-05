@@ -10,7 +10,7 @@ import proyecto.p4.Tipo.OldWarriorTales.TerrainVillage;
 public class RoadBoard extends Board{
 	public RoadBoard()
 	{
-		this.setBoardName("Default Board");
+		this.setBoardName("Road Board");
 		Casilla [][]map= new Casilla[14][13];
 		for (int i=0; i<map.length;i++)
 		{
