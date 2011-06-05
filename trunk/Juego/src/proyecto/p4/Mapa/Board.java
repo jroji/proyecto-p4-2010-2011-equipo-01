@@ -1,5 +1,6 @@
 package proyecto.p4.Mapa;
 import proyecto.p4.Piece.Piece;
+import proyecto.p4.Tipo.OldWarriorTales.TerrainCastle;
 import proyecto.p4.Tipo.OldWarriorTales.TerrainGrass;
 
 public class Board 
@@ -15,6 +16,8 @@ public class Board
 				map[i][j].setPosX(i);
 				map[i][j].setPosY(j);
 				}
+		map[0][6]=new Casilla(new TerrainCastle(),0,7,null);
+		map[13][6]=new Casilla(new TerrainCastle(),0,7,null);
 		}
 	
 	public Casilla[][] getBoard(){
