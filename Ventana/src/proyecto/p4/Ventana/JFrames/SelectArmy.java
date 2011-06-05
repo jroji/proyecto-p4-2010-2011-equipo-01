@@ -108,17 +108,20 @@ public class SelectArmy extends JFrameFondo implements ActionListener{
 		selected = j1Selected;
 		modelo = new DefaultTableModel();
 		modelo.setColumnCount(3);
+		instancias= new ArrayList<PiezaOldWarriorTales>();
 		Object [] l= {Language.getString("Name"),Language.getString("Health"),Language.getString("Mana")};
 		modelo.setColumnIdentifiers(l);
 		J=j;
     	initComponents();
+    	setVisible(true);
     }
 
     private void initComponents() {
 
-    	cargarUnidadesEnList();
+    	
         UnitList = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList(instancias.toArray());
+        jList1 = new javax.swing.JList();
+        cargarUnidadesEnList();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable(modelo);
         BotoneraH = new BotoneraH(language.getString("label_reclute"),"",language.getString("label_accept"));
@@ -207,7 +210,8 @@ public class SelectArmy extends JFrameFondo implements ActionListener{
       	for (Object o:nombres){
       		if (o instanceof PiezaOldWarriorTales){
       			instancias.add((PiezaOldWarriorTales) o);
-      			UnitList.add(o.getClass().getName(), new JLabel (o.toString()));
+      			jList1.add(o.getClass().getName(), new JLabel (o.toString()));
+      			//jList1.add(o.getClass().getName());
       			//nombres.add(o);
       		}
       	}
