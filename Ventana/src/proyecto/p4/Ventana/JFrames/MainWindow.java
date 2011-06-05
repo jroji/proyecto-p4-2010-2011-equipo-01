@@ -8,6 +8,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import javax.sound.sampled.AudioSystem;
@@ -25,6 +26,7 @@ import proyecto.p4.JuegoOldWarriorTales.JuegoOldWarriorTales;
 import proyecto.p4.Jugador.Jugador;
 import proyecto.p4.Mapa.Board;
 import proyecto.p4.Piece.Colours;
+import proyecto.p4.PiezasOldWarriorTales.PiezaOldWarriorTales;
 import proyecto.p4.Ventana.Button.BotoneraV;
 import proyecto.p4.VentanaJuego.GameWindow;
 import proyecto.p4.piezaOldWarriorTales.Unidades.Arquero;
@@ -110,103 +112,150 @@ public class MainWindow extends JFrame implements ActionListener, MouseListener{
 		if (e.getSource()==Buttons.getBoton1().getOldWarriorButton()){
 			Buttons.setButtonP1(false);
 
+			ArrayList<PiezaOldWarriorTales> array = new ArrayList<PiezaOldWarriorTales>() ;
+			
 			Board z = new Board();
+		
 			
 			Killer ass = new Killer();
 			ass.setBoard(z);
 			ass.setColor(Colours.rojo);
-			ass.setPosition(0, 4);
-			z.getBoard()[0][4].setPiece(ass);
+//			ass.setPosition(0, 4);
+//			z.getBoard()[0][4].setPiece(ass);
 			
 			Killer ass2 = new Killer();
 			ass2.setBoard(z);
 			ass2.setColor(Colours.azul);
-			ass2.setPosition(13, 4);
-			z.getBoard()[13][4].setPiece(ass2);
+//			ass2.setPosition(13, 4);
+//			z.getBoard()[13][4].setPiece(ass2);
 
 			Arquero arq = new Arquero();
 			arq.setBoard(z);
-			arq.setPosition(0, 5);
+//			arq.setPosition(0, 5);
 			arq.setColor(Colours.rojo);
-			z.getBoard()[0][5].setPiece(arq);
+//			z.getBoard()[0][5].setPiece(arq);
 			
 			Arquero arq2 = new Arquero();
 			arq2.setBoard(z);
-			arq2.setPosition(13, 5);
+//			arq2.setPosition(13, 5);
 			arq2.setColor(Colours.azul);
-			z.getBoard()[13][5].setPiece(arq2);
+//			z.getBoard()[13][5].setPiece(arq2);
 
 			Magician mag = new Magician();
-			mag.setPosition(0,8);
+//			mag.setPosition(0,8);
 			mag.setColor(Colours.rojo);
 			mag.setBoard(z);
-			z.getBoard()[0][8].setPiece(mag);
+//			z.getBoard()[0][8].setPiece(mag);
 			
 			Magician mag2 = new Magician();
-			mag2.setPosition(13,8);
+//			mag2.setPosition(13,8);
 			mag2.setColor(Colours.azul);
 			mag2.setBoard(z);
-			z.getBoard()[13][8].setPiece(mag2);
+//			z.getBoard()[13][8].setPiece(mag2);
 
 			knight kill = new knight();
 			kill.setBoard(z);
-			kill.setPosition(0,7);
+//			kill.setPosition(0,7);
 			kill.setColor(Colours.rojo);
-			z.getBoard()[0][7].setPiece(kill);
+//			z.getBoard()[0][7].setPiece(kill);
 			
 			knight kill2 = new knight();
 			kill2.setBoard(z);
-			kill2.setPosition(13,7);
+//			kill2.setPosition(13,7);
 			kill2.setColor(Colours.azul);
-			z.getBoard()[13][7].setPiece(kill2);
+//			z.getBoard()[13][7].setPiece(kill2);
 			
 			King king = new King();
 			king.setBoard(z);
-			king.setPosition(0, 6);
+//			king.setPosition(0, 6);
 			king.setColor(Colours.rojo);
-			z.getBoard()[0][6].setPiece(king);
+//			z.getBoard()[0][6].setPiece(king);
 			
 			King king2 = new King();
 			king2.setBoard(z);
-			king2.setPosition(13, 6);
+//			king2.setPosition(13, 6);
 			king2.setColor(Colours.azul);
-			z.getBoard()[13][6].setPiece(king2);
+//			z.getBoard()[13][6].setPiece(king2);
 			
 			Barbarian bar = new Barbarian();
 			bar.setBoard(z);
 			bar.setColor(Colours.rojo);
-			bar.setPosition(0, 9);
-			z.getBoard()[0][9].setPiece(bar);
+//			bar.setPosition(0, 9);
+//			z.getBoard()[0][9].setPiece(bar);
 			
 			Barbarian bar2 = new Barbarian();
 			bar2.setBoard(z);
 			bar2.setColor(Colours.azul);
-			bar2.setPosition(13, 9);
-			z.getBoard()[13][9].setPiece(bar2);
+//			bar2.setPosition(13, 9);
+//			z.getBoard()[13][9].setPiece(bar2);
 			
 			Monk monje = new Monk();
 			monje.setBoard(z);
 			monje.setColor(Colours.rojo);
-			monje.setPosition(0, 10);
-			z.getBoard()[0][10].setPiece(monje);
+//			monje.setPosition(0, 10);
+//			z.getBoard()[0][10].setPiece(monje);
 			
 			Monk monje2 = new Monk();
 			monje2.setBoard(z);
 			monje2.setColor(Colours.azul);
-			monje2.setPosition(13, 10);
-			z.getBoard()[13][10].setPiece(monje2);
+//			monje2.setPosition(13, 10);
+//			z.getBoard()[13][10].setPiece(monje2);
 			
 			Soldier sold = new Soldier();
 			sold.setBoard(z);
 			sold.setColor(Colours.rojo);
-			sold.setPosition(0, 11);
-			z.getBoard()[0][11].setPiece(sold);
+//			sold.setPosition(0, 11);
+//			z.getBoard()[0][11].setPiece(sold);
 			
 			Soldier sold2 = new Soldier();
 			sold2.setBoard(z);
 			sold2.setColor(Colours.azul);
-			sold2.setPosition(13, 11);
-			z.getBoard()[13][10].setPiece(sold2);
+//			sold2.setPosition(13, 11);
+//			z.getBoard()[13][10].setPiece(sold2);
+			
+			array.add(king);
+			array.add(arq);
+			array.add(kill);
+			array.add(ass);
+			array.add(sold);
+			array.add(monje);
+			array.add(mag);
+			array.add(bar);
+			
+			
+			int indice = 0;
+			try{
+				array.get(0).setPosition(0, 6);
+				z.getBoard()[0][6].setPiece(array.get(0));
+				for(int i = 1;i<=2;i++){
+					for(int j = 0;j<i+1;j++){
+						array.get(indice).setPosition(array.get(0).getPosition_x()+j, array.get(0).getPosition_y()-i);
+						z.getBoard()[array.get(0).getPosition_x()+j][array.get(0).getPosition_y()-i].setPiece(array.get(indice));
+						indice++;
+					}
+					if(i==2){
+						array.get(indice).setPosition(array.get(0).getPosition_x()+i, array.get(0).getPosition_y()-1);
+						z.getBoard()[array.get(0).getPosition_x()+i][array.get(0).getPosition_y()-1].setPiece(array.get(indice));
+						indice++;
+					}
+					array.get(indice).setPosition(array.get(0).getPosition_x()+i, array.get(0).getPosition_y());
+					z.getBoard()[array.get(0).getPosition_x()+i][array.get(0).getPosition_y()].setPiece(array.get(indice));
+					indice++;
+					if(i==2){
+						array.get(indice).setPosition(array.get(0).getPosition_x()+i, array.get(0).getPosition_y()+1);
+						z.getBoard()[array.get(0).getPosition_x()+i][array.get(0).getPosition_y()+1].setPiece(array.get(indice));
+						indice++;
+					}
+					for(int j = i;j>=0;j--){
+						array.get(indice).setPosition(array.get(0).getPosition_x()+j, array.get(0).getPosition_y()+i);
+						z.getBoard()[array.get(0).getPosition_x()+j][array.get(0).getPosition_y()+i].setPiece(array.get(indice));
+						indice++;
+					}
+				}
+			}
+			catch(Exception ex){
+				ex.printStackTrace();
+			}
 			
 			selectedGame.setTablero(z);
 			
