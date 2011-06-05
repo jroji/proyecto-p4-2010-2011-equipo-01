@@ -281,24 +281,31 @@ public class SelectArmy extends JFrameFondo implements ActionListener{
 					Piece p =  instancias.get(jList1.getSelectedIndex());
 					((PiezaOldWarriorTales) p).setBoard(J.getTablero());
 					((PiezaOldWarriorTales) p).setColor(Colours.rojo);
-					
-					J.setTablero(instancias.get(jList1.getSelectedIndex()).setColor(color));
+					J.getTablero()[][].setPiece(p);
 				}
 				else{
 					Piece p =  instancias.get(jList1.getSelectedIndex());
 					((PiezaOldWarriorTales) p).setBoard(J.getTablero());
 					((PiezaOldWarriorTales) p).setColor(Colours.azul);
-					jugador2.add(instancias.get(jList1.getSelectedIndex()));
+					J.getTablero().getBoard()[][].setPiece(p);
 				}
 				}
 			}
 		}else if(e.getSource()==((OldWarriorButton)BotoneraH.getComponent(2)).getOldWarriorButton()){
 			if(selected){
-			jugador1.add(new King().setPosition(0, 6));
+				King king = new King();
+				king.setBoard(J.getTablero());
+				king.setPosition(0, 6);
+				king.setColor(Colours.rojo);
+				J.getTablero().getBoard()[0][6].setPiece(king);
 			this.dispose();
-			new SelectArmy(language,sound,J,jugador1,jugador2,false,gold);
+			new SelectArmy(language,sound,J,false,gold);
 			}else{
-				jugador2.add(new King().setPosition(13, 6));
+				King king = new King();
+				king.setBoard(J.getTablero());
+				king.setPosition(0, 6);
+				king.setColor(Colours.azul);
+				J.getTablero().getBoard()[0][6].setPiece(king);
 				this.dispose();
 				//cargar Partida con el mapa y las unidades.
 				
