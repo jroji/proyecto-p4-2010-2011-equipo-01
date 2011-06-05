@@ -269,10 +269,8 @@ public class SelectArmy extends JFrameFondo implements ActionListener{
 			new SelectArmy(language,sound,J,false,gold, array,array2);
 			}else if(!selected){
 				this.dispose();
-				//cargar Partida con el mapa y las unidades.
-				colocarUnidades(array, J.getTablero());
-				colocarUnidades(array2,J.getTablero());
 				
+				//cargar Partida con el mapa y las unidades.
 				King king = new King();
 				King king2 = new King();
 				king.setBoard(J.getTablero());
@@ -281,6 +279,10 @@ public class SelectArmy extends JFrameFondo implements ActionListener{
 				array.add(0, king);
 				king2.setColor(Colours.azul);
 				array2.add(0, king2);
+				
+				colocarUnidades(array, J.getTablero());
+				colocarUnidades(array2,J.getTablero());
+				
 				new GameWindow(J);
 				
 			}
