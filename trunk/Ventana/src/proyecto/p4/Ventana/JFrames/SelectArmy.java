@@ -254,8 +254,9 @@ public class SelectArmy extends JFrameFondo implements ActionListener{
       	ArrayList<String> nombresPiezas= new ArrayList<String>(); 
       	for (Object o:nombres){
       		if (o instanceof PiezaOldWarriorTales){
+      			while(!o.getClass().getSimpleName().equals("King")){
       			instancias.add((PiezaOldWarriorTales) o);
-      			nombresPiezas.add(o.getClass().getSimpleName());
+      			nombresPiezas.add(o.getClass().getSimpleName());}
       		}
       	}
       	jList1.setListData(nombresPiezas.toArray());
@@ -266,7 +267,9 @@ public class SelectArmy extends JFrameFondo implements ActionListener{
 		// TODO Auto-generated method stub
 		if(e.getSource()==((OldWarriorButton)BotoneraH.getComponent(0)).getOldWarriorButton()){
 			if(instancias.get(jList1.getSelectedIndex())!=null){
+
 				if(Integer.parseInt(GoldLeft.getText())-instancias.get(jList1.getSelectedIndex()).getPrice()>=0){
+
 				Object[]fila=new String[3];
 				fila[0] = instancias.get(jList1.getSelectedIndex()).getType();
 				fila[1] =new Integer(instancias.get(jList1.getSelectedIndex()).getLife()).toString();
