@@ -283,8 +283,9 @@ public class GameWindow extends JFrame implements MouseListener, ListSelectionLi
 				partida = JOptionPane.showInputDialog("Introduzca el nombre de la partida");
 				try{
 				this.juego.setName(partida);
-				juego.insertIntoDataBase();
-				JOptionPane.showMessageDialog(this, "Partida guardada con éxito");
+				Guardar guardar = new Guardar(this.juego);
+				guardar.run();
+				JOptionPane.showMessageDialog(this, "Cargando...");
 				this.dispose();
 				}
 				catch(Exception ex){
