@@ -116,8 +116,9 @@ public class SelectArmy extends JFrameFondo implements ActionListener{
 
     private void initComponents() {
 
+    	cargarUnidadesEnList();
         UnitList = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
+        jList1 = new javax.swing.JList(instancias.toArray());
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable(modelo);
         BotoneraH = new BotoneraH(language.getString("label_reclute"),"",language.getString("label_accept"));
@@ -125,7 +126,7 @@ public class SelectArmy extends JFrameFondo implements ActionListener{
         Gold = new javax.swing.JLabel();
         PlayerNick = new javax.swing.JLabel();
         PlayerAvatar = new javax.swing.JLabel();
-        
+       
         ((OldWarriorButton)BotoneraH.getComponent(0)).getOldWarriorButton().addActionListener(this);
 		((OldWarriorButton)BotoneraH.getComponent(1)).getOldWarriorButton().addActionListener(this);
 		((OldWarriorButton)BotoneraH.getComponent(2)).getOldWarriorButton().addActionListener(this);	 
