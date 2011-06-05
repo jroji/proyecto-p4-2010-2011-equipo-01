@@ -50,7 +50,7 @@ public class WelcomeWindow extends JFrame implements ActionListener,KeyListener{
 		this.setLayout(null);
 		this.add(layer);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+		sound=Sound;
 		this.addKeyListener(this);
 		this.setFocusable(true);
 		
@@ -77,8 +77,6 @@ public class WelcomeWindow extends JFrame implements ActionListener,KeyListener{
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==((OldWarriorButton) botonera.getComponent(0)).getOldWarriorButton())
 		{
-			
-
 			Jugador j = new Jugador();
 			boolean enc1 = false;
 			boolean enc2 = false;
@@ -127,7 +125,7 @@ public class WelcomeWindow extends JFrame implements ActionListener,KeyListener{
 	}
 	public static void main(String [] args){
 		ResourceBundle language = new MyResources_En();
-		WelcomeWindow x = new WelcomeWindow(language,false);
+		WelcomeWindow x = new WelcomeWindow(language,true);
 	}
 
 

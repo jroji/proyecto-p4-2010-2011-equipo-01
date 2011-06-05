@@ -1,7 +1,4 @@
 package proyecto.p4.Ventana.JPanels;
-
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -15,7 +12,6 @@ import ConnectionInterface.storableInDataBase;
 
 import proyecto.p4.JuegoOldWarriorTales.JuegoOldWarriorTales;
 import proyecto.p4.Ventana.Button.BotoneraH;
-import proyecto.p4.Ventana.Button.OldWarriorButton;
 
 public class LoadPanel extends JPanel{
 	
@@ -35,8 +31,6 @@ public class LoadPanel extends JPanel{
     	botonera = new BotoneraH(Language.getString("label_loadGame"),"",Language.getString("label_exit"));  
     	JuegoOldWarriorTales partida = new JuegoOldWarriorTales();
     	list = partida.takeOutFromDataBase();
-    	
-
     	lista.setListData(list.toArray());
 
     	this.add(layer);
@@ -51,6 +45,10 @@ public class LoadPanel extends JPanel{
 
     public BotoneraH getBotonera(){
     	return botonera;
+    }
+    public JuegoOldWarriorTales getSelectedGame ()
+    {
+    	return (JuegoOldWarriorTales) list.get(lista.getSelectedIndex());
     }
 
 }
