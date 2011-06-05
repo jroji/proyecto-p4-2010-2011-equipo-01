@@ -192,7 +192,7 @@ public class GameWindow extends JFrame implements MouseListener, ListSelectionLi
 			for(int j = 0;j<mapa.getBoard()[i].length;j++){
 				pieza = (PiezaOldWarriorTales) mapa.getCasilla(i, j).getPiece();
 				if(pieza!=null){
-					if(pieza.getColor()==Colours.blanco){
+					if(pieza.getColor()==Colours.rojo){
 						array1.add(pieza);;}
 					else
 						array2.add(pieza);
@@ -286,12 +286,9 @@ public class GameWindow extends JFrame implements MouseListener, ListSelectionLi
 				partida = JOptionPane.showInputDialog("Introduzca el nombre de la partida");
 				try{
 				this.juego.setName(partida);
-				Guardar guardar = new Guardar(this.juego);
+				Guardar guardar = new Guardar(this.juego, this);
 				guardar.start();
-				juego.insertIntoDataBase();
-				guardar.interrupt();
-				JOptionPane.showMessageDialog(null, "Partida guardada con éxito");
-				this.dispose();
+				
 				}
 				catch(Exception ex){
 					JOptionPane.showMessageDialog(this, "Error al guardar la partida");
