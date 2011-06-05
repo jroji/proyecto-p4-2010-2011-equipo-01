@@ -94,8 +94,6 @@ public class SelectArmy extends JFrameFondo implements ActionListener{
 	private javax.swing.JList jList1;
 	private javax.swing.JScrollPane jScrollPane1;
 	private javax.swing.JTable jTable1;
-	private ArrayList<Object> jugador1;
-	private ArrayList<Object> jugador2;
 	private Juego J;
 	private DefaultTableModel modelo;
 	private int gold;
@@ -106,8 +104,6 @@ public class SelectArmy extends JFrameFondo implements ActionListener{
     public SelectArmy(ResourceBundle Language,boolean Sound,Juego j,boolean j1Selected,int gold) {
     	language = Language;
 		this.gold=gold;
-		jugador1 = j1;
-		jugador2 = j2;
 		sound = Sound;
 		selected = j1Selected;
 		modelo = new DefaultTableModel();
@@ -281,13 +277,15 @@ public class SelectArmy extends JFrameFondo implements ActionListener{
 					Piece p =  instancias.get(jList1.getSelectedIndex());
 					((PiezaOldWarriorTales) p).setBoard(J.getTablero());
 					((PiezaOldWarriorTales) p).setColor(Colours.rojo);
-					J.getTablero()[][].setPiece(p);
+					//((PiezaOldWarriorTales) p).setPosition(positionX, positionY);
+					//J.getTablero()[((PiezaOldWarriorTales) p).getPosition_x()][((PiezaOldWarriorTales) p).getPosition_y()].setPiece(p);
 				}
 				else{
 					Piece p =  instancias.get(jList1.getSelectedIndex());
 					((PiezaOldWarriorTales) p).setBoard(J.getTablero());
 					((PiezaOldWarriorTales) p).setColor(Colours.azul);
-					J.getTablero().getBoard()[][].setPiece(p);
+//					((PiezaOldWarriorTales) p).setPosition(positionX, positionY);
+//					J.getTablero()[((PiezaOldWarriorTales) p).getPosition_x()][((PiezaOldWarriorTales) p).getPosition_y()].setPiece(p);
 				}
 				}
 			}
