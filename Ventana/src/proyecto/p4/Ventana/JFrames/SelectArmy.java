@@ -168,18 +168,7 @@ public class SelectArmy extends JFrameFondo implements ActionListener{
         });
 
         jScrollPane1.setViewportView(jTable1);
-
-        javax.swing.GroupLayout BotoneraHLayout = new javax.swing.GroupLayout(BotoneraH);
-        BotoneraH.setLayout(BotoneraHLayout);
-        BotoneraHLayout.setHorizontalGroup(
-            BotoneraHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 430, Short.MAX_VALUE)
-        );
-        BotoneraHLayout.setVerticalGroup(
-            BotoneraHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 55, Short.MAX_VALUE)
-        );
-
+      
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
