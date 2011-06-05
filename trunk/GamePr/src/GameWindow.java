@@ -395,12 +395,6 @@ public class GameWindow extends JFrame implements MouseListener, ListSelectionLi
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
 		if(e.getKeyChar()=='º'){
 			String truco = JOptionPane.showInputDialog("");
 			if(truco.equals("ULTIMATETROLLING"))
@@ -408,6 +402,11 @@ public class GameWindow extends JFrame implements MouseListener, ListSelectionLi
 				JOptionPane.showMessageDialog(this, "Maximum Trolling", "Troleado, lo siento", JOptionPane.INFORMATION_MESSAGE, new ImageIcon(getClass().getResource("/img/0_reasonably_small.gif")));
 				}
 				}
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		// TODO Auto-generated method stub
 		
 	}
 
