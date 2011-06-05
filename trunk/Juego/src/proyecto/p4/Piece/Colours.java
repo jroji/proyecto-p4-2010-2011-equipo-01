@@ -1,5 +1,5 @@
 package proyecto.p4.Piece;
 
-public enum Colours {blanco,negro
+public enum Colours {rojo,azul
 
 }
