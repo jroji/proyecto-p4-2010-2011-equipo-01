@@ -274,37 +274,65 @@ public class MainWindow extends JFrame implements ActionListener, MouseListener{
 	try{
 		if(array.get(0).getColor().equals(Colours.rojo)){
 			array.get(0).setPosition(0, 6);
-			z.getBoard()[0][6].setPiece(array.get(0));}
+			z.getBoard()[0][6].setPiece(array.get(0));
+			for(int i = 1;i<=2;i++){
+				for(int j = 0;j<i+1;j++){
+					array.get(indice).setPosition(array.get(0).getPosition_x()+j, array.get(0).getPosition_y()-i);
+					z.getBoard()[array.get(0).getPosition_x()+j][array.get(0).getPosition_y()-i].setPiece(array.get(indice));
+					indice++;
+				}
+				if(i==2){
+					array.get(indice).setPosition(array.get(0).getPosition_x()+i, array.get(0).getPosition_y()-1);
+					z.getBoard()[array.get(0).getPosition_x()+i][array.get(0).getPosition_y()-1].setPiece(array.get(indice));
+					indice++;
+				}
+				array.get(indice).setPosition(array.get(0).getPosition_x()+i, array.get(0).getPosition_y());
+				z.getBoard()[array.get(0).getPosition_x()+i][array.get(0).getPosition_y()].setPiece(array.get(indice));
+				indice++;
+				if(i==2){
+					array.get(indice).setPosition(array.get(0).getPosition_x()+i, array.get(0).getPosition_y()+1);
+					z.getBoard()[array.get(0).getPosition_x()+i][array.get(0).getPosition_y()+1].setPiece(array.get(indice));
+					indice++;
+				}
+				for(int j = i;j>=0;j--){
+					array.get(indice).setPosition(array.get(0).getPosition_x()+j, array.get(0).getPosition_y()+i);
+					z.getBoard()[array.get(0).getPosition_x()+j][array.get(0).getPosition_y()+i].setPiece(array.get(indice));
+					indice++;
+				}
+			}	
+		
+		}
 		else{
 			array.get(0).setPosition(13, 6);
 			z.getBoard()[13][6].setPiece(array.get(0));
+			for(int i = 1;i<=2;i++){
+				for(int j = 0;j<i+1;j++){
+					array.get(indice).setPosition(array.get(0).getPosition_x()-j, array.get(0).getPosition_y()+i);
+					z.getBoard()[array.get(0).getPosition_x()-j][array.get(0).getPosition_y()+i].setPiece(array.get(indice));
+					indice++;
+				}
+				if(i==2){
+					array.get(indice).setPosition(array.get(0).getPosition_x()-i, array.get(0).getPosition_y()+1);
+					z.getBoard()[array.get(0).getPosition_x()-i][array.get(0).getPosition_y()+1].setPiece(array.get(indice));
+					indice++;
+				}
+				array.get(indice).setPosition(array.get(0).getPosition_x()-i, array.get(0).getPosition_y());
+				z.getBoard()[array.get(0).getPosition_x()-i][array.get(0).getPosition_y()].setPiece(array.get(indice));
+				indice++;
+				if(i==2){
+					array.get(indice).setPosition(array.get(0).getPosition_x()-i, array.get(0).getPosition_y()-1);
+					z.getBoard()[array.get(0).getPosition_x()-i][array.get(0).getPosition_y()-1].setPiece(array.get(indice));
+					indice++;
+				}
+				for(int j = i;j>=0;j--){
+					array.get(indice).setPosition(array.get(0).getPosition_x()-j, array.get(0).getPosition_y()-i);
+					z.getBoard()[array.get(0).getPosition_x()-j][array.get(0).getPosition_y()-i].setPiece(array.get(indice));
+					indice++;
+				}
+			}
 		}
 			
-		for(int i = 1;i<=2;i++){
-			for(int j = 0;j<i+1;j++){
-				array.get(indice).setPosition(array.get(0).getPosition_x()+j, array.get(0).getPosition_y()-i);
-				z.getBoard()[array.get(0).getPosition_x()+j][array.get(0).getPosition_y()-i].setPiece(array.get(indice));
-				indice++;
-			}
-			if(i==2){
-				array.get(indice).setPosition(array.get(0).getPosition_x()+i, array.get(0).getPosition_y()-1);
-				z.getBoard()[array.get(0).getPosition_x()+i][array.get(0).getPosition_y()-1].setPiece(array.get(indice));
-				indice++;
-			}
-			array.get(indice).setPosition(array.get(0).getPosition_x()+i, array.get(0).getPosition_y());
-			z.getBoard()[array.get(0).getPosition_x()+i][array.get(0).getPosition_y()].setPiece(array.get(indice));
-			indice++;
-			if(i==2){
-				array.get(indice).setPosition(array.get(0).getPosition_x()+i, array.get(0).getPosition_y()+1);
-				z.getBoard()[array.get(0).getPosition_x()+i][array.get(0).getPosition_y()+1].setPiece(array.get(indice));
-				indice++;
-			}
-			for(int j = i;j>=0;j--){
-				array.get(indice).setPosition(array.get(0).getPosition_x()+j, array.get(0).getPosition_y()+i);
-				z.getBoard()[array.get(0).getPosition_x()+j][array.get(0).getPosition_y()+i].setPiece(array.get(indice));
-				indice++;
-			}
-		}
+		
 	}
 	catch(Exception ex){
 		ex.printStackTrace();
