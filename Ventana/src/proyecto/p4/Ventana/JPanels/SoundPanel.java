@@ -1,7 +1,6 @@
  package proyecto.p4.Ventana.JPanels;
  
- import java.awt.Color;
-import java.util.ResourceBundle;
+ import java.util.ResourceBundle;
 import javax.swing.*;
 
  /**
@@ -12,7 +11,11 @@ import javax.swing.*;
  
  public class SoundPanel extends javax.swing.JPanel {
 
-    private JRadioButton NoButton;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -7059368334831055642L;
+	private JRadioButton NoButton;
     private JLabel SoundLabel;
     private JRadioButton YesButton;
     private ButtonGroup buttonGroup1;

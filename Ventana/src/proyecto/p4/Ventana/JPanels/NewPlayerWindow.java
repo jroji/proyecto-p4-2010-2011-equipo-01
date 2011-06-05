@@ -1,12 +1,7 @@
 package proyecto.p4.Ventana.JPanels;
 
-import javax.swing.JFrame;
-
 import Languages.MyResources_En;
-import Languages.MyResources_Es;
-
 import proyecto.p4.Ventana.JFrames.JFrameFondo;
-import proyecto.p4.piezaOldWarriorTales.Unidades.Killer;
 
 public class NewPlayerWindow extends JFrameFondo{
 	

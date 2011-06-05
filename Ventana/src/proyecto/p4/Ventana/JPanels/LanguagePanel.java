@@ -1,6 +1,5 @@
 package proyecto.p4.Ventana.JPanels;
 
-import java.awt.Color;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 

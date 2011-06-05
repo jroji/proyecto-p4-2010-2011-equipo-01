@@ -11,7 +11,11 @@ import javax.swing.JTextField;
  */
 public class NickPanel extends javax.swing.JPanel {
 
-    private JLabel Nick1;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 7636482150226183752L;
+	private JLabel Nick1;
     private JLabel Nick2;
     private JTextField nicktext;
     private JTextField nicktext2;
