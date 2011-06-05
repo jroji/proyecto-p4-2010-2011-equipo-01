@@ -127,11 +127,11 @@ public class MapPanel extends JPanel implements MouseListener{
 		this.piezasJugador2 = piezasJugador2;
 		this.piezasJugador1 = piezasJugador1;
 		tab = map;
-		iniMap(map, mapa);
+		//iniMap(map, mapa);
 		this.setOpaque(false);
-		
+		System.out.println(tab.getBoard()[0][1].getCodeCasilla());
 		//Inicializa el mapa de imagenes cogiendo las casillas del Board que recibimos
-		iniMap(map, mapa);
+		iniMap(tab, mapa);
 		setSize(1500,1200);
 		setLayout(null);
 		
@@ -159,6 +159,7 @@ public class MapPanel extends JPanel implements MouseListener{
 		for(int i = 0;i<array.length;i++)
 		{
 			for(int j = 0; j<array[i].length;j++){
+				
 				array[i][j] = new JLabel(new ImageIcon(getClass().getResource(map.getCasilla(i, j).getSquare().getImage())));
 			}
 		}
