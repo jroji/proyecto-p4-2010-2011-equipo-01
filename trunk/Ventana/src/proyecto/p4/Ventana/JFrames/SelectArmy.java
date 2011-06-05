@@ -230,14 +230,14 @@ public class SelectArmy extends JFrameFondo implements ActionListener{
 				fila[2] =new Integer (instancias.get(jList1.getSelectedIndex()).getEnergy()).toString();
 				modelo.addRow(fila);
 				GoldLeft.setText(Integer.toString(Integer.parseInt(GoldLeft.getText())-instancias.get(jList1.getSelectedIndex()).getPrice()));
-				if(selected = true){
+				if(selected){
 					Piece p =  instancias.get(jList1.getSelectedIndex());
 					((PiezaOldWarriorTales) p).setBoard(J.getTablero());
 					((PiezaOldWarriorTales) p).setColor(Colours.rojo);
 					//((PiezaOldWarriorTales) p).setPosition(positionX, positionY);
 					//J.getTablero()[((PiezaOldWarriorTales) p).getPosition_x()][((PiezaOldWarriorTales) p).getPosition_y()].setPiece(p);
 				}
-				else{
+				else if(!selected){
 					Piece p =  instancias.get(jList1.getSelectedIndex());
 					((PiezaOldWarriorTales) p).setBoard(J.getTablero());
 					((PiezaOldWarriorTales) p).setColor(Colours.azul);
