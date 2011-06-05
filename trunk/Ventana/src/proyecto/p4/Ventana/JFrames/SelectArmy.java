@@ -21,6 +21,7 @@ import proyecto.p4.Ventana.Button.BotoneraH;
 import proyecto.p4.Ventana.Button.OldWarriorButton;
 import proyecto.p4.Ventana.JPanels.ListAndImage;
 import proyecto.p4.Juego.*;
+import proyecto.p4.Mapa.Board;
 import proyecto.p4.Piece.Colours;
 import proyecto.p4.Piece.Piece;
 import proyecto.p4.PiezasOldWarriorTales.PiezaOldWarriorTales;
@@ -53,10 +54,14 @@ public class SelectArmy extends JFrameFondo implements ActionListener{
 	private boolean selected;
 	private boolean sound;
     private ArrayList<PiezaOldWarriorTales> instancias;
-	
+    private ArrayList<PiezaOldWarriorTales> array ;
+	private ArrayList<PiezaOldWarriorTales> array2 ;
+    
     public SelectArmy(ResourceBundle Language,boolean Sound,Juego j,boolean j1Selected,int gold) {
     	language = Language;
 		this.gold=gold;
+		array = new ArrayList<PiezaOldWarriorTales>() ;
+		array2 = new ArrayList<PiezaOldWarriorTales>() ;
 		sound = Sound;
 		selected = j1Selected;
 		modelo = new DefaultTableModel();
@@ -234,6 +239,7 @@ public class SelectArmy extends JFrameFondo implements ActionListener{
 					Piece p =  instancias.get(jList1.getSelectedIndex());
 					((PiezaOldWarriorTales) p).setBoard(J.getTablero());
 					((PiezaOldWarriorTales) p).setColor(Colours.rojo);
+					array.add((PiezaOldWarriorTales) p);
 					//((PiezaOldWarriorTales) p).setPosition(positionX, positionY);
 					//J.getTablero()[((PiezaOldWarriorTales) p).getPosition_x()][((PiezaOldWarriorTales) p).getPosition_y()].setPiece(p);
 				}
@@ -241,6 +247,7 @@ public class SelectArmy extends JFrameFondo implements ActionListener{
 					Piece p =  instancias.get(jList1.getSelectedIndex());
 					((PiezaOldWarriorTales) p).setBoard(J.getTablero());
 					((PiezaOldWarriorTales) p).setColor(Colours.azul);
+					array2.add((PiezaOldWarriorTales) p);
 //					((PiezaOldWarriorTales) p).setPosition(positionX, positionY);
 //					J.getTablero()[((PiezaOldWarriorTales) p).getPosition_x()][((PiezaOldWarriorTales) p).getPosition_y()].setPiece(p);
 				}
@@ -250,9 +257,8 @@ public class SelectArmy extends JFrameFondo implements ActionListener{
 			if(selected){
 				King king = new King();
 				king.setBoard(J.getTablero());
-				king.setPosition(0, 6);
 				king.setColor(Colours.rojo);
-				J.getTablero().getBoard()[0][6].setPiece(king);
+				array.add(0, king);
 			this.dispose();
 			new SelectArmy(language,sound,J,false,gold);
 			}else if(!selected){
@@ -260,12 +266,83 @@ public class SelectArmy extends JFrameFondo implements ActionListener{
 				king.setBoard(J.getTablero());
 				king.setPosition(0, 6);
 				king.setColor(Colours.azul);
-				J.getTablero().getBoard()[0][6].setPiece(king);
+				array.add(0, king);
 				this.dispose();
 				//cargar Partida con el mapa y las unidades.
-				
+				colocarUnidades(array, J.getTablero());
+				colocarUnidades(array2,J.getTablero());
+				new GameWindow(J);
 				
 			}
 		}
+	}
+
+	public void colocarUnidades(ArrayList<PiezaOldWarriorTales> array, Board z){
+		int indice = 1;
+	try{
+		if(array.get(0).getColor().equals(Colours.rojo)){
+			array.get(0).setPosition(0, 6);
+			z.getBoard()[0][6].setPiece(array.get(0));
+			for(int i = 1;i<=2;i++){
+				for(int j = 0;j<i+1;j++){
+					array.get(indice).setPosition(array.get(0).getPosition_x()+j, array.get(0).getPosition_y()-i);
+					z.getBoard()[array.get(0).getPosition_x()+j][array.get(0).getPosition_y()-i].setPiece(array.get(indice));
+					indice++;
+				}
+				if(i==2){
+					array.get(indice).setPosition(array.get(0).getPosition_x()+i, array.get(0).getPosition_y()-1);
+					z.getBoard()[array.get(0).getPosition_x()+i][array.get(0).getPosition_y()-1].setPiece(array.get(indice));
+					indice++;
+				}
+				array.get(indice).setPosition(array.get(0).getPosition_x()+i, array.get(0).getPosition_y());
+				z.getBoard()[array.get(0).getPosition_x()+i][array.get(0).getPosition_y()].setPiece(array.get(indice));
+				indice++;
+				if(i==2){
+					array.get(indice).setPosition(array.get(0).getPosition_x()+i, array.get(0).getPosition_y()+1);
+					z.getBoard()[array.get(0).getPosition_x()+i][array.get(0).getPosition_y()+1].setPiece(array.get(indice));
+					indice++;
+				}
+				for(int j = i;j>=0;j--){
+					array.get(indice).setPosition(array.get(0).getPosition_x()+j, array.get(0).getPosition_y()+i);
+					z.getBoard()[array.get(0).getPosition_x()+j][array.get(0).getPosition_y()+i].setPiece(array.get(indice));
+					indice++;
+				}
+			}	
+		
+		}
+		else{
+			array.get(0).setPosition(13, 6);
+			z.getBoard()[13][6].setPiece(array.get(0));
+			for(int i = 1;i<=2;i++){
+				for(int j = 0;j<i+1;j++){
+					array.get(indice).setPosition(array.get(0).getPosition_x()-j, array.get(0).getPosition_y()+i);
+					z.getBoard()[array.get(0).getPosition_x()-j][array.get(0).getPosition_y()+i].setPiece(array.get(indice));
+					indice++;
+				}
+				if(i==2){
+					array.get(indice).setPosition(array.get(0).getPosition_x()-i, array.get(0).getPosition_y()+1);
+					z.getBoard()[array.get(0).getPosition_x()-i][array.get(0).getPosition_y()+1].setPiece(array.get(indice));
+					indice++;
+				}
+				array.get(indice).setPosition(array.get(0).getPosition_x()-i, array.get(0).getPosition_y());
+				z.getBoard()[array.get(0).getPosition_x()-i][array.get(0).getPosition_y()].setPiece(array.get(indice));
+				indice++;
+				if(i==2){
+					array.get(indice).setPosition(array.get(0).getPosition_x()-i, array.get(0).getPosition_y()-1);
+					z.getBoard()[array.get(0).getPosition_x()-i][array.get(0).getPosition_y()-1].setPiece(array.get(indice));
+					indice++;
+				}
+				for(int j = i;j>=0;j--){
+					array.get(indice).setPosition(array.get(0).getPosition_x()-j, array.get(0).getPosition_y()-i);
+					z.getBoard()[array.get(0).getPosition_x()-j][array.get(0).getPosition_y()-i].setPiece(array.get(indice));
+					indice++;
+				}
+			}
+		}
+			
+		
+	}
+	catch(Exception ex){
+	}
 	}
 }
