@@ -17,7 +17,7 @@ public class GoldSelectionPanel extends JPanel {
 	public GoldSelectionPanel(ResourceBundle language){
 	gold = new JLabel(language.getString("label_gold")+":");
 	gold.setOpaque(false);
-	gold.setForeground(java.awt.Color.yellow);
+	gold.setForeground(java.awt.Color.blue);
 	goldSelection = new JTextField(10);
 	goldSelection.setText("3000");
 	add = new JButton("+");
