@@ -335,7 +335,6 @@ public class MainWindow extends JFrame implements ActionListener, MouseListener{
 		
 	}
 	catch(Exception ex){
-		ex.printStackTrace();
 	}
 	}
 
