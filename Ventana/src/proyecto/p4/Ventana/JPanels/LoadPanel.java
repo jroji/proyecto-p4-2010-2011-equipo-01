@@ -37,7 +37,7 @@ public class LoadPanel extends JPanel{
     	lista.setListData(list.toArray());
     	this.add(layer);
     	layer.add(lista, new Integer(1));
-    	lista.setBounds(10,10,300,420);
+    	lista.setBounds(10,10,420,300);
     	layer.setBounds(0,0,this.getWidth(),this.getHeight());
     	layer.add(fondo,new Integer(0));
     	fondo.setBounds(0,0,this.getWidth(),this.getHeight());
