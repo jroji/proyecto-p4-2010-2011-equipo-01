@@ -27,7 +27,7 @@ public class LoadPanel extends JPanel{
     private JLabel fondo = new JLabel(new ImageIcon(getClass().getResource("/img/madera.jpg")));
     
     public LoadPanel(ResourceBundle language){
-    	this.setSize(500,500);
+    	this.setSize(650,500);
     	this.setLayout(null);
     	
     	Language = language;
@@ -41,12 +41,12 @@ public class LoadPanel extends JPanel{
 
     	this.add(layer);
     	layer.add(lista, new Integer(1));
-    	lista.setBounds(10,10,420,300);
+    	lista.setBounds(10,10,570,300);
     	layer.setBounds(0,0,this.getWidth(),this.getHeight());
     	layer.add(fondo,new Integer(0));
     	fondo.setBounds(0,0,this.getWidth(),this.getHeight());
     	layer.add(botonera,new Integer(1));
-    	botonera.setBounds(-20,340,500,200);
+    	botonera.setBounds(0,340,550,200);
     }
 
     public BotoneraH getBotonera(){
