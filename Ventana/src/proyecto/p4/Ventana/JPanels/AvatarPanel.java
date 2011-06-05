@@ -38,6 +38,9 @@ public class AvatarPanel extends javax.swing.JPanel {
         player2Nick.setText(j.getJugador2().getNick());
         player1Nick.setText(j.getJugador1().getNick());
         
+        player1Nick.setForeground(java.awt.Color.yellow);
+        player2Nick.setForeground(java.awt.Color.yellow);
+        
         player1Avatar= new javax.swing.JLabel(new ImageIcon(getClass().getResource(j.getJugador1().getAvatar())));
         player2Avatar = new javax.swing.JLabel(new ImageIcon(getClass().getResource(j.getJugador2().getAvatar())));
         
