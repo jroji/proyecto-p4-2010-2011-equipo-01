@@ -65,8 +65,9 @@ public class SelectArmy extends JFrameFondo implements ActionListener{
 		King king = new King();
 		king.setBoard(J.getTablero());
 		king.setPosition(0, 6);
-		king.setColor(Colours.azul);
+		king.setColor(Colours.rojo);
 		array.add(0, king);
+		King.setColor(Colours.azul);
 		array2.add(0, king);
 		sound = Sound;
 		selected = j1Selected;
@@ -261,9 +262,6 @@ public class SelectArmy extends JFrameFondo implements ActionListener{
 			}
 		}else if(e.getSource()==((OldWarriorButton)BotoneraH.getComponent(2)).getOldWarriorButton()){
 			if(selected){
-				King king = new King();
-				king.setBoard(J.getTablero());
-				king.setColor(Colours.rojo);
 			this.dispose();
 			new SelectArmy(language,sound,J,false,gold);
 			}else if(!selected){
@@ -271,6 +269,8 @@ public class SelectArmy extends JFrameFondo implements ActionListener{
 				//cargar Partida con el mapa y las unidades.
 				colocarUnidades(array, J.getTablero());
 				colocarUnidades(array2,J.getTablero());
+				System.out.println(array.toString());
+				System.out.println(array2.toString());
 				new GameWindow(J);
 				
 			}
