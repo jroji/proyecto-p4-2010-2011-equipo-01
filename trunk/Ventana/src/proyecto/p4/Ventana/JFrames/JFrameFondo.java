@@ -7,7 +7,11 @@ import proyecto.p4.Ventana.JPanels.JPanelFondo;
 
 	public class JFrameFondo extends JFrame {
 
-	    private final JPanelFondo contenedor = new JPanelFondo();
+	    /**
+		 * 
+		 */
+		private static final long serialVersionUID = 8654194885150280729L;
+		private final JPanelFondo contenedor = new JPanelFondo();
 
 	    public JFrameFondo() {
 	        setContentPane(contenedor);

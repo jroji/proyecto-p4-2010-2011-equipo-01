@@ -11,6 +11,10 @@ import proyecto.p4.Jugador.Jugador;
 
 public class ListaJugadores extends JFrame {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -375992464590243633L;
 	private JTable table;
 	
 	public ListaJugadores(ArrayList<Jugador>listaJugadores)

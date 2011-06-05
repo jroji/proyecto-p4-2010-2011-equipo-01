@@ -11,7 +11,12 @@ import proyecto.p4.Ventana.Button.OldWarriorButton;
 public class CreditsWindow extends JFrameFondo implements ActionListener {
 
  
-    private OldWarriorButton Button;
+  
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4930726285055913060L;
+	private OldWarriorButton Button;
     private javax.swing.JLabel Credits;
     private javax.swing.JLabel Eneko;
     private javax.swing.JLabel Implementation;
@@ -144,7 +149,7 @@ public class CreditsWindow extends JFrameFondo implements ActionListener {
 		// TODO Auto-generated method stub
     	if(e.getSource()==Button.getOldWarriorButton()){
 		this.dispose();
-    	//new OptionWindow(Language,Sound,selectedGame);
+    	new OptionWindow(Language,Sound,selectedGame);
 	}
     }
 }
