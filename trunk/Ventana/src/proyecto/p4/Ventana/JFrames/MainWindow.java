@@ -21,14 +21,18 @@ import javax.swing.JOptionPane;
 import Languages.*;
 
 import proyecto.p4.Juego.Juego;
+import proyecto.p4.JuegoOldWarriorTales.JuegoOldWarriorTales;
+import proyecto.p4.Jugador.Jugador;
+import proyecto.p4.Mapa.Board;
+import proyecto.p4.Piece.Colours;
 import proyecto.p4.Ventana.Button.BotoneraV;
 import proyecto.p4.VentanaJuego.GameWindow;
+import proyecto.p4.piezaOldWarriorTales.Unidades.Arquero;
+import proyecto.p4.piezaOldWarriorTales.Unidades.Barbarian;
+import proyecto.p4.piezaOldWarriorTales.Unidades.Magician;
+import proyecto.p4.piezaOldWarriorTales.Unidades.knight;
 
 public class MainWindow extends JFrame implements ActionListener, MouseListener{
-	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	BotoneraV Buttons;
 	private ResourceBundle Language;
@@ -77,7 +81,7 @@ public class MainWindow extends JFrame implements ActionListener, MouseListener{
 			sonando = true ;
 		}
 		else{
-			//sonido.stop();
+			sonido.stop();
 		}
 			
 	}
@@ -101,7 +105,46 @@ public class MainWindow extends JFrame implements ActionListener, MouseListener{
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource()==Buttons.getBoton1().getOldWarriorButton()){
 			Buttons.setButtonP1(false);
-			GameWindow x;
+
+			Board z = new Board();
+
+			Arquero arq = new Arquero();
+			arq.setBoard(z);
+			arq.setPosition(10, 5);
+			arq.setColor(Colours.blanco);
+			arq.setLife(5);
+			arq.setEnergy(34);
+			arq.setExperience(67);
+			
+			Arquero arq2 = new Arquero();
+			arq2.setBoard(z);
+			arq2.setPosition(10, 10);
+			arq2.setColor(Colours.blanco);
+			arq2.setLife(77);
+
+			Magician mag = new Magician();
+			mag.setPosition(11,12);
+			mag.setColor(Colours.blanco);
+			mag.setBoard(z);
+			z.getBoard()[11][12].setPiece(mag);
+
+			knight kill = new knight();
+			kill.setBoard(z);
+			kill.setPosition(2,2);
+			kill.setColor(Colours.negro);
+			z.getBoard()[2][2].setPiece(kill);
+			
+			Barbarian bar = new Barbarian();
+			bar.setBoard(z);
+			bar.setColor(Colours.negro);
+			bar.setPosition(5, 5);
+			
+			z.getBoard()[5][5].setPiece(bar);
+			z.getBoard()[10][10].setPiece(arq2);
+			z.getBoard()[10][5].setPiece(arq);
+			selectedGame.setTablero(z);
+			
+			new GameWindow((JuegoOldWarriorTales) selectedGame);
 			this.dispose();
 		}
 		else{
