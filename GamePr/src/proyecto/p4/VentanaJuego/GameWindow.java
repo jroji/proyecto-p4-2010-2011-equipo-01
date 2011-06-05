@@ -15,6 +15,8 @@ import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import ConnectionInterface.storableInDataBase;
+
 
 
 import proyecto.p4.DefaultBoards.DefaultBoard;
@@ -30,6 +32,7 @@ import proyecto.p4.Piece.Colours;
 import proyecto.p4.PiezasOldWarriorTales.PiezaOldWarriorTales;
 import proyecto.p4.Tipo.OldWarriorTales.TerrainGrass;
 import proyecto.p4.Ventana.Button.OldWarriorButton;
+import proyecto.p4.Ventana.JFrames.ListaJugadores;
 import proyecto.p4.Ventana.JFrames.MainWindow;
 import proyecto.p4.Ventana.JPanels.HabilitiesButton;
 import proyecto.p4.Ventana.JPanels.UnitData;
@@ -397,20 +400,20 @@ public class GameWindow extends JFrame implements MouseListener, ListSelectionLi
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
-		if(e.getKeyChar()=='º'){
+			
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		// TODO Auto-generated method stub
+		if(e.getKeyCode()==116){
 			String truco = JOptionPane.showInputDialog("");
 			if(truco.equals("ULTIMATETROLLING"))
 				while(true){
 				JOptionPane.showMessageDialog(this, "Maximum Trolling", "Troleado, lo siento", JOptionPane.INFORMATION_MESSAGE, new ImageIcon(getClass().getResource("/img/0_reasonably_small.gif")));
 				}
 				}
-	}
-
-	@Override
-	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
+		}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
