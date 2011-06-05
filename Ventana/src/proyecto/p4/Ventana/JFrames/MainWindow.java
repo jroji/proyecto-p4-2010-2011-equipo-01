@@ -29,6 +29,7 @@ import proyecto.p4.Ventana.Button.BotoneraV;
 import proyecto.p4.VentanaJuego.GameWindow;
 import proyecto.p4.piezaOldWarriorTales.Unidades.Arquero;
 import proyecto.p4.piezaOldWarriorTales.Unidades.Barbarian;
+import proyecto.p4.piezaOldWarriorTales.Unidades.King;
 import proyecto.p4.piezaOldWarriorTales.Unidades.Magician;
 import proyecto.p4.piezaOldWarriorTales.Unidades.knight;
 
@@ -110,38 +111,64 @@ public class MainWindow extends JFrame implements ActionListener, MouseListener{
 
 			Arquero arq = new Arquero();
 			arq.setBoard(z);
-			arq.setPosition(10, 5);
+			arq.setPosition(0, 5);
 			arq.setColor(Colours.blanco);
-			arq.setLife(5);
-			arq.setEnergy(34);
-			arq.setExperience(67);
+			z.getBoard()[0][5].setPiece(arq);
 			
 			Arquero arq2 = new Arquero();
 			arq2.setBoard(z);
-			arq2.setPosition(10, 10);
-			arq2.setColor(Colours.blanco);
-			arq2.setLife(77);
+			arq2.setPosition(13, 5);
+			arq2.setColor(Colours.negro);
+			z.getBoard()[13][5].setPiece(arq2);
 
 			Magician mag = new Magician();
-			mag.setPosition(11,12);
+			mag.setPosition(0,6);
 			mag.setColor(Colours.blanco);
 			mag.setBoard(z);
-			z.getBoard()[11][12].setPiece(mag);
+			z.getBoard()[0][6].setPiece(mag);
+			
+			Magician mag2 = new Magician();
+			mag2.setPosition(0,6);
+			mag2.setColor(Colours.negro);
+			mag2.setBoard(z);
+			z.getBoard()[13][6].setPiece(mag2);
 
 			knight kill = new knight();
 			kill.setBoard(z);
-			kill.setPosition(2,2);
-			kill.setColor(Colours.negro);
-			z.getBoard()[2][2].setPiece(kill);
+			kill.setPosition(0,7);
+			kill.setColor(Colours.blanco);
+			z.getBoard()[0][7].setPiece(kill);
+			
+			knight kill2 = new knight();
+			kill2.setBoard(z);
+			kill2.setPosition(13,7);
+			kill2.setColor(Colours.negro);
+			z.getBoard()[13][7].setPiece(kill2);
+			
+			King king = new King();
+			king.setBoard(z);
+			king.setPosition(0, 8);
+			king.setColor(Colours.blanco);
+			z.getBoard()[0][8].setPiece(king);
+			
+			King king2 = new King();
+			king2.setBoard(z);
+			king2.setPosition(13, 8);
+			king2.setColor(Colours.negro);
+			z.getBoard()[0][8].setPiece(king2);
 			
 			Barbarian bar = new Barbarian();
 			bar.setBoard(z);
-			bar.setColor(Colours.negro);
-			bar.setPosition(5, 5);
+			bar.setColor(Colours.blanco);
+			bar.setPosition(0, 9);
+			z.getBoard()[0][9].setPiece(bar);
 			
-			z.getBoard()[5][5].setPiece(bar);
-			z.getBoard()[10][10].setPiece(arq2);
-			z.getBoard()[10][5].setPiece(arq);
+			Barbarian bar2 = new Barbarian();
+			bar2.setBoard(z);
+			bar2.setColor(Colours.negro);
+			bar2.setPosition(13, 9);
+			z.getBoard()[13][9].setPiece(bar2);
+			
 			selectedGame.setTablero(z);
 			
 			new GameWindow((JuegoOldWarriorTales) selectedGame);
