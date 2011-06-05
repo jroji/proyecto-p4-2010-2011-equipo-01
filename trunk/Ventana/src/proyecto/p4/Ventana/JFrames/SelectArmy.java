@@ -1,37 +1,24 @@
 package proyecto.p4.Ventana.JFrames;
 
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JLayeredPane;
-import javax.swing.JPanel;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-
-import Languages.*;
 
 import proyect.Reflectividad;
 import proyecto.p4.Ventana.Button.BotoneraH;
 import proyecto.p4.Ventana.Button.OldWarriorButton;
-import proyecto.p4.Ventana.JPanels.ListAndImage;
-import proyecto.p4.Juego.*;
+import proyecto.p4.VentanaJuego.GameWindow;
+import proyecto.p4.JuegoOldWarriorTales.JuegoOldWarriorTales;
 import proyecto.p4.Mapa.Board;
 import proyecto.p4.Piece.Colours;
 import proyecto.p4.Piece.Piece;
 import proyecto.p4.PiezasOldWarriorTales.PiezaOldWarriorTales;
-import proyecto.p4.piezaOldWarriorTales.Unidades.Arquero;
-import proyecto.p4.piezaOldWarriorTales.Unidades.Killer;
 import proyecto.p4.piezaOldWarriorTales.Unidades.King;
-import proyecto.p4.piezaOldWarriorTales.Unidades.Magician;
-import proyecto.p4.piezaOldWarriorTales.Unidades.Monk;
-import proyecto.p4.piezaOldWarriorTales.Unidades.Soldier;
-import proyecto.p4.piezaOldWarriorTales.Unidades.knight;
 
 
 
@@ -48,7 +35,7 @@ public class SelectArmy extends JFrameFondo implements ActionListener{
 	private javax.swing.JList jList1;
 	private javax.swing.JScrollPane jScrollPane1;
 	private javax.swing.JTable jTable1;
-	private Juego J;
+	private JuegoOldWarriorTales J;
 	private DefaultTableModel modelo;
 	private int gold;
 	private boolean selected;
@@ -57,26 +44,21 @@ public class SelectArmy extends JFrameFondo implements ActionListener{
     private ArrayList<PiezaOldWarriorTales> array ;
 	private ArrayList<PiezaOldWarriorTales> array2 ;
     
-    public SelectArmy(ResourceBundle Language,boolean Sound,boolean selected,Juego j,int gold,ArrayList<PiezaOldWarriorTales> array,ArrayList<PiezaOldWarriorTales> array2) {
+    public SelectArmy(ResourceBundle Language,boolean Sound,JuegoOldWarriorTales j,boolean j1Selected,int gold, ArrayList<PiezaOldWarriorTales> array, ArrayList<PiezaOldWarriorTales> array2) {
     	language = Language;
+    	J=j;
 		this.gold=gold;
-		this.array = array ;
-		this.array2 = array ;
-		King king = new King();
-		king.setBoard(J.getTablero());
-		king.setPosition(0, 6);
-		king.setColor(Colours.rojo);
-		array.add(0, king);
-		king.setColor(Colours.azul);
-		array2.add(0, king);
+		this.array = array;
+		this.array2 = array2;
+	
 		sound = Sound;
-		this.selected = selected;
+		selected = j1Selected;
 		modelo = new DefaultTableModel();
 		modelo.setColumnCount(3);
 		instancias= new ArrayList<PiezaOldWarriorTales>();
 		Object [] l= {Language.getString("Name"),Language.getString("Health"),Language.getString("Mana")};
 		modelo.setColumnIdentifiers(l);
-		J=j;
+		
     	initComponents();
         cargarUnidadesEnList();
     	setVisible(true);
@@ -243,19 +225,39 @@ public class SelectArmy extends JFrameFondo implements ActionListener{
 				modelo.addRow(fila);
 				GoldLeft.setText(Integer.toString(Integer.parseInt(GoldLeft.getText())-instancias.get(jList1.getSelectedIndex()).getPrice()));
 				if(selected){
-					System.out.println("soy el jugador 1");
-					Piece p =  instancias.get(jList1.getSelectedIndex());
-					((PiezaOldWarriorTales) p).setBoard(J.getTablero());
-					((PiezaOldWarriorTales) p).setColor(Colours.rojo);
-					array.add((PiezaOldWarriorTales) p);
+					Piece p;
+					try {
+						p= instancias.get(jList1.getSelectedIndex()).getClass().newInstance();
+						((PiezaOldWarriorTales) p).setBoard(J.getTablero());
+						((PiezaOldWarriorTales) p).setColor(Colours.rojo);
+						array.add((PiezaOldWarriorTales) p);
+					} catch (InstantiationException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (IllegalAccessException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					
 					//((PiezaOldWarriorTales) p).setPosition(positionX, positionY);
 					//J.getTablero()[((PiezaOldWarriorTales) p).getPosition_x()][((PiezaOldWarriorTales) p).getPosition_y()].setPiece(p);
 				}
 				else if(!selected){
-					Piece p =  instancias.get(jList1.getSelectedIndex());
-					((PiezaOldWarriorTales) p).setBoard(J.getTablero());
-					((PiezaOldWarriorTales) p).setColor(Colours.azul);
-					array2.add((PiezaOldWarriorTales) p);
+					Piece p;
+					try {
+						p = instancias.get(jList1.getSelectedIndex()).getClass().newInstance();
+						((PiezaOldWarriorTales) p).setBoard(J.getTablero());
+						((PiezaOldWarriorTales) p).setColor(Colours.azul);
+						array2.add((PiezaOldWarriorTales) p);
+					} catch (InstantiationException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (IllegalAccessException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					
+
 //					((PiezaOldWarriorTales) p).setPosition(positionX, positionY);
 //					J.getTablero()[((PiezaOldWarriorTales) p).getPosition_x()][((PiezaOldWarriorTales) p).getPosition_y()].setPiece(p);
 				}
@@ -264,14 +266,21 @@ public class SelectArmy extends JFrameFondo implements ActionListener{
 		}else if(e.getSource()==((OldWarriorButton)BotoneraH.getComponent(2)).getOldWarriorButton()){
 			if(selected){
 			this.dispose();
-			new SelectArmy(language,sound,J,false,gold);
+			new SelectArmy(language,sound,J,false,gold, array,array2);
 			}else if(!selected){
 				this.dispose();
 				//cargar Partida con el mapa y las unidades.
 				colocarUnidades(array, J.getTablero());
 				colocarUnidades(array2,J.getTablero());
-				System.out.println(array.toString());
-				System.out.println(array2.toString());
+				
+				King king = new King();
+				King king2 = new King();
+				king.setBoard(J.getTablero());
+				king.setBoard(J.getTablero());
+				king.setColor(Colours.rojo);
+				array.add(0, king);
+				king2.setColor(Colours.azul);
+				array2.add(0, king2);
 				new GameWindow(J);
 				
 			}
