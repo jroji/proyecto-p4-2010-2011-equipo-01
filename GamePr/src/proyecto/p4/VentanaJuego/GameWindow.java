@@ -116,6 +116,7 @@ public class GameWindow extends JFrame implements MouseListener, ListSelectionLi
 
 		this.add(layer);
 
+		this.addKeyListener(this);
 //		this.addMouseListener(this);
 		units.addListSelectionListener(this);
 		AttackButton.addMouseListener(this);
