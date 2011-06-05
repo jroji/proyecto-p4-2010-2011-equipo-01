@@ -73,7 +73,7 @@ public class Barbarian extends PiezaOldWarriorTales {
 		Barbarian a = new Barbarian();
 		a.setPosition(5, 5);
 		a.setCodePiece(34);
-		a.setColor(Colours.blanco);
+		a.setColor(Colours.azul);
 		a.setOrientation(Orientations.South);
 		a.setLife(60);
 		a.setEnergy(50);

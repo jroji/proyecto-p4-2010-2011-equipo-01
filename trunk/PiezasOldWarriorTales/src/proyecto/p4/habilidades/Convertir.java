@@ -38,10 +38,10 @@ public class Convertir extends Hability {
 			if (IsWithinRange(coordenadas[0][0], coordenadas[0][1])){
 				PiezaOldWarriorTales pieza_a_convertir=(PiezaOldWarriorTales) pieza.getBoard().
 				getPiece(coordenadas[0][0], coordenadas[0][1]);
-				if (pieza_a_convertir.getColor()==Colours.blanco)
-					pieza_a_convertir.setColor(Colours.negro);
+				if (pieza_a_convertir.getColor()==Colours.azul)
+					pieza_a_convertir.setColor(Colours.rojo);
 				else
-					pieza_a_convertir.setColor(Colours.blanco);
+					pieza_a_convertir.setColor(Colours.azul);
 			}else 
 				throw new Exception ("la pieza no esta al alcance");
 			

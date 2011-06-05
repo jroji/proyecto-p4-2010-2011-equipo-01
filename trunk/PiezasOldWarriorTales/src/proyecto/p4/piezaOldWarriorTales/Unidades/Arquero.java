@@ -58,7 +58,7 @@ public class Arquero extends PiezaOldWarriorTales{
 		Arquero a=new Arquero();
 		a.setPosition(5, 5);
 		a.setCodePiece(7);
-		a.setColor(Colours.blanco);
+		a.setColor(Colours.azul);
 		a.setOrientation(Orientations.South);
 		a.setLife(60);
 		a.setEnergy(50);
