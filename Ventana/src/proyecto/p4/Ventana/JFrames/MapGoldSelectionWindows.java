@@ -115,7 +115,7 @@ public class MapGoldSelectionWindows extends JFrameFondo implements ActionListen
 			J.setTablero(boardArray.get(MapList.getSelectedIndex()));
 			ArrayList<PiezaOldWarriorTales> array = new ArrayList<PiezaOldWarriorTales>() ;
 			ArrayList<PiezaOldWarriorTales> array2 = new ArrayList<PiezaOldWarriorTales>() ;
-			new SelectArmy(Language,Sound,true,J,GoldSelection.getText(),array,array2);
+			new SelectArmy(Language,Sound,J,true,GoldSelection.getText(),array,array2);
 
 		}else if(e.getSource()==GoldSelection.getAdd()){
 			if(GoldSelection.getText()+1000<=5000){
