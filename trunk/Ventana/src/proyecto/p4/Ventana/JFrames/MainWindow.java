@@ -22,6 +22,7 @@ import Languages.*;
 
 import proyecto.p4.Juego.Juego;
 import proyecto.p4.Ventana.Button.BotoneraV;
+import proyecto.p4.VentanaJuego.GameWindow;
 
 public class MainWindow extends JFrame implements ActionListener, MouseListener{
 	
@@ -100,6 +101,7 @@ public class MainWindow extends JFrame implements ActionListener, MouseListener{
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource()==Buttons.getBoton1().getOldWarriorButton()){
 			Buttons.setButtonP1(false);
+			GameWindow x;
 			this.dispose();
 		}
 		else{
