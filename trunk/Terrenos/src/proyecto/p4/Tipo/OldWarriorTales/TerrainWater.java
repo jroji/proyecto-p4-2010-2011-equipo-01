@@ -9,7 +9,7 @@ public class TerrainWater extends Terrain{
 	@Override
 	public void iniImage() {
 		//insertar ruta de la imagen
-		image= "";;
+		image= "/img/water.gif";;
 	}
 
 	@Override
