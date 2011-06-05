@@ -28,7 +28,7 @@ public class PieceJDBC implements PieceDataSource {
 	 */
 	public PieceJDBC() throws ClassNotFoundException, SQLException{
 		Class.forName(DRIVER_CLASS_NAME);
-		connection= DriverManager.getConnection(CONNECTION_URL);
+//		connection= DriverManager.getConnection(CONNECTION_URL);
 		
 	}
 	/**
@@ -57,7 +57,7 @@ public class PieceJDBC implements PieceDataSource {
 		    tablas.getString(tablas.findColumn( "TABLE_NAME" )));
 		  seguir = tablas.next();
 		}
-		
+		connection.close();
 	}
 	
 	/**
@@ -69,7 +69,7 @@ public class PieceJDBC implements PieceDataSource {
 	 * @throws Exception When the type of the field is not one of the next: String, Int, Boolean, Char, Double.
 	 */
 	public void insertFiels(Object instance, Field field, String valor ) throws Exception{
-		
+		connection= DriverManager.getConnection(CONNECTION_URL);
 		try{
 			field.set(instance, valor);
 		}catch(Exception e){
@@ -186,6 +186,7 @@ public class PieceJDBC implements PieceDataSource {
 			}
 		}
 	}
+		connection.close();
 	}
 	
 	/** this method returns an arrayList that contains all the storableInDataBase objects from the specified table of the data base.
@@ -195,6 +196,7 @@ public class PieceJDBC implements PieceDataSource {
 	 * @throws Exception When the type of the field is not one of the next: String, Int, Boolean, Char, Double.
 	 */
 	public ArrayList<storableInDataBase> getAll(String tableName,String className) throws Exception {
+		connection= DriverManager.getConnection(CONNECTION_URL);
 		ArrayList <storableInDataBase> c= new ArrayList <storableInDataBase>();
 		//Consulta de todos los datos
 		Statement statement = connection.createStatement();
@@ -300,8 +302,10 @@ public class PieceJDBC implements PieceDataSource {
 		else{
 			throw new Exception("This class cannot be stored in the database (doesn´t implement the required interface)");
 		}
+		connection.close();
 		//devuelve el arrayList con la información de la base de datos
 		return c;
+		
 	}
 	
 	 
@@ -552,7 +556,6 @@ public class PieceJDBC implements PieceDataSource {
 		int insertadas=statement.executeUpdate(sqlStatementString);
 		statement.close();
 		connection.close();
-		connection= DriverManager.getConnection(CONNECTION_URL);
 		//devuelve el número de filas insertadas
 		return insertadas;
 	}
@@ -656,12 +659,10 @@ public class PieceJDBC implements PieceDataSource {
 		int deleteRows= statement.executeUpdate(sqlStatementString);
 		statement.close();
 		connection.close();
-		connection= DriverManager.getConnection(CONNECTION_URL);
 		//devuelve el número de filas borradas si hay condición
 		 return deleteRows;}
 	    else{
 	    	connection.close();
-			connection= DriverManager.getConnection(CONNECTION_URL);
 	    	//si no hay condiciones retorna 0.
 	    	return 0;
 	    }
