@@ -4,8 +4,6 @@ package proyecto.p4.Ventana.JPanels;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ResourceBundle;
-
 import javax.swing.JPanel;
 import proyecto.p4.PiezasOldWarriorTales.Habilidades.Hability;
 import proyecto.p4.PiezasOldWarriorTales.PiezaOldWarriorTales;
@@ -58,11 +56,12 @@ public class HabilitiesButton extends JPanel implements ActionListener{
 				}	catch(Exception e){	
 					Buttons[i].setText("");
 					}	
+		for(int j = 0;j<Buttons.length;i++){
 					if(Buttons[i].getText().equals(""))
 						Buttons[i].setVisible(false);
 					else
 						Buttons[i].setVisible(true);
-
+		}
 		}
 		this.repaint();
 		
