@@ -16,8 +16,8 @@ public class Board
 				map[i][j].setPosX(i);
 				map[i][j].setPosY(j);
 				}
-		map[0][6]=new Casilla(new TerrainCastle(),0,7,null);
-		map[13][6]=new Casilla(new TerrainCastle(),0,7,null);
+		map[0][6]=new Casilla(new TerrainCastle(),0,6,null);
+		map[13][6]=new Casilla(new TerrainCastle(),13,6,null);
 		}
 	
 	public Casilla[][] getBoard(){
