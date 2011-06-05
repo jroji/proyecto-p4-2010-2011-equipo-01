@@ -30,11 +30,11 @@ public class MapGoldSelectionWindows extends JFrameFondo implements ActionListen
     private JScrollPane mapList;
     private ResourceBundle Language;
     private boolean Sound;
-    private Juego J;
+    private JuegoOldWarriorTales J;
     private ArrayList<Board> boardArray;
     private JuegoOldWarriorTales juego;
     
-    public MapGoldSelectionWindows(ResourceBundle language,boolean sound,Juego j) {
+    public MapGoldSelectionWindows(ResourceBundle language,boolean sound,JuegoOldWarriorTales j) {
     	J = j;
     	Sound = sound;
     	Language = language;

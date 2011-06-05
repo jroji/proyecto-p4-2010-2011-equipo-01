@@ -18,12 +18,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
-
-import Languages.*;
-
 import proyecto.p4.Juego.Juego;
 import proyecto.p4.JuegoOldWarriorTales.JuegoOldWarriorTales;
-import proyecto.p4.Jugador.Jugador;
 import proyecto.p4.Mapa.Board;
 import proyecto.p4.Piece.Colours;
 import proyecto.p4.PiezasOldWarriorTales.PiezaOldWarriorTales;
@@ -43,14 +39,15 @@ public class MainWindow extends JFrame implements ActionListener, MouseListener{
 	BotoneraV Buttons;
 	private ResourceBundle Language;
 	boolean Sound;
-	private Juego selectedGame;
+	private JuegoOldWarriorTales selectedGame;
 	static Clip sonido = null;
 	boolean sonando;
 	JLabel helpButton;
 	BotoneraV botoneraV;
 	
 	public MainWindow(ResourceBundle language,boolean Sound, Juego ju){
-		selectedGame=ju;
+		sonando=false;
+		selectedGame=(JuegoOldWarriorTales)ju;
 		Language=language;
 		this.Sound=Sound;
 		Buttons=new BotoneraV(Language.getString("label_quickGame"),Language.getString("label_customGame"),
@@ -81,7 +78,6 @@ public class MainWindow extends JFrame implements ActionListener, MouseListener{
 		Buttons.getBoton4().getOldWarriorButton().addActionListener(this);
 		Buttons.getBoton5().getOldWarriorButton().addActionListener(this);
 		helpButton.addMouseListener(this);
-
 		if(Sound&&!sonando){
 			StartMusic("epicarojilarga.wav");
 			sonando = true ;
@@ -245,7 +241,6 @@ public class MainWindow extends JFrame implements ActionListener, MouseListener{
 		else{
 			if(e.getSource()==Buttons.getBoton2().getOldWarriorButton()){
 				this.dispose();
-				System.out.println(selectedGame);
 				new MapGoldSelectionWindows(Language,Sound,selectedGame);
 			}else{
 				if(e.getSource()==Buttons.getBoton3().getOldWarriorButton()){
