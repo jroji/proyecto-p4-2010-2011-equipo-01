@@ -41,6 +41,7 @@ public class Soldier extends PiezaOldWarriorTales {
 		habilities[0]=h1;
 		habilities[1]=h2;
 	}
+	@SuppressWarnings("unused")
 	private void updateProbability(){
  		Casilla casilla= board.getCasilla(getPosition_x(), getPosition_y());
  		if (casilla.getSquare().getClass().getName()=="Castle"){

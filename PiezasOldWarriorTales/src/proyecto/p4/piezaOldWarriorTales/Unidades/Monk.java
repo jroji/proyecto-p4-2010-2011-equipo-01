@@ -49,6 +49,7 @@ public class Monk extends PiezaOldWarriorTales{
 			habilities[1]=h2;
 			habilities[2]=h3;
 		}
+		@SuppressWarnings("unused")
 		private void updateProbability(){
 	 		Casilla casilla= board.getCasilla(getPosition_x(), getPosition_y());
 	 		if (casilla.getSquare().getClass().getName()=="Castle"){
