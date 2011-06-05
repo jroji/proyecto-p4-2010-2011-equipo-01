@@ -21,7 +21,7 @@ public class MyResources_Es extends ListResourceBundle{
 		return contents;
 	}
 	public String toString (){
-		return "EspaÃ±ol";
+		return "Español";
 	}
 
 
