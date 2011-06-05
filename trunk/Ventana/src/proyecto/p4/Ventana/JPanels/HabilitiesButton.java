@@ -37,8 +37,8 @@ public class HabilitiesButton extends JPanel implements ActionListener{
 		Buttons[3] = new OldWarriorButton("");		
 		this.setLayout(new FlowLayout());
 		for(int i = 0; i<Habilities.length;i++){
-			Buttons[i].setText(Language.getString(Habilities[i].getName()));	
-//			Buttons[i].setText(Habilities[i].getName());
+			//Buttons[i].setText(Language.getString(Habilities[i].getName()));	
+			Buttons[i].setText(Habilities[i].getName());
 			this.add(Buttons[i]);
 			if(Buttons[i].getText().equals(""))
 				Buttons[i].setVisible(false);
@@ -56,9 +56,9 @@ public class HabilitiesButton extends JPanel implements ActionListener{
 	public void update(PiezaOldWarriorTales piece){
 		this.Habilities=piece.getHabilities();
 		for(int i = 0; i<Buttons.length;i++){
-			//		Buttons[i].setText(Language.getString(Habilities[i].getName()));	
+					Buttons[i].setText(Habilities[i].getName());	
 				try{
-					Buttons[i].setText(Language.getString(Habilities[i].getName()));
+					//Buttons[i].setText(Language.getString(Habilities[i].getName()));
 				}	catch(Exception e){	
 					Buttons[i].setText("");
 					}	
