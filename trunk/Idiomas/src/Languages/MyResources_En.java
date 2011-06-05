@@ -13,7 +13,7 @@ public class MyResources_En extends ListResourceBundle{
 			{"AtaqueEnZona","Attack zone"},{"Cegar","Blind"},{"Convertir","Convert"},{"CurarEstados","Heal states"},{"CurarZona","Heal Zone"},
 			{"Envenenar","Poison"},{"LanzarSuriquen","Throw Suriken"},{"Sprint","Sprint"},{"Yes","Yes"},{"No","No"},
 			{"label_loadGame","Load Game"},{"Name","Name"},{"Mana","Mana"},{"Health","Health"},{"noPlayer12","The two players doesn't exist"},
-			{"noPlayer1","The first player don't exist"},{"noPlayer2","The second player don't exist"}
+			{"noPlayer1","The first player don't exist"},{"noPlayer2","The second player don't exist"},{"erase","Erase"}
 		
 	};
 	
