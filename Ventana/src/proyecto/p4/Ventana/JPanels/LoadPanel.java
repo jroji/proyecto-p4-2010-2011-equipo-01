@@ -34,12 +34,15 @@ public class LoadPanel extends JPanel{
     	JuegoOldWarriorTales partida = new JuegoOldWarriorTales();
     	list = partida.takeOutFromDataBase();
     	
+    	lista.setListData(list.toArray());
     	this.add(layer);
+    	layer.add(lista, new Integer(1));
+    	lista.setBounds(10,10,300,420);
     	layer.setBounds(0,0,this.getWidth(),this.getHeight());
     	layer.add(fondo,new Integer(0));
     	fondo.setBounds(0,0,this.getWidth(),this.getHeight());
     	layer.add(botonera,new Integer(1));
-    	botonera.setBounds(10,300,400,200);
+    	botonera.setBounds(10,340,400,200);
     }
 
 }
