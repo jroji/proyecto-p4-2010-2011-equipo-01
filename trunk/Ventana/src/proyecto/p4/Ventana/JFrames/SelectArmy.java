@@ -62,6 +62,12 @@ public class SelectArmy extends JFrameFondo implements ActionListener{
 		this.gold=gold;
 		array = new ArrayList<PiezaOldWarriorTales>() ;
 		array2 = new ArrayList<PiezaOldWarriorTales>() ;
+		King king = new King();
+		king.setBoard(J.getTablero());
+		king.setPosition(0, 6);
+		king.setColor(Colours.azul);
+		array.add(0, king);
+		array2.add(0, king);
 		sound = Sound;
 		selected = j1Selected;
 		modelo = new DefaultTableModel();
@@ -258,15 +264,9 @@ public class SelectArmy extends JFrameFondo implements ActionListener{
 				King king = new King();
 				king.setBoard(J.getTablero());
 				king.setColor(Colours.rojo);
-				array.add(0, king);
 			this.dispose();
 			new SelectArmy(language,sound,J,false,gold);
 			}else if(!selected){
-				King king = new King();
-				king.setBoard(J.getTablero());
-				king.setPosition(0, 6);
-				king.setColor(Colours.azul);
-				array.add(0, king);
 				this.dispose();
 				//cargar Partida con el mapa y las unidades.
 				colocarUnidades(array, J.getTablero());
