@@ -122,7 +122,6 @@ public class WelcomeWindow extends JFrame implements ActionListener,KeyListener{
 	}
 	public static void main(String [] args){
 		ResourceBundle language = new MyResources_En();
-		@SuppressWarnings("unused")
 		WelcomeWindow x = new WelcomeWindow(language,true);
 	}
 
