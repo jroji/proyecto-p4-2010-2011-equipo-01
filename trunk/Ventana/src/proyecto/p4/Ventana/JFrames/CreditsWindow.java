@@ -149,7 +149,7 @@ public class CreditsWindow extends JFrameFondo implements ActionListener {
 		// TODO Auto-generated method stub
     	if(e.getSource()==Button.getOldWarriorButton()){
 		this.dispose();
-    	new OptionWindow(Language,Sound,selectedGame);
+    	//new OptionWindow(Language,Sound,selectedGame);
 	}
     }
 }
